@@ -1,12 +1,15 @@
 package main;
 
+import entity.Player;
+import utility.KeyHandler;
+
 import javax.swing.*;
 import java.awt.*;
 
 import static utility.SizeNumber.*;
 import static utility.SizeNumber.MAX_SCREEN_ROW;
 
-public class GamePanel extends JPanel implements  Runnable{
+public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTING
     final int originalTileSize = ORIGINAL_TILE_SIZE; // 16x16 tile
@@ -22,11 +25,15 @@ public class GamePanel extends JPanel implements  Runnable{
     int FPS = 60;
 
     Thread gameThread; // To enable start and stop, needs involve Runnable interface.
+    KeyHandler keyHandler = new KeyHandler(); // Key handler class.
+
+    public Player player = new Player(this, keyHandler); // Initiate a Player object.
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
 
+        this.addKeyListener(keyHandler); // So this GamePanel can recognize key input.
         this.setFocusable(true); // With this, this main.GamePanel can be "focused" to receive key input.
     }
 
@@ -70,5 +77,20 @@ public class GamePanel extends JPanel implements  Runnable{
     }
 
     public void update() {
+        player.update();
+    }
+
+    // This is built-in java method on JPanel.
+    // Graphics is a class that has many functions to draw objects on the screen, just like pencil or paintbrush.
+    public void paintComponent(Graphics g) {
+
+        super.paintComponent(g); // using the parent class JPanel's method.
+
+        // convert Graphics to Graphics2D class extends the Graphics class to provide more sophisticated control over
+        // geometry, coordinate transformations, color management, and text layout.
+        Graphics2D g2 = (Graphics2D) g;
+        player.draw(g2);
+
+        g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
 }
