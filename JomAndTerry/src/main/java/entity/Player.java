@@ -12,9 +12,8 @@ public class Player extends Entity {
     KeyHandler keyHandler;
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
-        this.gp = gp;
+        super(gp);
         this.keyHandler = keyHandler;
-
         setDefaultValues();
     }
 
