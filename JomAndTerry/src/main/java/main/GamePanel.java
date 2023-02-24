@@ -1,6 +1,8 @@
 package main;
 
 import entity.Player;
+import tile.TileManager;
+import utility.CollisionChecker;
 import utility.KeyHandler;
 
 import javax.swing.*;
@@ -18,8 +20,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int maxScreenRow = MAX_SCREEN_ROW;
 
     public final int tileSize = originalTileSize * scale; // 48x48 tile
-    public final int screenWidth = tileSize * maxScreenCol; // 768 pixels
-    public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
+    public final int screenWidth = tileSize * maxScreenCol; // 48 * 20 pixels
+    public final int screenHeight = tileSize * maxScreenRow; // 48 * 16 pixels
 
     // FPS
     int FPS = 60;
@@ -28,6 +30,8 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler(); // Key handler class.
 
     public Player player = new Player(this, keyHandler); // Initiate a Player object.
+    public TileManager tileManager = new TileManager(this); // Initiate tileManger object.
+    public CollisionChecker collisionChecker = new CollisionChecker(this); // Initiate a CollisionChecker object.
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -89,6 +93,8 @@ public class GamePanel extends JPanel implements Runnable {
         // convert Graphics to Graphics2D class extends the Graphics class to provide more sophisticated control over
         // geometry, coordinate transformations, color management, and text layout.
         Graphics2D g2 = (Graphics2D) g;
+
+        tileManager.draw(g2);
         player.draw(g2);
 
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.

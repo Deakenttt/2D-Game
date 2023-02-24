@@ -15,6 +15,13 @@ public class Player extends Entity {
         this.gp = gp;
         this.keyHandler = keyHandler;
 
+        // SOLID AREA FOR COLLISION
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 32;
+        solidArea.height = 32;
+
         setDefaultValues();
     }
 
@@ -31,16 +38,34 @@ public class Player extends Entity {
                 || keyHandler.leftPressed || keyHandler.rightPressed) {
             if (keyHandler.upPressed) {
                 direction = "up";
-                y -= speed;
             } else if (keyHandler.downPressed) {
                 direction = "down";
-                y += speed;
             } else if (keyHandler.leftPressed) {
                 direction = "left";
-                x -= speed;
             } else {
                 direction = "right";
-                x += speed;
+            }
+
+            // CHECK TILE COLLISION
+            collisionOn = false;
+            gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method to see if is solid on tile.
+
+            // IF COLLISION IS FALSE, PAYER CAN MOVE
+            if (collisionOn == false) {
+                switch (direction) {
+                    case "up":
+                        y -= speed;
+                        break;
+                    case "down":
+                        y += speed;
+                        break;
+                    case "left":
+                        x -= speed;
+                        break;
+                    case "right":
+                        x += speed;
+                        break;
+                }
             }
 
             spriteCounter++;
@@ -56,6 +81,6 @@ public class Player extends Entity {
 
     public void draw(Graphics2D g2) {
         g2.setColor(Color.WHITE);
-        g2.drawRect(x, y, 48, 48);
+        g2.drawRect(x, y, gp.tileSize, gp.tileSize);
     }
 }
