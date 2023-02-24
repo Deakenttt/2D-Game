@@ -10,7 +10,9 @@ import java.awt.*;
 
 import static utility.SizeNumber.*;
 import static utility.SizeNumber.MAX_SCREEN_ROW;
-
+/**
+ * @Des This is a GamePanel class.
+ */
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTING
@@ -41,8 +43,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true); // With this, this main.GamePanel can be "focused" to receive key input.
     }
 
-    // Starts gameThread method.
+    // Method of Starting Game Thread.
     public void startGameThread() {
+
         // passing GamePanel class to this thread's constructor.
         gameThread = new Thread(this);
         gameThread.start();
@@ -50,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
+
         // System.nanoTime(); // Returns the current value of the running Java Virtual Machine's high-resolution time source in nanoseconds.
         double drawInterval = 1000000000 / FPS; // 0.01666 seconds
         double nextDrawTime = System.nanoTime() + drawInterval; // The allocated time for single loop is 0.01666 seconds.
@@ -94,8 +98,8 @@ public class GamePanel extends JPanel implements Runnable {
         // geometry, coordinate transformations, color management, and text layout.
         Graphics2D g2 = (Graphics2D) g;
 
-        tileManager.draw(g2);
-        player.draw(g2);
+        tileManager.draw(g2); // Draw Map.
+        player.draw(g2); // Draw Player.
 
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }

@@ -10,10 +10,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
+/**
+ * @Des TileManager class for handling all different types of tile.
+ */
 public class TileManager {
     GamePanel gp;
     public Tile[] tile;
-    public int mapTileNum[][];
+    public int[][] mapTileNum;
 
     public TileManager (GamePanel gp) {
         this.gp = gp;
@@ -27,6 +30,7 @@ public class TileManager {
 
     public void getTileImage() {
         try {
+
             // Grass
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Tiles/Old version/grass.png")));
@@ -46,11 +50,13 @@ public class TileManager {
         }
     }
 
+    // METHOD OF LOADING MAP FILE INTO 2D ARRAY.
     public void loadMap(String filePath) {
         try {
 
-            // import the txt file
+            // Import the txt file.
             InputStream is = getClass().getResourceAsStream(filePath);
+            assert is != null;
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
@@ -62,7 +68,7 @@ public class TileManager {
 
                 while (col < gp.maxScreenCol) {
 
-                    String numbers[] = line.split(" "); // Splits this string around matches of the given regular expression.
+                    String[] numbers = line.split(" "); // Splits this string around matches of the given regular expression.
 
                     int num = Integer.parseInt(numbers[col]); // Converts string to integer.
 
@@ -80,7 +86,7 @@ public class TileManager {
         }
     }
 
-    // method for drawing map when only in a screen.
+    // METHOD FOR DRAWING MAP WHEN ONLY IN A SCREEN.
     public void draw(Graphics2D g2) {
 
         int col = 0;

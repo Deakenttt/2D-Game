@@ -3,7 +3,12 @@ package entity;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * @Des This is an Entity class for Player, Cat
+ */
 public class Entity {
+
+    // ENTITY'S COORDINATE AND SPEED.
     public int x, y;
     public int speed;
 

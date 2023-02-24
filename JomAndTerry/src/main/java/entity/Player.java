@@ -6,6 +6,9 @@ import utility.KeyHandler;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * @Des This is a player class extends from Entity.
+ */
 public class Player extends Entity {
     // We need GamePanel and KeyHandler
     GamePanel gp;
@@ -51,20 +54,12 @@ public class Player extends Entity {
             gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method to see if is solid on tile.
 
             // IF COLLISION IS FALSE, PAYER CAN MOVE
-            if (collisionOn == false) {
+            if (!collisionOn) {
                 switch (direction) {
-                    case "up":
-                        y -= speed;
-                        break;
-                    case "down":
-                        y += speed;
-                        break;
-                    case "left":
-                        x -= speed;
-                        break;
-                    case "right":
-                        x += speed;
-                        break;
+                    case "up" -> y -= speed;
+                    case "down" -> y += speed;
+                    case "left" -> x -= speed;
+                    case "right" -> x += speed;
                 }
             }
 

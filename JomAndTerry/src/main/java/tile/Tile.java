@@ -3,7 +3,7 @@ package tile;
 import java.awt.image.BufferedImage;
 
 /**
- * this is for all types pf tile.
+ * @Des Tile Class
  */
 public class Tile {
 

@@ -1,5 +1,8 @@
 package utility;
 
+/**
+ * @Des Storing the static parameters of size.
+ */
 public class SizeNumber {
     public static int ORIGINAL_TILE_SIZE = 16;
     public static int SCALE = 3;
