@@ -13,6 +13,9 @@ public class Player extends Entity {
     // We need GamePanel and KeyHandler
     GamePanel gp;
     KeyHandler keyHandler;
+    int hasCheese = 0; // Tracking the number of cheese.
+    int hasSteak = 0; // Tracking the number of steak.
+    int totalScore = 0; // Tracking the total score.
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
         this.gp = gp;
@@ -25,12 +28,15 @@ public class Player extends Entity {
         solidArea.width = 32;
         solidArea.height = 32;
 
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+
         setDefaultValues();
     }
 
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
+        x = 48;
+        y = 48;
         speed = 4;
         direction = "down";
     }
@@ -53,6 +59,11 @@ public class Player extends Entity {
             collisionOn = false;
             gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method to see if is solid on tile.
 
+            // CHECK OBJECT INTERACTION.
+            // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
+            int objIndex = gp.collisionChecker.checkObject(this, true);
+            pickUpObject(objIndex); // Calls pickUpObject method.
+
             // IF COLLISION IS FALSE, PAYER CAN MOVE
             if (!collisionOn) {
                 switch (direction) {
@@ -70,6 +81,37 @@ public class Player extends Entity {
                 else if (spriteNum == 2)
                     spriteNum = 1;
                 spriteCounter = 0;
+            }
+        }
+    }
+
+    // METHOD OF PICKING UP OBJECT.
+    public void pickUpObject(int i) {
+
+        if (i != 999) {
+
+            String objectName = gp.obj[i].name; // Get the type of different objects.
+
+            switch (objectName) {
+                case "Cheese" -> {
+                    hasCheese++;
+                    totalScore++;
+                    gp.obj[i] = null;
+                    System.out.println("score: " + totalScore);
+                }
+
+                case "Steak" -> {
+                    hasSteak += 5;
+                    totalScore += 5;
+                    gp.obj[i] = null;
+                    System.out.println("score: " + totalScore);
+                }
+
+                case "Trap" -> {
+                    totalScore -= 5;
+                    gp.obj[i] = null;
+                    System.out.println("score: " + totalScore);
+                }
             }
         }
     }

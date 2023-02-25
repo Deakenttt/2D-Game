@@ -5,25 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b84b050-2c49-4765-8618-9bb345bd1d0f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/object/AssetSetter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Cheese.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Steak.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Trap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/object/SuperObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tile/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tile/TileManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utility/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/SizeNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/SizeNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/Map/map01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/Map/map01.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Map/map01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/assets/Map/map01.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/entity/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Entity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/entity/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/GamePanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tile/TileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tile/TileManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/utility/CollisionChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/CollisionChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utility/SizeNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/SizeNumber.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +61,11 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.15172414" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/assets" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

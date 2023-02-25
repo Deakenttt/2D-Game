@@ -1,6 +1,8 @@
 package main;
 
 import entity.Player;
+import object.AssetSetter;
+import object.SuperObject;
 import tile.TileManager;
 import utility.CollisionChecker;
 import utility.KeyHandler;
@@ -10,6 +12,7 @@ import java.awt.*;
 
 import static utility.SizeNumber.*;
 import static utility.SizeNumber.MAX_SCREEN_ROW;
+
 /**
  * @Des This is a GamePanel class.
  */
@@ -33,7 +36,12 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Player player = new Player(this, keyHandler); // Initiate a Player object.
     public TileManager tileManager = new TileManager(this); // Initiate tileManger object.
+
     public CollisionChecker collisionChecker = new CollisionChecker(this); // Initiate a CollisionChecker object.
+
+    public AssetSetter assetSetter = new AssetSetter(this); // Initiate AssetSetter object.
+    public SuperObject[] obj = new SuperObject[10]; // 10 slots for object, can replace the content during the game.
+
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -41,6 +49,12 @@ public class GamePanel extends JPanel implements Runnable {
 
         this.addKeyListener(keyHandler); // So this GamePanel can recognize key input.
         this.setFocusable(true); // With this, this main.GamePanel can be "focused" to receive key input.
+    }
+
+    // Method of setting up object placement.
+    public void setUpGame() {
+
+        assetSetter.setObject();
     }
 
     // Method of Starting Game Thread.
@@ -98,8 +112,18 @@ public class GamePanel extends JPanel implements Runnable {
         // geometry, coordinate transformations, color management, and text layout.
         Graphics2D g2 = (Graphics2D) g;
 
-        tileManager.draw(g2); // Draw Map.
-        player.draw(g2); // Draw Player.
+        // DRAW TILE
+        tileManager.draw(g2);
+
+        // DRAW OBJECT
+        for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
+
+        // DRAW PLAYER
+        player.draw(g2);
 
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
