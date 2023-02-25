@@ -1,6 +1,7 @@
 package main;
 
 import entity.Player;
+import entity.Enemy;
 import utility.KeyHandler;
 
 import javax.swing.*;
@@ -28,6 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler(); // Key handler class.
 
     public Player player = new Player(this, keyHandler); // Initiate a Player object.
+    public Enemy enemy = new Enemy(this); // Initiate a Player object.
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -78,6 +80,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         player.update();
+        enemy.update();
+
     }
 
     // This is built-in java method on JPanel.
@@ -90,6 +94,8 @@ public class GamePanel extends JPanel implements Runnable {
         // geometry, coordinate transformations, color management, and text layout.
         Graphics2D g2 = (Graphics2D) g;
         player.draw(g2);
+        enemy.draw(g2);
+
 
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
