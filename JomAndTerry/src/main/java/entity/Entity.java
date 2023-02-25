@@ -8,7 +8,7 @@ import main.GamePanel;
 public class Entity {
     public int x, y;
     public int speed;
-    GamePanel gp;
+    GamePanel gp;     
 
     // It describes an Image with an accessible buffer of image data.
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
@@ -21,4 +21,5 @@ public class Entity {
     public Entity(GamePanel gp){
         this.gp = gp;
     }
+
 }

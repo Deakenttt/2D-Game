@@ -54,6 +54,8 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D g2) {
+        System.out.println("Setting Player");
+
         g2.setColor(Color.WHITE);
         g2.drawRect(x, y, 48, 48);
     }

@@ -2,7 +2,9 @@ package main;
 
 import entity.Player;
 import entity.Enemy;
+import entity.Entity;
 import utility.KeyHandler;
+import main.AssetSetter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +31,9 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler(); // Key handler class.
 
     public Player player = new Player(this, keyHandler); // Initiate a Player object.
-    public Enemy enemy = new Enemy(this); // Initiate a Player object.
+    public Enemy enemy[] = new Enemy[3];
+    // = new Enemy(this); // Initiate a Player object.
+    public AssetSetter aSetter = new AssetSetter(this);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -39,6 +43,9 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true); // With this, this main.GamePanel can be "focused" to receive key input.
     }
 
+    public void setUpGame() {
+        aSetter.setEnemy();
+    }
     // Starts gameThread method.
     public void startGameThread() {
         // passing GamePanel class to this thread's constructor.
@@ -80,7 +87,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         player.update();
-        enemy.update();
+        // enemy[0].update();
 
     }
 
@@ -93,10 +100,18 @@ public class GamePanel extends JPanel implements Runnable {
         // convert Graphics to Graphics2D class extends the Graphics class to provide more sophisticated control over
         // geometry, coordinate transformations, color management, and text layout.
         Graphics2D g2 = (Graphics2D) g;
+        // Player
         player.draw(g2);
-        enemy.draw(g2);
 
+        // Enemies
+        for(int i =0; i < enemy.length; i++){
+            if(enemy[i] != null){
+                System.out.println("enemy " + i);
+                enemy[i].draw(g2);
+            }
+        }
 
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
+
 }
