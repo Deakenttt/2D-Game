@@ -32,8 +32,8 @@ public class TileManager {
         try {
 
             // Grass
-            // tile[0] = new Tile();
-            // tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Tiles/old/grass.png")));
+            tile[0] = new Tile();
+            tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Tiles/old/grass.png")));
 
             // Wall
             tile[1] = new Tile();
@@ -42,7 +42,7 @@ public class TileManager {
 
             // Water
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Tiles/Old version/water.png")));
+            tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Tiles/old/water.png")));
 
 
         } catch (IOException e) {

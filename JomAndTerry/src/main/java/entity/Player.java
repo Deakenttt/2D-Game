@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
  */
 public class Player extends Entity {
     // We need GamePanel and KeyHandler
-    GamePanel gp;
+    // GamePanel gp;
     KeyHandler keyHandler;
     int hasCheese = 0; // Tracking the number of cheese.
     int hasSteak = 0; // Tracking the number of steak.

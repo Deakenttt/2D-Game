@@ -123,6 +123,9 @@ public class GamePanel extends JPanel implements Runnable {
         // convert Graphics to Graphics2D class extends the Graphics class to provide more sophisticated control over
         // geometry, coordinate transformations, color management, and text layout.
         Graphics2D g2 = (Graphics2D) g;
+        tileManager.draw(g2);
+        System.out.println("player ");
+
         player.draw(g2);
 
         // Enemies
