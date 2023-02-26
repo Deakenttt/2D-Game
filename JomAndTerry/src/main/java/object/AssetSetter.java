@@ -1,6 +1,9 @@
 package object;
 
 import main.GamePanel;
+import entity.Enemy;
+
+import java.awt.*;
 
 /**
  * @Des Class for palace objects on the map
@@ -34,5 +37,11 @@ public class AssetSetter {
         gp.obj[3] = new OBJ_Trap();
         gp.obj[3].x = 16 * gp.tileSize;
         gp.obj[3].y = 8 * gp.tileSize;
+    }
+
+    public void setEnemy() {
+        gp.enemy[0] = new Enemy(gp, Color.BLUE);
+        gp.enemy[1] = new Enemy(gp, Color.RED);
+        gp.enemy[2] = new Enemy(gp, Color.ORANGE);
     }
 }
