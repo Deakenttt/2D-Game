@@ -34,5 +34,10 @@ public class AssetSetter {
         gp.obj[3] = new OBJ_Trap();
         gp.obj[3].x = 16 * gp.tileSize;
         gp.obj[3].y = 8 * gp.tileSize;
+
+        // HOLE
+        gp.obj[4] = new OBJ_Hole();
+        gp.obj[4].x = 19 * gp.tileSize;
+        gp.obj[4].y = 14 * gp.tileSize;
     }
 }

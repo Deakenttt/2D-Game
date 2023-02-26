@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
  */
 public class Entity {
 
-    // ENTITY'S COORDINATE AND SPEED.
+    // ENTITY'S COORDINATE AND SPEED
     public int x, y;
     public int speed;
 
@@ -24,6 +24,6 @@ public class Entity {
     public Rectangle solidArea;
     public boolean collisionOn = false;
 
-    //
+    // SAVING THE DEFAULT VALUE OF X AND Y
     public int solidAreaDefaultX, solidAreaDefaultY;
 }

@@ -5,21 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b84b050-2c49-4765-8618-9bb345bd1d0f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/object/AssetSetter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Cheese.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Steak.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Trap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/object/SuperObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Hole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/AssetSetter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utility/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Entity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/entity/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/object/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/object/AssetSetter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/utility/CollisionChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/CollisionChecker.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
