@@ -1,6 +1,5 @@
 package main;
 
-import entity.Enemy;
 
 import java.awt.*;
 

@@ -1,10 +1,13 @@
 package main;
 
 import entity.Player;
+import object.AssetSetter;
+import object.SuperObject;
+import tile.TileManager;
+import utility.CollisionChecker;
 import entity.Enemy;
 import entity.Entity;
 import utility.KeyHandler;
-import main.AssetSetter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +15,9 @@ import java.awt.*;
 import static utility.SizeNumber.*;
 import static utility.SizeNumber.MAX_SCREEN_ROW;
 
+/**
+ * @Des This is a GamePanel class.
+ */
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTING
@@ -21,8 +27,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int maxScreenRow = MAX_SCREEN_ROW;
 
     public final int tileSize = originalTileSize * scale; // 48x48 tile
-    public final int screenWidth = tileSize * maxScreenCol; // 768 pixels
-    public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
+    public final int screenWidth = tileSize * maxScreenCol; // 48 * 20 pixels
+    public final int screenHeight = tileSize * maxScreenRow; // 48 * 16 pixels
 
     // FPS
     int FPS = 60;
@@ -33,7 +39,13 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyHandler); // Initiate a Player object.
     public Enemy enemy[] = new Enemy[3];
     // = new Enemy(this); // Initiate a Player object.
-    public AssetSetter aSetter = new AssetSetter(this);
+    public TileManager tileManager = new TileManager(this); // Initiate tileManger object.
+
+    public CollisionChecker collisionChecker = new CollisionChecker(this); // Initiate a CollisionChecker object.
+
+    public AssetSetter assetSetter = new AssetSetter(this); // Initiate AssetSetter object.
+    public SuperObject[] obj = new SuperObject[10]; // 10 slots for object, can replace the content during the game.
+
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -43,11 +55,15 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true); // With this, this main.GamePanel can be "focused" to receive key input.
     }
 
+    // Method of setting up object placement.
     public void setUpGame() {
-        aSetter.setEnemy();
+        assetSetter.setEnemy();
+        assetSetter.setObject();
     }
-    // Starts gameThread method.
+
+    // Method of Starting Game Thread.
     public void startGameThread() {
+
         // passing GamePanel class to this thread's constructor.
         gameThread = new Thread(this);
         gameThread.start();
@@ -55,6 +71,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     @Override
     public void run() {
+
         // System.nanoTime(); // Returns the current value of the running Java Virtual Machine's high-resolution time source in nanoseconds.
         double drawInterval = 1000000000 / FPS; // 0.01666 seconds
         double nextDrawTime = System.nanoTime() + drawInterval; // The allocated time for single loop is 0.01666 seconds.
@@ -106,7 +123,6 @@ public class GamePanel extends JPanel implements Runnable {
         // convert Graphics to Graphics2D class extends the Graphics class to provide more sophisticated control over
         // geometry, coordinate transformations, color management, and text layout.
         Graphics2D g2 = (Graphics2D) g;
-        // Player
         player.draw(g2);
 
         // Enemies
