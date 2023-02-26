@@ -1,8 +1,8 @@
 package entity;
 
-import java.awt.image.BufferedImage;
-
 import main.GamePanel;
+
+import java.awt.image.BufferedImage;
 
 // Blueprint for character classes
 public class Entity {
