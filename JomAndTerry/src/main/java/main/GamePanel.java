@@ -136,6 +136,14 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
+        // DRAW OBJECT
+        for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
+
+
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
 

@@ -9,7 +9,7 @@ public class OBJ_Steak extends SuperObject {
 
         name = "Steak";
         try{
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Object/axe.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/items/steak.png")));
 
         }catch(IOException e) {
             e.printStackTrace();

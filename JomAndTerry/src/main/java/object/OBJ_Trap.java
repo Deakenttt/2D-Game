@@ -9,7 +9,7 @@ public class OBJ_Trap extends SuperObject{
 
         name = "Trap";
         try{
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Object/blueheart.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/items/mouse_trap.png")));
 
         }catch(IOException e) {
             e.printStackTrace();
