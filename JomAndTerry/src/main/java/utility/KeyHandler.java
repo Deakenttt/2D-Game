@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * this is for key handling class
+ * @Des KeyHandler Class for handling the key input.
  */
 public class KeyHandler implements KeyListener {
 
