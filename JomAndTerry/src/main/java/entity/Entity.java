@@ -22,4 +22,33 @@ public class Entity {
         this.gp = gp;
     }
 
+    public void setAction() {
+
+    }
+
+    public void update(){
+        setAction();
+        switch(direction){
+            case "up": y -= speed;
+            break;
+
+            case "down": y += speed;
+            break;
+
+            case "left": x -= speed;
+            break;
+
+            case "right": x += speed;
+            break;
+        }
+        spriteCounter++;
+        if (spriteCounter > 10) {
+            if (spriteNum == 1)
+                spriteNum = 2;
+            else if (spriteNum == 2)
+                spriteNum = 1;
+            spriteCounter = 0;
+        }
+    }
+
 }

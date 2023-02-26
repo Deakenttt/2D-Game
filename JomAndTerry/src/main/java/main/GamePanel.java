@@ -87,7 +87,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         player.update();
-        // enemy[0].update();
+        for(int i = 0; i < enemy.length; i++){
+            if (enemy[i] != null){
+                System.out.println("updating enemy " + i);
+
+                enemy[i].update();
+            }
+        }
 
     }
 
