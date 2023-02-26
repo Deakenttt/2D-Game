@@ -112,6 +112,13 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                 }
+
+                case "Hole" -> {
+                    if (hasCheese >= 2) {
+                        gp.obj[i] = null;
+
+                    }
+                }
             }
         }
     }
