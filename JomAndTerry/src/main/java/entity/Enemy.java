@@ -14,14 +14,6 @@ public class Enemy extends Entity{
         direction = "down";
         speed = 1;        
         colour = setColour;
-         // SOLID AREA FOR COLLISION
-        solidArea = new Rectangle();
-        solidArea.x = 8;
-        solidArea.y = 16;
-        solidArea.width = 32;
-        solidArea.height = 32;
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
     }
 
     public void draw(Graphics2D g2) {

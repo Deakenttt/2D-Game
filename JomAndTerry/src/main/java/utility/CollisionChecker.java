@@ -1,6 +1,7 @@
 package utility;
 
 import entity.Entity;
+import entity.Player;
 import main.GamePanel;
 
 /**
@@ -67,7 +68,7 @@ public class CollisionChecker {
 
     // METHOD OF CHECKING OBJECT.
     // WHEN PLAYER TOUCH THE OBJECT, IT RETURN THE INDEX OF THAT OBJECT.
-    public int checkObject(Entity entity, boolean player) {
+    public void checkObject(Player entity, boolean player) {
 
         int index = 999;
 
@@ -84,57 +85,12 @@ public class CollisionChecker {
                 gp.obj[i].solidArea.y = gp.obj[i].y + gp.obj[i].solidArea.y;
 
                 // CHECK ENTITY'S DIRECTION.
-                switch (entity.direction) {
-                    case "up" -> {
-
-                        // Simulating entity's movement and check where it will be after it moved.
-                        entity.solidArea.y -= entity.speed;
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
-                            System.out.println("up collision!");
-                            if (gp.obj[i].collision)
-                                entity.collisionOn = true;
-                            if (player)
-                                index = i;
-                        }
-                    }
-                    case "down" -> {
-
-                        // Simulating entity's movement and check where it will be after it moved.
-                        entity.solidArea.y += entity.speed;
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
-                            System.out.println("down collision!");
-                            if (gp.obj[i].collision)
-                                entity.collisionOn = true;
-                            if (player)
-                                index = i;
-                        }
-                    }
-                    case "left" -> {
-
-                        // Simulating entity's movement and check where it will be after it moved.
-                        entity.solidArea.x -= entity.speed;
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
-                            System.out.println("left collision!");
-                            if (gp.obj[i].collision)
-                                entity.collisionOn = true;
-                            if (player)
-                                index = i;
-                        }
-                    }
-                    case "right" -> {
-
-                        // Simulating entity's movement and check where it will be after it moved.
-                        entity.solidArea.x += entity.speed;
-                        if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
-                            System.out.println("right collision!");
-                            if (gp.obj[i].collision)
-                                entity.collisionOn = true;
-                            if (player)
-                                index = i;
-                        }
-                    }
+                // Simulating entity's movement and check where it will be after it moved.
+                checkEntityDirection(entity);
+                if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
+                    index = intersectsTrue(entity, i, player, index);
                 }
-
+            
                 // RESET THE POSITION WITH DEFAULT VALUE.
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
@@ -142,7 +98,80 @@ public class CollisionChecker {
                 gp.obj[i].solidArea.y = gp.obj[i].solidAreaDefaultY;
             }
         }
+        if (index != 999){
+            entity.pickUpObject(index);
+        }
+        // return index;
+    }
 
+    // NPC or Enemy
+    public void checkEntity(Player entity){
+        
+        int index = 999;
+
+        for (int i = 0; i < gp.enemy.length; i++) {
+
+            if (gp.enemy[i] != null) {
+
+                // GET ENTITY'S SOLID AREA POSITION.
+                entity.solidArea.x = entity.x + entity.solidArea.x;
+                entity.solidArea.y = entity.y + entity.solidArea.y;
+
+                // GET OBJECT'S SOLID AREA POSITION.
+                gp.enemy[i].solidArea.x = gp.enemy[i].x + gp.enemy[i].solidArea.x;
+                gp.enemy[i].solidArea.y = gp.enemy[i].y + gp.enemy[i].solidArea.y;
+
+                // CHECK ENTITY'S DIRECTION.
+                // Simulating entity's movement and check where it will be after it moved.
+                checkEntityDirection(entity);
+                if (entity.solidArea.intersects(gp.enemy[i].solidArea)) {
+                    index = intersectsTrue(entity, i, true, index);
+                }
+            
+                // RESET THE POSITION WITH DEFAULT VALUE.
+                entity.solidArea.x = entity.solidAreaDefaultX;
+                entity.solidArea.y = entity.solidAreaDefaultY;
+                gp.enemy[i].solidArea.x = gp.enemy[i].solidAreaDefaultX;
+                gp.enemy[i].solidArea.y = gp.enemy[i].solidAreaDefaultY;
+            }
+        }
+        if (index != 999){
+            entity.captured(index);
+        }
+    }
+    // Method used to check where the entity will be after it moved
+    public int intersectsTrue(Entity entity, int i, boolean player, int index){
+        System.out.println("up collision!");
+        if (gp.obj[i].collision)
+            entity.collisionOn = true;
+        if (player)
+            return i;
         return index;
     }
+// 
+    public void checkEntityDirection(Entity entity){
+        switch (entity.direction) {
+            case "up" -> {
+                entity.solidArea.y -= entity.speed;
+                System.out.println("up collision!");
+                break;
+            }
+            case "down" -> {
+                entity.solidArea.y += entity.speed;
+                System.out.println("down collision!");
+                break;
+            }
+            case "left" -> {
+                entity.solidArea.x -= entity.speed;
+                System.out.println("left collision!");
+                break;
+            }
+            case "right" -> {
+                entity.solidArea.x += entity.speed;
+                System.out.println("right collision!");
+                break;
+            }
+        }
+    }
+
 }

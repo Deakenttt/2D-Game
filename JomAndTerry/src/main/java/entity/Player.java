@@ -19,17 +19,18 @@ public class Player extends Entity {
     int hasCheese = 0; // Tracking the number of cheese.
     int hasSteak = 0; // Tracking the number of steak.
     int totalScore = 0; // Tracking the total score.
+    boolean captureFlag = false;
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
         super(gp);
         this.keyHandler = keyHandler;
 
         // SOLID AREA FOR COLLISION
-        solidArea = new Rectangle();
-        solidArea.x = 8;
-        solidArea.y = 16;
-        solidArea.width = 32;
-        solidArea.height = 32;
+        // solidArea = new Rectangle();
+        // solidArea.x = 8;
+        // solidArea.y = 16;
+        // solidArea.width = 32;
+        // solidArea.height = 32;
 
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
@@ -82,11 +83,15 @@ public class Player extends Entity {
         }
         }
 
-        public void Update(){
+        public void update(){
             // CHECK OBJECT INTERACTION.
             // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
-            int objIndex = gp.collisionChecker.checkObject(this, true);
-            pickUpObject(objIndex); // Calls pickUpObject method.
+            // int objIndex = gp.collisionChecker.checkObject(this, true);
+            gp.collisionChecker.checkObject(this, true);
+            gp.collisionChecker.checkEntity(this);
+
+            // pickUpObject(objIndex); // Calls pickUpObject method.
+            System.out.println("Cheese = " + hasCheese + " Steak = " + hasSteak + " total Score = " + totalScore);
             super.update();
         }
 
@@ -128,6 +133,16 @@ public class Player extends Entity {
             }
         }
     }
+
+    public void captured(int i) {
+        if (i != 999 || captureFlag) {
+            // unsure of what it should do
+            System.out.println("PLAYER HAS BEEN CAUGHT!!!!!!");
+            captureFlag = true;
+        }
+
+    }
+
 
     public void draw(Graphics2D g2) {
         BufferedImage image = null;

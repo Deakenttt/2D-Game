@@ -26,8 +26,13 @@ public class Entity {
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
+
     public Entity(GamePanel gp){
         this.gp = gp;
+         // SOLID AREA FOR COLLISION
+        solidArea = new Rectangle(8, 16, 32, 32);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
     }
 
     public void setAction() {
