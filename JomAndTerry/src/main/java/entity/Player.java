@@ -25,13 +25,6 @@ public class Player extends Entity {
         super(gp);
         this.keyHandler = keyHandler;
 
-        // SOLID AREA FOR COLLISION
-        // solidArea = new Rectangle();
-        // solidArea.x = 8;
-        // solidArea.y = 16;
-        // solidArea.width = 32;
-        // solidArea.height = 32;
-
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -140,7 +133,6 @@ public class Player extends Entity {
             System.out.println("PLAYER HAS BEEN CAUGHT!!!!!!");
             captureFlag = true;
         }
-
     }
 
 

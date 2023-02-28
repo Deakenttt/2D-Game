@@ -9,14 +9,17 @@ import java.util.Random;
 
 public class Enemy extends Entity{
     
-    public Enemy(GamePanel gp, Color setColour){
+    public Enemy(GamePanel gp, Color setColour, int posX, int posY){
         super(gp);
+        x = posX;
+        y = posY;
+
         direction = "down";
         speed = 1;        
         colour = setColour;
     }
 
-    public void draw(Graphics2D g2, int posX, int posY) {
+    public void draw(Graphics2D g2) {
         System.out.println("Setting Colour");
 
         g2.setColor(colour);
