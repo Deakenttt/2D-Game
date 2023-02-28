@@ -33,8 +33,15 @@ public class Entity {
         solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-    }
+        setDefaultValues();
 
+    }
+    public void setDefaultValues() {
+        x = 48;
+        y = 48;
+        speed = 4;
+        direction = "down";
+    }
     public void setAction() {
 
     }

@@ -19,16 +19,11 @@ public class Player extends Entity {
     int hasCheese = 0; // Tracking the number of cheese.
     int hasSteak = 0; // Tracking the number of steak.
     int totalScore = 0; // Tracking the total score.
-    boolean captureFlag = false;
+    boolean captureFlag = false; // Flag for being caught
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
         super(gp);
         this.keyHandler = keyHandler;
-
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
-
-        setDefaultValues();
         getPlayerImage();
     }
 

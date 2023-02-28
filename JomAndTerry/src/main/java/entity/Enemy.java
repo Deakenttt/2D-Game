@@ -18,6 +18,12 @@ public class Enemy extends Entity{
         speed = 1;        
         colour = setColour;
     }
+    public void setDefaultValues() {
+        x = 48;
+        y = 48;
+        speed = 4;
+        direction = "down";
+    }
 
     public void draw(Graphics2D g2) {
         System.out.println("Setting Colour");
