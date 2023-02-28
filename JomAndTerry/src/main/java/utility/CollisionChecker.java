@@ -88,7 +88,10 @@ public class CollisionChecker {
                 // Simulating entity's movement and check where it will be after it moved.
                 checkEntityDirection(entity);
                 if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
-                    index = intersectsTrue(entity, i, player, index);
+                    if (gp.obj[i].collision)
+                        entity.collisionOn = true;
+                    if (player)
+                        index = i;
                 }
             
                 // RESET THE POSITION WITH DEFAULT VALUE.
@@ -125,7 +128,7 @@ public class CollisionChecker {
                 // Simulating entity's movement and check where it will be after it moved.
                 checkEntityDirection(entity);
                 if (entity.solidArea.intersects(gp.enemy[i].solidArea)) {
-                    index = intersectsTrue(entity, i, true, index);
+                    index = i;
                 }
             
                 // RESET THE POSITION WITH DEFAULT VALUE.
@@ -139,16 +142,8 @@ public class CollisionChecker {
             entity.captured(index);
         }
     }
-    // Method used to check where the entity will be after it moved
-    public int intersectsTrue(Entity entity, int i, boolean player, int index){
-        System.out.println("up collision!");
-        if (gp.obj[i].collision)
-            entity.collisionOn = true;
-        if (player)
-            return i;
-        return index;
-    }
-// 
+   
+    // Simulating entity's movement
     public void checkEntityDirection(Entity entity){
         switch (entity.direction) {
             case "up" -> {

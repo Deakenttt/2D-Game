@@ -16,7 +16,7 @@ public class Enemy extends Entity{
         colour = setColour;
     }
 
-    public void draw(Graphics2D g2) {
+    public void draw(Graphics2D g2, int posX, int posY) {
         System.out.println("Setting Colour");
 
         g2.setColor(colour);

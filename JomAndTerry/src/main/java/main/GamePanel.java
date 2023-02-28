@@ -133,7 +133,7 @@ public class GamePanel extends JPanel implements Runnable {
         for(int i =0; i < enemy.length; i++){
             if(enemy[i] != null){
                 System.out.println("enemy " + i);
-                enemy[i].draw(g2);
+                enemy[i].draw(g2, i*48, i*48);
             }
         }
 
