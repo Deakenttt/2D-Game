@@ -47,19 +47,7 @@ public class Entity {
                 case "right" -> x += speed;
             }
         }
-        // switch(direction){
-            // case "up": y -= speed;
-            // break;
 
-            // case "down": y += speed;
-            // break;
-
-            // case "left": x -= speed;
-            // break;
-
-            // case "right": x += speed;
-            // break;
-        // }
         spriteCounter++;
         if (spriteCounter > 10) {
             if (spriteNum == 1)
