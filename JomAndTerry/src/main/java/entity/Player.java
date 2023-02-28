@@ -65,7 +65,7 @@ public class Player extends Entity {
         }
     }
 
-    public void update() {
+    public void setAction() {
 
         if (keyHandler.upPressed || keyHandler.downPressed
                 || keyHandler.leftPressed || keyHandler.rightPressed) {
@@ -79,35 +79,47 @@ public class Player extends Entity {
                 direction = "right";
             }
 
-            // CHECK TILE COLLISION
+        }
+        }
+
+        public void Update(){
+            // CHECK OBJECT INTERACTION.
+            // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
+            setAction();
             collisionOn = false;
-            gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method to see if is solid on tile.
+            gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method 
+            int objIndex = gp.collisionChecker.checkObject(this, true);
+            pickUpObject(objIndex); // Calls pickUpObject method.
+            super.update();
+        }
+            // CHECK TILE COLLISION
+            // collisionOn = false;
+            // gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method to see if is solid on tile.
 
             // CHECK OBJECT INTERACTION.
             // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
-            int objIndex = gp.collisionChecker.checkObject(this, true);
-            pickUpObject(objIndex); // Calls pickUpObject method.
+            // int objIndex = gp.collisionChecker.checkObject(this, true);
+            // pickUpObject(objIndex); // Calls pickUpObject method.
 
             // IF COLLISION IS FALSE, PAYER CAN MOVE
-            if (!collisionOn) {
-                switch (direction) {
-                    case "up" -> y -= speed;
-                    case "down" -> y += speed;
-                    case "left" -> x -= speed;
-                    case "right" -> x += speed;
-                }
-            }
+            // if (!collisionOn) {
+                // switch (direction) {
+                    // case "up" -> y -= speed;
+                    // case "down" -> y += speed;
+                    // case "left" -> x -= speed;
+                    // case "right" -> x += speed;
+                // }
+            // }
 
-            spriteCounter++;
-            if (spriteCounter > 10) {
-                if (spriteNum == 1)
-                    spriteNum = 2;
-                else if (spriteNum == 2)
-                    spriteNum = 1;
-                spriteCounter = 0;
-            }
-        }
-    }
+            // spriteCounter++;
+            // if (spriteCounter > 10) {
+                // if (spriteNum == 1)
+                    // spriteNum = 2;
+                // else if (spriteNum == 2)
+                    // spriteNum = 1;
+                // spriteCounter = 0;
+            // }
+ 
 
     // METHOD OF PICKING UP OBJECT.
     public void pickUpObject(int i) {

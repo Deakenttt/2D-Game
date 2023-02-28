@@ -35,20 +35,31 @@ public class Entity {
     }
 
     public void update(){
+         // CHECK TILE COLLISION
+        collisionOn = false;
+        gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method 
         setAction();
-        switch(direction){
-            case "up": y -= speed;
-            break;
-
-            case "down": y += speed;
-            break;
-
-            case "left": x -= speed;
-            break;
-
-            case "right": x += speed;
-            break;
+        if (!collisionOn) {
+            switch (direction) {
+                case "up" -> y -= speed;
+                case "down" -> y += speed;
+                case "left" -> x -= speed;
+                case "right" -> x += speed;
+            }
         }
+        // switch(direction){
+            // case "up": y -= speed;
+            // break;
+
+            // case "down": y += speed;
+            // break;
+
+            // case "left": x -= speed;
+            // break;
+
+            // case "right": x += speed;
+            // break;
+        // }
         spriteCounter++;
         if (spriteCounter > 10) {
             if (spriteNum == 1)
