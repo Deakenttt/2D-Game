@@ -70,7 +70,7 @@ public class Player extends Entity {
 
         }
         }
-
+        // Player bug: wall collision to the right stops it from goin up and then collision to the left stops it from going down
         public void update(){
             // CHECK OBJECT INTERACTION.
             // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.

@@ -104,7 +104,6 @@ public class CollisionChecker {
         if (index != 999){
             entity.pickUpObject(index);
         }
-        // return index;
     }
 
     // NPC or Enemy
