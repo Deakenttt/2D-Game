@@ -21,6 +21,7 @@ public class Entity {
     // It describes an Image with an accessible buffer of image data.
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public String direction;
+    public String faceDirection;
 
     // FOR ANIMATION
     public int spriteCounter = 0;
@@ -57,6 +58,7 @@ public class Entity {
                 case "down" -> y += speed;
                 case "left" -> x -= speed;
                 case "right" -> x += speed;
+
             }
         }
 
