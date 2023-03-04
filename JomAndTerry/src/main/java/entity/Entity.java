@@ -16,49 +16,58 @@ public class Entity {
     // ENTITY'S COORDINATE AND SPEED
     public int x, y;
     public int speed;
-    GamePanel gp;     
+    GamePanel gp;
 
     // It describes an Image with an accessible buffer of image data.
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public String direction;
-    public String faceDirection;
+    public boolean doMove = true; // only move the entity when doMove is true.
 
     // FOR ANIMATION
     public int spriteCounter = 0;
     public int spriteNum = 1;
 
 
-    public Entity(GamePanel gp){
+    public Entity(GamePanel gp) {
         this.gp = gp;
-         // SOLID AREA FOR COLLISION
+        // SOLID AREA FOR COLLISION
         solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDefaultValues();
 
     }
+
     public void setDefaultValues() {
         x = 48;
         y = 48;
         speed = 4;
         direction = "down";
     }
+
     public void setAction() {
 
     }
 
-    public void update(){
-         // CHECK TILE COLLISION
+    public void update() {
+        // CHECK TILE COLLISION
         collisionOn = false;
         gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method 
         setAction();
-        if (!collisionOn) {
+        if (doMove && !collisionOn) {
             switch (direction) {
-                case "up" -> y -= speed;
-                case "down" -> y += speed;
-                case "left" -> x -= speed;
-                case "right" -> x += speed;
-
+                case "up":
+                    y -= speed;
+                    break;
+                case "down":
+                    y += speed;
+                    break;
+                case "left":
+                    x -= speed;
+                    break;
+                case "right":
+                    x += speed;
+                    break;
             }
         }
 
