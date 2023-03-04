@@ -55,9 +55,9 @@ public class Player extends Entity {
     }
 
     public void setAction() {
-
-        if (keyHandler.upPressed || keyHandler.downPressed
-                || keyHandler.leftPressed || keyHandler.rightPressed) {
+        doMove = (keyHandler.upPressed || keyHandler.downPressed
+                || keyHandler.leftPressed || keyHandler.rightPressed);
+        if (doMove) {
             if (keyHandler.upPressed) {
                 direction = "up";
             } else if (keyHandler.downPressed) {
@@ -67,21 +67,22 @@ public class Player extends Entity {
             } else {
                 direction = "right";
             }
+        }
 
-        }
-        }
-        // Player bug: wall collision to the right stops it from goin up and then collision to the left stops it from going down
-        public void update(){
-            // CHECK OBJECT INTERACTION.
-            // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
-            // int objIndex = gp.collisionChecker.checkObject(this, true);
-            gp.collisionChecker.checkObject(this, true);
-            gp.collisionChecker.checkEntity(this);
+    }
 
-            // pickUpObject(objIndex); // Calls pickUpObject method.
-            System.out.println("Cheese = " + hasCheese + " Steak = " + hasSteak + " total Score = " + totalScore);
-            super.update();
-        }
+    // Player bug: wall collision to the right stops it from goin up and then collision to the left stops it from going down
+    public void update() {
+        // CHECK OBJECT INTERACTION.
+        // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
+        // int objIndex = gp.collisionChecker.checkObject(this, true);
+        gp.collisionChecker.checkObject(this, true);
+        gp.collisionChecker.checkEntity(this);
+
+        // pickUpObject(objIndex); // Calls pickUpObject method.
+        System.out.println("Cheese = " + hasCheese + " Steak = " + hasSteak + " total Score = " + totalScore);
+        super.update();
+    }
 
 
     // METHOD OF PICKING UP OBJECT.
@@ -115,7 +116,6 @@ public class Player extends Entity {
                 case "Hole" -> {
                     if (hasCheese >= 2) {
                         gp.obj[i] = null;
-
                     }
                 }
             }
