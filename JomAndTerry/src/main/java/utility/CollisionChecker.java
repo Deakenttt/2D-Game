@@ -88,12 +88,13 @@ public class CollisionChecker {
                 // Simulating entity's movement and check where it will be after it moved.
                 checkEntityDirection(entity);
                 if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
-                    if (gp.obj[i].collision)
+                    if (gp.obj[i].collision) {
                         entity.collisionOn = true;
+                    }
                     if (player)
                         index = i;
                 }
-            
+
                 // RESET THE POSITION WITH DEFAULT VALUE.
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
@@ -101,14 +102,14 @@ public class CollisionChecker {
                 gp.obj[i].solidArea.y = gp.obj[i].solidAreaDefaultY;
             }
         }
-        if (index != 999){
+        if (index != 999) {
             entity.pickUpObject(index);
         }
     }
 
     // NPC or Enemy
-    public void checkEntity(Player entity){
-        
+    public void checkEntity(Player entity) {
+
         int index = 999;
 
         for (int i = 0; i < gp.enemy.length; i++) {
@@ -129,7 +130,7 @@ public class CollisionChecker {
                 if (entity.solidArea.intersects(gp.enemy[i].solidArea)) {
                     index = i;
                 }
-            
+
                 // RESET THE POSITION WITH DEFAULT VALUE.
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
@@ -137,35 +138,30 @@ public class CollisionChecker {
                 gp.enemy[i].solidArea.y = gp.enemy[i].solidAreaDefaultY;
             }
         }
-        if (index != 999){
+        if (index != 999) {
             entity.captured(index);
         }
     }
-   
+
     // Simulating entity's movement
-    public void checkEntityDirection(Entity entity){
+    public void checkEntityDirection(Entity entity) {
         switch (entity.direction) {
             case "up" -> {
                 entity.solidArea.y -= entity.speed;
                 System.out.println("up collision!");
-                break;
             }
             case "down" -> {
                 entity.solidArea.y += entity.speed;
                 System.out.println("down collision!");
-                break;
             }
             case "left" -> {
                 entity.solidArea.x -= entity.speed;
                 System.out.println("left collision!");
-                break;
             }
             case "right" -> {
                 entity.solidArea.x += entity.speed;
                 System.out.println("right collision!");
-                break;
             }
         }
     }
-
 }

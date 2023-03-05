@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import utility.KeyHandler;
+import utility.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,9 +17,9 @@ public class Player extends Entity {
     // We need GamePanel and KeyHandler
     // GamePanel gp;
     KeyHandler keyHandler;
-    int hasCheese = 0; // Tracking the number of cheese.
-    int hasSteak = 0; // Tracking the number of steak.
-    int totalScore = 0; // Tracking the total score.
+    public int hasCheese = 0; // Tracking the number of cheese.
+    public int hasSteak = 0; // Tracking the number of steak.
+    public int totalScore = 0; // Tracking the total score.
     boolean captureFlag = false; // Flag for being caught
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
@@ -36,22 +37,33 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
 
+        up1 = setup("mouse_up_1");
+        up2 = setup("mouse_up_2");
+
+        down1 = setup("mouse_down_1");
+        down2 = setup("mouse_down_2");
+
+        left1 = setup("mouse_left_1");
+        left2 = setup("mouse_left_2");
+
+        right1 = setup("mouse_right_1");
+        right2 = setup("mouse_right_2");
+    }
+
+    // METHOD OF SETTING SCALED IMAGE FOR PLAYER
+    public BufferedImage setup(String imageName) {
+
+        UtilityTool utilityTool = new UtilityTool();
+        BufferedImage image = null;
+
         try {
-            // loaded images.
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/mouse_up_1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/mouse_up_2.png")));
 
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/mouse_down_1.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/mouse_down_2.png")));
-
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/mouse_left_1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/mouse_left_2.png")));
-
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/mouse_right_1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/mouse_right_2.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/" + imageName + ".png")));
+            image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return image;
     }
 
     public void setAction() {
@@ -68,10 +80,9 @@ public class Player extends Entity {
                 direction = "right";
             }
         }
-
     }
 
-    // Player bug: wall collision to the right stops it from goin up and then collision to the left stops it from going down
+    // Player bug: wall collision to the right stops it from going up and then collision to the left stops it from going down
     public void update() {
         // CHECK OBJECT INTERACTION.
         // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
@@ -98,6 +109,7 @@ public class Player extends Entity {
                     totalScore++;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
+                    gp.ui.showMessage("You got a cheese!"); // Show the msg when touch object.
                 }
 
                 case "Steak" -> {
@@ -105,17 +117,23 @@ public class Player extends Entity {
                     totalScore += 5;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
+                    gp.ui.showMessage("You got a steak!"); // Show the msg when touch object.
                 }
 
                 case "Trap" -> {
                     totalScore -= 5;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
+                    gp.ui.showMessage("You touched a trap!"); // Show the msg when touch object.
                 }
 
                 case "Hole" -> {
                     if (hasCheese >= 2) {
                         gp.obj[i] = null;
+                        gp.ui.showMessage("You escape successfully!"); // Show the msg when get the cheese.
+                        gp.ui.gameEnd = true; // End the game
+                    } else {
+                        gp.ui.showMessage("You need collect all the cheese!"); // Show the msg when get the cheese.
                     }
                 }
             }
@@ -127,6 +145,7 @@ public class Player extends Entity {
             // unsure of what it should do
             System.out.println("PLAYER HAS BEEN CAUGHT!!!!!!");
             captureFlag = true;
+            gp.ui.gameLose = true; // End the game.
         }
     }
 
@@ -169,6 +188,6 @@ public class Player extends Entity {
             }
         }
 
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, x, y, null);
     }
 }

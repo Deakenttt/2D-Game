@@ -30,6 +30,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * maxScreenCol; // 48 * 20 pixels
     public final int screenHeight = tileSize * maxScreenRow; // 48 * 16 pixels
 
+    // UI
+    public UI ui = new UI(this);
+
     // FPS
     int FPS = 60;
 
@@ -105,14 +108,13 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
         player.update();
         System.out.println("updating player");
-        for(int i = 0; i < enemy.length; i++){
-            if (enemy[i] != null){
+        for (int i = 0; i < enemy.length; i++) {
+            if (enemy[i] != null) {
                 System.out.println("updating enemy " + i);
 
                 enemy[i].update();
             }
         }
-
     }
 
     // This is built-in java method on JPanel.
@@ -130,8 +132,8 @@ public class GamePanel extends JPanel implements Runnable {
         player.draw(g2);
 
         // Enemies
-        for(int i =0; i < enemy.length; i++){
-            if(enemy[i] != null){
+        for (int i = 0; i < enemy.length; i++) {
+            if (enemy[i] != null) {
                 System.out.println("enemy " + i);
                 enemy[i].draw(g2);
             }
@@ -144,6 +146,8 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
 
+        // DRAW UI
+        ui.draw(g2);
 
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
