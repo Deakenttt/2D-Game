@@ -46,6 +46,9 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter assetSetter = new AssetSetter(this); // Initiate AssetSetter object.
     public SuperObject[] obj = new SuperObject[10]; // 10 slots for object, can replace the content during the game.
 
+    //gamestate
+    public int gamestate;
+    public final int titlestate = 0;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -59,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame() {
         assetSetter.setEnemy();
         assetSetter.setObject();
+        gamestate = titlestate;
     }
 
     // Method of Starting Game Thread.
@@ -124,25 +128,34 @@ public class GamePanel extends JPanel implements Runnable {
         // convert Graphics to Graphics2D class extends the Graphics class to provide more sophisticated control over
         // geometry, coordinate transformations, color management, and text layout.
         Graphics2D g2 = (Graphics2D) g;
-        tileManager.draw(g2);
         System.out.println("player ");
 
-        player.draw(g2);
+        
 
-        // Enemies
-        for(int i =0; i < enemy.length; i++){
-            if(enemy[i] != null){
-                System.out.println("enemy " + i);
-                enemy[i].draw(g2);
+        //title screen
+        if (gamestate == titlestate) {
+            
+        }else{
+            tileManager.draw(g2);
+
+            player.draw(g2);
+
+            // Enemies
+            for(int i =0; i < enemy.length; i++){
+                if(enemy[i] != null){
+                    System.out.println("enemy " + i);
+                    enemy[i].draw(g2);
+                }
+            }
+
+            // DRAW OBJECT
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    obj[i].draw(g2, this);
+                }
             }
         }
 
-        // DRAW OBJECT
-        for (int i = 0; i < obj.length; i++) {
-            if (obj[i] != null) {
-                obj[i].draw(g2, this);
-            }
-        }
 
 
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
