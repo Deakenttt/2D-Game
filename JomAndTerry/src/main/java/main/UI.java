@@ -8,6 +8,12 @@ public class UI {
     public boolean gamefinished = false;
     public int commandNum = 0;
 
+    // For showing message.
+    public boolean messageOn = false;
+    public String message = "";
+    public int msgCounter = 0;
+
+
     // 0 = title screen, 1 = instructions screen
     public int titleScreenState = 0;
 

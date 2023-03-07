@@ -109,7 +109,7 @@ public class Player extends Entity {
                     totalScore++;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
-                    gp.ui.showMessage("You got a cheese!"); // Show the msg when touch object.
+                    //gp.ui.showMessage("You got a cheese!"); // Show the msg when touch object.
                 }
 
                 case "Steak" -> {
@@ -117,23 +117,23 @@ public class Player extends Entity {
                     totalScore += 5;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
-                    gp.ui.showMessage("You got a steak!"); // Show the msg when touch object.
+                    //gp.ui.showMessage("You got a steak!"); // Show the msg when touch object.
                 }
 
                 case "Trap" -> {
                     totalScore -= 5;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
-                    gp.ui.showMessage("You touched a trap!"); // Show the msg when touch object.
+                    //gp.ui.showMessage("You touched a trap!"); // Show the msg when touch object.
                 }
 
                 case "Hole" -> {
                     if (hasCheese >= 2) {
                         gp.obj[i] = null;
-                        gp.ui.showMessage("You escape successfully!"); // Show the msg when get the cheese.
-                        gp.ui.gameEnd = true; // End the game
+                        //gp.ui.showMessage("You escape successfully!"); // Show the msg when get the cheese.
+                        //gp.ui.gameEnd = true; // End the game
                     } else {
-                        gp.ui.showMessage("You need collect all the cheese!"); // Show the msg when get the cheese.
+                        //gp.ui.showMessage("You need collect all the cheese!"); // Show the msg when get the cheese.
                     }
                 }
             }
@@ -145,7 +145,7 @@ public class Player extends Entity {
             // unsure of what it should do
             System.out.println("PLAYER HAS BEEN CAUGHT!!!!!!");
             captureFlag = true;
-            gp.ui.gameLose = true; // End the game.
+            //gp.ui.gameLose = true; // End the game.
         }
     }
 

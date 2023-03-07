@@ -37,8 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gamePlay = 1;
     public final int gamePause = 2;
 
-    // UI
-    public UI ui = new UI(this);
+    public UI ui = new UI (this);
 
     // FPS
     int FPS = 60;
@@ -53,12 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker collisionChecker = new CollisionChecker(this); // Initiate a CollisionChecker object.
     public AssetSetter assetSetter = new AssetSetter(this); // Initiate AssetSetter object.
 
-    //gamestate
-    public int gameState;
-    public final int titleState = 0;
-    public final int playState = 1;
 
-    public UI ui = new UI (this);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
