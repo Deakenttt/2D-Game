@@ -1,5 +1,6 @@
 package utility;
 
+
 import main.GamePanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,10 +10,10 @@ import java.awt.event.KeyListener;
  */
 public class KeyHandler implements KeyListener {
 
-    GamePanel gp;
+    public GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed;
 
-    public KeyHandler(GamePanel gp){
+    public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
 

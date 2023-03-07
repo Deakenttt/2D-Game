@@ -1,6 +1,7 @@
 package tile;
 
 import main.GamePanel;
+import utility.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -18,7 +19,7 @@ public class TileManager {
     public Tile[] tile;
     public int[][] mapTileNum;
 
-    public TileManager (GamePanel gp) {
+    public TileManager(GamePanel gp) {
         this.gp = gp;
 
         tile = new Tile[10];
@@ -29,47 +30,31 @@ public class TileManager {
     }
 
     public void getTileImage() {
+
+        setup(0, "floor", false);
+        setup(1, "wall", true);
+        setup(2, "outer_wall", true);
+        setup(3, "table", true);
+        setup(4, "chair", true);
+        setup(5, "candles", true);
+        setup(6, "oven", true);
+        setup(7, "plant", true);
+
+    }
+
+    // METHOD OF SETTING UP THE IMAGE FOR TILES.
+    public void setup(int index, String imageName, boolean collision) {
+
+        UtilityTool utilityTool = new UtilityTool();
+
         try {
 
-            // Floor
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/floor.png")));
+            // Handle all the half-duplicated part like Instantiation, import image, scale...
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/" + imageName + ".png")));
+            tile[index].image = utilityTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collision = collision;
 
-            // Wall
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/wall.png")));
-            tile[1].collision = true;
-
-            // outter wall
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/outer_wall.png")));
-            tile[2].collision = true;
-
-            // table
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/table.png")));
-            tile[3].collision = true;
-
-            // chair
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/chair.png")));
-            tile[4].collision = true;
-            
-            // candles
-            tile[5] = new Tile();
-            tile[5].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/candles.png")));
-            tile[5].collision = true;
-
-            // oven
-            tile[6] = new Tile();
-            tile[6].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/oven.png")));
-            tile[6].collision = true;
-
-            // plant
-            tile[7] = new Tile();
-            tile[7].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/plant.png")));
-            tile[7].collision = true;
-            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -123,7 +108,7 @@ public class TileManager {
 
             int tileNum = mapTileNum[col][row]; // Extract a tile number which is stored in mapTileNum[0][0].
 
-            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(tile[tileNum].image, x, y, null);
             col++;
             x += gp.tileSize;
             if (col == gp.maxScreenCol) {
