@@ -1,5 +1,6 @@
 package main;
 
+
 import entity.Player;
 import object.AssetSetter;
 import object.SuperObject;
@@ -8,6 +9,7 @@ import utility.CollisionChecker;
 import entity.Enemy;
 import entity.Entity;
 import utility.KeyHandler;
+import main.UI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,10 +49,14 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperObject[] obj = new SuperObject[10]; // 10 slots for object, can replace the content during the game.
 
     //gamestate
-    public int gamestate;
-    public final int titlestate = 0;
+    public int gameState;
+    public final int titleState = 0;
+
+    private UI ui;
 
     public GamePanel() {
+        ui = new UI(this);
+        
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
 
@@ -62,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame() {
         assetSetter.setEnemy();
         assetSetter.setObject();
-        gamestate = titlestate;
+        gameState = titleState;
     }
 
     // Method of Starting Game Thread.
@@ -133,8 +139,8 @@ public class GamePanel extends JPanel implements Runnable {
         
 
         //title screen
-        if (gamestate == titlestate) {
-            
+        if (gameState == titleState) {
+            ui.draw(g2);
         }else{
             tileManager.draw(g2);
 
