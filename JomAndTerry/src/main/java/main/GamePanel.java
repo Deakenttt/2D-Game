@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gamePlay = 1;
     public final int gamePause = 2;
 
+
     public UI ui = new UI (this);
 
     // FPS
