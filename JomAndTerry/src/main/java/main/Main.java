@@ -3,10 +3,10 @@ package main;
 import javax.swing.*;
 
 /**
- * @Title Jom and Terry
- * @Des This is a project for CMPT 276
- * @Author Wendi Xiao, Katherine Lee, Deep Bhimani, Beibei Tang
- * @Date 02-23-2023
+ * @title Jom and Terry
+ * @des This is a project for CMPT 276
+ * @author  Wendi Xiao, Katherine Lee, Deep Bhimani, Beibei Tang
+ * @since  02-23-2023
  */
 public class Main {
     public static void main(String[] args) {

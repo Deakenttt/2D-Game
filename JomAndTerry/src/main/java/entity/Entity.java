@@ -31,7 +31,7 @@ public class Entity {
     public Entity(GamePanel gp) {
         this.gp = gp;
         // SOLID AREA FOR COLLISION
-        solidArea = new Rectangle(8, 16, 32, 32);
+        solidArea = new Rectangle(8, 16, 30, 30);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDefaultValues();
@@ -50,34 +50,37 @@ public class Entity {
     }
 
     public void update() {
+
         // CHECK TILE COLLISION
         collisionOn = false;
         gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method 
         setAction();
-        if (doMove && !collisionOn) {
-            switch (direction) {
-                case "up":
-                    y -= speed;
-                    break;
-                case "down":
-                    y += speed;
-                    break;
-                case "left":
-                    x -= speed;
-                    break;
-                case "right":
-                    x += speed;
-                    break;
+        if (doMove) {
+            if (!collisionOn) {
+                switch (direction) {
+                    case "up":
+                        y -= speed;
+                        break;
+                    case "down":
+                        y += speed;
+                        break;
+                    case "left":
+                        x -= speed;
+                        break;
+                    case "right":
+                        x += speed;
+                        break;
+                }
             }
-        }
 
-        spriteCounter++;
-        if (spriteCounter > 10) {
-            if (spriteNum == 1)
-                spriteNum = 2;
-            else if (spriteNum == 2)
-                spriteNum = 1;
-            spriteCounter = 0;
+            spriteCounter++;
+            if (spriteCounter > 10) {
+                if (spriteNum == 1)
+                    spriteNum = 2;
+                else if (spriteNum == 2)
+                    spriteNum = 1;
+                spriteCounter = 0;
+            }
         }
     }
 
