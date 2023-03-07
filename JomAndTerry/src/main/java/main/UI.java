@@ -1,41 +1,21 @@
 package main;
 
-
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
-
 
 public class UI {
     GamePanel gp;
     Graphics2D g2;
-    Font maruMonica, purisaB;
     public boolean gamefinished = false;
     public int commandNum = 0;
 
     public UI (GamePanel gp) {
         this.gp = gp;
 
-         try {
-             InputStream is = getClass().getResourceAsStream ("/font/x12y16pxMaruMonica.ttf");
-             maruMonica = Font.createFont (Font. TRUETYPE_FONT, is);
-             is = getClass().getResourceAsStream("/font/Purisa Bold.ttf");
-             purisaB = Font.createFont(Font.TRUETYPE_FONT, is);
-         } catch (FontFormatException e) {
-             e.printStackTrace ();
-         }
-           catch (IOException e) {
-             e.printStackTrace();
-           }
     }
 
     public void draw(Graphics2D g2){
         this.g2 = g2;
-
-        g2.setFont(maruMonica);
-        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.white);
-
         if (gp.gameState == gp.titleState) {
             drawTitleScreen();
         }
