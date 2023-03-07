@@ -53,6 +53,28 @@ public class KeyHandler implements KeyListener {
                     }
                 }
             }
+            else if (gp.ui.titleScreenState == 1) {
+                if (code == KeyEvent.VK_W) {
+                    gp.ui.commandNum--;
+                    if (gp.ui.commandNum < 0) {
+                        gp.ui.commandNum = 1;
+                    }
+                }
+                if (code == KeyEvent.VK_S) {
+                    gp.ui.commandNum++;
+                    if (gp.ui.commandNum > 1) {
+                        gp.ui.commandNum = 0;
+                    }
+                }
+                if (code == KeyEvent.VK_ENTER) {
+                    if (gp.ui.commandNum == 0) {
+                        gp.gameState = gp.playState;
+                    }
+                    if (gp.ui.commandNum == 1) {
+                        gp.ui.titleScreenState = 0;
+                    }
+                }
+            }
         }
 
         if (code == KeyEvent.VK_W) {

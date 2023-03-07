@@ -76,7 +76,37 @@ public class UI {
                 g2.drawString(">", x-gp.tileSize, y);
             }
         }else if (titleScreenState == 1) {
-            
+            // Instructions page
+
+            g2.setColor(Color.white);
+            g2.setFont(g2.getFont().deriveFont(42F));
+
+            String text = "Instructions";
+            int x = getXforCenteredText(text);
+            int y = gp.tileSize*3;
+            g2.drawString(text, x, y);
+
+            text = "You are Terry the mouse, you goal is to collect all 6 Cheeses (1 point each) across the map to unlock the exit door. Jom (smart Cat) and his friends (Dumb cats) are after you. If you are caught by the cats, the game is over. The Steak is a special reward which is worth 5 points and a mouse trap which takes away 5 points. If you get caught by the mouse trap before you have 5 points, you lose. Your goal is to exit the map with as many points as possible as soon as possible (no time limit).";
+            x = getXforCenteredText(text);
+            y += gp.tileSize*3;
+            g2.drawString(text, x, y);
+
+            text = "Play The Game";
+            x = getXforCenteredText(text);
+            y += gp.tileSize*3;
+            g2.drawString(text, x, y);
+            if (commandNum == 0) {
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+
+            text = "Go Back";
+            x = getXforCenteredText(text);
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+            if (commandNum == 1) {
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+
         }
         
 
