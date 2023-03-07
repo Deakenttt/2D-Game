@@ -11,6 +11,7 @@ public class UI {
     Graphics2D g2;
     Font maruMonica, purisaB;
     public boolean gamefinished = false;
+    public int commandNum = 0;
 
     public UI (GamePanel gp) {
         this.gp = gp;
@@ -62,7 +63,7 @@ public class UI {
         x = gp.screenWidth/2- (gp.tileSize*2)/2;
         y += gp.tileSize*2;
         g2. drawImage (gp.player.left1, x, y, gp.tileSize*2, gp.tileSize*2, null);
-        
+
         // menu options
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
 
@@ -70,16 +71,25 @@ public class UI {
         x = getXforCenteredText (text);
         y += gp.tileSize*4;
         g2.drawString(text, x, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x-gp.tileSize, y);
+        }
 
         text = "Instructions";
         x = getXforCenteredText (text);
         y += gp.tileSize*2;
         g2.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x-gp.tileSize, y);
+        }
 
         text = "Quit";
         x = getXforCenteredText (text);
         y += gp.tileSize*2;
         g2.drawString(text, x, y);
+        if (commandNum == 2) {
+            g2.drawString(">", x-gp.tileSize, y);
+        }
 
 
     }

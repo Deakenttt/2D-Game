@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     Thread gameThread; // To enable start and stop, needs involve Runnable interface.
-    KeyHandler keyHandler = new KeyHandler(); // Key handler class.
+    KeyHandler keyHandler = new KeyHandler(this); // Key handler class.
 
     public Player player = new Player(this, keyHandler); // Initiate a Player object.
     public Enemy enemy[] = new Enemy[3];
@@ -51,12 +51,15 @@ public class GamePanel extends JPanel implements Runnable {
     //gamestate
     public int gameState;
     public final int titleState = 0;
+    public final int playState = 1;
+    public final int winState = 2;
+    public final int loseState = 3;
+    public final int instructionsState = 4;
 
-    private UI ui;
+
+    public UI ui = new UI (this);
 
     public GamePanel() {
-        ui = new UI(this);
-        
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
 
