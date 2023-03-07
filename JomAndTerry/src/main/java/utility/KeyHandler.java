@@ -44,7 +44,7 @@ public class KeyHandler implements KeyListener {
                     gp.gameState = gp.playState;
                 }
                 if (gp.ui.commandNum == 1) {
-                    //add instructions page later
+                    //need to add
                 }
                 if (gp.ui.commandNum == 2) {
                     System.exit(0);

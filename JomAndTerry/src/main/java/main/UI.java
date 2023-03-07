@@ -8,6 +8,9 @@ public class UI {
     public boolean gamefinished = false;
     public int commandNum = 0;
 
+    // 0 = title screen, 1 = instructions screen
+    public int titleScreenState = 0;
+
     public UI (GamePanel gp) {
         this.gp = gp;
 
