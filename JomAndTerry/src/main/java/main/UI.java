@@ -25,54 +25,60 @@ public class UI {
     }
 
     public void drawTitleScreen(){
-        g2.setColor (new Color (0,0,0));
-        g2.fillRect (0, 0, gp.screenWidth, gp.screenHeight);
 
-        // TITLE NAME
-        g2.setFont (g2.getFont () .deriveFont (Font .BOLD, 96F));
-        String text = "Jom and Terry";
-        int x = getXforCenteredText (text);
-        int y = gp.tileSize*3;
+        if (titleScreenState == 0) {
+            g2.setColor (new Color (0,0,0));
+            g2.fillRect (0, 0, gp.screenWidth, gp.screenHeight);
 
-        // SHADOW
-        g2.setColor (Color.gray);
-        g2.drawString (text, x+5, y+5);
+            // TITLE NAME
+            g2.setFont (g2.getFont () .deriveFont (Font .BOLD, 96F));
+            String text = "Jom and Terry";
+            int x = getXforCenteredText (text);
+            int y = gp.tileSize*3;
 
-        // MAIN COLOR
-        g2.setColor (Color.white);
-        g2.drawString (text, x, y);
+            // SHADOW
+            g2.setColor (Color.gray);
+            g2.drawString (text, x+5, y+5);
 
-        // Mouse picture
-        x = gp.screenWidth/2- (gp.tileSize*2)/2;
-        y += gp.tileSize*2;
-        g2. drawImage (gp.player.left1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+            // MAIN COLOR
+            g2.setColor (Color.white);
+            g2.drawString (text, x, y);
 
-        // menu options
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+            // Mouse picture
+            x = gp.screenWidth/2- (gp.tileSize*2)/2;
+            y += gp.tileSize*2;
+            g2. drawImage (gp.player.left1, x, y, gp.tileSize*2, gp.tileSize*2, null);
 
-        text = "Start";
-        x = getXforCenteredText (text);
-        y += gp.tileSize*4;
-        g2.drawString(text, x, y);
-        if (commandNum == 0) {
-            g2.drawString(">", x-gp.tileSize, y);
+            // menu options
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+
+            text = "Start";
+            x = getXforCenteredText (text);
+            y += gp.tileSize*4;
+            g2.drawString(text, x, y);
+            if (commandNum == 0) {
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+
+            text = "Instructions";
+            x = getXforCenteredText (text);
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+            if (commandNum == 1) {
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+
+            text = "Quit";
+            x = getXforCenteredText (text);
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+            if (commandNum == 2) {
+                g2.drawString(">", x-gp.tileSize, y);
+            }
+        }else if (titleScreenState == 1) {
+            
         }
-
-        text = "Instructions";
-        x = getXforCenteredText (text);
-        y += gp.tileSize*2;
-        g2.drawString(text, x, y);
-        if (commandNum == 1) {
-            g2.drawString(">", x-gp.tileSize, y);
-        }
-
-        text = "Quit";
-        x = getXforCenteredText (text);
-        y += gp.tileSize*2;
-        g2.drawString(text, x, y);
-        if (commandNum == 2) {
-            g2.drawString(">", x-gp.tileSize, y);
-        }
+        
 
 
     }
