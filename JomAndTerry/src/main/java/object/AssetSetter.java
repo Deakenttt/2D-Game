@@ -37,8 +37,8 @@ public class AssetSetter {
             if(gp.obj[i] != null){
                 int tileNum;
                 do {
-                    row = getRandomNumber(0, 15);
-                    col = getRandomNumber(0, 15);
+                    row = getRandomNumber(0, 16);
+                    col = getRandomNumber(0, 16);
                     tileNum = gp.tileManager.mapTileNum[row][col];
                 } while (gp.tileManager.tile[tileNum].exist || objectsMap[row][col] != 0);  // there isn't anything existing on the object position
                 gp.obj[i].x = (col ) * gp.tileSize;
