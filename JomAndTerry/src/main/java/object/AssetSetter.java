@@ -53,7 +53,7 @@ public class AssetSetter {
     public void setEnemy() {
         gp.enemy[0] = new Enemy(gp, Color.BLUE, 5 * gp.tileSize, 12 * gp.tileSize);
         gp.enemy[1] = new Enemy(gp, Color.RED, 16 * gp.tileSize, 6 * gp.tileSize);
-        gp.enemy[2] = new Enemy(gp, Color.ORANGE, 0, gp.tileSize);
+        gp.enemy[2] = new Enemy(gp, Color.ORANGE, 19*gp.tileSize, 12* gp.tileSize);
 
     }
 
