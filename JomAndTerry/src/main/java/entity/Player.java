@@ -93,6 +93,7 @@ public class Player extends Entity {
         // pickUpObject(objIndex); // Calls pickUpObject method.
         System.out.println("Cheese = " + hasCheese + " Steak = " + hasSteak + " total Score = " + totalScore);
         super.update();
+
     }
 
 
@@ -100,7 +101,6 @@ public class Player extends Entity {
     public void pickUpObject(int i) {
 
         if (i != 999) {
-
             String objectName = gp.obj[i].name; // Get the type of different objects.
 
             switch (objectName) {
@@ -142,14 +142,11 @@ public class Player extends Entity {
 
     public void captured(int i) {
         if (i != 999 || captureFlag) {
-            // unsure of what it should do
-            gp.gameState =gp.gameOverState;
             System.out.println("PLAYER HAS BEEN CAUGHT!!!!!!");
             captureFlag = true;
             gp.ui.gameLose = true; // End the game.
         }
     }
-
 
     public void draw(Graphics2D g2) {
         BufferedImage image = null;

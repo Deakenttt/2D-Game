@@ -69,6 +69,99 @@ public class UI {
             drawGamePlayScreen(g2);
         }
 
+        // Game state is gameOverState.
+        if (gp.gameState == gp.gameOverState) {
+
+            gameOverScreen();
+        }
+
+
+        // Game state is gameOverState.
+        if (gp.gameState == gp.gameWinState) {
+
+            gameWinScreen();
+        }
+
+    }
+
+    public void gameWinScreen(){
+        g2.setColor (new Color(0,0,0,150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x;
+        int y;
+        String text;
+        g2.setFont (g2.getFont().deriveFont(Font.BOLD, 110f));
+
+        text = "You Win!";
+
+        //shadow layer
+        g2.setColor(Color.black);
+        x = getXforCenteredText(text);
+        y = gp.tileSize*4;
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
+        g2.drawString(text, x-4, y-4);
+        
+        //retry button
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Retry";
+        x = getXforCenteredText(text);
+        y += gp.tileSize*4;
+        g2.drawString(text, x, y);
+        if(commandNum == 0){
+            g2.drawString(">", x-40, y);
+        }
+
+        //Quit button
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Quit";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if(commandNum == 1){
+            g2.drawString(">", x-40, y);
+        }
+    }
+
+    public void gameOverScreen(){
+        g2.setColor (new Color(0,0,0,150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x;
+        int y;
+        String text;
+        g2.setFont (g2.getFont().deriveFont(Font.BOLD, 110f));
+
+        text = "Game Over";
+
+        //shadow layer
+        g2.setColor(Color.black);
+        x = getXforCenteredText(text);
+        y = gp.tileSize*4;
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
+        g2.drawString(text, x-4, y-4);
+        
+        //retry button
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Retry";
+        x = getXforCenteredText(text);
+        y += gp.tileSize*4;
+        g2.drawString(text, x, y);
+        if(commandNum == 0){
+            g2.drawString(">", x-40, y);
+        }
+
+        //Quit button
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Quit";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if(commandNum == 1){
+            g2.drawString(">", x-40, y);
+        }
     }
 
     public void drawTitleScreen(){
@@ -226,7 +319,6 @@ public class UI {
         if (playTime <= 0) {
             timeUp = true;
         }
-
         if (gameEnd) {
 
             gameEnd("Congratulation, You win the game!!", g2);
@@ -237,7 +329,6 @@ public class UI {
             gameEnd("Time is up!!", g2);
         }
         if (gameLose) {
-
             gameEnd("You have been caught by cat!!", g2);
         }
 

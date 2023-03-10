@@ -79,7 +79,7 @@ public class CollisionChecker {
                 // GET ENTITY'S SOLID AREA POSITION.
                 entity.solidArea.x = entity.x + entity.solidArea.x;
                 entity.solidArea.y = entity.y + entity.solidArea.y;
-
+ 
                 // GET OBJECT'S SOLID AREA POSITION.
                 gp.obj[i].solidArea.x = gp.obj[i].x + gp.obj[i].solidArea.x;
                 gp.obj[i].solidArea.y = gp.obj[i].y + gp.obj[i].solidArea.y;
