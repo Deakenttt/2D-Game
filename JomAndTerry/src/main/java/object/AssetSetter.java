@@ -9,8 +9,8 @@ import java.awt.*;
  * @Des Class for palace objects on the map
  */
 public class AssetSetter {
-
     GamePanel gp;
+    int[][] objectsMap;
 
     public AssetSetter(GamePanel gp) {
         this.gp = gp;
@@ -19,29 +19,36 @@ public class AssetSetter {
     // METHOD FOR SETTING OBJECT.
     public void setObject() {
 
+        int row;
+        int col;
+        objectsMap = new int[gp.maxScreenCol][gp.maxScreenRow];
+
         // CHEESE
         gp.obj[0] = new OBJ_Cheese();
-        gp.obj[0].x = 5 * gp.tileSize;
-        gp.obj[0].y = 12 * gp.tileSize;
-
         gp.obj[1] = new OBJ_Cheese();
-        gp.obj[1].x = 7 * gp.tileSize;
-        gp.obj[1].y = 12 * gp.tileSize;
-
         // STEAK
         gp.obj[2] = new OBJ_Steak();
-        gp.obj[2].x = 16 * gp.tileSize;
-        gp.obj[2].y = 5 * gp.tileSize;
-
         // TRAP
         gp.obj[3] = new OBJ_Trap();
-        gp.obj[3].x = 16 * gp.tileSize;
-        gp.obj[3].y = 8 * gp.tileSize;
-
         // HOLE
         gp.obj[4] = new OBJ_Hole();
-        gp.obj[4].x = 19 * gp.tileSize;
-        gp.obj[4].y = 14 * gp.tileSize;
+
+        for (int i=0; i < gp.obj.length; i++){
+            if(gp.obj[i] != null){
+                int tileNum;
+                do {
+                    row = getRandomNumber(0, 15);
+                    col = getRandomNumber(0, 15);
+                    tileNum = gp.tileManager.mapTileNum[row][col];
+                } while (gp.tileManager.tile[tileNum].exist || objectsMap[row][col] != 0);  // there isn't anything existing on the object position
+                gp.obj[i].x = (col ) * gp.tileSize;
+                gp.obj[i].y = (row ) * gp.tileSize;
+                objectsMap[row][col] = 1;
+            }
+        }
+    }
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
 
     public void setEnemy() {
@@ -49,4 +56,5 @@ public class AssetSetter {
         gp.enemy[1] = new Enemy(gp, Color.RED, 16 * gp.tileSize, 5 * gp.tileSize);
         gp.enemy[2] = new Enemy(gp, Color.ORANGE, 0, 0);
     }
+
 }

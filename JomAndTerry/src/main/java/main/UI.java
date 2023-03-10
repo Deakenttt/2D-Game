@@ -30,7 +30,7 @@ public class UI {
 
 
     // For timer and time format.
-    public double playTime = 20.0;
+    public double playTime = 100.0;
     DecimalFormat decimalFormat = new DecimalFormat("#0.00");
 
 

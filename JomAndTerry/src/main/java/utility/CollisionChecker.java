@@ -11,6 +11,7 @@ public class CollisionChecker {
 
     GamePanel gp;
 
+
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;
     }
@@ -148,19 +149,19 @@ public class CollisionChecker {
         switch (entity.direction) {
             case "up" -> {
                 entity.solidArea.y -= entity.speed;
-                System.out.println("up collision!");
+                //System.out.println("up collision!");
             }
             case "down" -> {
                 entity.solidArea.y += entity.speed;
-                System.out.println("down collision!");
+                //System.out.println("down collision!");
             }
             case "left" -> {
                 entity.solidArea.x -= entity.speed;
-                System.out.println("left collision!");
+                //System.out.println("left collision!");
             }
             case "right" -> {
                 entity.solidArea.x += entity.speed;
-                System.out.println("right collision!");
+                //System.out.println("right collision!");
             }
         }
     }

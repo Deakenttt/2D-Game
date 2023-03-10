@@ -80,6 +80,7 @@ public class Player extends Entity {
                 direction = "right";
             }
         }
+        System.out.println("the Pos is: " + x + ", " + y);
     }
 
     // Player bug: wall collision to the right stops it from going up and then collision to the left stops it from going down

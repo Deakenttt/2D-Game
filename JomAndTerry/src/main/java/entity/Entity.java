@@ -26,6 +26,7 @@ public class Entity {
     // FOR ANIMATION
     public int spriteCounter = 0;
     public int spriteNum = 1;
+    public boolean onPath = false;
 
 
     public Entity(GamePanel gp) {
@@ -35,25 +36,25 @@ public class Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDefaultValues();
-
+        onPath = true;  // Using the A* setAction on SmCat
     }
 
     public void setDefaultValues() {
         x = 48;
         y = 48;
         speed = 4;
-        direction = "down";
+        direction = "right";
+        onPath = true;  // Using the A* setAction on SmCat
     }
 
     public void setAction() {
-
     }
 
     public void update() {
 
         // CHECK TILE COLLISION
         collisionOn = false;
-        gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method 
+        gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
         setAction();
         if (doMove) {
             if (!collisionOn) {
@@ -90,4 +91,75 @@ public class Entity {
 
     // SAVING THE DEFAULT VALUE OF X AND Y
     public int solidAreaDefaultX, solidAreaDefaultY;
+
+    public void searchPath(int goalCol, int goalRow){
+        int startCol = (x + solidArea.x)/gp.tileSize;
+        int startRow = (y + solidArea.y)/gp.tileSize;
+
+        gp.findPath.setNode(startCol, startRow, goalCol, goalRow, this);
+        // we found the path
+        if(gp.findPath.aStarSearch()){
+            // next world x and world y
+            int nextX = gp.findPath.pathList.get(0).col * gp.tileSize;
+            int nextY = gp.findPath.pathList.get(0).row * gp.tileSize;
+
+            // Entity's solid Area pos
+            int enLeftX = x + solidArea.x;
+            int enRightX = x + solidArea.x + solidArea.width;
+            int enTopY = y + solidArea.y;
+            int enBottomY = y + solidArea.y + solidArea.height;
+
+            if(enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize){
+                direction = "up";
+            }
+            else if(enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize){
+                direction = "down";
+            }
+            else if(enTopY >= nextX && enBottomY < nextY + gp.tileSize){
+                // left or right
+                if(enLeftX > nextX){
+                    direction = "left";
+                }
+                if(enLeftX < nextX){
+                    direction = "right";
+                }
+            }
+            else if(enTopY > nextY && enLeftX > nextX){
+                // up or left
+                direction = "up";
+                collisionOn = false;
+                gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+                if(collisionOn)
+                    direction = "left";
+            }
+            else if(enTopY > nextY && enLeftX < nextX){
+                direction = "up";
+                collisionOn = false;
+                gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+                if(collisionOn)
+                    direction = "right";
+            }
+            else if(enTopY < nextY && enLeftX > nextX){
+                direction = "down";
+                collisionOn = false;
+                gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+                if(collisionOn)
+                    direction = "left";
+            }
+            else if(enTopY < nextY && enLeftX < nextX){
+                direction = "down";
+                collisionOn = false;
+                gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+                if(collisionOn)
+                    direction = "right";
+            }
+
+            // If reach the goal STOP search
+            int nextCol = gp.findPath.pathList.get(0).col;
+            int nextRow = gp.findPath.pathList.get(0).row;
+            if(nextCol == goalCol && nextRow == goalRow)
+                onPath = false;
+        }
+
+    }
 }

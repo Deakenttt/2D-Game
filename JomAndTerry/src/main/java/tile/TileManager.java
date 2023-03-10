@@ -54,6 +54,11 @@ public class TileManager {
             tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/" + imageName + ".png")));
             tile[index].image = utilityTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
+            if(!Objects.equals(imageName, "floor")){
+                tile[index].exist = true;
+            }
+            // if tile[index].image = "/assets/new_tiles/floor.png":  # add res on floor tile
+
 
         } catch (IOException e) {
             e.printStackTrace();

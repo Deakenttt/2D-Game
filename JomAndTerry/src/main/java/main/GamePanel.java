@@ -1,7 +1,9 @@
 package main;
 
 
+import ai.FindPath;
 import entity.Player;
+import entity.SmCat;
 import object.AssetSetter;
 import object.SuperObject;
 import tile.TileManager;
@@ -32,6 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenHeight = tileSize * maxScreenRow; // 48 * 16 pixels
 
     // GAME STATE
+    public int currentMap = 0;
     public int gameState;
     public final int titleState = 0;
     public final int gamePlay = 1;
@@ -42,11 +45,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     // FPS
     int FPS = 60;
+
+    public FindPath findPath = new FindPath(this);
     Thread gameThread; // To enable start and stop, needs involve Runnable interface.
     KeyHandler keyHandler = new KeyHandler(this); // Key handler class.
 
     public Player player = new Player(this, keyHandler); // Initiate a Player object.
     public Enemy enemy[] = new Enemy[3];
+    public SmCat smartCat = new SmCat(this);
     public SuperObject[] obj = new SuperObject[10]; // 10 slots for object, can replace the content during the game.
 
     public TileManager tileManager = new TileManager(this); // Initiate tileManger object.
@@ -116,12 +122,14 @@ public class GamePanel extends JPanel implements Runnable {
         // GAME STATE: GAMEPLAY
         if (gameState == gamePlay) {
             player.update();
+            smartCat.update();
             System.out.println("updating player");
             for (int i = 0; i < enemy.length; i++) {
                 if (enemy[i] != null) {
                     // System.out.println("updating enemy " + i);
 
                     enemy[i].update();
+
                 }
             }
         }
@@ -149,13 +157,13 @@ public class GamePanel extends JPanel implements Runnable {
         else if (gameState == gamePlay || gameState == gamePause) {
 
             tileManager.draw(g2);
-            System.out.println("player ");
+            //System.out.println("player ");
             player.draw(g2);
-
+            smartCat.draw(g2);
             // Enemies
             for (int i = 0; i < enemy.length; i++) {
                 if (enemy[i] != null) {
-                    System.out.println("enemy " + i);
+                    //System.out.println("enemy " + i);
                     enemy[i].draw(g2);
                 }
             }
