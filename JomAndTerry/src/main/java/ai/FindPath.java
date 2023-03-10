@@ -13,13 +13,15 @@ public class FindPath {
     Node startNode, goalNode, currentNode;
     boolean goalReached;
     int step = 0;
-    public FindPath(GamePanel gp){
+
+    public FindPath(GamePanel gp) {
         this.gp = gp;
         instantiateNode();
     }
-    public void instantiateNode(){        // define all the nodes
+
+    public void instantiateNode() {        // define all the nodes
         node = new Node[gp.maxScreenCol][gp.maxScreenRow];
-        for(int i= 0; i < gp.maxScreenCol; i++) {
+        for (int i = 0; i < gp.maxScreenCol; i++) {
             for (int j = 0; j < gp.maxScreenRow; j++) {
                 node[i][j] = new Node(i, j);
             }
@@ -27,8 +29,8 @@ public class FindPath {
     }
 
     // reset all the node after start node and goal are modified
-    public void resetNode(){
-        for(int i= 0; i < gp.maxScreenCol; i++) {
+    public void resetNode() {
+        for (int i = 0; i < gp.maxScreenCol; i++) {
             int j = 0;
             for (j = 0; j < gp.maxScreenRow; j++) {
                 node[i][j].open = false;
@@ -42,7 +44,8 @@ public class FindPath {
         goalReached = false;
         step = 0;
     }
-    public void setNode(int startCol, int startRow, int goalCol, int goalRow, Entity entity){
+
+    public void setNode(int startCol, int startRow, int goalCol, int goalRow, Entity entity) {
         resetNode();
 
         // Set Start and Goal node
@@ -51,16 +54,17 @@ public class FindPath {
         goalNode = node[goalCol][goalRow];
         openList.add(currentNode);
 
-        for(int i= 0; i < gp.maxScreenCol; i++) {
+        for (int i = 0; i < gp.maxScreenCol; i++) {
             for (int j = 0; j < gp.maxScreenRow; j++) {
                 int tileNum = gp.tileManager.mapTileNum[i][j];
-                if(gp.tileManager.tile[tileNum].collision)
+                if (gp.tileManager.tile[tileNum].collision)
                     node[i][j].solid = true;
                 getCost(node[i][j]);   // defined the g cost, h cost, AND final cost for each node
             }
         }
     }
-    public void getCost(Node node){
+
+    public void getCost(Node node) {
         // Greedy cost
         int xDistance = Math.abs(node.col - startNode.col);
         int yDistance = Math.abs(node.row - startNode.row);
@@ -72,8 +76,9 @@ public class FindPath {
         // Final cost
         node.fCost = node.gCost + node.hCost;
     }
-    public boolean aStarSearch(){
-        while(!goalReached && step < 500 ){
+
+    public boolean aStarSearch() {
+        while (!goalReached && step < 500) {
             int col = currentNode.col;
             int row = currentNode.row;
 
@@ -82,39 +87,39 @@ public class FindPath {
             openList.remove(currentNode);
 
             // check the upward node
-            if(row -1 >= 0)
-                openNode(node[col][row-1]);
+            if (row - 1 >= 0)
+                openNode(node[col][row - 1]);
             // check the leftward node
-            if(col -1 >= 0)
-                openNode(node[col-1][row]);
+            if (col - 1 >= 0)
+                openNode(node[col - 1][row]);
             // check the downward node
-            if(row +1 < gp.maxScreenRow)
-                openNode(node[col][row+1]);
+            if (row + 1 < gp.maxScreenRow)
+                openNode(node[col][row + 1]);
             // check the rightward node
-            if(col +1 < gp.maxScreenCol)
-                openNode(node[col+1][row]);
+            if (col + 1 < gp.maxScreenCol)
+                openNode(node[col + 1][row]);
             //find Best node
             int bestNodeIndex = 0;
             int bestNodefCost = 999;
-            for(int i = 0; i < openList.size(); i++){
+            for (int i = 0; i < openList.size(); i++) {
                 // compare the final cost between two nodes
-                if(openList.get(i).fCost < bestNodefCost){
+                if (openList.get(i).fCost < bestNodefCost) {
                     bestNodeIndex = i;
                     bestNodefCost = openList.get(i).fCost;
                 }
                 // if the final cost is equal between two nodes. THEN check Greedy cost
-                else if(openList.get(i).fCost == bestNodefCost){
-                    if(openList.get(i).gCost < openList.get(bestNodeIndex).gCost){
+                else if (openList.get(i).fCost == bestNodefCost) {
+                    if (openList.get(i).gCost < openList.get(bestNodeIndex).gCost) {
                         bestNodeIndex = i;
                     }
                 }
             }
             // if there is no node in open list THEN end the loop
-            if(openList.size() == 0)
+            if (openList.size() == 0)
                 break;
             // After the loop, openlist[bestNodeIndex] is the next step  <- currentNode
             currentNode = openList.get(bestNodeIndex);
-            if(currentNode == goalNode) {
+            if (currentNode == goalNode) {
                 goalReached = true;
                 trackPath();
             }
@@ -124,16 +129,17 @@ public class FindPath {
     }
 
     // parent -> current -> next
-    public  void openNode(Node node){
-        if(!node.open && !node.checked && !node.solid){
+    public void openNode(Node node) {
+        if (!node.open && !node.checked && !node.solid) {
             node.open = true;
             node.parent = currentNode;
             openList.add(node);
         }
     }
-    public void  trackPath(){
+
+    public void trackPath() {
         Node current = goalNode;
-        while(current!= startNode){
+        while (current != startNode) {
             pathList.add(0, current);  // always adding to the first slot so the last added node is in pathList[0]
 
             current = current.parent;  //  last Node <-- parent Node <- current Node
