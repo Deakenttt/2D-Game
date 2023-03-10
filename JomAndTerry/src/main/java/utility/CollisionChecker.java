@@ -105,7 +105,7 @@ public class CollisionChecker {
         if (index != 999) {
             entity.pickUpObject(index);
         }
-    }
+    } 
 
     // NPC or Enemy
     public void checkEntity(Player entity) {

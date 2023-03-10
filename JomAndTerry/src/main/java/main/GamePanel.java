@@ -7,9 +7,7 @@ import object.SuperObject;
 import tile.TileManager;
 import utility.CollisionChecker;
 import entity.Enemy;
-import entity.Entity;
 import utility.KeyHandler;
-import main.UI;
 
 import javax.swing.*;
 import java.awt.*;

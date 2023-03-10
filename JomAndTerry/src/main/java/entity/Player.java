@@ -135,7 +135,7 @@ public class Player extends Entity {
                     } else {
                         gp.ui.showMessage("You need collect all the cheese!"); // Show the msg when get the cheese.
                     }
-                }
+                } 
             }
         }
     }

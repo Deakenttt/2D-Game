@@ -165,7 +165,6 @@ public class UI {
     }
 
     public void drawTitleScreen(){
-
         if (titleScreenState == 0) {
             g2.setColor (new Color (0,0,0));
             g2.fillRect (0, 0, gp.screenWidth, gp.screenHeight);
@@ -246,10 +245,7 @@ public class UI {
             if (commandNum == 1) {
                 g2.drawString(">", x-gp.tileSize, y);
             }
-
         }
-        
-
 
     }
 
@@ -260,7 +256,6 @@ public class UI {
     }
 
     public void showMessage(String text) {
-
         message = text;
         messageOn = true;
     }
@@ -270,9 +265,7 @@ public class UI {
         g2.setColor(Color.WHITE);
 
         if (messageOn) {
-
             g2.drawString(message, gp.tileSize / 2, gp.tileSize / 2 * 5);
-
             msgCounter++;
             if (msgCounter > 120) {
                 msgCounter = 0;
@@ -305,12 +298,6 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
-    public void gameEnd(String text, Graphics2D g2) {
-
-        drawCenteredMessage(text, g2);
-        gp.gameThread = null; // Stop the game.
-    }
-
     public void drawGamePlayScreen(Graphics2D g2) {
 
         // TIME
@@ -321,15 +308,17 @@ public class UI {
         }
         if (gameEnd) {
 
-            gameEnd("Congratulation, You win the game!!", g2);
+            gp.gameThread = null;
         }
         if (timeUp) {
 
             playTime = 0.0;
-            gameEnd("Time is up!!", g2);
+            
         }
         if (gameLose) {
-            gameEnd("You have been caught by cat!!", g2);
+            
+            gp.gameThread = null;
+            gp.gameState = gp.gameOverState;
         }
 
         // MESSAGE

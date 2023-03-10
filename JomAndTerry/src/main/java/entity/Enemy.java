@@ -1,10 +1,8 @@
 package entity;
 
 import main.GamePanel;
-import utility.KeyHandler;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Enemy extends Entity{
