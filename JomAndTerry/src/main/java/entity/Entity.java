@@ -52,7 +52,6 @@ public class Entity {
 
     public void update() {
 
-        // CHECK TILE COLLISION
         collisionOn = false;
         gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
         setAction();
@@ -60,16 +59,16 @@ public class Entity {
             if (!collisionOn) {
                 switch (direction) {
                     case "up":
-                        y -= speed;
+                        y -= gp.tileSize;
                         break;
                     case "down":
-                        y += speed;
+                        y += gp.tileSize;
                         break;
                     case "left":
-                        x -= speed;
+                        x -= gp.tileSize;
                         break;
                     case "right":
-                        x += speed;
+                        x += gp.tileSize;
                         break;
                 }
             }

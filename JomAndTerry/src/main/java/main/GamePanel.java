@@ -120,7 +120,20 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
 
         // GAME STATE: GAMEPLAY
+         // CHECK TILE COLLISION
+        
+        
+        
+        
+        
+        
         if (gameState == gamePlay) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             player.update();
             smartCat.update();
             System.out.println("updating player");
