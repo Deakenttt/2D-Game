@@ -144,7 +144,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
         }
         // Game state is gamePlay or gamePause.
-        else if (gameState == gamePlay || gameState == gamePause) {
+        else if (gameState == gamePlay || gameState == gamePause || gameState == gameOverState || gameState == gameWinState) {
 
             tileManager.draw(g2);
             System.out.println("player ");
