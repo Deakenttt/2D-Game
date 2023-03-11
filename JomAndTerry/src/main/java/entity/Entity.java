@@ -32,7 +32,12 @@ public class Entity {
     public Entity(GamePanel gp) {
         this.gp = gp;
         // SOLID AREA FOR COLLISION
-        solidArea = new Rectangle(8, 16, 30, 30);
+        solidArea = new Rectangle(); // (x, y, width, height)
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 32;
+        solidArea.height = 32;
+
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDefaultValues();
@@ -92,13 +97,13 @@ public class Entity {
     // SAVING THE DEFAULT VALUE OF X AND Y
     public int solidAreaDefaultX, solidAreaDefaultY;
 
-    public void searchPath(int goalCol, int goalRow){
-        int startCol = (x + solidArea.x)/gp.tileSize;
-        int startRow = (y + solidArea.y)/gp.tileSize;
+    public void searchPath(int goalCol, int goalRow) {
+        int startCol = (x + solidArea.x) / gp.tileSize;
+        int startRow = (y + solidArea.y) / gp.tileSize;
 
         gp.findPath.setNode(startCol, startRow, goalCol, goalRow, this);
         // we found the path
-        if(gp.findPath.aStarSearch()){
+        if (gp.findPath.aStarSearch()) {
             // next world x and world y
             int nextX = gp.findPath.pathList.get(0).col * gp.tileSize;
             int nextY = gp.findPath.pathList.get(0).row * gp.tileSize;
@@ -109,55 +114,49 @@ public class Entity {
             int enTopY = y + solidArea.y;
             int enBottomY = y + solidArea.y + solidArea.height;
 
-            if(enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize){
+            if (enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
                 direction = "up";
-            }
-            else if(enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize){
+            } else if (enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
                 direction = "down";
-            }
-            else if(enTopY >= nextX && enBottomY < nextY + gp.tileSize){
+            } else if (enTopY >= nextX && enBottomY < nextY + gp.tileSize) {
                 // left or right
-                if(enLeftX > nextX){
+                if (enLeftX > nextX) {
                     direction = "left";
                 }
-                if(enLeftX < nextX){
+                if (enLeftX < nextX) {
                     direction = "right";
                 }
-            }
-            else if(enTopY > nextY && enLeftX > nextX){
+            } else if (enTopY > nextY && enLeftX > nextX) {
                 // up or left
                 direction = "up";
                 collisionOn = false;
                 gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-                if(collisionOn)
+                if (collisionOn)
                     direction = "left";
-            }
-            else if(enTopY > nextY && enLeftX < nextX){
+            } else if (enTopY > nextY && enLeftX < nextX) {
                 direction = "up";
                 collisionOn = false;
                 gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-                if(collisionOn)
+                if (collisionOn)
                     direction = "right";
-            }
-            else if(enTopY < nextY && enLeftX > nextX){
+            } else if (enTopY < nextY && enLeftX > nextX) {
                 direction = "down";
                 collisionOn = false;
                 gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-                if(collisionOn)
+                if (collisionOn)
                     direction = "left";
-            }
-            else if(enTopY < nextY && enLeftX < nextX){
+            } else if (enTopY < nextY && enLeftX < nextX) {
                 direction = "down";
                 collisionOn = false;
                 gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-                if(collisionOn)
+                if (collisionOn)
                     direction = "right";
             }
 
             // If reach the goal STOP search
             int nextCol = gp.findPath.pathList.get(0).col;
             int nextRow = gp.findPath.pathList.get(0).row;
-            if(nextCol == goalCol && nextRow == goalRow)
+            if (nextCol == goalCol && nextRow == goalRow)
                 onPath = false;
         }
 

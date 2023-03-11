@@ -56,7 +56,7 @@ public class Enemy extends Entity{
                 direction = "right";
             }
             actionLockC = 0;
-            System.out.println("the Pos is: " + x + ", " + y);
+            //System.out.println("the Pos is: " + x + ", " + y);
         }
     }
     /*public void searchPath(int goalCol, int goalRow){

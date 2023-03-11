@@ -19,7 +19,7 @@ public class SmCat extends Entity{
         //System.out.println("Setting Colour");
 
         g2.setColor(Color.cyan);
-        g2.fillRect(x, y, 48, 48);
+        g2.fillRect(x, y, 38, 38);
     }
 
     public void setAction() {

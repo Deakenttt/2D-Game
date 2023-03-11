@@ -123,7 +123,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == gamePlay) {
             player.update();
             smartCat.update();
-            System.out.println("updating player");
+            //System.out.println("updating player");
             for (int i = 0; i < enemy.length; i++) {
                 if (enemy[i] != null) {
                     // System.out.println("updating enemy " + i);

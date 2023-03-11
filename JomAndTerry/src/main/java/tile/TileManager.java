@@ -112,7 +112,7 @@ public class TileManager {
         while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
 
             int tileNum = mapTileNum[col][row]; // Extract a tile number which is stored in mapTileNum[0][0].
-
+            g2.drawRect(x, y, 48, 48);
             g2.drawImage(tile[tileNum].image, x, y, null);
             col++;
             x += gp.tileSize;
