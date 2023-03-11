@@ -317,7 +317,7 @@ public class UI {
         }
         if (gameLose) {
             
-            gp.gameThread = null;
+           // gp.gameThread = null;
             gp.gameState = gp.gameOverState;
         }
 

@@ -146,7 +146,7 @@ public class Player extends Entity {
             captureFlag = true;
             gp.ui.gameLose = true; // End the game.
         }
-    }
+    } 
 
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
