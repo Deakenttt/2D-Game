@@ -162,6 +162,7 @@ public class UI {
         if(commandNum == 1){
             g2.drawString(">", x-40, y);
         }
+        drawScoreAndTimer(g2);
     }
 
     public void drawTitleScreen(){
@@ -311,13 +312,11 @@ public class UI {
             gp.gameThread = null;
         }
         if (timeUp) {
-
             playTime = 0.0;
             
         }
         if (gameLose) {
-            
-           // gp.gameThread = null;
+
             gp.gameState = gp.gameOverState;
         }
 

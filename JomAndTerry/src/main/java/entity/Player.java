@@ -142,7 +142,6 @@ public class Player extends Entity {
 
     public void captured(int i) {
         if (i != 999 || captureFlag) {
-            System.out.println("PLAYER HAS BEEN CAUGHT!!!!!!");
             captureFlag = true;
             gp.ui.gameLose = true; // End the game.
         }
