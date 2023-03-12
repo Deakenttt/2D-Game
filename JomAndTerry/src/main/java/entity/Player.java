@@ -29,10 +29,18 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        x = 48;
-        y = 48;
-        speed = 4;
+        x = 96;
+        y = 96;
+        speed = 48;
         direction = "down";
+        solidArea.width = 22;
+        solidArea.height = 22;
+    }
+
+    public void retry() {
+        setDefaultValues();
+        captureFlag = false;
+        gp.ui.gameLose = false;
     }
 
     public void getPlayerImage() {
@@ -59,7 +67,7 @@ public class Player extends Entity {
         try {
 
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/" + imageName + ".png")));
-            image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = utilityTool.scaleImage(image, gp.tileSize-10, gp.tileSize-10);
         } catch (IOException e) {
             e.printStackTrace();
         }

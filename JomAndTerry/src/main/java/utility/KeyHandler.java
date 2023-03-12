@@ -2,6 +2,7 @@ package utility;
 
 
 import main.GamePanel;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -52,9 +53,9 @@ public class KeyHandler implements KeyListener {
                     if (gp.ui.commandNum == 2) {
                         System.exit(0);
                     }
+
                 }
-            }
-            else if (gp.ui.titleScreenState == 1) {
+            } else if (gp.ui.titleScreenState == 1) {
                 if (code == KeyEvent.VK_W) {
                     gp.ui.commandNum--;
                     if (gp.ui.commandNum < 0) {
@@ -76,8 +77,7 @@ public class KeyHandler implements KeyListener {
                     }
                 }
             }
-        } 
-        else if (gp.gameState == gp.gameOverState) {
+        } else if (gp.gameState == gp.gameOverState) {
             if (code == KeyEvent.VK_W) {
                 gp.ui.commandNum--;
                 if (gp.ui.commandNum < 0) {
@@ -99,8 +99,7 @@ public class KeyHandler implements KeyListener {
                     System.exit(0);
                 }
             }
-        }
-        else if (gp.gameState == gp.gameWinState) {
+        } else if (gp.gameState == gp.gameWinState) {
             if (code == KeyEvent.VK_W) {
                 gp.ui.commandNum--;
                 if (gp.ui.commandNum < 0) {
@@ -115,7 +114,7 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
-                    gp.gameState = gp.gamePlay;
+                    gp.gameState = 10;
                 }
                 if (gp.ui.commandNum == 1) {
                     System.exit(0);

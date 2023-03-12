@@ -21,12 +21,11 @@ public class Enemy extends Entity{
     public void setDefaultValues() {
         x = 48;
         y = 48;
-        speed = 4;
+        speed = 48;
         direction = "down";
     }
 
     public void draw(Graphics2D g2) {
-        //System.out.println("Setting Colour");
 
         g2.setColor(colour);
         g2.drawRect(x, y, 48, 48);
@@ -54,7 +53,7 @@ public class Enemy extends Entity{
                 direction = "right";
             }
             actionLockC = 0;
-            System.out.println("the Pos is: " + x + ", " + y);
+            //System.out.println("the Pos is: " + x + ", " + y);
         }
     }
     /*public void searchPath(int goalCol, int goalRow){
