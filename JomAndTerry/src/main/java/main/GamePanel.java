@@ -59,6 +59,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        Rectangle rect = new Rectangle(1, 1, 1, screenHeight);
+        this.scrollRectToVisible(rect);
         this.setBackground(Color.black);
 
         this.addKeyListener(keyHandler); // So this GamePanel can recognize key input.

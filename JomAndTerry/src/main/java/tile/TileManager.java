@@ -27,6 +27,9 @@ public class TileManager {
 
         getTileImage(); // Set each tiles bufferedImage.
         loadMap("/assets/Map/map02.txt"); // Load a map text into 2D array and draw the map.
+        int tileNum = mapTileNum[0][15];
+        tile[tileNum].collision = true;
+
     }
 
     public void getTileImage() {
@@ -39,6 +42,8 @@ public class TileManager {
         setup(5, "candles", true);
         setup(6, "oven", true);
         setup(7, "plant", true);
+        setup(8, "floor", false);
+
 
     }
 
@@ -58,7 +63,6 @@ public class TileManager {
                 tile[index].exist = true;
             }
             // if tile[index].image = "/assets/new_tiles/floor.png":  # add res on floor tile
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -99,6 +103,8 @@ public class TileManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        
     }
     public void exit_update(){
         int tileNum = mapTileNum[19 * gp.tileSize][14 * gp.tileSize];
@@ -114,11 +120,11 @@ public class TileManager {
         int y = 0;
 
         while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
-
             int tileNum = mapTileNum[col][row]; // Extract a tile number which is stored in mapTileNum[0][0].
             g2.drawRect(x, y, 48, 48);
             g2.drawImage(tile[tileNum].image, x, y, null);
             col++;
+            
             x += gp.tileSize;
             if (col == gp.maxScreenCol) {
                 col = 0;

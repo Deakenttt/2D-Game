@@ -20,7 +20,6 @@ public class Player extends Entity {
     public int hasCheese = 0; // Tracking the number of cheese.
     public int hasSteak = 0; // Tracking the number of steak.
     public int totalScore = 0; // Tracking the total score.4
-    
     boolean captureFlag = false; // Flag for being caught
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
