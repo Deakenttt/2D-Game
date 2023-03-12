@@ -19,7 +19,8 @@ public class Player extends Entity {
     KeyHandler keyHandler;
     public int hasCheese = 0; // Tracking the number of cheese.
     public int hasSteak = 0; // Tracking the number of steak.
-    public int totalScore = 0; // Tracking the total score.
+    public int totalScore = 0; // Tracking the total score.4
+    
     boolean captureFlag = false; // Flag for being caught
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
@@ -92,6 +93,9 @@ public class Player extends Entity {
         // int objIndex = gp.collisionChecker.checkObject(this, true);
         gp.collisionChecker.checkObject(this, true);
         gp.collisionChecker.checkEntity(this);
+        if (totalScore >= 6){
+            gp.tileManager.exit_update();
+        }
 
         // pickUpObject(objIndex); // Calls pickUpObject method.
         System.out.println("Cheese = " + hasCheese + " Steak = " + hasSteak + " total Score = " + totalScore);

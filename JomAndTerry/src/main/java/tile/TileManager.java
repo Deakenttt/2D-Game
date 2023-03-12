@@ -100,6 +100,10 @@ public class TileManager {
             e.printStackTrace();
         }
     }
+    public void exit_update(){
+        int tileNum = mapTileNum[19 * gp.tileSize][14 * gp.tileSize];
+        tile[tileNum].collision = true;
+    }
 
     // METHOD FOR DRAWING MAP WHEN ONLY IN A SCREEN.
     public void draw(Graphics2D g2) {

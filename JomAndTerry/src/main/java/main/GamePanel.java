@@ -118,11 +118,6 @@ public class GamePanel extends JPanel implements Runnable {
         // GAME STATE: GAMEPLAY
          // CHECK TILE COLLISION
         
-        
-        
-        
-        
-        
         if (gameState == gamePlay) {
             try {
                 Thread.sleep(200);
