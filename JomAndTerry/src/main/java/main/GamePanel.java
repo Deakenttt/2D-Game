@@ -27,18 +27,19 @@ public class GamePanel extends JPanel implements Runnable {
     // SCREEN SETTING
     final int originalTileSize = ORIGINAL_TILE_SIZE; // 16x16 tile
     final int scale = SCALE;
-    public final int maxScreenCol = MAX_SCREEN_COL;
+    public final int maxScreenCol = MAX_MAP_COL;
     public final int maxScreenRow = MAX_SCREEN_ROW;
     public final int tileSize = originalTileSize * scale; // 48x48 tile
-    public final int screenWidth = tileSize * maxScreenCol; // 48 * 20 pixels
+    public final int screenWidth = tileSize * MAX_SCREEN_COL; // 48 * 20 pixels
     public final int screenHeight = tileSize * maxScreenRow; // 48 * 16 pixels
 
     // GAME STATE
-    public int currentMap = 0;
     public int gameState;
     public final int titleState = 0;
     public final int gamePlay = 1;
     public final int gamePause = 2;
+    public final int gameOverState = 3;
+    public final int gameWinState = 4;
 
 
     public UI ui = new UI (this);
@@ -121,6 +122,14 @@ public class GamePanel extends JPanel implements Runnable {
 
         // GAME STATE: GAMEPLAY
         if (gameState == gamePlay) {
+            try {
+                Thread.sleep(150);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+
             player.update();
             smartCat.update();
             //System.out.println("updating player");
@@ -133,10 +142,6 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
-        // GAME STATE: GAME PAUSE
-        if (gameState == gamePause) {
-        }
-
     }
 
     // This is built-in java method on JPanel.
@@ -154,16 +159,18 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
         }
         // Game state is gamePlay or gamePause.
-        else if (gameState == gamePlay || gameState == gamePause) {
+        else if (gameState == gamePlay || gameState == gamePause
+                || gameState == gameOverState || gameState == gameWinState) {
 
             tileManager.draw(g2);
-            //System.out.println("player ");
+            System.out.println("player ");
             player.draw(g2);
+
             smartCat.draw(g2);
             // Enemies
             for (int i = 0; i < enemy.length; i++) {
                 if (enemy[i] != null) {
-                    //System.out.println("enemy " + i);
+                    System.out.println("enemy " + i);
                     enemy[i].draw(g2);
                 }
             }

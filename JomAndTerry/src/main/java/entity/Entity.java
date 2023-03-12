@@ -35,8 +35,8 @@ public class Entity {
         solidArea = new Rectangle(); // (x, y, width, height)
         solidArea.x = 8;
         solidArea.y = 16;
-        solidArea.width = 32;
-        solidArea.height = 32;
+        solidArea.width = 22;
+        solidArea.height = 22;
 
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
@@ -57,10 +57,12 @@ public class Entity {
 
     public void update() {
 
+        setAction();
+
         // CHECK TILE COLLISION
         collisionOn = false;
         gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-        setAction();
+
         if (doMove) {
             if (!collisionOn) {
                 switch (direction) {

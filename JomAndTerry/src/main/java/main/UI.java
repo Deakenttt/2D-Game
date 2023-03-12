@@ -30,7 +30,7 @@ public class UI {
 
 
     // For timer and time format.
-    public double playTime = 100.0;
+    public double playTime = 20.0;
     DecimalFormat decimalFormat = new DecimalFormat("#0.00");
 
 
@@ -66,13 +66,113 @@ public class UI {
         // Game state is gamePlay.
         if (gp.gameState == gp.gamePlay) {
 
+            // SCORE AND TIMER
+            drawScoreAndTimer(g2);
             drawGamePlayScreen(g2);
         }
 
+        // Game state is gameOverState.
+        if (gp.gameState == gp.gameOverState) {
+
+            // SCORE AND TIMER
+            drawScoreAndTimer(g2);
+            gameOverScreen();
+        }
+
+
+        // Game state is gameOverState.
+        if (gp.gameState == gp.gameWinState) {
+
+            // SCORE AND TIMER
+            drawScoreAndTimer(g2);
+            gameWinScreen();
+        }
+
+
+    }
+
+    public void gameWinScreen(){
+        g2.setColor (new Color(0,0,0,150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x;
+        int y;
+        String text;
+        g2.setFont (g2.getFont().deriveFont(Font.BOLD, 110f));
+
+        text = "You Win!";
+
+        //shadow layer
+        g2.setColor(Color.black);
+        x = getXforCenteredText(text);
+        y = gp.tileSize*4;
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
+        g2.drawString(text, x-4, y-4);
+
+        //retry button
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Retry";
+        x = getXforCenteredText(text);
+        y += gp.tileSize*4;
+        g2.drawString(text, x, y);
+        if(commandNum == 0){
+            g2.drawString(">", x-40, y);
+        }
+
+        //Quit button
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Quit";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if(commandNum == 1){
+            g2.drawString(">", x-40, y);
+        }
+    }
+
+    public void gameOverScreen(){
+
+        g2.setColor (new Color(0,0,0,150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x;
+        int y;
+        String text;
+        g2.setFont (g2.getFont().deriveFont(Font.BOLD, 110f));
+
+        text = "Game Over";
+
+        //shadow layer
+        g2.setColor(Color.black);
+        x = getXforCenteredText(text);
+        y = gp.tileSize*4;
+        g2.drawString(text, x, y);
+        g2.setColor(Color.white);
+        g2.drawString(text, x-4, y-4);
+
+        //retry button
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Retry";
+        x = getXforCenteredText(text);
+        y += gp.tileSize*4;
+        g2.drawString(text, x, y);
+        if(commandNum == 0){
+            g2.drawString(">", x-40, y);
+        }
+
+        //Quit button
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Quit";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if(commandNum == 1){
+            g2.drawString(">", x-40, y);
+        }
     }
 
     public void drawTitleScreen(){
-
         if (titleScreenState == 0) {
             g2.setColor (new Color (0,0,0));
             g2.fillRect (0, 0, gp.screenWidth, gp.screenHeight);
@@ -153,10 +253,7 @@ public class UI {
             if (commandNum == 1) {
                 g2.drawString(">", x-gp.tileSize, y);
             }
-
         }
-        
-
 
     }
 
@@ -167,7 +264,6 @@ public class UI {
     }
 
     public void showMessage(String text) {
-
         message = text;
         messageOn = true;
     }
@@ -177,9 +273,7 @@ public class UI {
         g2.setColor(Color.WHITE);
 
         if (messageOn) {
-
             g2.drawString(message, gp.tileSize / 2, gp.tileSize / 2 * 5);
-
             msgCounter++;
             if (msgCounter > 120) {
                 msgCounter = 0;
@@ -212,12 +306,6 @@ public class UI {
         g2.drawString(text, x, y);
     }
 
-    public void gameEnd(String text, Graphics2D g2) {
-
-        drawCenteredMessage(text, g2);
-        gp.gameThread = null; // Stop the game.
-    }
-
     public void drawGamePlayScreen(Graphics2D g2) {
 
         // TIME
@@ -226,26 +314,25 @@ public class UI {
         if (playTime <= 0) {
             timeUp = true;
         }
-
         if (gameEnd) {
 
-            gameEnd("Congratulation, You win the game!!", g2);
+            // gp.gameThread = null;
+            gp.gameState = gp.gameWinState;
         }
         if (timeUp) {
 
             playTime = 0.0;
-            gameEnd("Time is up!!", g2);
+
         }
         if (gameLose) {
 
-            gameEnd("You have been caught by cat!!", g2);
+            // gp.gameThread = null;
+            gp.gameState = gp.gameOverState;
         }
 
         // MESSAGE
         drawMessage(g2);
 
-        // SCORE AND TIMER
-        drawScoreAndTimer(g2);
     }
 
 

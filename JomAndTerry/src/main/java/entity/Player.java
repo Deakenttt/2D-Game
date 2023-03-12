@@ -29,25 +29,33 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        x = 48;
-        y = 48;
-        speed = 4;
+        x = 96;
+        y = 96;
+        speed = 48;
         direction = "down";
+        solidArea.width = 22;
+        solidArea.height = 22;
+    }
+
+    public void retry() {
+        setDefaultValues();
+        captureFlag = false;
+        gp.ui.gameLose = false;
     }
 
     public void getPlayerImage() {
 
-        up1 = setup("boy_up_1");
-        up2 = setup("boy_up_2");
+        up1 = setup("mouse_up_1");
+        up2 = setup("mouse_up_2");
 
-        down1 = setup("boy_down_1");
-        down2 = setup("boy_down_2");
+        down1 = setup("mouse_down_1");
+        down2 = setup("mouse_down_2");
 
-        left1 = setup("boy_left_1");
-        left2 = setup("boy_left_2");
+        left1 = setup("mouse_left_1");
+        left2 = setup("mouse_left_2");
 
-        right1 = setup("boy_right_1");
-        right2 = setup("boy_right_2");
+        right1 = setup("mouse_right_1");
+        right2 = setup("mouse_right_2");
     }
 
     // METHOD OF SETTING SCALED IMAGE FOR PLAYER
@@ -58,8 +66,8 @@ public class Player extends Entity {
 
         try {
 
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Player/" + imageName + ".png")));
-            image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/" + imageName + ".png")));
+            image = utilityTool.scaleImage(image, gp.tileSize-10, gp.tileSize-10);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,7 +88,7 @@ public class Player extends Entity {
                 direction = "right";
             }
         }
-        //System.out.println("the Pos is: " + x + ", " + y);
+        System.out.println("the Pos is: " + x + ", " + y);
     }
 
     // Player bug: wall collision to the right stops it from going up and then collision to the left stops it from going down
@@ -92,7 +100,7 @@ public class Player extends Entity {
         gp.collisionChecker.checkEntity(this);
 
         // pickUpObject(objIndex); // Calls pickUpObject method.
-
+        System.out.println("Cheese = " + hasCheese + " Steak = " + hasSteak + " total Score = " + totalScore);
         super.update();
     }
 
@@ -109,7 +117,7 @@ public class Player extends Entity {
                     hasCheese++;
                     totalScore++;
                     gp.obj[i] = null;
-                    //System.out.println("score: " + totalScore);
+                    System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You got a cheese!"); // Show the msg when touch object.
                 }
 
@@ -117,14 +125,14 @@ public class Player extends Entity {
                     hasSteak += 5;
                     totalScore += 5;
                     gp.obj[i] = null;
-                    //System.out.println("score: " + totalScore);
+                    System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You got a steak!"); // Show the msg when touch object.
                 }
 
                 case "Trap" -> {
                     totalScore -= 5;
                     gp.obj[i] = null;
-                    //System.out.println("score: " + totalScore);
+                    System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You touched a trap!"); // Show the msg when touch object.
                 }
 
@@ -144,7 +152,7 @@ public class Player extends Entity {
     public void captured(int i) {
         if (i != 999 || captureFlag) {
             // unsure of what it should do
-            //System.out.println("PLAYER HAS BEEN CAUGHT!!!!!!");
+            System.out.println("PLAYER HAS BEEN CAUGHT!!!!!!");
             captureFlag = true;
             gp.ui.gameLose = true; // End the game.
         }
@@ -188,7 +196,7 @@ public class Player extends Entity {
                 }
             }
         }
-        g2.drawRect(x, y, 48, 48);
+
         g2.drawImage(image, x, y, null);
     }
 }

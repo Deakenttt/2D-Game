@@ -60,9 +60,19 @@ public class AssetSetter {
     public ArrayList<Integer> getRandomPosition() {
         int tmpX = (int) Math.floor(Math.random() * (20));
         int tmpY = (int) Math.floor(Math.random() * (16));
-        while (gp.tileManager.mapTileNum[tmpX][tmpY] != 0) {
+        boolean repeat = false;
+        while (gp.tileManager.mapTileNum[tmpX][tmpY] != 0 && !repeat) {
             tmpX = (int) Math.floor(Math.random() * (20));
             tmpY = (int) Math.floor(Math.random() * (16));
+            for (int i = 0; i < gp.obj.length; i++) {
+                if (gp.obj[i] != null && gp.obj[i].x == tmpX && gp.obj[i].y == tmpY) {
+                    repeat = true;
+                }
+            }
+            if (repeat) {
+                tmpX = (int) Math.floor(Math.random() * (20));
+                tmpY = (int) Math.floor(Math.random() * (16));
+            }
         }
         ArrayList<Integer> ret = new ArrayList<>();
         ret.add(tmpX);

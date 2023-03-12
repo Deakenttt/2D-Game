@@ -9,4 +9,5 @@ public class SizeNumber {
 
     public static int MAX_SCREEN_COL = 20;
     public static int MAX_SCREEN_ROW = 16;
+    public static int MAX_MAP_COL = 21;
 }

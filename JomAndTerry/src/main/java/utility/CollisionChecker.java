@@ -19,9 +19,9 @@ public class CollisionChecker {
     // METHOD OF CHECKING ENTITY AND ENTITY
     public void checkTile(Entity entity) {
 
-        int entityLeftWorldX = entity.x + entity.solidArea.x + 2;
+        int entityLeftWorldX = entity.x + entity.solidArea.x;
         int entityRightWorldX = entity.x + entity.solidArea.x + entity.solidArea.width;
-        int entityTopWorldY = entity.y + entity.solidArea.y + 2;
+        int entityTopWorldY = entity.y + entity.solidArea.y;
         int entityBottomWorldY = entity.y + entity.solidArea.y + entity.solidArea.height;
 
         int entityLeftCol = entityLeftWorldX / gp.tileSize;
@@ -95,7 +95,7 @@ public class CollisionChecker {
 
                 // CHECK ENTITY'S DIRECTION.
                 // Simulating entity's movement and check where it will be after it moved.
-                checkEntityDirection(entity);
+                // checkEntityDirection(entity);
                 if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
                     if (gp.obj[i].collision) {
                         entity.collisionOn = true;
@@ -135,7 +135,7 @@ public class CollisionChecker {
 
                 // CHECK ENTITY'S DIRECTION.
                 // Simulating entity's movement and check where it will be after it moved.
-                checkEntityDirection(entity);
+                // checkEntityDirection(entity);
                 if (entity.solidArea.intersects(gp.enemy[i].solidArea)) {
                     index = i;
                 }
