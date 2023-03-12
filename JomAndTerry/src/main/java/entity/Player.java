@@ -37,15 +37,6 @@ public class Player extends Entity {
         solidArea.height = 22;
     }
 
-<<<<<<< HEAD
-    // public void retry() {
-        // setDefaultValues();
-        // captureFlag = false;
-        // gp.ui.gameLose = false;
-    // }
-=======
->>>>>>> ec73897 (removed repeating methods in the UI file)
-
     public void getPlayerImage() {
 
         up1 = setup("mouse_up_1");
