@@ -150,11 +150,12 @@ public class Player extends Entity {
         }
     } 
 
-    public void retry(){
+    public void retry(Object ui){
         setDefaultValues();
         hasCheese = 0; // resets the number of cheese.
         hasSteak = 0; // resets the number of steak.
         totalScore = 0; // resets the total score.
+        gp.ui.playTime = 0.0;
         captureFlag = false;
         gp.ui.gameLose = false;
     }
