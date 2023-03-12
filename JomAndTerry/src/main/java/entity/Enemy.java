@@ -1,11 +1,7 @@
 package entity;
 
 import main.GamePanel;
-import utility.KeyHandler;
-
 import java.awt.*;
-import java.util.Random;
-import object.AssetSetter.*;
 
 public class Enemy extends Entity{
     
@@ -35,7 +31,6 @@ public class Enemy extends Entity{
         actionLockC++;
         
         if (actionLockC == 25){
-            Random random = new Random();
             int i = (int) ((Math.random() * (100 - 1)) + 1);
             if (i <= 25) {
                 direction = "up";
