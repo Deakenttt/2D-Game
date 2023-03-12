@@ -37,11 +37,11 @@ public class Player extends Entity {
         solidArea.height = 22;
     }
 
-    public void retry() {
-        setDefaultValues();
-        captureFlag = false;
-        gp.ui.gameLose = false;
-    }
+    // public void retry() {
+        // setDefaultValues();
+        // captureFlag = false;
+        // gp.ui.gameLose = false;
+    // }
 
     public void getPlayerImage() {
 
