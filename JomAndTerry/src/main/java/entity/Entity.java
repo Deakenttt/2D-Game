@@ -55,6 +55,7 @@ public class Entity {
     }
 
     public void update() {
+        setAction();
 
         collisionOn = false;
         gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
