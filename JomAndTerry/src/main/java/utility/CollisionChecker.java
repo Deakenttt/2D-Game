@@ -74,8 +74,9 @@ public class CollisionChecker {
                     break;
                 } 
             }   catch (Exception e) {
-                entity.collisionOn = false;
-                System.out.println(e);       
+                entity.collisionOn = true;
+                System.out.println(e); 
+                System.out.println("CAUGHT IN COLLISION CHECKER"); 
         
 
             }

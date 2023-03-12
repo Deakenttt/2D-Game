@@ -61,7 +61,9 @@ public class Entity {
         gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
 
         if (doMove) {
+            System.out.println("Is collision On? " + collisionOn);
             if (!collisionOn) {
+
                 switch (direction) {
                     case "up":
                         y -= gp.tileSize;

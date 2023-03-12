@@ -27,7 +27,7 @@ public class TileManager {
 
         getTileImage(); // Set each tiles bufferedImage.
         loadMap("/assets/Map/map02.txt"); // Load a map text into 2D array and draw the map.
-        int tileNum = mapTileNum[0][15];
+        int tileNum = mapTileNum[0][0];
         tile[tileNum].collision = true;
 
     }
