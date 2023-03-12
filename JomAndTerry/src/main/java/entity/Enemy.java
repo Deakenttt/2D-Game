@@ -1,11 +1,9 @@
 package entity;
 
 import main.GamePanel;
-import object.AssetSetter;
 import utility.KeyHandler;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.Random;
 import object.AssetSetter.*;
 

@@ -2,7 +2,6 @@ package utility;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 
 /**
  * this is a class for dealing with the utility's image

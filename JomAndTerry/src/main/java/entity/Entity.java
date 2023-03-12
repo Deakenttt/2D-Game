@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 
 // Blueprint for character classes
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * @Des This is an Entity class for Player, Cat

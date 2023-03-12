@@ -9,9 +9,7 @@ import object.SuperObject;
 import tile.TileManager;
 import utility.CollisionChecker;
 import entity.Enemy;
-import entity.Entity;
 import utility.KeyHandler;
-import main.UI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,6 +37,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int titleState = 0;
     public final int gamePlay = 1;
     public final int gamePause = 2;
+    public final int gameOverState = 3;
+    public final int gameWinState = 4;
 
 
     public UI ui = new UI (this);
@@ -58,8 +58,6 @@ public class GamePanel extends JPanel implements Runnable {
     public TileManager tileManager = new TileManager(this); // Initiate tileManger object.
     public CollisionChecker collisionChecker = new CollisionChecker(this); // Initiate a CollisionChecker object.
     public AssetSetter assetSetter = new AssetSetter(this); // Initiate AssetSetter object.
-
-
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -167,7 +165,7 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
         }
         // Game state is gamePlay or gamePause.
-        else if (gameState == gamePlay || gameState == gamePause) {
+        else if (gameState == gamePlay || gameState == gamePause || gameState == gameOverState || gameState == gameWinState) {
 
             tileManager.draw(g2);
             //System.out.println("player ");
