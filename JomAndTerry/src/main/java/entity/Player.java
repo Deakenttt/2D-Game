@@ -147,6 +147,15 @@ public class Player extends Entity {
         }
     } 
 
+    public void retry(){
+        setDefaultValues();
+        hasCheese = 0; // resets the number of cheese.
+        hasSteak = 0; // resets the number of steak.
+        totalScore = 0; // resets the total score.
+        captureFlag = false;
+        gp.ui.gameLose = false;
+    }
+
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
 

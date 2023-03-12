@@ -133,7 +133,7 @@ public class UI {
         String text;
         g2.setFont (g2.getFont().deriveFont(Font.BOLD, 110f));
 
-        text = "Game Over";
+        text = "You Lose!";
 
         //shadow layer
         g2.setColor(Color.black);
