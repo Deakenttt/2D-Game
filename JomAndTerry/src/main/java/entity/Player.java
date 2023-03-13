@@ -128,6 +128,8 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You touched a trap!"); // Show the msg when touch object.
+                    if(gp.player.totalScore < 0)
+                        gp.ui.gameLose = true;
                 }
 
                 case "Hole" -> {

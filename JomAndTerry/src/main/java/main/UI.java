@@ -126,20 +126,7 @@ public class UI {
             g2.drawString(">", x-40, y);
         }
         drawScoreAndTimer(g2);
-       // Game state is gameOverState.
-//        if (gp.gameState == gp.gameOverState) {
-//
-//            // SCORE AND TIMER
-//            drawScoreAndTimer(g2);
-//            gameOverScreen();
-//        }
-//
-//        //Game state is gameOverState.
-//        if (gp.gameState == gp.gameWinState) {
-//            // SCORE AND TIMER
-//            drawScoreAndTimer(g2);
-//            gameWinScreen();
-//        }
+
     }
 
     public void gameWinScreen(){
