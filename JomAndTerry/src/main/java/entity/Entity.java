@@ -62,6 +62,7 @@ public class Entity {
 
         if (gp.player.doMove) {
             if (!collisionOn) {
+
                 switch (direction) {
                     case "up":
                         y -= speed;
@@ -78,7 +79,7 @@ public class Entity {
                 }
             }
             spriteCounter++;
-            if (spriteCounter > 10) {
+            if (spriteCounter > 3) {
                 if (spriteNum == 1)
                     spriteNum = 2;
                 else if (spriteNum == 2)
@@ -152,10 +153,10 @@ public class Entity {
             }
 
             // If reach the goal STOP search
-            int nextCol = gp.findPath.pathList.get(0).col;
-            int nextRow = gp.findPath.pathList.get(0).row;
-            if (nextCol == goalCol && nextRow == goalRow)
-                 onPath = false;
+//            int nextCol = gp.findPath.pathList.get(0).col;
+//            int nextRow = gp.findPath.pathList.get(0).row;
+//            if (nextCol == goalCol && nextRow == goalRow)
+//                 onPath = false;
         }
 
     }

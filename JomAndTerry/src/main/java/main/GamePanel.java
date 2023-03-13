@@ -59,6 +59,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        Rectangle rect = new Rectangle(1, 1, 1, screenHeight);
+        this.scrollRectToVisible(rect);
         this.setBackground(Color.black);
 
         this.addKeyListener(keyHandler); // So this GamePanel can recognize key input.
@@ -116,11 +118,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
 
         if (gameState == gamePlay) {
-//            try {
-//                Thread.sleep(200);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
 
             player.update();
             smartCat.update();
@@ -146,7 +143,7 @@ public class GamePanel extends JPanel implements Runnable {
                 || gameState == gameOverState || gameState == gameWinState) {
 
             tileManager.draw(g2);
-            System.out.println("player ");
+//            System.out.println("player ");
             player.draw(g2);
 
             smartCat.draw(g2);

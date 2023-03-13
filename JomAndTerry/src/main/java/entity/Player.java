@@ -19,10 +19,12 @@ public class Player extends Entity {
     KeyHandler keyHandler;
     public int hasCheese = 0; // Tracking the number of cheese.
     public int hasSteak = 0; // Tracking the number of steak.
+
     public int totalScore = 0; // Tracking the total score.
     boolean captureFlag = false; // Flag for being caught.
 
     int KeyHoldTimer = 0; // Timer for how long the player has hold the key.
+
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
         super(gp);
@@ -64,6 +66,7 @@ public class Player extends Entity {
 
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/" + imageName + ".png")));
             image = utilityTool.scaleImage(image, gp.tileSize - 10, gp.tileSize - 10);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -94,6 +97,9 @@ public class Player extends Entity {
 
         gp.collisionChecker.checkObject(this, true);
         gp.collisionChecker.checkEntity(this);
+        if (totalScore >= 6){
+            gp.tileManager.exit_update();
+        }
 
         super.update();
     }
@@ -203,5 +209,6 @@ public class Player extends Entity {
         }
 
         g2.drawImage(image, x, y, null);
+
     }
 }

@@ -6,6 +6,8 @@ import object.OBJ_Steak;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UI {
     GamePanel gp;
@@ -217,39 +219,68 @@ public class UI {
             if (commandNum == 2) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
+
         } else if (titleScreenState == 1) {
+
             // Instructions page
 
             g2.setColor(Color.white);
-            g2.setFont(g2.getFont().deriveFont(42F));
+        
+            g2.setFont(g2.getFont().deriveFont(60F));
 
-            String text = "Instructions";
-            int x = getXforCenteredText(text);
-            int y = gp.tileSize * 3;
-            g2.drawString(text, x, y);
+            String titleText = "Instructions";
+            int x = getXforCenteredText(titleText);
+            int y = gp.tileSize*3;
+            g2.drawString(titleText, x, y);
 
-            text = "You are Terry the mouse, you goal is to collect all 6 Cheeses (1 point each) across the map to unlock the exit door. Jom (smart Cat) and his friends (Dumb cats) are after you. If you are caught by the cats, the game is over. The Steak is a special reward which is worth 5 points and a mouse trap which takes away 5 points. If you get caught by the mouse trap before you have 5 points, you lose. Your goal is to exit the map with as many points as possible as soon as possible (no time limit).";
-            x = getXforCenteredText(text);
-            y += gp.tileSize * 3;
-            g2.drawString(text, x, y);
+            g2.setFont(g2.getFont().deriveFont(24F));
+            String instructionText = "You are the mouse (Terry). Collect 6 cheeses to unlock the exit door. Avoid the smart cat (Jom) and the dumb cats (Jom's friends). Cheese = 1 point, Steak (bonus) = 5 points, mouse trap (punishment) = -5 points. Negative points = Automatic loss. Exit with max points and the fastest time, there is no time limit. Enjoy!";
+            int maxWidth = 800; // maximum width of text
+            String[] lines = getLines(instructionText, g2.getFontMetrics(), maxWidth);
 
-            text = "Play The Game";
-            x = getXforCenteredText(text);
-            y += gp.tileSize * 3;
-            g2.drawString(text, x, y);
+            x = getXforCenteredText(lines[0]); // use the x position of the first line for centering
+            y += gp.tileSize*3;
+            for (int i = 0; i < lines.length; i++) {
+                g2.drawString(lines[i], x, y);
+                y += gp.tileSize; // increase y position for next line
+            }
+
+            g2.setFont(g2.getFont().deriveFont(40F));
+            String playText = "Play The Game";
+            x = getXforCenteredText(playText);
+            y += gp.tileSize*2;
+            g2.drawString(playText, x, y);
+
             if (commandNum == 0) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
 
-            text = "Go Back";
-            x = getXforCenteredText(text);
+            String backText = "Go Back";
+            x = getXforCenteredText(backText);
             y += gp.tileSize;
-            g2.drawString(text, x, y);
+            g2.drawString(backText, x, y);
             if (commandNum == 1) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
         }
 
+    }
+    
+    private String[] getLines(String text, FontMetrics fontMetrics, int maxWidth) {
+        List<String> lines = new ArrayList<>();
+        String[] words = text.split("\\s+");
+        StringBuilder line = new StringBuilder();
+        for (String word : words) {
+            int width = fontMetrics.stringWidth(line + " " + word);
+            if (width <= maxWidth) {
+                line.append(" ").append(word);
+            } else {
+                lines.add(line.toString().trim());
+                line = new StringBuilder(word);
+            }
+        }
+        lines.add(line.toString().trim());
+        return lines.toArray(new String[lines.size()]);
     }
 
     public int getXforCenteredText(String text) {

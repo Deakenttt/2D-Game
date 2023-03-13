@@ -4,7 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b84b050-2c49-4765-8618-9bb345bd1d0f" name="Changes" comment="" />
+    <list default="true" id="8b84b050-2c49-4765-8618-9bb345bd1d0f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ai/FindPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/FindPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/SmCat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/SmCat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tile/TileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utility/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/Map/map02.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/Map/map02.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ai/FindPath.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ai/FindPath.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ai/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ai/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/assets/Map/map02.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/assets/Map/map02.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Enemy.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/SmCat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/SmCat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/UI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/object/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/object/AssetSetter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/object/OBJ_Cheese.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/object/OBJ_Cheese.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/object/OBJ_Hole.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/object/OBJ_Hole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/object/OBJ_Steak.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/object/OBJ_Steak.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/object/OBJ_Trap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/object/OBJ_Trap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/object/SuperObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/object/SuperObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tile/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tile/Tile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tile/TileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tile/TileManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utility/CollisionChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/CollisionChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utility/KeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/KeyHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utility/SizeNumber.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/SizeNumber.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/utility/UtilityTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/UtilityTool.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
