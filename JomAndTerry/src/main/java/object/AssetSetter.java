@@ -31,7 +31,7 @@ public class AssetSetter {
         gp.obj[7] = new OBJ_Steak();
         gp.obj[8] = new OBJ_Trap();
         gp.obj[9] = new OBJ_Trap();
-        gp.obj[10] = new OBJ_Hole();
+
 
         for (int i=0; i < gp.obj.length; i++){
             if(gp.obj[i] != null){
@@ -46,9 +46,21 @@ public class AssetSetter {
                 objectsMap[row][col] = 1;
             }
         }
+
+        // HOLE
+        gp.obj[8] = new OBJ_Hole();
+        gp.obj[8].x = 19 * gp.tileSize;
+        gp.obj[8].y = 14 * gp.tileSize;
+
     }
     public int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
+    }
+    public void setEnemy() {
+        gp.enemy[0] = new Enemy(gp, Color.BLUE, 6 * gp.tileSize, 13 * gp.tileSize);
+        gp.enemy[1] = new Enemy(gp, Color.RED, 14 * gp.tileSize, 6 * gp.tileSize);
+        gp.enemy[2] = new Enemy(gp, Color.ORANGE, 18*gp.tileSize, 12* gp.tileSize);
+
     }
 
 }
