@@ -31,7 +31,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         x = 96;
         y = 96;
-        speed = 15;
+        speed = 48;
         direction = "down";
         solidArea.width = 22;
         solidArea.height = 22;
@@ -128,6 +128,8 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You touched a trap!"); // Show the msg when touch object.
+                    if(gp.player.totalScore < 0)
+                        gp.ui.gameLose = true;
                 }
 
                 case "Hole" -> {
@@ -155,8 +157,12 @@ public class Player extends Entity {
         hasCheese = 0; // resets the number of cheese.
         hasSteak = 0; // resets the number of steak.
         totalScore = 0; // resets the total score.
+        gp.ui.resumeTimer();
+        gp.assetSetter.setObject();
         captureFlag = false;
         gp.ui.gameLose = false;
+        gp.ui.gameEnd = false;
+        gp.gameState = gp.gamePlay;
     }
 
     public void draw(Graphics2D g2) {

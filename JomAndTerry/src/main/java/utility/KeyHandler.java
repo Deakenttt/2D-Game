@@ -93,12 +93,13 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
                     gp.player.retry();
-                    gp.gameState = gp.gamePlay;
+                    //gp.gameState = gp.gamePlay;
                 }
                 if (gp.ui.commandNum == 1) {
                     System.exit(0);
                 }
             }
+
         } else if (gp.gameState == gp.gameWinState) {
             if (code == KeyEvent.VK_W) {
                 gp.ui.commandNum--;
@@ -114,7 +115,8 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
-                    gp.gameState = 10;
+                    gp.player.retry();
+                    //gp.gameState = gp.gamePlay;
                 }
                 if (gp.ui.commandNum == 1) {
                     System.exit(0);

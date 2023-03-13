@@ -29,11 +29,6 @@ public class UI {
     public boolean gameLose = false;
 
 
-    // For timer and time format.
-    public double playTime = 500.0;
-    DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-
-
     // 0 = title screen, 1 = instructions screen
     public int titleScreenState = 0;
 
@@ -125,28 +120,16 @@ public class UI {
         if(commandNum == 1){
             g2.drawString(">", x-40, y);
         }
+        pauseTimer();
         drawScoreAndTimer(g2);
-       // Game state is gameOverState.
-//        if (gp.gameState == gp.gameOverState) {
-//
-//            // SCORE AND TIMER
-//            drawScoreAndTimer(g2);
-//            gameOverScreen();
-//        }
-//
-//        //Game state is gameOverState.
-//        if (gp.gameState == gp.gameWinState) {
-//            // SCORE AND TIMER
-//            drawScoreAndTimer(g2);
-//            gameWinScreen();
-//        }
+
     }
 
     public void gameWinScreen(){
         g2.setColor (new Color(0,0,0,150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
-        int x;
+        int x;  
         int y;
         String text;
         g2.setFont (g2.getFont().deriveFont(Font.BOLD, 110f));
@@ -180,6 +163,8 @@ public class UI {
         if(commandNum == 1){
             g2.drawString(">", x-40, y);
         }
+        pauseTimer();
+        drawScoreAndTimer(g2);
     }
 
     public void drawTitleScreen(){
@@ -292,6 +277,11 @@ public class UI {
         }
     }
 
+    public double playTime = 0.0; // start at 0 seconds
+    private long lastTime = System.currentTimeMillis(); // initialize lastTime to current time
+    private boolean paused = false; // initialize paused to false
+    DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+    
     public void drawScoreAndTimer(Graphics2D g2) {
 
         g2.setFont(arial_40);
@@ -302,7 +292,23 @@ public class UI {
         g2.drawImage(steakImg, gp.tileSize / 2 + 170, 20, gp.tileSize / 2, gp.tileSize / 2, null);
         g2.drawString(" X " + gp.player.hasSteak / 5, 220, 40);
 
+        if (!paused) { // only update playTime if not paused
+            long currentTime = System.currentTimeMillis();
+            double elapsedSeconds = (currentTime - lastTime) / 1000.0; // convert elapsed time to seconds
+            playTime += elapsedSeconds; // update playTime by adding elapsed time
+            lastTime = currentTime; // update lastTime to current time
+        }
+    
         g2.drawString("Time:  " + decimalFormat.format(playTime), 800, 40);
+    }
+
+    public void pauseTimer() {
+        paused = true;
+    }
+
+    public void resumeTimer() {
+        playTime = 0.0;
+        paused = false;
     }
 
     public void drawCenteredMessage(String text, Graphics2D g2) {
