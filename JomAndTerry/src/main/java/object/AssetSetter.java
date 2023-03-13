@@ -63,4 +63,8 @@ public class AssetSetter {
 
     }
 
+    public void exit_open(){
+        gp.obj[8].collision = false;
+    }
+
 }

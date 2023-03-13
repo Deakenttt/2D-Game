@@ -33,4 +33,10 @@ public class SmCat extends Entity {
             searchPath(goalCol, goalRow);
         }
     }
+
+    public void update() {
+        setAction();
+        collisionOn = false;
+        super.update();    
+    }
 }

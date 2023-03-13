@@ -50,6 +50,13 @@ public class Enemy extends Entity{
             actionLockC = 0;
             //System.out.println("the Pos is: " + x + ", " + y);
         }
+
+    }
+
+    public void update() {
+        setAction();
+        collisionOn = false;
+        super.update();    
     }
     Color colour;
     int actionLockC = 0;

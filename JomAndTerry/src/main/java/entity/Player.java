@@ -90,11 +90,14 @@ public class Player extends Entity {
         // CHECK OBJECT INTERACTION.
         // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
         // int objIndex = gp.collisionChecker.checkObject(this, true);
-
+        setAction();
+        collisionOn = false;
         gp.collisionChecker.checkObject(this, true);
         gp.collisionChecker.checkEntity(this);
         if (totalScore >= 6){
             gp.tileManager.exit_update();
+            // gp.assetSetter.exit_open();
+            
         }
 
         // pickUpObject(objIndex); // Calls pickUpObject method.

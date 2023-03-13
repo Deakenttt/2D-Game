@@ -43,6 +43,7 @@ public class TileManager {
         setup(6, "oven", true);
         setup(7, "plant", true);
         setup(8, "floor", false);
+        setup(9, "floor", true);
 
 
     }
@@ -107,8 +108,9 @@ public class TileManager {
         
     }
     public void exit_update(){
-        int tileNum = mapTileNum[19 * gp.tileSize][14 * gp.tileSize];
-        tile[tileNum].collision = true;
+        int tileNum = mapTileNum[19][14];
+        tile[tileNum].collision = false;
+        System.out.println("tile collision " + tile[tileNum].collision);
     }
 
     // METHOD FOR DRAWING MAP WHEN ONLY IN A SCREEN.
