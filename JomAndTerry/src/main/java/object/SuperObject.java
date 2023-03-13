@@ -17,7 +17,7 @@ public class SuperObject {
 
     // DRAW METHOD
     public void draw(Graphics2D g2, GamePanel gp) {
-        g2.drawRect(x, y, 48, 48);
+        //g2.drawRect(x, y, 48, 48);
         g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
     }
 }

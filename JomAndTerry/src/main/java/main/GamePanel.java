@@ -69,7 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Method of setting up object placement.
     public void setUpGame() {
-        //assetSetter.setEnemy();
+        assetSetter.setEnemy();
         assetSetter.setObject();
         gameState = titleState;
     }
@@ -130,14 +130,14 @@ public class GamePanel extends JPanel implements Runnable {
             smartCat.update();
             //System.out.println("updating player");
 
-//            for (int i = 0; i < enemy.length; i++) {
-//                if (enemy[i] != null) {
-//                    // System.out.println("updating enemy " + i);
-//
-//                    enemy[i].update();
-//
-//                }
-//            }
+            for (int i = 0; i < enemy.length; i++) {
+                if (enemy[i] != null) {
+                    // System.out.println("updating enemy " + i);
+
+                    enemy[i].update();
+
+                }
+            }
 
         }
     }
@@ -165,10 +165,11 @@ public class GamePanel extends JPanel implements Runnable {
             player.draw(g2);
 
             smartCat.draw(g2);
+
             // Enemies
             for (int i = 0; i < enemy.length; i++) {
                 if (enemy[i] != null) {
-                    System.out.println("enemy " + i);
+                    //System.out.println("enemy " + i);
                     enemy[i].draw(g2);
                 }
             }

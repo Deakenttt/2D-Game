@@ -128,6 +128,7 @@ public class Entity {
                 direction = "up";
                 collisionOn = false;
                 gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+
                 if (collisionOn)
                     direction = "left";
             } else if (enTopY > nextY && enLeftX < nextX) {
@@ -151,10 +152,10 @@ public class Entity {
             }
 
             // If reach the goal STOP search
-//            int nextCol = gp.findPath.pathList.get(0).col;
-//            int nextRow = gp.findPath.pathList.get(0).row;
-//            if (nextCol == goalCol && nextRow == goalRow)
-//                 onPath = false;
+            int nextCol = gp.findPath.pathList.get(0).col;
+            int nextRow = gp.findPath.pathList.get(0).row;
+            if (nextCol == goalCol && nextRow == goalRow)
+                 onPath = false;
         }
 
     }

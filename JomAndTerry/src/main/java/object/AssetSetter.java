@@ -32,7 +32,6 @@ public class AssetSetter {
         gp.obj[8] = new OBJ_Trap();
         gp.obj[9] = new OBJ_Trap();
 
-
         for (int i=0; i < gp.obj.length; i++){
             if(gp.obj[i] != null){
                 int tileNum;

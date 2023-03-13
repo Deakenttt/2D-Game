@@ -25,13 +25,13 @@ public class SmCat extends Entity {
     }
 
     public void setAction() {
-        if (onPath) {
-            // distinction
-            int goalCol = (gp.player.x + gp.player.solidAreaDefaultX) / gp.tileSize;
-            int goalRow = (gp.player.y + gp.player.solidAreaDefaultY) / gp.tileSize;
-            //System.out.println("excauting the set AATION==========================================================================");
-            searchPath(goalCol, goalRow);
-        }
+        // distinction
+        int goalCol = (gp.player.x + gp.player.solidAreaDefaultX) / gp.tileSize;
+        int goalRow = (gp.player.y + gp.player.solidAreaDefaultY) / gp.tileSize;
+        //System.out.println("excauting the set AATION==========================================================================");
+        searchPath(goalCol, goalRow);
+        if (!onPath)
+            gp.ui.gameLose = true;
     }
 
     public void update() {
