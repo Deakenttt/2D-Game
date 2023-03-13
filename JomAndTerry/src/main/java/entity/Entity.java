@@ -60,12 +60,7 @@ public class Entity {
         collisionOn = false;
         gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
 
-<<<<<<< HEAD
         if (gp.player.doMove) {
-=======
-        if (doMove) {
-            System.out.println("Is collision On? " + collisionOn);
->>>>>>> entrance_exit_fix
             if (!collisionOn) {
 
                 switch (direction) {
