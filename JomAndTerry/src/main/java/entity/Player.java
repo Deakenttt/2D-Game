@@ -159,6 +159,7 @@ public class Player extends Entity {
         gp.assetSetter.setObject();
         captureFlag = false;
         gp.ui.gameLose = false;
+        gp.ui.gameEnd = false;
         gp.gameState = gp.gamePlay;
     }
 
