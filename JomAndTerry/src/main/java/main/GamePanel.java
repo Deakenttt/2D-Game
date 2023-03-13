@@ -59,6 +59,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        Rectangle rect = new Rectangle(1, 1, 1, screenHeight);
+        this.scrollRectToVisible(rect);
         this.setBackground(Color.black);
 
         this.addKeyListener(keyHandler); // So this GamePanel can recognize key input.
@@ -118,14 +120,13 @@ public class GamePanel extends JPanel implements Runnable {
         // GAME STATE: GAMEPLAY
          // CHECK TILE COLLISION
         
-        
-        
-        
-        
-        
         if (gameState == gamePlay) {
             try {
+<<<<<<< HEAD
                 Thread.sleep(70);
+=======
+                Thread.sleep(150);
+>>>>>>> entrance_exit_fix
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

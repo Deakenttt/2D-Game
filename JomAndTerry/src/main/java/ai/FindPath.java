@@ -49,7 +49,7 @@ public class FindPath {
         resetNode();
 
         // Set Start and Goal node
-        startNode = node[startCol][startRow];
+        try{startNode = node[startCol][startRow];
         currentNode = startNode;
         goalNode = node[goalCol][goalRow];
         openList.add(currentNode);
@@ -62,6 +62,9 @@ public class FindPath {
                 getCost(node[i][j]);   // defined the g cost, h cost, AND final cost for each node
             }
         }
+    } catch(Exception e){
+        System.out.println(e);
+    }
     }
 
     public void getCost(Node node) {

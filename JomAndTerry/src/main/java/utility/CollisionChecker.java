@@ -30,49 +30,56 @@ public class CollisionChecker {
         int entityBottomRow = entityBottomWorldY / gp.tileSize;
 
         int tileNum1, tileNum2;
+        try{
+            switch (entity.direction) {
+                case "up":
+                    entityTopRow = (entityTopWorldY - entity.speed) / gp.tileSize;
+                    tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityTopRow];
+                    tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityTopRow];
 
-        switch (entity.direction) {
-            case "up":
-                entityTopRow = (entityTopWorldY - entity.speed) / gp.tileSize;
-                tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityTopRow];
-                tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityTopRow];
+                    if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
+                        entity.collisionOn = true;
+                    }
 
-                if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
-                    entity.collisionOn = true;
-                }
+                    break;
+                case "down":
+                    entityBottomRow = (entityBottomWorldY + entity.speed) / gp.tileSize;
+                    tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityBottomRow];
+                    tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityBottomRow];
 
-                break;
-            case "down":
-                entityBottomRow = (entityBottomWorldY + entity.speed) / gp.tileSize;
-                tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityBottomRow];
-                tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityBottomRow];
+                    if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
+                        entity.collisionOn = true;
+                    }
 
-                if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
-                    entity.collisionOn = true;
-                }
+                    break;
+                case "left":
+                    entityLeftCol = (entityLeftWorldX - entity.speed) / gp.tileSize;
+                    tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityTopRow];
+                    tileNum2 = gp.tileManager.mapTileNum[entityLeftCol][entityBottomRow];
 
-                break;
-            case "left":
-                entityLeftCol = (entityLeftWorldX - entity.speed) / gp.tileSize;
-                tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityTopRow];
-                tileNum2 = gp.tileManager.mapTileNum[entityLeftCol][entityBottomRow];
+                    if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
+                        entity.collisionOn = true;
+                    }
 
-                if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
-                    entity.collisionOn = true;
-                }
+                    break;
+                case "right":
+                    entityRightCol = (entityRightWorldX + entity.speed) / gp.tileSize;
+                    tileNum1 = gp.tileManager.mapTileNum[entityRightCol][entityTopRow];
+                    tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityBottomRow];
 
-                break;
-            case "right":
-                entityRightCol = (entityRightWorldX + entity.speed) / gp.tileSize;
-                tileNum1 = gp.tileManager.mapTileNum[entityRightCol][entityTopRow];
-                tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityBottomRow];
+                    if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
+                        entity.collisionOn = true;
+                    }
 
-                if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
-                    entity.collisionOn = true;
-                }
+                    break;
+                } 
+            }   catch (Exception e) {
+                entity.collisionOn = true;
+                System.out.println(e); 
+                System.out.println("CAUGHT IN COLLISION CHECKER"); 
+        
 
-                break;
-        }
+            }
     }
 
     // METHOD OF CHECKING OBJECT.
