@@ -31,7 +31,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         x = 96;
         y = 96;
-        speed = 48;
+        speed = 15;
         direction = "down";
         solidArea.width = 22;
         solidArea.height = 22;
@@ -90,13 +90,13 @@ public class Player extends Entity {
         // CHECK OBJECT INTERACTION.
         // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
         // int objIndex = gp.collisionChecker.checkObject(this, true);
+
         gp.collisionChecker.checkObject(this, true);
         gp.collisionChecker.checkEntity(this);
 
         // pickUpObject(objIndex); // Calls pickUpObject method.
         System.out.println("Cheese = " + hasCheese + " Steak = " + hasSteak + " total Score = " + totalScore);
         super.update();
-
     }
 
 

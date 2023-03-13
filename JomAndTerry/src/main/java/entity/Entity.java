@@ -46,7 +46,7 @@ public class Entity {
     public void setDefaultValues() {
         x = 48;
         y = 48;
-        speed = 4;
+        speed = 8;
         direction = "right";
         onPath = true;  // Using the A* setAction on SmCat
     }
@@ -60,24 +60,23 @@ public class Entity {
         collisionOn = false;
         gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
 
-        if (doMove) {
+        if (gp.player.doMove) {
             if (!collisionOn) {
                 switch (direction) {
                     case "up":
-                        y -= gp.tileSize;
+                        y -= speed;
                         break;
                     case "down":
-                        y += gp.tileSize;
+                        y += speed;
                         break;
                     case "left":
-                        x -= gp.tileSize;
+                        x -= speed;
                         break;
                     case "right":
-                        x += gp.tileSize;
+                        x += speed;
                         break;
                 }
             }
-
             spriteCounter++;
             if (spriteCounter > 10) {
                 if (spriteNum == 1)
@@ -104,8 +103,8 @@ public class Entity {
         // we found the path
         if (gp.findPath.aStarSearch()) {
             // next world x and world y
-            int nextX = gp.findPath.pathList.get(0).col * gp.tileSize;
-            int nextY = gp.findPath.pathList.get(0).row * gp.tileSize;
+            int nextX = gp.findPath.pathList.get(0).col * gp.tileSize ;
+            int nextY = gp.findPath.pathList.get(0).row * gp.tileSize ;
 
             // Entity's solid Area pos
             int enLeftX = x + solidArea.x;
@@ -117,7 +116,7 @@ public class Entity {
                 direction = "up";
             } else if (enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
                 direction = "down";
-            } else if (enTopY >= nextX && enBottomY < nextY + gp.tileSize) {
+            } else if (enTopY >= nextY && enBottomY < nextY + gp.tileSize) {
                 // left or right
                 if (enLeftX > nextX) {
                     direction = "left";
@@ -156,7 +155,7 @@ public class Entity {
             int nextCol = gp.findPath.pathList.get(0).col;
             int nextRow = gp.findPath.pathList.get(0).row;
             if (nextCol == goalCol && nextRow == goalRow)
-                onPath = false;
+                 onPath = false;
         }
 
     }

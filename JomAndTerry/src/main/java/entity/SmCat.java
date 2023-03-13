@@ -10,9 +10,9 @@ public class SmCat extends Entity {
     }
 
     public void setDefaultValues() {
-        x = 290;
-        y = 350;
-        speed = 5;
+        x = 13 * gp.tileSize;
+        y = 12 * gp.tileSize;
+        speed = 15;
         direction = "right";
         onPath = true;  // Using the A* setAction on SmCat
     }

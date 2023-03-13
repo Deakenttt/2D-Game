@@ -30,7 +30,7 @@ public class UI {
 
 
     // For timer and time format.
-    public double playTime = 20.0;
+    public double playTime = 500.0;
     DecimalFormat decimalFormat = new DecimalFormat("#0.00");
 
 
@@ -127,19 +127,19 @@ public class UI {
         }
         drawScoreAndTimer(g2);
        // Game state is gameOverState.
-        if (gp.gameState == gp.gameOverState) {
-
-            // SCORE AND TIMER
-            drawScoreAndTimer(g2);
-            gameOverScreen();
-        }
-
-        //Game state is gameOverState.
-        if (gp.gameState == gp.gameWinState) {
-            // SCORE AND TIMER
-            drawScoreAndTimer(g2);
-            gameWinScreen();
-        }
+//        if (gp.gameState == gp.gameOverState) {
+//
+//            // SCORE AND TIMER
+//            drawScoreAndTimer(g2);
+//            gameOverScreen();
+//        }
+//
+//        //Game state is gameOverState.
+//        if (gp.gameState == gp.gameWinState) {
+//            // SCORE AND TIMER
+//            drawScoreAndTimer(g2);
+//            gameWinScreen();
+//        }
     }
 
     public void gameWinScreen(){
