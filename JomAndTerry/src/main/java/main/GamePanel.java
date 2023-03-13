@@ -117,28 +117,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
 
-        // GAME STATE: GAMEPLAY
-         // CHECK TILE COLLISION
-        
         if (gameState == gamePlay) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             player.update();
             smartCat.update();
-            //System.out.println("updating player");
-
-            for (int i = 0; i < enemy.length; i++) {
-                if (enemy[i] != null) {
-                    // System.out.println("updating enemy " + i);
-
-                    enemy[i].update();
-
-                }
-            }
-
         }
     }
 
@@ -161,7 +143,7 @@ public class GamePanel extends JPanel implements Runnable {
                 || gameState == gameOverState || gameState == gameWinState) {
 
             tileManager.draw(g2);
-            System.out.println("player ");
+//            System.out.println("player ");
             player.draw(g2);
 
             smartCat.draw(g2);
