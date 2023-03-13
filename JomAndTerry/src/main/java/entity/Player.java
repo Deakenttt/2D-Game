@@ -155,11 +155,12 @@ public class Player extends Entity {
         hasCheese = 0; // resets the number of cheese.
         hasSteak = 0; // resets the number of steak.
         totalScore = 0; // resets the total score.
+        gp.ui.resumeTimer();
+        gp.assetSetter.setObject();
         captureFlag = false;
         gp.ui.gameLose = false;
         gp.ui.gameEnd = false;
-        gp.ui.showMessage("Your restarted a game!");
-        gp.assetSetter.setObject();
+        gp.gameState = gp.gamePlay;
     }
 
     public void draw(Graphics2D g2) {
