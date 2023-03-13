@@ -41,4 +41,10 @@ public class SmCat extends Entity {
         super.update();    
 
     }
+
+    public void retry() {
+        onPath = true;
+        x = 13 * gp.tileSize;
+        y = 12 * gp.tileSize;
+    }
 }

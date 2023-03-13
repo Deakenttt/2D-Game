@@ -106,8 +106,7 @@ public class Player extends Entity {
         gp.collisionChecker.checkEntity(this);
         if (totalScore >= 6){
             gp.tileManager.exit_update();
-            // gp.assetSetter.exit_open();
-            
+
         }
 
         super.update();
@@ -173,10 +172,12 @@ public class Player extends Entity {
         totalScore = 0; // resets the total score.
         gp.ui.resumeTimer();
         gp.assetSetter.setObject();
+        gp.smartCat.retry();
         captureFlag = false;
         gp.ui.gameLose = false;
         gp.ui.gameEnd = false;
         gp.gameState = gp.gamePlay;
+
     }
 
     public void draw(Graphics2D g2) {
