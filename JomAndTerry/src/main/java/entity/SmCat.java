@@ -18,7 +18,6 @@ public class SmCat extends Entity {
     }
 
     public void draw(Graphics2D g2) {
-        //System.out.println("Setting Colour");
 
         g2.setColor(Color.cyan);
         g2.fillRect(x, y, 38, 38);
@@ -29,7 +28,7 @@ public class SmCat extends Entity {
             // distinction
             int goalCol = (gp.player.x + gp.player.solidAreaDefaultX) / gp.tileSize;
             int goalRow = (gp.player.y + gp.player.solidAreaDefaultY) / gp.tileSize;
-            //System.out.println("excauting the set AATION==========================================================================");
+
             searchPath(goalCol, goalRow);
         }
     }
