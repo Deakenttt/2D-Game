@@ -31,7 +31,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         x = 96;
         y = 96;
-        speed = 15;
+        speed = 48;
         direction = "down";
         solidArea.width = 22;
         solidArea.height = 22;
@@ -157,6 +157,9 @@ public class Player extends Entity {
         totalScore = 0; // resets the total score.
         captureFlag = false;
         gp.ui.gameLose = false;
+        gp.ui.gameEnd = false;
+        gp.ui.showMessage("Your restarted a game!");
+        gp.assetSetter.setObject();
     }
 
     public void draw(Graphics2D g2) {
