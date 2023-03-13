@@ -51,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyHandler); // Initiate a Player object.
     public Enemy enemy[] = new Enemy[3];
     public SmCat smartCat = new SmCat(this);
-    public SuperObject[] obj = new SuperObject[10]; // 10 slots for object, can replace the content during the game.
+    public SuperObject[] obj = new SuperObject[20]; // 20 slots for object, can replace the content during the game.
 
     public TileManager tileManager = new TileManager(this); // Initiate tileManger object.
     public CollisionChecker collisionChecker = new CollisionChecker(this); // Initiate a CollisionChecker object.
@@ -67,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Method of setting up object placement.
     public void setUpGame() {
-        assetSetter.setEnemy();
+        //assetSetter.setEnemy();
         assetSetter.setObject();
         gameState = titleState;
     }
