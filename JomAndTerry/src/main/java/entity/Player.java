@@ -61,7 +61,7 @@ public class Player extends Entity {
         try {
 
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/" + imageName + ".png")));
-            image = utilityTool.scaleImage(image, gp.tileSize-10, gp.tileSize-10);
+            image = utilityTool.scaleImage(image, gp.tileSize , gp.tileSize );
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -198,5 +198,6 @@ public class Player extends Entity {
         }
 
         g2.drawImage(image, x, y, null);
+
     }
 }
