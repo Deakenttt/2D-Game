@@ -32,7 +32,7 @@ public class UI {
     // 0 = title screen, 1 = instructions screen
     public int titleScreenState = 0;
 
-    public UI (GamePanel gp) {
+    public UI(GamePanel gp) {
         this.gp = gp;
 
         arial_40 = new Font("Arial", Font.PLAIN, 20);
@@ -44,7 +44,7 @@ public class UI {
         steakImg = steak.image;
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2) {
         this.g2 = g2;
 
         g2.setColor(Color.white);
@@ -82,33 +82,33 @@ public class UI {
     }
 
 
-    public void gameOverScreen(){
-        g2.setColor (new Color(0,0,0,150));
+    public void gameOverScreen() {
+        g2.setColor(new Color(0, 0, 0, 150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
         int x;
         int y;
         String text;
-        g2.setFont (g2.getFont().deriveFont(Font.BOLD, 110f));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
 
         text = "You Lose!";
 
-       // shadow layer
+        // shadow layer
         g2.setColor(Color.black);
         x = getXforCenteredText(text);
-        y = gp.tileSize*4;
+        y = gp.tileSize * 4;
         g2.drawString(text, x, y);
         g2.setColor(Color.white);
-        g2.drawString(text, x-4, y-4);
-         
-       // retry button
+        g2.drawString(text, x - 4, y - 4);
+
+        // retry button
         g2.setFont(g2.getFont().deriveFont(50f));
         text = "Retry";
         x = getXforCenteredText(text);
-        y += gp.tileSize*4;
+        y += gp.tileSize * 4;
         g2.drawString(text, x, y);
-        if(commandNum == 0){
-            g2.drawString(">", x-40, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x - 40, y);
         }
 
         //Quit button
@@ -117,41 +117,41 @@ public class UI {
         x = getXforCenteredText(text);
         y += 55;
         g2.drawString(text, x, y);
-        if(commandNum == 1){
-            g2.drawString(">", x-40, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - 40, y);
         }
         pauseTimer();
         drawScoreAndTimer(g2);
 
     }
 
-    public void gameWinScreen(){
-        g2.setColor (new Color(0,0,0,150));
+    public void gameWinScreen() {
+        g2.setColor(new Color(0, 0, 0, 150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
-        int x;  
+        int x;
         int y;
         String text;
-        g2.setFont (g2.getFont().deriveFont(Font.BOLD, 110f));
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
 
         text = "You Win!";
 
         //shadow layer
         g2.setColor(Color.black);
         x = getXforCenteredText(text);
-        y = gp.tileSize*4;
+        y = gp.tileSize * 4;
         g2.drawString(text, x, y);
         g2.setColor(Color.white);
-        g2.drawString(text, x-4, y-4);
+        g2.drawString(text, x - 4, y - 4);
 
         //retry button
         g2.setFont(g2.getFont().deriveFont(50f));
         text = "Retry";
         x = getXforCenteredText(text);
-        y += gp.tileSize*4;
+        y += gp.tileSize * 4;
         g2.drawString(text, x, y);
-        if(commandNum == 0){
-            g2.drawString(">", x-40, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x - 40, y);
         }
 
         //Quit button
@@ -160,64 +160,64 @@ public class UI {
         x = getXforCenteredText(text);
         y += 55;
         g2.drawString(text, x, y);
-        if(commandNum == 1){
-            g2.drawString(">", x-40, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - 40, y);
         }
         pauseTimer();
         drawScoreAndTimer(g2);
     }
 
-    public void drawTitleScreen(){
+    public void drawTitleScreen() {
         if (titleScreenState == 0) {
-            g2.setColor (new Color (0,0,0));
-            g2.fillRect (0, 0, gp.screenWidth, gp.screenHeight);
+            g2.setColor(new Color(0, 0, 0));
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
             // TITLE NAME
-            g2.setFont (g2.getFont () .deriveFont (Font .BOLD, 96F));
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
             String text = "Jom and Terry";
-            int x = getXforCenteredText (text);
-            int y = gp.tileSize*3;
+            int x = getXforCenteredText(text);
+            int y = gp.tileSize * 3;
 
             // SHADOW
-            g2.setColor (Color.gray);
-            g2.drawString (text, x+5, y+5);
+            g2.setColor(Color.gray);
+            g2.drawString(text, x + 5, y + 5);
 
             // MAIN COLOR
-            g2.setColor (Color.white);
-            g2.drawString (text, x, y);
+            g2.setColor(Color.white);
+            g2.drawString(text, x, y);
 
             // Mouse picture
-            x = gp.screenWidth/2- (gp.tileSize*2)/2;
-            y += gp.tileSize*2;
-            g2. drawImage (gp.player.left1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+            x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
+            y += gp.tileSize * 2;
+            g2.drawImage(gp.player.left1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
 
             // menu options
-            g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
 
             text = "Start";
-            x = getXforCenteredText (text);
-            y += gp.tileSize*4;
+            x = getXforCenteredText(text);
+            y += gp.tileSize * 4;
             g2.drawString(text, x, y);
             if (commandNum == 0) {
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", x - gp.tileSize, y);
             }
 
             text = "Instructions";
-            x = getXforCenteredText (text);
-            y += gp.tileSize*2;
+            x = getXforCenteredText(text);
+            y += gp.tileSize * 2;
             g2.drawString(text, x, y);
             if (commandNum == 1) {
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", x - gp.tileSize, y);
             }
 
             text = "Quit";
-            x = getXforCenteredText (text);
-            y += gp.tileSize*2;
+            x = getXforCenteredText(text);
+            y += gp.tileSize * 2;
             g2.drawString(text, x, y);
             if (commandNum == 2) {
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", x - gp.tileSize, y);
             }
-        }else if (titleScreenState == 1) {
+        } else if (titleScreenState == 1) {
             // Instructions page
 
             g2.setColor(Color.white);
@@ -225,20 +225,20 @@ public class UI {
 
             String text = "Instructions";
             int x = getXforCenteredText(text);
-            int y = gp.tileSize*3;
+            int y = gp.tileSize * 3;
             g2.drawString(text, x, y);
 
             text = "You are Terry the mouse, you goal is to collect all 6 Cheeses (1 point each) across the map to unlock the exit door. Jom (smart Cat) and his friends (Dumb cats) are after you. If you are caught by the cats, the game is over. The Steak is a special reward which is worth 5 points and a mouse trap which takes away 5 points. If you get caught by the mouse trap before you have 5 points, you lose. Your goal is to exit the map with as many points as possible as soon as possible (no time limit).";
             x = getXforCenteredText(text);
-            y += gp.tileSize*3;
+            y += gp.tileSize * 3;
             g2.drawString(text, x, y);
 
             text = "Play The Game";
             x = getXforCenteredText(text);
-            y += gp.tileSize*3;
+            y += gp.tileSize * 3;
             g2.drawString(text, x, y);
             if (commandNum == 0) {
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", x - gp.tileSize, y);
             }
 
             text = "Go Back";
@@ -246,15 +246,15 @@ public class UI {
             y += gp.tileSize;
             g2.drawString(text, x, y);
             if (commandNum == 1) {
-                g2.drawString(">", x-gp.tileSize, y);
+                g2.drawString(">", x - gp.tileSize, y);
             }
         }
 
     }
 
     public int getXforCenteredText(String text) {
-        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.screenWidth/2 - length/2;
+        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        int x = gp.screenWidth / 2 - length / 2;
         return x;
     }
 
@@ -281,7 +281,7 @@ public class UI {
     private long lastTime = System.currentTimeMillis(); // initialize lastTime to current time
     private boolean paused = false; // initialize paused to false
     DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-    
+
     public void drawScoreAndTimer(Graphics2D g2) {
 
         g2.setFont(arial_40);
@@ -294,11 +294,12 @@ public class UI {
 
         if (!paused) { // only update playTime if not paused
             long currentTime = System.currentTimeMillis();
-            double elapsedSeconds = (currentTime - lastTime) / 1000.0; // convert elapsed time to seconds
+            double elapsedSeconds = (currentTime - (double) lastTime) / 1000.0; // convert elapsed time to seconds
             playTime += elapsedSeconds; // update playTime by adding elapsed time
             lastTime = currentTime; // update lastTime to current time
+            System.out.println("play time: " + playTime + " ela time: " + elapsedSeconds);
         }
-    
+
         g2.drawString("Time:  " + decimalFormat.format(playTime), 800, 40);
     }
 
@@ -324,21 +325,12 @@ public class UI {
 
     public void drawGamePlayScreen(Graphics2D g2) {
 
-        // TIME
-        playTime -= (double) 1 / 60;
-
-        if (playTime <= 0) {
-            timeUp = true;
-        }
         if (gameEnd) {
 
             // gp.gameThread = null;
             gp.gameState = gp.gameWinState;
         }
-        if (timeUp) {
-            playTime = 0.0;
 
-        }
         if (gameLose) {
 
             // gp.gameThread = null;

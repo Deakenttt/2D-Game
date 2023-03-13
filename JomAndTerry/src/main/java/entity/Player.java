@@ -20,7 +20,9 @@ public class Player extends Entity {
     public int hasCheese = 0; // Tracking the number of cheese.
     public int hasSteak = 0; // Tracking the number of steak.
     public int totalScore = 0; // Tracking the total score.
-    boolean captureFlag = false; // Flag for being caught
+    boolean captureFlag = false; // Flag for being caught.
+
+    int KeyHoldTimer = 0; // Timer for how long the player has hold the key.
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
         super(gp);
@@ -61,7 +63,7 @@ public class Player extends Entity {
         try {
 
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/" + imageName + ".png")));
-            image = utilityTool.scaleImage(image, gp.tileSize-10, gp.tileSize-10);
+            image = utilityTool.scaleImage(image, gp.tileSize - 10, gp.tileSize - 10);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,9 +71,9 @@ public class Player extends Entity {
     }
 
     public void setAction() {
-        doMove = (keyHandler.upPressed || keyHandler.downPressed
-                || keyHandler.leftPressed || keyHandler.rightPressed);
-        if (doMove) {
+        if (keyHandler.upPressed || keyHandler.downPressed
+                || keyHandler.leftPressed || keyHandler.rightPressed) {
+            KeyHoldTimer++;
             if (keyHandler.upPressed) {
                 direction = "up";
             } else if (keyHandler.downPressed) {
@@ -81,8 +83,10 @@ public class Player extends Entity {
             } else {
                 direction = "right";
             }
+        } else {
+            KeyHoldTimer = -1;
         }
-
+        doMove = KeyHoldTimer % 20 == 0;
     }
 
     // Player bug: wall collision to the right stops it from going up and then collision to the left stops it from going down
@@ -123,7 +127,7 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You touched a trap!"); // Show the msg when touch object.
-                    if(gp.player.totalScore < 0)
+                    if (gp.player.totalScore < 0)
                         gp.ui.gameLose = true;
                 }
 
@@ -135,7 +139,7 @@ public class Player extends Entity {
                     } else {
                         gp.ui.showMessage("You need collect all the cheese!"); // Show the msg when get the cheese.
                     }
-                } 
+                }
             }
         }
     }
@@ -145,9 +149,9 @@ public class Player extends Entity {
             captureFlag = true;
             gp.ui.gameLose = true; // End the game.
         }
-    } 
+    }
 
-    public void retry(){
+    public void retry() {
         setDefaultValues();
         hasCheese = 0; // resets the number of cheese.
         hasSteak = 0; // resets the number of steak.
