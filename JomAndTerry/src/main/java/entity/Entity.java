@@ -83,7 +83,9 @@ public class Entity {
                 else if (spriteNum == 2)
                     spriteNum = 1;
                 spriteCounter = 0;
+            gp.assetSetter.steak_update();
             }
+            
         }
     }
 

@@ -127,7 +127,6 @@ public class SmCat extends Entity {
 
     public void retry() {
         onPath = true;
-        x = 13 * gp.tileSize;
-        y = 12 * gp.tileSize;
+
     }
 }

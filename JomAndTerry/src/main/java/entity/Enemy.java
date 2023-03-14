@@ -147,6 +147,8 @@ public class Enemy extends Entity{
     }
 
     Color colour;
-    int actionLockC = 0;
 
+    public void retry() {
+        onPath = true;
+    }
 }
