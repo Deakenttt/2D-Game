@@ -15,9 +15,6 @@ public class CollisionChecker {
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;
     }
-
-   
-   
    
     // METHOD OF CHECKING ENTITY AND ENTITY
     public void checkTile(Entity entity) {
