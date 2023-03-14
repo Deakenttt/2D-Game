@@ -6,7 +6,6 @@ import entity.Enemy;
 import entity.Pos;
 import entity.Enemy;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * @Des Class for palace objects on the map
@@ -16,6 +15,7 @@ public class AssetSetter {
     int[][] objectsMap;
 
     public int[] destHolder;  // store x, y pos
+    int steakCounter = 2;
     public AssetSetter(GamePanel gp) {
         this.gp = gp;
     }
@@ -23,11 +23,7 @@ public class AssetSetter {
     // METHOD FOR SETTING OBJECT.
 
     public void setObject() {
-
         destHolder = new int[10];
-
-        int row = 1;
-        int col = 1;
         objectsMap = new int[gp.maxScreenCol][gp.maxScreenRow];  // contain all 0's
         gp.obj[0] = new OBJ_Cheese();
         gp.obj[1] = new OBJ_Cheese();
@@ -35,22 +31,12 @@ public class AssetSetter {
         gp.obj[3] = new OBJ_Cheese();
         gp.obj[4] = new OBJ_Cheese();
         gp.obj[5] = new OBJ_Cheese();
-        gp.obj[6] = new OBJ_Steak();
-        gp.obj[7] = new OBJ_Steak();
+        gp.obj[7] = new OBJ_Trap();
         gp.obj[8] = new OBJ_Trap();
-        gp.obj[9] = new OBJ_Trap();
 
         for (int i=0; i < gp.obj.length; i++){
             if(gp.obj[i] != null){
-                int tileNum;
-                do {
-                    row = getRandomNumber(1, 15);
-                    col = getRandomNumber(1, 15);
-                    tileNum = gp.tileManager.mapTileNum[col][row];
-                } while (gp.tileManager.tile[tileNum].exist || objectsMap[row][col] != 0);  // there isn't anything existing on the object position
-                gp.obj[i].x = (col ) * gp.tileSize;
-                gp.obj[i].y = (row ) * gp.tileSize;
-                objectsMap[row][col] = 1;
+                object_setter(i);
             }
         }
 
@@ -60,9 +46,12 @@ public class AssetSetter {
         destHolder[3] =  gp.obj[7].y;
 
         // HOLE
-        gp.obj[8] = new OBJ_Hole();
-        gp.obj[8].x = 19 * gp.tileSize;
-        gp.obj[8].y = 14 * gp.tileSize;
+        gp.obj[9] = new OBJ_Hole();
+        gp.obj[9].x = 19 * gp.tileSize;
+        gp.obj[9].y = 14 * gp.tileSize;
+
+        // STEAK
+        gp.obj[6] = null;
 
     }
     public int getRandomNumber(int min, int max) {
@@ -91,6 +80,37 @@ public class AssetSetter {
 
     public void exit_open(){
         gp.obj[8].collision = false;
+    }
+
+    // sets steak randomly at random intervals
+    public void steak_update(){
+        if(steakCounter == 0){
+            if(gp.obj[6] == null){
+                gp.obj[6] = new OBJ_Steak();
+                object_setter(6);
+            }
+
+            else if (gp.obj[6] != null){
+                gp.obj[6] = null;
+            }
+            steakCounter = getRandomNumber(4, 8);
+        }
+        steakCounter--;
+    }
+
+    public void object_setter(int i){
+        int tileNum;
+        int row;
+        int col;
+
+        do {
+            row = getRandomNumber(1, 15);
+            col = getRandomNumber(1, 15);
+            tileNum = gp.tileManager.mapTileNum[col][row];
+        } while (gp.tileManager.tile[tileNum].exist || objectsMap[row][col] != 0);  // there isn't anything existing on the object position
+        gp.obj[i].x = (col ) * gp.tileSize;
+        gp.obj[i].y = (row ) * gp.tileSize;
+        objectsMap[row][col] = 1;
     }
 
 }

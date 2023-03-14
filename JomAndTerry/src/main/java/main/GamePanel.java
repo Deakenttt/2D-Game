@@ -123,11 +123,11 @@ public class GamePanel extends JPanel implements Runnable {
          // CHECK TILE COLLISION
         
         if (gameState == gamePlay) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            // try {
+                // Thread.sleep(100);
+            // } catch (InterruptedException e) {
+                // e.printStackTrace();
+            // }
             player.update();
             smartCat.update();
             //System.out.println("updating player");
