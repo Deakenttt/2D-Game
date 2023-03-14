@@ -40,8 +40,6 @@ public class AssetSetter {
             }
         }
 
-        destHolder[0] =  gp.obj[6].x;
-        destHolder[1] =  gp.obj[6].y;
         destHolder[2] =  gp.obj[7].x;
         destHolder[3] =  gp.obj[7].y;
 
