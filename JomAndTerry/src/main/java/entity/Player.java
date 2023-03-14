@@ -176,6 +176,12 @@ public class Player extends Entity {
         gp.ui.gameLose = false;
         gp.ui.gameEnd = false;
         gp.gameState = gp.gamePlay;
+        for(int i = 0; i<gp.smartCats.length;i++) {
+            gp.smartCats[i].retry();
+        }
+        for(int i = 0; i<gp.enemy.length;i++) {
+            gp.enemy[i].retry();
+        }
 
     }
 

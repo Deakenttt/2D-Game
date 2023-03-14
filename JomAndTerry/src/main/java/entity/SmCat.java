@@ -58,7 +58,7 @@ public class SmCat extends Entity {
         try {
 
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/cat/" + imageName + ".png")));
-            image = utilityTool.scaleImage(image, gp.tileSize - 10, gp.tileSize - 10);
+            image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
 
         } catch (IOException e) {
             e.printStackTrace();
