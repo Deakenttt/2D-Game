@@ -9,6 +9,15 @@ public class SmCat extends Entity {
         super(gp);
     }
 
+    public SmCat(GamePanel gp, int col, int row){
+        super(gp);
+        x = col * gp.tileSize - 3;
+        y = row * gp.tileSize - 3;
+        speed = 5;
+        direction = "right";
+        onPath = true;  // Using the A* setAction on SmCat
+    }
+
     public void setDefaultValues() {
         x = 13 * gp.tileSize;
         y = 12 * gp.tileSize;
@@ -27,7 +36,7 @@ public class SmCat extends Entity {
     public void setAction() {
         // distinction
         int goalCol = (gp.player.x + gp.player.solidAreaDefaultX) / gp.tileSize;
-        int goalRow = (gp.player.y + gp.player.solidAreaDefaultY) / gp.tileSize;
+        int goalRow = ((gp.player.y- 18) + gp.player.solidAreaDefaultY) / gp.tileSize;
         //System.out.println("excauting the set AATION==========================================================================");
         searchPath(goalCol, goalRow);
         if (!onPath)

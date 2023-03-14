@@ -1,8 +1,10 @@
 package object;
 
+import entity.SmCat;
 import main.GamePanel;
 import entity.Enemy;
-
+import entity.Pos;
+import entity.Enemy;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -12,12 +14,18 @@ import java.util.ArrayList;
 public class AssetSetter {
     GamePanel gp;
     int[][] objectsMap;
+
+    public int[] destHolder;  // store x, y pos
     public AssetSetter(GamePanel gp) {
         this.gp = gp;
     }
 
     // METHOD FOR SETTING OBJECT.
+
     public void setObject() {
+
+        destHolder = new int[10];
+
         int row = 1;
         int col = 1;
         objectsMap = new int[gp.maxScreenCol][gp.maxScreenRow];  // contain all 0's
@@ -46,6 +54,11 @@ public class AssetSetter {
             }
         }
 
+        destHolder[0] =  gp.obj[6].x;
+        destHolder[1] =  gp.obj[6].y;
+        destHolder[2] =  gp.obj[7].x;
+        destHolder[3] =  gp.obj[7].y;
+
         // HOLE
         gp.obj[8] = new OBJ_Hole();
         gp.obj[8].x = 19 * gp.tileSize;
@@ -60,6 +73,20 @@ public class AssetSetter {
         gp.enemy[1] = new Enemy(gp, Color.RED, 14 * gp.tileSize, 6 * gp.tileSize);
         gp.enemy[2] = new Enemy(gp, Color.ORANGE, 18*gp.tileSize, 12* gp.tileSize);
 
+        Pos p1 = new Pos(destHolder[0], destHolder[1]);
+        Pos p2 = new Pos(destHolder[2], destHolder[3]);
+        gp.enemy[0].dest[0] = p1;
+        gp.enemy[0].dest[1] = p2;
+
+        gp.enemy[1].dest[0] = p1;
+        gp.enemy[1].dest[1] = p2;
+
+        gp.enemy[2].dest[0] = p1;
+        gp.enemy[2].dest[1] = p2;
+    }
+    public void setsmCat(){
+        gp.smartCats[0] = new SmCat(gp, 14, 12);
+        gp.smartCats[1] = new SmCat(gp, 8, 10);
     }
 
     public void exit_open(){
