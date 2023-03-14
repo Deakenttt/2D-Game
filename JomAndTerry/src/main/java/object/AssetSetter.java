@@ -1,9 +1,7 @@
 package object;
 
-import entity.SmCat;
+import entity.Enemy;
 import main.GamePanel;
-import entity.Pos;
-import java.awt.*;
 
 /**
  * @Des Class for palace objects on the map
@@ -55,9 +53,9 @@ public class AssetSetter {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
-    public void setsmCat(){
-        gp.smartCats[0] = new SmCat(gp, 14, 12);
-        gp.smartCats[1] = new SmCat(gp, 8, 10);
+    public void setEnemy(){
+        gp.enemy[0] = new Enemy(gp, 14, 12);
+        gp.enemy[1] = new Enemy(gp, 8, 10);
     }
 
     public void exit_open(){

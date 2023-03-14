@@ -102,9 +102,7 @@ public class CollisionChecker {
 
                 // CHECK ENTITY'S DIRECTION.
                 // Simulating entity's movement and check where it will be after it moved.
-                // checkEntityDirection(entity);
                 if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
-                    //System.out.println(gp.obj[i].collision + gp.obj[i].name);
                     if (gp.obj[i].collision) {
                         entity.collisionOn = true;
                     }
