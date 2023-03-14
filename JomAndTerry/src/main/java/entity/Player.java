@@ -19,8 +19,12 @@ public class Player extends Entity {
     KeyHandler keyHandler;
     public int hasCheese = 0; // Tracking the number of cheese.
     public int hasSteak = 0; // Tracking the number of steak.
-    public int totalScore = 0; // Tracking the total score.4
-    boolean captureFlag = false; // Flag for being caught
+
+    public int totalScore = 0; // Tracking the total score.
+    boolean captureFlag = false; // Flag for being caught.
+
+    int KeyHoldTimer = 0; // Timer for how long the player has hold the key.
+
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
         super(gp);
@@ -61,7 +65,8 @@ public class Player extends Entity {
         try {
 
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/" + imageName + ".png")));
-            image = utilityTool.scaleImage(image, gp.tileSize , gp.tileSize );
+            image = utilityTool.scaleImage(image, gp.tileSize - 10, gp.tileSize - 10);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,9 +74,9 @@ public class Player extends Entity {
     }
 
     public void setAction() {
-        doMove = (keyHandler.upPressed || keyHandler.downPressed
-                || keyHandler.leftPressed || keyHandler.rightPressed);
-        if (doMove) {
+        if (keyHandler.upPressed || keyHandler.downPressed
+                || keyHandler.leftPressed || keyHandler.rightPressed) {
+            KeyHoldTimer++;
             if (keyHandler.upPressed) {
                 direction = "up";
             } else if (keyHandler.downPressed) {
@@ -81,8 +86,12 @@ public class Player extends Entity {
             } else {
                 direction = "right";
             }
+        } else {
+            KeyHoldTimer = -1;
         }
-        //System.out.println("the Pos is: " + x + ", " + y);
+
+        doMove = KeyHoldTimer % 20 == 0;
+
     }
 
     // Player bug: wall collision to the right stops it from going up and then collision to the left stops it from going down
@@ -92,16 +101,14 @@ public class Player extends Entity {
         // int objIndex = gp.collisionChecker.checkObject(this, true);
         setAction();
         collisionOn = false;
+
         gp.collisionChecker.checkObject(this, true);
         gp.collisionChecker.checkEntity(this);
         if (totalScore >= 6){
             gp.tileManager.exit_update();
-            // gp.assetSetter.exit_open();
-            
+
         }
 
-        // pickUpObject(objIndex); // Calls pickUpObject method.
-        System.out.println("Cheese = " + hasCheese + " Steak = " + hasSteak + " total Score = " + totalScore);
         super.update();
     }
 
@@ -134,7 +141,7 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You touched a trap!"); // Show the msg when touch object.
-                    if(gp.player.totalScore < 0)
+                    if (gp.player.totalScore < 0)
                         gp.ui.gameLose = true;
                 }
 
@@ -146,7 +153,7 @@ public class Player extends Entity {
                     } else {
                         gp.ui.showMessage("You need collect all the cheese!"); // Show the msg when get the cheese.
                     }
-                } 
+                }
             }
         }
     }
@@ -156,19 +163,21 @@ public class Player extends Entity {
             captureFlag = true;
             gp.ui.gameLose = true; // End the game.
         }
-    } 
+    }
 
-    public void retry(){
+    public void retry() {
         setDefaultValues();
         hasCheese = 0; // resets the number of cheese.
         hasSteak = 0; // resets the number of steak.
         totalScore = 0; // resets the total score.
         gp.ui.resumeTimer();
         gp.assetSetter.setObject();
+        gp.smartCat.retry();
         captureFlag = false;
         gp.ui.gameLose = false;
         gp.ui.gameEnd = false;
         gp.gameState = gp.gamePlay;
+
     }
 
     public void draw(Graphics2D g2) {
