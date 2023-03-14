@@ -77,7 +77,7 @@ public class Entity {
                 }
             }
             spriteCounter++;
-            if (spriteCounter > 3) {
+            if (spriteCounter > 5) {
                 if (spriteNum == 1)
                     spriteNum = 2;
                 else if (spriteNum == 2)
