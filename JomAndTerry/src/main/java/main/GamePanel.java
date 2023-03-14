@@ -124,6 +124,9 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == gamePlay) {
             player.update();
             //System.out.println("updating player");
+            if (player.totalScore >= 1){
+                assetSetter.exit_open();
+            }
 
             for (int i = 0; i < enemy.length; i++) {
                 if (enemy[i] != null) {

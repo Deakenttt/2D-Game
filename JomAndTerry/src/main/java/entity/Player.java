@@ -104,9 +104,6 @@ public class Player extends Entity {
 
         gp.collisionChecker.checkObject(this, true);
         gp.collisionChecker.checkEntity(this);
-        if (totalScore >= 6){
-            gp.tileManager.exit_update();
-        }
 
         super.update();
     }
@@ -145,8 +142,7 @@ public class Player extends Entity {
                 }
 
                 case "Hole" -> {
-                    if (totalScore >= 6) {
-                        gp.obj[i] = null;
+                    if (totalScore >= 1) {
                         gp.ui.showMessage("You escape successfully!"); // Show the msg when get the cheese.
                         gp.ui.gameEnd = true; // End the game
                     } else {

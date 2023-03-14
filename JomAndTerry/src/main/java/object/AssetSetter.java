@@ -47,6 +47,7 @@ public class AssetSetter {
         gp.obj[9] = new OBJ_Hole();
         gp.obj[9].x = 19 * gp.tileSize;
         gp.obj[9].y = 14 * gp.tileSize;
+        
 
         // STEAK
         gp.obj[6] = null;
@@ -75,7 +76,8 @@ public class AssetSetter {
     }
 
     public void exit_open(){
-        gp.obj[8].collision = false;
+        gp.tileManager.exit_update();
+        gp.obj[9].image = null;
     }
 
     // sets steak randomly at random intervals
