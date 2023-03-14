@@ -58,7 +58,7 @@ public class SmCat extends Entity {
         try {
 
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/cat/" + imageName + ".png")));
-            image = utilityTool.scaleImage(image, gp.tileSize - 10, gp.tileSize - 10);
+            image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,7 +69,7 @@ public class SmCat extends Entity {
     public void setAction() {
         // distinction
         int goalCol = (gp.player.x + gp.player.solidAreaDefaultX) / gp.tileSize;
-        int goalRow = ((gp.player.y- 18) + gp.player.solidAreaDefaultY) / gp.tileSize;
+        int goalRow = (gp.player.y + gp.player.solidAreaDefaultY) / gp.tileSize;
         //System.out.println("excauting the set AATION==========================================================================");
         searchPath(goalCol, goalRow);
         if (!onPath)
