@@ -4,8 +4,6 @@ import main.GamePanel;
 import entity.Enemy;
 
 import java.awt.*;
-import java.io.InputStream;
-import java.util.ArrayList;
 
 /**
  * @Des Class for palace objects on the map
@@ -35,15 +33,6 @@ public class AssetSetter {
         for (int i=0; i < gp.obj.length; i++){
             if(gp.obj[i] != null){
                 object_setter(i);
-                // int tileNum;
-                // do {
-                    // row = getRandomNumber(1, 15);
-                    // col = getRandomNumber(1, 15);
-                    // tileNum = gp.tileManager.mapTileNum[col][row];
-                // } while (gp.tileManager.tile[tileNum].exist || objectsMap[row][col] != 0);  // there isn't anything existing on the object position
-                // gp.obj[i].x = (col ) * gp.tileSize;
-                // gp.obj[i].y = (row ) * gp.tileSize;
-                // objectsMap[row][col] = 1;
             }
         }
 
@@ -70,8 +59,8 @@ public class AssetSetter {
         gp.obj[8].collision = false;
     }
 
+    // sets steak randomly at random intervals
     public void steak_update(){
-        System.out.println("Steak Counter = " + steakCounter + " steak flag = " + steakFlag);
         if(steakCounter == 0){
             if(gp.obj[6] == null){
                 gp.obj[6] = new OBJ_Steak();
