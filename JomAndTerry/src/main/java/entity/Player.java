@@ -171,7 +171,8 @@ public class Player extends Entity {
         totalScore = 0; // resets the total score.
         gp.ui.resumeTimer();
         gp.assetSetter.setObject();
-        gp.smartCat.retry();
+        gp.assetSetter.setsmCat();
+        gp.assetSetter.setEnemy();
         captureFlag = false;
         gp.ui.gameLose = false;
         gp.ui.gameEnd = false;

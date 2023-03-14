@@ -58,7 +58,7 @@ public class AssetSetter {
     public void setEnemy() {
         gp.enemy[0] = new Enemy(gp, Color.BLUE, 6 * gp.tileSize, 13 * gp.tileSize);
         gp.enemy[1] = new Enemy(gp, Color.RED, 14 * gp.tileSize, 6 * gp.tileSize);
-        gp.enemy[2] = new Enemy(gp, Color.ORANGE, 18*gp.tileSize, 12* gp.tileSize);
+
 
         Pos p1 = new Pos(destHolder[0], destHolder[1]);
         Pos p2 = new Pos(destHolder[2], destHolder[3]);
@@ -68,8 +68,6 @@ public class AssetSetter {
         gp.enemy[1].dest[0] = p1;
         gp.enemy[1].dest[1] = p2;
 
-        gp.enemy[2].dest[0] = p1;
-        gp.enemy[2].dest[1] = p2;
     }
     public void setsmCat(){
         gp.smartCats[0] = new SmCat(gp, 14, 12);

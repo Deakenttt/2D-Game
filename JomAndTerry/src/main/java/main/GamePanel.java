@@ -49,9 +49,8 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler(this); // Key handler class.
 
     public Player player = new Player(this, keyHandler); // Initiate a Player object.
-    public Enemy[] enemy = new Enemy[3];
+    public Enemy[] enemy = new Enemy[2];
     public SmCat[] smartCats = new SmCat[2];
-    public SmCat smartCat = new SmCat(this);
     public SuperObject[] obj = new SuperObject[20]; // 20 slots for object, can replace the content during the game.
 
     public TileManager tileManager = new TileManager(this); // Initiate tileManger object.
@@ -129,7 +128,6 @@ public class GamePanel extends JPanel implements Runnable {
                 // e.printStackTrace();
             // }
             player.update();
-            smartCat.update();
             //System.out.println("updating player");
 
             for (int i = 0; i < enemy.length; i++) {
@@ -173,7 +171,6 @@ public class GamePanel extends JPanel implements Runnable {
             System.out.println("player ");
             player.draw(g2);
 
-            smartCat.draw(g2);
 
             // Enemies
             for (int i = 0; i < enemy.length; i++) {
