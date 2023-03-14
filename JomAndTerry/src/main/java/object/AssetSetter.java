@@ -2,9 +2,7 @@ package object;
 
 import entity.SmCat;
 import main.GamePanel;
-import entity.Enemy;
 import entity.Pos;
-import entity.Enemy;
 import java.awt.*;
 
 /**
@@ -56,20 +54,7 @@ public class AssetSetter {
     public int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
-    public void setEnemy() {
-        gp.enemy[0] = new Enemy(gp, Color.BLUE, 6 * gp.tileSize, 13 * gp.tileSize);
-        gp.enemy[1] = new Enemy(gp, Color.RED, 14 * gp.tileSize, 6 * gp.tileSize);
 
-
-        Pos p1 = new Pos(destHolder[0], destHolder[1]);
-        Pos p2 = new Pos(destHolder[2], destHolder[3]);
-        gp.enemy[0].dest[0] = p1;
-        gp.enemy[0].dest[1] = p2;
-
-        gp.enemy[1].dest[0] = p1;
-        gp.enemy[1].dest[1] = p2;
-
-    }
     public void setsmCat(){
         gp.smartCats[0] = new SmCat(gp, 14, 12);
         gp.smartCats[1] = new SmCat(gp, 8, 10);
