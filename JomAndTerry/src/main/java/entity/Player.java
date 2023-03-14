@@ -14,8 +14,6 @@ import java.util.Objects;
  * @Des This is a player class extends from Entity.
  */
 public class Player extends Entity {
-    // We need GamePanel and KeyHandler
-    // GamePanel gp;
     KeyHandler keyHandler;
     public int hasCheese = 0; // Tracking the number of cheese.
     public int hasSteak = 0; // Tracking the number of steak.

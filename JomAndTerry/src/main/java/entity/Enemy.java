@@ -67,27 +67,6 @@ public class Enemy extends Entity{
 
     
     public void setAction() {
-//        actionLockC++;
-//        if (actionLockC == 25){
-//            int i = (int) ((Math.random() * (100 - 1)) + 1);
-//            if (i <= 25) {
-//                direction = "up";
-//            }
-//
-//            else if (i > 25 && i <= 50){
-//                direction = "down";
-//            }
-//
-//            else if (i > 25 && i <= 50){
-//                direction = "left";
-//            }
-//
-//            else{
-//                direction = "right";
-//            }
-//            actionLockC = 0;
-//            //System.out.println("the Pos is: " + x + ", " + y);
-//        }
         int R = (int) ((Math.random() * (10 - 1)) + 10) % 2;
 
         int goalCol = dest[R].x/gp.tileSize;
@@ -103,9 +82,6 @@ public class Enemy extends Entity{
     }
 
     public void draw(Graphics2D g2) {
-
-//        g2.setColor(colour);
-//        g2.drawRect(x, y, 48, 48);
         BufferedImage image = null;
 
         switch (direction) {

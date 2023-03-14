@@ -143,7 +143,6 @@ public class CollisionChecker {
 
                 // CHECK ENTITY'S DIRECTION.
                 // Simulating entity's movement and check where it will be after it moved.
-                // checkEntityDirection(entity);
                 if (entity.solidArea.intersects(gp.enemy[i].solidArea)) {
                     index = i;
                 }
