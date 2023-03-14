@@ -106,7 +106,6 @@ public class Player extends Entity {
         gp.collisionChecker.checkEntity(this);
         if (totalScore >= 6){
             gp.tileManager.exit_update();
-
         }
 
         super.update();
