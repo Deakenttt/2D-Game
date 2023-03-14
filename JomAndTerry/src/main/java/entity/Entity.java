@@ -97,8 +97,8 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
 
     public void searchPath(int goalCol, int goalRow) {
-        int startCol = (x + solidArea.x) / gp.tileSize;
-        int startRow = (y + solidArea.y) / gp.tileSize;
+        int startCol = (x + solidAreaDefaultX) / gp.tileSize;
+        int startRow = (y + solidAreaDefaultY) / gp.tileSize;
 
         gp.findPath.setNode(startCol, startRow, goalCol, goalRow, this);
         // we found the path

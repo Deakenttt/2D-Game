@@ -16,8 +16,8 @@ public class SmCat extends Entity {
 
     public SmCat(GamePanel gp, int col, int row){
         super(gp);
-        x = col * gp.tileSize - 3;
-        y = row * gp.tileSize - 3;
+        x = col * gp.tileSize;
+        y = row * gp.tileSize;
         getPlayerImage();
         speed = 48;
         direction = "right";
@@ -68,11 +68,15 @@ public class SmCat extends Entity {
 
     public void setAction() {
         // distinction
-        int goalCol = (gp.player.x + gp.player.solidAreaDefaultX) / gp.tileSize;
-        int goalRow = (gp.player.y + gp.player.solidAreaDefaultY) / gp.tileSize;
+
+        int goalCol = (gp.player.x + solidArea.x) / gp.tileSize;
+        int goalRow = (gp.player.y + solidArea.y) / gp.tileSize;
         //System.out.println("excauting the set AATION==========================================================================");
         searchPath(goalCol, goalRow);
-        if (!onPath)
+
+        Rectangle solidAreaP = new Rectangle(gp.player.x,gp.player.y,30,30);
+        Rectangle solidAreaC = new Rectangle(this.x,this.y,30,30);
+        if(solidAreaP.intersects(solidAreaC))
             gp.ui.gameLose = true;
     }
 
