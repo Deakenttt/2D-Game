@@ -33,8 +33,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        x = 96;
-        y = 96;
+        x = 0;
+        y = 48;
         speed = 48;
         direction = "down";
         solidArea.width = 22;
