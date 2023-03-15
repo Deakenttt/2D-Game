@@ -233,7 +233,7 @@ public class UI {
             g2.drawString(titleText, x, y);
 
             g2.setFont(g2.getFont().deriveFont(24F));
-            String instructionText = "You are the mouse (Terry). Collect 6 cheeses to unlock the exit door. Avoid the smart cat (Jom) and the dumb cats (Jom's friends). Cheese = 1 point, Steak (bonus) = 5 points, mouse trap (punishment) = -5 points. Negative points = Automatic loss. Exit with max points and the fastest time, there is no time limit. Enjoy!";
+            String instructionText = "You are the mouse (Terry). Collect 6 points to unlock the exit door. Avoid the smart cat (Jom) and the dumb cats (Jom's friends). Cheese = 1 point, Steak (bonus) = 5 points, mouse trap (punishment) = -5 points. Negative points = Automatic loss. Exit with max points and the fastest time, there is no time limit. Enjoy!";
             int maxWidth = 800; // maximum width of text
             String[] lines = getLines(instructionText, g2.getFontMetrics(), maxWidth);
 
