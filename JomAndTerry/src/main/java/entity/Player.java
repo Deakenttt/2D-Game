@@ -87,7 +87,7 @@ public class Player extends Entity {
         } else {
             KeyHoldTimer = -1;
         }
-        
+
         doMove = KeyHoldTimer % 20 == 0;
     }
 
@@ -119,6 +119,9 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You got a cheese!"); // Show the msg when touch object.
+                    if (gp.player.totalScore >= 6) {
+                        gp.playSE(1);
+                    }
                 }
 
                 case "Steak" -> {
@@ -128,6 +131,9 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You got a steak!"); // Show the msg when touch object.
+                    if (gp.player.totalScore >= 6) {
+                        gp.playSE(1);
+                    }
                 }
 
                 case "Trap" -> {
