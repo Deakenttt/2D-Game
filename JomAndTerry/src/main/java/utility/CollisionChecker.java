@@ -17,8 +17,10 @@ public class CollisionChecker {
     }
    
     // METHOD OF CHECKING ENTITY AND ENTITY
-    public boolean checkTile(Entity entity, int row, int col) {
+    public boolean checkTile(Entity entity) {
         int tileNum;
+        int row = entity.y;
+        int col = entity.x;
 
         try{
             switch (entity.direction) {
@@ -63,42 +65,30 @@ public class CollisionChecker {
 
     // METHOD OF CHECKING OBJECT.
     // WHEN PLAYER TOUCH THE OBJECT, IT RETURN THE INDEX OF THAT OBJECT.
-    public void checkObject(Player entity, boolean player) {
-
-        int index = 999;
-
+    public void checkObject(Player entity) {
+        
+        // GET ENTITY'S SOLID AREA POSITION.
+        // entity.solidArea.x = entity.x + entity.solidArea.x;
+        // entity.solidArea.y = entity.y + entity.solidArea.y;
         for (int i = 0; i < gp.obj.length; i++) {
-
             if (gp.obj[i] != null) {
 
-                // GET ENTITY'S SOLID AREA POSITION.
-                entity.solidArea.x = entity.x + entity.solidArea.x;
-                entity.solidArea.y = entity.y + entity.solidArea.y;
- 
-                // GET OBJECT'S SOLID AREA POSITION.
-                gp.obj[i].solidArea.x = gp.obj[i].x + gp.obj[i].solidArea.x;
-                gp.obj[i].solidArea.y = gp.obj[i].y + gp.obj[i].solidArea.y;
-
-                // CHECK ENTITY'S DIRECTION.
                 // Simulating entity's movement and check where it will be after it moved.
-                if (entity.solidArea.intersects(gp.obj[i].solidArea)) {
-                    if (gp.obj[i].collision) {
-                        entity.collisionOn = true;
-                    }
-                    if (player)
-                        index = i;
+                if (entity.solidArea.intersects(gp.obj[i].solidArea) && !gp.obj[i].collision) {
+                    entity.pickUpObject(i);
+                    // entity.solidArea.x = entity.solidAreaDefaultX;
+                    // entity.solidArea.y = entity.solidAreaDefaultY;
+                    break;
                 }
 
                 // RESET THE POSITION WITH DEFAULT VALUE.
-                entity.solidArea.x = entity.solidAreaDefaultX;
-                entity.solidArea.y = entity.solidAreaDefaultY;
-                gp.obj[i].solidArea.x = gp.obj[i].solidAreaDefaultX;
-                gp.obj[i].solidArea.y = gp.obj[i].solidAreaDefaultY;
+                // gp.obj[i].solidArea.x = gp.obj[i].solidAreaDefaultX;
+                // gp.obj[i].solidArea.y = gp.obj[i].solidAreaDefaultY;
             }
         }
-        if (index != 999) {
-            entity.pickUpObject(index);
-        }
+        // entity.solidArea.x = entity.solidAreaDefaultX;
+        // entity.solidArea.y = entity.solidAreaDefaultY;
+
     } 
 
     // NPC or Enemy

@@ -96,9 +96,11 @@ public class Player extends Entity {
         // CHECK OBJECT INTERACTION.
         // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
         setAction();
+        solidArea.x = x + solidArea.width;
+        solidArea.y = y + solidArea.height;
         collisionOn = false;
 
-        gp.collisionChecker.checkObject(this, true);
+        gp.collisionChecker.checkObject(this);
         gp.collisionChecker.checkEntity(this);
 
         super.update();

@@ -164,25 +164,25 @@ public class Enemy extends Entity {
             // up or left
             direction = "up";
             collisionOn = false;
-            collisionOn = gp.collisionChecker.checkTile(this, this.y, this.x); // Calls CollisionChecker object's checkTile method
+            collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
             if (collisionOn)
                 direction = "left";
         } else if (enTopY > nextY && enLeftX < nextX) {
             direction = "up";
             collisionOn = false;
-            collisionOn = gp.collisionChecker.checkTile(this, this.y, this.x); // Calls CollisionChecker object's checkTile method
+            collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
             if (collisionOn)
                 direction = "right";
         } else if (enTopY < nextY && enLeftX > nextX) {
             direction = "down";
             collisionOn = false;
-            collisionOn = gp.collisionChecker.checkTile(this, this.y, this.x); // Calls CollisionChecker object's checkTile method
+            collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
             if (collisionOn)
                 direction = "left";
         } else if (enTopY < nextY && enLeftX < nextX) {
             direction = "down";
             collisionOn = false;
-            collisionOn = gp.collisionChecker.checkTile(this, this.y, this.x); // Calls CollisionChecker object's checkTile method
+            collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
             if (collisionOn)
                 direction = "right";
         }
