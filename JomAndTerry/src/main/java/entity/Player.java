@@ -87,9 +87,8 @@ public class Player extends Entity {
         } else {
             KeyHoldTimer = -1;
         }
-
+        
         doMove = KeyHoldTimer % 20 == 0;
-
     }
 
     // Player bug: wall collision to the right stops it from going up and then collision to the left stops it from going down
@@ -179,7 +178,6 @@ public class Player extends Entity {
         for(int i = 0; i<gp.enemy.length;i++) {
             gp.enemy[i].retry();
         }
-
     }
 
     public void draw(Graphics2D g2) {
@@ -221,6 +219,5 @@ public class Player extends Entity {
         }
 
         g2.drawImage(image, x, y, null);
-
     }
 }

@@ -120,7 +120,7 @@ public class GamePanel extends JPanel implements Runnable {
         
         if (gameState == gamePlay) {
             player.update();
-            if (player.totalScore >= 1){
+            if (player.totalScore >= 6){
                 assetSetter.exit_open();
             }
 
@@ -185,7 +185,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void stopMusic(){
         sound.stop();
     }
-    
+
     public void playSE(int i){
         sound.setFile(i);
         sound.play();

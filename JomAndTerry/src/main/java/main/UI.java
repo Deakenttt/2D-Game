@@ -359,12 +359,14 @@ public class UI {
 
             // gp.gameThread = null;
             gp.gameState = gp.gameWinState;
+            gp.playSE(3);
         }
 
         if (gameLose) {
 
             // gp.gameThread = null;
             gp.gameState = gp.gameOverState;
+            gp.playSE(2);
         }
 
         // MESSAGE
