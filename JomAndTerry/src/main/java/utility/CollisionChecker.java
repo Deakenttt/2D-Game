@@ -67,28 +67,13 @@ public class CollisionChecker {
     // WHEN PLAYER TOUCH THE OBJECT, IT RETURN THE INDEX OF THAT OBJECT.
     public void checkObject(Player entity) {
         
-        // GET ENTITY'S SOLID AREA POSITION.
-        // entity.solidArea.x = entity.x + entity.solidArea.x;
-        // entity.solidArea.y = entity.y + entity.solidArea.y;
         for (int i = 0; i < gp.obj.length; i++) {
-            if (gp.obj[i] != null) {
-
-                // Simulating entity's movement and check where it will be after it moved.
-                if (entity.solidArea.intersects(gp.obj[i].solidArea) && !gp.obj[i].collision) {
-                    entity.pickUpObject(i);
-                    // entity.solidArea.x = entity.solidAreaDefaultX;
-                    // entity.solidArea.y = entity.solidAreaDefaultY;
-                    break;
-                }
-
-                // RESET THE POSITION WITH DEFAULT VALUE.
-                // gp.obj[i].solidArea.x = gp.obj[i].solidAreaDefaultX;
-                // gp.obj[i].solidArea.y = gp.obj[i].solidAreaDefaultY;
+            // Checks that the object exists, that it intersects with the object, and that collision is off
+            if (gp.obj[i] != null && entity.solidArea.intersects(gp.obj[i].solidArea) && !gp.obj[i].collision) {
+                entity.pickUpObject(i);
+                break;
             }
         }
-        // entity.solidArea.x = entity.solidAreaDefaultX;
-        // entity.solidArea.y = entity.solidAreaDefaultY;
-
     } 
 
     // NPC or Enemy
