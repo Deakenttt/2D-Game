@@ -1,5 +1,6 @@
 package utility;
 
+
 import entity.Entity;
 import entity.Player;
 import main.GamePanel;
@@ -10,6 +11,8 @@ import main.GamePanel;
 public class CollisionChecker {
 
     GamePanel gp;
+    int row = 0;
+    int col = 0;
 
 
     public CollisionChecker(GamePanel gp) {
@@ -19,47 +22,12 @@ public class CollisionChecker {
     // METHOD OF CHECKING ENTITY AND ENTITY
     public boolean checkTile(Entity entity) {
         int tileNum;
-        int row = entity.y;
-        int col = entity.x;
-
-        try{
-            switch (entity.direction) {
-                case "up":
-                    tileNum = gp.tileManager.mapTileNum[col/ gp.tileSize][(row - entity.speed)/ gp.tileSize];
-
-                    if (gp.tileManager.tile[tileNum].collision) {
+        simulateNode(entity);
+        System.out.println("col/entity.speed = " + col/entity.speed);
+            tileNum = gp.tileManager.mapTileNum[col/entity.speed][row/entity.speed];
+                if (gp.tileManager.tile[tileNum].collision) {
                         return true;
                     }
-
-                    break;
-                case "down":
-                    tileNum = gp.tileManager.mapTileNum[col/ gp.tileSize][(entity.speed + row)/ gp.tileSize];
-
-                    if (gp.tileManager.tile[tileNum].collision) {
-                        return true;
-                    }
-
-                    break;
-                case "left":
-                    tileNum = gp.tileManager.mapTileNum[(col-entity.speed)/ gp.tileSize][row/ gp.tileSize];
-                    if (gp.tileManager.tile[tileNum].collision) {
-                        return true;
-
-                    }
-
-                    break;
-                case "right":
-                    tileNum = gp.tileManager.mapTileNum[(col+entity.speed)/ gp.tileSize][row/ gp.tileSize];
-                    if (gp.tileManager.tile[tileNum].collision) {
-                        return true;
-                    }
-
-                    break;
-                } 
-            }   catch (Exception e) {
-                System.out.println(e); 
-                System.out.println("CAUGHT IN COLLISION CHECKER"); 
-            }
         return false;
     }
 
@@ -77,38 +45,44 @@ public class CollisionChecker {
     } 
 
     // NPC or Enemy
-    public void checkEntity(Player entity) {
-
-        int index = 999;
+    public void checkEntity(Entity entity) {
+        int index = 0;
+        simulateNode(entity);
 
         for (int i = 0; i < gp.enemy.length; i++) {
 
             if (gp.enemy[i] != null) {
+                if(gp.enemy[i] != entity) {
 
                 // GET ENTITY'S SOLID AREA POSITION.
-                entity.solidArea.x = entity.x + entity.solidArea.x;
-                entity.solidArea.y = entity.y + entity.solidArea.y;
+                // entity.solidArea.x = entity.x + entity.solidArea.x;
+                // entity.solidArea.y = entity.y + entity.solidArea.y;
 
                 // GET OBJECT'S SOLID AREA POSITION.
-                gp.enemy[i].solidArea.x = gp.enemy[i].x + gp.enemy[i].solidArea.x;
-                gp.enemy[i].solidArea.y = gp.enemy[i].y + gp.enemy[i].solidArea.y;
+                // gp.enemy[i].solidArea.x = gp.enemy[i].x + gp.enemy[i].solidArea.x;
+                // gp.enemy[i].solidArea.y = gp.enemy[i].y + gp.enemy[i].solidArea.y;
 
                 // CHECK ENTITY'S DIRECTION.
                 // Simulating entity's movement and check where it will be after it moved.
                 if (entity.solidArea.intersects(gp.enemy[i].solidArea)) {
-                    index = i;
+                    // index = i;
+                    entity.collisionOn = true;
                 }
 
                 // RESET THE POSITION WITH DEFAULT VALUE.
-                entity.solidArea.x = entity.solidAreaDefaultX;
-                entity.solidArea.y = entity.solidAreaDefaultY;
-                gp.enemy[i].solidArea.x = gp.enemy[i].solidAreaDefaultX;
-                gp.enemy[i].solidArea.y = gp.enemy[i].solidAreaDefaultY;
+                // entity.solidArea.x = entity.solidAreaDefaultX;
+                // entity.solidArea.y = entity.solidAreaDefaultY;
+                // gp.enemy[i].solidArea.x = gp.enemy[i].solidAreaDefaultX;
+                // gp.enemy[i].solidArea.y = gp.enemy[i].solidAreaDefaultY;
+            }
+            else{
+                index = i;
             }
         }
-        if (index != 999) {
-            entity.captured(index);
-        }
+    }
+    if (entity.solidArea.intersects(gp.player.solidArea)) {
+        gp.player.captured(index);
+    }
     }
 
     // Simulating entity's movement
@@ -132,4 +106,34 @@ public class CollisionChecker {
             }
         }
     }
+
+public void simulateNode(Entity entity){
+    try{
+        switch (entity.direction) {
+            case "up":
+                row = entity.solidArea.y - entity.speed;
+                col = entity.solidArea.x;
+
+                break;
+            case "down":
+                row = entity.solidArea.y + entity.speed;
+                col = entity.solidArea.x;
+
+                break;
+            case "left":
+                col = entity.solidArea.x - entity.speed;
+                row = entity.solidArea.y;
+
+                break;
+            case "right":
+                col = entity.solidArea.x + entity.speed;
+                row = entity.solidArea.y;
+
+                break;
+        }
+    }   catch (Exception e) {
+        System.out.println(e); 
+        System.out.println("CAUGHT IN COLLISION CHECKER"); 
+    }      
+}
 }

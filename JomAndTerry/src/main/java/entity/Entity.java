@@ -36,6 +36,7 @@ public class Entity {
         solidArea.y = 16;
         solidArea.width = 22;
         solidArea.height = 22;
+        speed = 48;
 
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
@@ -46,7 +47,7 @@ public class Entity {
     public void setDefaultValues() {
         x = 48;
         y = 48;
-        speed = 8;
+        speed = 48;
         direction = "right";
         onPath = true;  // Using the A* setAction on SmCat
     }
@@ -55,10 +56,8 @@ public class Entity {
     }
 
     public void update() {
-
-        collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-        //System.out.println("collisionOn = " + collisionOn);
         if (gp.player.doMove) {
+            System.out.println("x = " + x + " y = " + y + " solidArea.x = " +solidArea.x + " solidArea.y = " +solidArea.y);
             if (!collisionOn) {
 
                 switch (direction) {
@@ -85,6 +84,7 @@ public class Entity {
                 spriteCounter = 0;
             gp.assetSetter.steak_update();
             }
+            System.out.println("entity updated");
             
         }
     }
@@ -95,4 +95,44 @@ public class Entity {
 
     // SAVING THE DEFAULT VALUE OF X AND Y
     public int solidAreaDefaultX, solidAreaDefaultY;
+
+    public void draw(Graphics2D g2) {
+        BufferedImage image = null;
+        switch (direction) {
+            case "up" -> {
+                if (spriteNum == 1) {
+                    image = up1;
+                }
+                if (spriteNum == 2) {
+                    image = up2;
+                }
+            }
+            case "down" -> {
+                if (spriteNum == 1) {
+                    image = down1;
+                }
+                if (spriteNum == 2) {
+                    image = down2;
+                }
+            }
+            case "left" -> {
+                if (spriteNum == 1) {
+                    image = left1;
+                }
+                if (spriteNum == 2) {
+                    image = left2;
+                }
+            }
+            case "right" -> {
+                if (spriteNum == 1) {
+                    image = right1;
+                }
+                if (spriteNum == 2) {
+                    image = right2;
+                }
+            }
+        }
+        g2.drawImage(image, x, y, null);
+    }
 }
+
