@@ -89,7 +89,6 @@ public class Player extends Entity {
         }
 
         doMove = KeyHoldTimer % 20 == 0;
-
     }
 
     // Player bug: wall collision to the right stops it from going up and then collision to the left stops it from going down
@@ -114,22 +113,31 @@ public class Player extends Entity {
 
             switch (objectName) {
                 case "Cheese" -> {
+                    gp.playSE(4);
                     hasCheese++;
                     totalScore++;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You got a cheese!"); // Show the msg when touch object.
+                    if (gp.player.totalScore >= 6) {
+                        gp.playSE(1);
+                    }
                 }
 
                 case "Steak" -> {
+                    gp.playSE(5);
                     hasSteak += 5;
                     totalScore += 5;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You got a steak!"); // Show the msg when touch object.
+                    if (gp.player.totalScore >= 6) {
+                        gp.playSE(1);
+                    }
                 }
 
                 case "Trap" -> {
+                    gp.playSE(7);
                     totalScore -= 5;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
@@ -154,6 +162,7 @@ public class Player extends Entity {
         if (i != 999 || captureFlag) {
             captureFlag = true;
             gp.ui.gameLose = true; // End the game.
+            gp.playSE(6);
         }
     }
 
@@ -175,7 +184,6 @@ public class Player extends Entity {
         for(int i = 0; i<gp.enemy.length;i++) {
             gp.enemy[i].retry();
         }
-
     }
 
     public void draw(Graphics2D g2) {
@@ -217,6 +225,5 @@ public class Player extends Entity {
         }
 
         g2.drawImage(image, x, y, null);
-
     }
 }
