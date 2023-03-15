@@ -114,6 +114,7 @@ public class Player extends Entity {
 
             switch (objectName) {
                 case "Cheese" -> {
+                    gp.playSE(4);
                     hasCheese++;
                     totalScore++;
                     gp.obj[i] = null;
@@ -122,6 +123,7 @@ public class Player extends Entity {
                 }
 
                 case "Steak" -> {
+                    gp.playSE(5);
                     hasSteak += 5;
                     totalScore += 5;
                     gp.obj[i] = null;
@@ -130,6 +132,7 @@ public class Player extends Entity {
                 }
 
                 case "Trap" -> {
+                    gp.playSE(7);
                     totalScore -= 5;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
@@ -154,6 +157,7 @@ public class Player extends Entity {
         if (i != 999 || captureFlag) {
             captureFlag = true;
             gp.ui.gameLose = true; // End the game.
+            gp.playSE(6);
         }
     }
 
