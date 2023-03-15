@@ -10,6 +10,7 @@ public class AssetSetter {
     GamePanel gp;
     int[][] objectsMap;
 
+
     public int[] destHolder;  // store x, y pos
     int steakCounter = 2;
     public AssetSetter(GamePanel gp) {
