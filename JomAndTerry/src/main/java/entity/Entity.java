@@ -56,7 +56,7 @@ public class Entity {
 
     public void update() {
 
-        gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+        collisionOn = gp.collisionChecker.checkTile(this, this.y, this.x); // Calls CollisionChecker object's checkTile method
         //System.out.println("collisionOn = " + collisionOn);
         if (gp.player.doMove) {
             if (!collisionOn) {
@@ -129,26 +129,26 @@ public class Entity {
                 // up or left
                 direction = "up";
                 collisionOn = false;
-                gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+                collisionOn = gp.collisionChecker.checkTile(this, this.y, this.x); // Calls CollisionChecker object's checkTile method
 
                 if (collisionOn)
                     direction = "left";
             } else if (enTopY > nextY && enLeftX < nextX) {
                 direction = "up";
                 collisionOn = false;
-                gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+                collisionOn = gp.collisionChecker.checkTile(this, this.y, this.x); // Calls CollisionChecker object's checkTile method
                 if (collisionOn)
                     direction = "right";
             } else if (enTopY < nextY && enLeftX > nextX) {
                 direction = "down";
                 collisionOn = false;
-                gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+                collisionOn = gp.collisionChecker.checkTile(this, this.y, this.x); // Calls CollisionChecker object's checkTile method
                 if (collisionOn)
                     direction = "left";
             } else if (enTopY < nextY && enLeftX < nextX) {
                 direction = "down";
                 collisionOn = false;
-                gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+                collisionOn = gp.collisionChecker.checkTile(this, this.y, this.x); // Calls CollisionChecker object's checkTile method
                 if (collisionOn)
                     direction = "right";
             }
@@ -157,7 +157,7 @@ public class Entity {
             int nextCol = gp.findPath.pathList.get(0).col;
             int nextRow = gp.findPath.pathList.get(0).row;
             if (nextCol == goalCol && nextRow == goalRow)
-                 onPath = false;
+                onPath = false;
         }
 
     }

@@ -17,69 +17,48 @@ public class CollisionChecker {
     }
    
     // METHOD OF CHECKING ENTITY AND ENTITY
-    public void checkTile(Entity entity) {
+    public boolean checkTile(Entity entity, int row, int col) {
+        int tileNum;
 
-        int entityLeftWorldX = entity.x + entity.solidArea.x;
-        int entityRightWorldX = entity.x + entity.solidArea.x + entity.solidArea.width;
-        int entityTopWorldY = entity.y + entity.solidArea.y;
-        int entityBottomWorldY = entity.y + entity.solidArea.y + entity.solidArea.height;
-
-        int entityLeftCol = entityLeftWorldX / gp.tileSize;
-        int entityRightCol = entityRightWorldX / gp.tileSize;
-        int entityTopRow = entityTopWorldY / gp.tileSize;
-        int entityBottomRow = entityBottomWorldY / gp.tileSize;
-
-        int tileNum1, tileNum2;
         try{
             switch (entity.direction) {
                 case "up":
-                    entityTopRow = (entityTopWorldY - entity.speed) / gp.tileSize;
-                    tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityTopRow];
-                    tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityTopRow];
+                    tileNum = gp.tileManager.mapTileNum[col/ gp.tileSize][(row - entity.speed)/ gp.tileSize];
 
-                    if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
-                        entity.collisionOn = true;
+                    if (gp.tileManager.tile[tileNum].collision) {
+                        return true;
                     }
 
                     break;
                 case "down":
-                    entityBottomRow = (entityBottomWorldY + entity.speed) / gp.tileSize;
-                    tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityBottomRow];
-                    tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityBottomRow];
+                    tileNum = gp.tileManager.mapTileNum[col/ gp.tileSize][(entity.speed + row)/ gp.tileSize];
 
-                    if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
-                        entity.collisionOn = true;
+                    if (gp.tileManager.tile[tileNum].collision) {
+                        return true;
                     }
 
                     break;
                 case "left":
-                    entityLeftCol = (entityLeftWorldX - entity.speed) / gp.tileSize;
-                    tileNum1 = gp.tileManager.mapTileNum[entityLeftCol][entityTopRow];
-                    tileNum2 = gp.tileManager.mapTileNum[entityLeftCol][entityBottomRow];
+                    tileNum = gp.tileManager.mapTileNum[(col-entity.speed)/ gp.tileSize][row/ gp.tileSize];
+                    if (gp.tileManager.tile[tileNum].collision) {
+                        return true;
 
-                    if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
-                        entity.collisionOn = true;
                     }
 
                     break;
                 case "right":
-                    entityRightCol = (entityRightWorldX + entity.speed) / gp.tileSize;
-                    tileNum1 = gp.tileManager.mapTileNum[entityRightCol][entityTopRow];
-                    tileNum2 = gp.tileManager.mapTileNum[entityRightCol][entityBottomRow];
-
-                    if (gp.tileManager.tile[tileNum1].collision || gp.tileManager.tile[tileNum2].collision) {
-                        entity.collisionOn = true;
+                    tileNum = gp.tileManager.mapTileNum[(col+entity.speed)/ gp.tileSize][row/ gp.tileSize];
+                    if (gp.tileManager.tile[tileNum].collision) {
+                        return true;
                     }
 
                     break;
                 } 
             }   catch (Exception e) {
-                entity.collisionOn = true;
                 System.out.println(e); 
                 System.out.println("CAUGHT IN COLLISION CHECKER"); 
-        
-
             }
+        return false;
     }
 
     // METHOD OF CHECKING OBJECT.
