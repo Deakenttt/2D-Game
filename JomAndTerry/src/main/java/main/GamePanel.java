@@ -41,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // FPS
     int FPS = 60;
+    public boolean exitcondition = true;
 
     public FindPath findPath = new FindPath(this);
     Thread gameThread; // To enable start and stop, needs involve Runnable interface.
