@@ -12,14 +12,14 @@ public class Sound {
     URL soundURL[] = new URL[30];
 
     public Sound(){
-        soundURL[0] = getClass().getResource("/Sound/themesong.wav");
-        soundURL[1] = getClass().getResource("/Sound/doorunlock.wav");
-        soundURL[2] = getClass().getResource("/Sound/gamelost.wav");
-        soundURL[3] = getClass().getResource("/Sound/gamewon.wav");
-        soundURL[4] = getClass().getResource("/Sound/gotcheese.wav");
-        soundURL[5] = getClass().getResource("/Sound/gotsteak.wav");
-        soundURL[6] = getClass().getResource("/Sound/mousecaught.wav");
-        soundURL[7] = getClass().getResource("/Sound/mousetrap.wav");
+        soundURL[0] = getClass().getResource("/assets/Sound/themesong.wav");
+        soundURL[1] = getClass().getResource("/assets/Sound/doorunlock.wav");
+        soundURL[2] = getClass().getResource("/assets/Sound/gamelost.wav");
+        soundURL[3] = getClass().getResource("/assets/Sound/gamewon.wav");
+        soundURL[4] = getClass().getResource("/assets/Sound/gotcheese.wav");
+        soundURL[5] = getClass().getResource("/assets/Sound/gotsteak.wav");
+        soundURL[6] = getClass().getResource("/assets/Sound/mousecaught.wav");
+        soundURL[7] = getClass().getResource("/assets/Sound/mousetrap.wav");
     }
 
     public void setFile(int i){

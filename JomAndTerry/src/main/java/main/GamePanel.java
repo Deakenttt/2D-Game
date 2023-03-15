@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gameWinState = 4;
 
     public UI ui = new UI (this);
+    Sound sound = new Sound();
 
     // FPS
     int FPS = 60;
@@ -68,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setObject();
         assetSetter.setEnemy();
         gameState = titleState;
+        playMusic(0);
     }
 
     // Method of Starting Game Thread.
@@ -172,6 +174,19 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
+    }
+
+    public void playMusic(int i){
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+    public void stopMusic(){
+        sound.stop();
+    }
+    public void playSE(int i){
+        sound.setFile(i);
+        sound.play();
     }
 
 }
