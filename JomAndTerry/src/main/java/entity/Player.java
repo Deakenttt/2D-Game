@@ -119,7 +119,7 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You got a cheese!"); // Show the msg when touch object.
-                    if (gp.player.totalScore >= 6) {
+                    if (hasCheese == 6) {
                         gp.playSE(1);
                     }
                 }
@@ -131,7 +131,7 @@ public class Player extends Entity {
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You got a steak!"); // Show the msg when touch object.
-                    if (gp.player.totalScore >= 6) {
+                    if (hasCheese == 6) {
                         gp.playSE(1);
                     }
                 }
