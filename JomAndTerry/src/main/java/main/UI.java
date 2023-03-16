@@ -34,7 +34,7 @@ public class UI {
     public boolean gameLose = false;
 
 
-    // 0 = title screen, 1 = instructions screen
+    // 0 = title screen, 1 = instructions screen, 2 = Choose map screen
     public int titleScreenState = 0;
 
     public UI(GamePanel gp) {
@@ -128,6 +128,15 @@ public class UI {
         if (commandNum == 1) {
             g2.drawString(">", x - 40, y);
         }
+        //Home page
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Home Page";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if (commandNum == 2) {
+            g2.drawString(">", x - 40, y);
+        }
         pauseTimer();
         drawScoreAndTimer(g2);
 
@@ -171,12 +180,23 @@ public class UI {
         if (commandNum == 1) {
             g2.drawString(">", x - 40, y);
         }
+
+        //Home page
+        g2.setFont(g2.getFont().deriveFont(50f));
+        text = "Home Page";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if (commandNum == 2) {
+            g2.drawString(">", x - 40, y);
+        }
         pauseTimer();
         drawScoreAndTimer(g2);
     }
 
     public void drawTitleScreen() {
         if (titleScreenState == 0) {
+            // title screen page
             g2.setColor(new Color(0, 0, 0));
             g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
@@ -227,7 +247,6 @@ public class UI {
             }
 
         } else if (titleScreenState == 1) {
-
             // Instructions page
 
             g2.setColor(Color.white);
@@ -266,6 +285,57 @@ public class UI {
             y += gp.tileSize;
             g2.drawString(backText, x, y);
             if (commandNum == 1) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+        }else if (titleScreenState == 2) {
+            g2.setColor(Color.white);
+
+            g2.setFont(g2.getFont().deriveFont(60F));
+
+            String titleText = "Select the Level";
+            int x = getXforCenteredText(titleText);
+            int y = gp.tileSize * 3;
+            g2.drawString(titleText, x, y);
+
+            g2.setFont(g2.getFont().deriveFont(35F));
+            String instructionText = "Level 1 is Easy and for beginners. Level 2 is more dificult and for is for intermediates. Choose Wisely! Good Luck!";
+            int maxWidth = 800; // maximum width of text
+            String[] lines = getLines(instructionText, g2.getFontMetrics(), maxWidth);
+
+            x = getXforCenteredText(lines[0]); // use the x position of the first line for centering
+            y += gp.tileSize * 3;
+            for (int i = 0; i < lines.length; i++) {
+                g2.drawString(lines[i], x, y);
+                y += gp.tileSize; // increase y position for next line
+            }
+
+            g2.setFont(g2.getFont().deriveFont(40F));
+            String playText = "Level 1";
+            x = getXforCenteredText(playText);
+            y += gp.tileSize * 2;
+            g2.drawString(playText, x, y);
+
+            if (commandNum == 0) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+
+            g2.setFont(g2.getFont().deriveFont(40F));
+            playText = "Level 2";
+            x = getXforCenteredText(playText);
+            y += gp.tileSize;
+            g2.drawString(playText, x, y);
+
+            if (commandNum == 1) {
+                g2.drawString(">", x - gp.tileSize, y);
+            }
+
+            g2.setFont(g2.getFont().deriveFont(40F));
+            playText = "Go Back";
+            x = getXforCenteredText(playText);
+            y += gp.tileSize * 2;
+            g2.drawString(playText, x, y);
+
+            if (commandNum == 2) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
         }
