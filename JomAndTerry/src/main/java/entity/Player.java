@@ -5,7 +5,6 @@ import utility.KeyHandler;
 import utility.UtilityTool;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -33,10 +32,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         x = 0;
         y = 48;
-        speed = 48;
         direction = "down";
-        solidArea.width = 22;
-        solidArea.height = 22;
     }
 
     public void getPlayerImage() {
@@ -100,12 +96,13 @@ public class Player extends Entity {
         // CHECK OBJECT INTERACTION.
         // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
         setAction();
-        collisionOn = false;
-
-        gp.collisionChecker.checkObject(this, true);
-        gp.collisionChecker.checkEntity(this);
-
+        if (gp.player.doMove) {
+            collisionOn = false;
+            collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+            gp.collisionChecker.checkObject(this);
+        }
         super.update();
+
     }
 
 
@@ -153,8 +150,8 @@ public class Player extends Entity {
                 }
 
                 case "Hole" -> {
-                    if (totalScore >= 1) {
-                        gp.ui.showMessage("You escape successfully!", 4); // Show the msg when get the cheese.
+                    if (totalScore >= 6) {
+                        gp.ui.showMessage("You escape successfully!"); // Show the msg when get the cheese.
                         gp.ui.gameEnd = true; // End the game
                     } else {
                         gp.ui.showMessage("You need collect all the cheese!", 1); // Show the msg when get the cheese.
@@ -192,44 +189,4 @@ public class Player extends Entity {
         }
     }
 
-    public void draw(Graphics2D g2) {
-        BufferedImage image = null;
-
-        switch (direction) {
-            case "up" -> {
-                if (spriteNum == 1) {
-                    image = up1;
-                }
-                if (spriteNum == 2) {
-                    image = up2;
-                }
-            }
-            case "down" -> {
-                if (spriteNum == 1) {
-                    image = down1;
-                }
-                if (spriteNum == 2) {
-                    image = down2;
-                }
-            }
-            case "left" -> {
-                if (spriteNum == 1) {
-                    image = left1;
-                }
-                if (spriteNum == 2) {
-                    image = left2;
-                }
-            }
-            case "right" -> {
-                if (spriteNum == 1) {
-                    image = right1;
-                }
-                if (spriteNum == 2) {
-                    image = right2;
-                }
-            }
-        }
-
-        g2.drawImage(image, x, y, null);
-    }
 }

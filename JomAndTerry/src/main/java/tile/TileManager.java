@@ -63,8 +63,6 @@ public class TileManager {
             if(!Objects.equals(imageName, "floor")){
                 tile[index].exist = true;
             }
-            // if tile[index].image = "/assets/new_tiles/floor.png":  # add res on floor tile
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -110,7 +108,6 @@ public class TileManager {
     public void exit_update(){
         int tileNum = mapTileNum[19][14];
         tile[tileNum].collision = false;
-        System.out.println("tile collision " + tile[tileNum].collision);
     }
 
     // METHOD FOR DRAWING MAP WHEN ONLY IN A SCREEN.

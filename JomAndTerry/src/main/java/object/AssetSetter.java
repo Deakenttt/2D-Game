@@ -1,5 +1,7 @@
 package object;
 
+import javax.swing.border.EmptyBorder;
+
 import entity.Enemy;
 import main.GamePanel;
 
@@ -92,6 +94,8 @@ public class AssetSetter {
         } while (gp.tileManager.tile[tileNum].exist || objectsMap[row][col] != 0);  // there isn't anything existing on the object position
         gp.obj[i].x = (col ) * gp.tileSize;
         gp.obj[i].y = (row ) * gp.tileSize;
+        gp.obj[i].solidArea.x = gp.obj[i].x + gp.obj[i].solidAreaDefaultX;
+        gp.obj[i].solidArea.y = gp.obj[i].y + gp.obj[i].solidAreaDefaultY;
         objectsMap[row][col] = 1;
     }
 
