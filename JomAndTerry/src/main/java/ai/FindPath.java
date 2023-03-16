@@ -19,7 +19,7 @@ public class FindPath {
         instantiateNode();
     }
 
-    public void instantiateNode() {        // define all the nodes
+    public void instantiateNode() {  // define all the nodes
         node = new Node[gp.maxScreenCol][gp.maxScreenRow];
         for (int i = 0; i < gp.maxScreenCol; i++) {
             for (int j = 0; j < gp.maxScreenRow; j++) {
@@ -81,10 +81,13 @@ public class FindPath {
     }
 
     public boolean aStarSearch() {
+        int col, row, bestNodeIndex, bestNodefCost;
         while (!goalReached && step < 500) {
-            int col = currentNode.col;
-            int row = currentNode.row;
-
+            col = currentNode.col;
+            row = currentNode.row;
+            bestNodeIndex = 0;
+            bestNodefCost = 999;
+            
             // check current node and then go to the next node
             currentNode.checked = true;
             openList.remove(currentNode);
@@ -102,8 +105,7 @@ public class FindPath {
             if (col + 1 < gp.maxScreenCol)
                 openNode(node[col + 1][row]);
             //find Best node
-            int bestNodeIndex = 0;
-            int bestNodefCost = 999;
+
             for (int i = 0; i < openList.size(); i++) {
                 // compare the final cost between two nodes
                 if (openList.get(i).fCost < bestNodefCost) {

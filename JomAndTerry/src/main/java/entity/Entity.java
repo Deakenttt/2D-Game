@@ -35,12 +35,7 @@ public class Entity {
         solidArea.width = 22;
         solidArea.height = 22;
         speed = 48;
-        solidArea.x = x + solidArea.width;
-        solidArea.y = y + solidArea.height;
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
         setDefaultValues();
-        onPath = true;  // Using the A* setAction on SmCat
     }
 
     public void setDefaultValues() {
@@ -49,6 +44,9 @@ public class Entity {
         speed = 48;
         direction = "right";
         onPath = true;  // Using the A* setAction on SmCat
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+
     }
 
     public void setAction() {
@@ -56,10 +54,9 @@ public class Entity {
 
     public void update() {
         if (gp.player.doMove) {
-            System.out.println("x = " + x + " y = " + y + " solidArea.x = " +solidArea.x + " solidArea.y = " +solidArea.y);
+            System.out.println("x = " + x/48 + " y = " + y/48 + " solidArea.x = " +solidArea.x/48 + " solidArea.y = " +solidArea.y/48);
             System.out.println("hole: " + gp.obj[9]);
             if (!collisionOn) {
-
                 switch (direction) {
                     case "up":
                         y -= speed;
@@ -87,6 +84,7 @@ public class Entity {
 
             solidArea.x = x + solidArea.width;
             solidArea.y = y + solidArea.height;
+            System.out.println("done");
             
         }
     }

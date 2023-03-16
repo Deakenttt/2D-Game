@@ -22,6 +22,7 @@ public class CollisionChecker {
     public boolean checkTile(Entity entity) {
         int tileNum;
         simulateNode(entity);
+        System.out.println("checkTile, entity = " + entity.solidArea.x/48 + ", " + entity.solidArea.y/48 );
 
         tileNum = gp.tileManager.mapTileNum[entity.solidArea.x/entity.speed][entity.solidArea.y/entity.speed];
             if (gp.tileManager.tile[tileNum].collision) {
@@ -38,6 +39,7 @@ public class CollisionChecker {
     // WHEN PLAYER TOUCH THE OBJECT, IT RETURN THE INDEX OF THAT OBJECT.
     public void checkObject(Player entity) {
         simulateNode(entity);
+        System.out.println("checkObject, entity = " + entity.solidArea.x/48 + ", " + entity.solidArea.y/48 );
 
         for (int i = 0; i < gp.obj.length; i++) {
             // Checks that the object exists, that it intersects with the object
@@ -52,9 +54,10 @@ public class CollisionChecker {
     } 
 
     // NPC or Enemy
-    public void checkEntity(Entity entity) {
+    public Boolean checkEntity(Entity entity) {
         int index = 0;
         simulateNode(entity);
+        System.out.println("checkEntity, entity = " + entity.solidArea.x/48 + ", " + entity.solidArea.y/48 );
 
         for (int i = 0; i < gp.enemy.length; i++) {
 
@@ -63,6 +66,8 @@ public class CollisionChecker {
                     if (entity.solidArea.intersects(gp.enemy[i].solidArea)) {
                         entity.collisionOn = true;
                         System.out.println("CATS HAVE COLLIDED");
+                        return true;
+
                     }
                 }
                 else index = i;
@@ -77,7 +82,8 @@ public class CollisionChecker {
         if (entity.solidArea.intersects(gp.player.solidArea)) {
             System.out.println("player intersects at: " + gp.player.solidArea.x + ", " + gp.player.solidArea.y);
             gp.player.captured(index);        
-        }        
+        }
+        return false;
     }
 
     public void simulateNode(Entity entity){
@@ -100,6 +106,5 @@ public class CollisionChecker {
                 entity.solidArea.x += entity.speed;
                 break;
         }
-        System.out.println("simulating step = " + entity.solidArea.x + ", " + entity.solidArea.y );
     }
 }

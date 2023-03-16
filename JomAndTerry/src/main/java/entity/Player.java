@@ -25,14 +25,20 @@ public class Player extends Entity {
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
         super(gp);
+        solidArea.x = x + solidArea.width;
+        solidArea.y = y + solidArea.height;
         this.keyHandler = keyHandler;
         getPlayerImage();
+
     }
 
     public void setDefaultValues() {
         x = 0;
         y = 48;
         direction = "down";
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+
     }
 
     public void getPlayerImage() {
@@ -80,6 +86,11 @@ public class Player extends Entity {
             } else {
                 direction = "right";
             }
+            collisionOn = false;
+            collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+            gp.collisionChecker.checkObject(this);
+
+        
         } else {
             KeyHoldTimer = -1;
         }
@@ -96,12 +107,12 @@ public class Player extends Entity {
         // CHECK OBJECT INTERACTION.
         // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
         setAction();
-        if (gp.player.doMove) {
-            collisionOn = false;
-            collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-            gp.collisionChecker.checkObject(this);
+        if(doMove){
+            System.out.println("PERSON: ");
+
+            super.update();
         }
-        super.update();
+
 
     }
 
