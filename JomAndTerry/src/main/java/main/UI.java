@@ -1,7 +1,9 @@
 package main;
 
 import object.OBJ_Cheese;
+import object.OBJ_Hole;
 import object.OBJ_Steak;
+import object.OBJ_Trap;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -15,19 +17,20 @@ public class UI {
     Font arial_40, arial_80B;
     BufferedImage cheeseImg;
     BufferedImage steakImg;
+    BufferedImage trapImg;
+    BufferedImage doorImg;
 
 
-    public boolean gamefinished = false;
     public int commandNum = 0;
 
     // For showing message.
     public boolean messageOn = false;
     public String message = "";
     public int msgCounter = 0;
+    public int objectCollectType = 0;
 
     // For game win or game lose.
     public boolean gameEnd = false;
-    public boolean timeUp = false;
     public boolean gameLose = false;
 
 
@@ -44,6 +47,10 @@ public class UI {
         cheeseImg = cheese.image;
         OBJ_Steak steak = new OBJ_Steak();
         steakImg = steak.image;
+        OBJ_Trap trap = new OBJ_Trap();
+        trapImg = trap.image;
+        OBJ_Hole door = new OBJ_Hole();
+        doorImg = door.image;
     }
 
     public void draw(Graphics2D g2) {
@@ -224,12 +231,12 @@ public class UI {
             // Instructions page
 
             g2.setColor(Color.white);
-        
+
             g2.setFont(g2.getFont().deriveFont(60F));
 
             String titleText = "Instructions";
             int x = getXforCenteredText(titleText);
-            int y = gp.tileSize*3;
+            int y = gp.tileSize * 3;
             g2.drawString(titleText, x, y);
 
             g2.setFont(g2.getFont().deriveFont(24F));
@@ -238,7 +245,7 @@ public class UI {
             String[] lines = getLines(instructionText, g2.getFontMetrics(), maxWidth);
 
             x = getXforCenteredText(lines[0]); // use the x position of the first line for centering
-            y += gp.tileSize*3;
+            y += gp.tileSize * 3;
             for (int i = 0; i < lines.length; i++) {
                 g2.drawString(lines[i], x, y);
                 y += gp.tileSize; // increase y position for next line
@@ -247,7 +254,7 @@ public class UI {
             g2.setFont(g2.getFont().deriveFont(40F));
             String playText = "Play The Game";
             x = getXforCenteredText(playText);
-            y += gp.tileSize*2;
+            y += gp.tileSize * 2;
             g2.drawString(playText, x, y);
 
             if (commandNum == 0) {
@@ -264,7 +271,7 @@ public class UI {
         }
 
     }
-    
+
     private String[] getLines(String text, FontMetrics fontMetrics, int maxWidth) {
         List<String> lines = new ArrayList<>();
         String[] words = text.split("\\s+");
@@ -288,23 +295,68 @@ public class UI {
         return x;
     }
 
-    public void showMessage(String text) {
+    public void showMessage(String text, int objectType) {
         message = text;
         messageOn = true;
+        objectCollectType = objectType;
     }
 
     public void drawMessage(Graphics2D g2) {
         g2.setFont(arial_40);
-        g2.setColor(Color.WHITE);
+
+
+        //
+        int x = 0;
+        int y = gp.tileSize;
+        int width = gp.screenWidth - (gp.tileSize * 14);
+        int height = gp.tileSize * 2;
 
         if (messageOn) {
-            g2.drawString(message, gp.tileSize / 2, gp.tileSize / 2 * 5);
+
+            drawMsgWindow(x, y, width, height);
+
+            g2.setColor(Color.WHITE);
+            g2.drawString(message, gp.tileSize / 2, height + 5);
+
+            if (objectCollectType == 1) {
+                g2.drawImage(cheeseImg, width - 40, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
+            } else if (objectCollectType == 2) {
+                g2.drawImage(steakImg, width - 40, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
+            } else if (objectCollectType == 3) {
+                g2.drawImage(trapImg, width - 40, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
+            } else if (objectCollectType == 4) {
+                g2.drawImage(doorImg, width - 40, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
+            }
+
+
             msgCounter++;
             if (msgCounter > 120) {
                 msgCounter = 0;
                 messageOn = false;
             }
         }
+    }
+
+    public void drawMsgWindow(int x, int y, int width, int height) {
+
+        Color c = new Color(54, 46, 57, 255);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 5, 5);
+
+        c = new Color(205, 159, 100);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 5, 5);
+    }
+
+    public void resetMsg() {
+        msgCounter = 0;
+        messageOn = false;
+    }
+
+    public void resetGameState() {
+        gameLose = false;
+        gameEnd = false;
     }
 
     public double playTime = 0.0; // start at 0 seconds
