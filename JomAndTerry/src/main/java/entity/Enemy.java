@@ -94,11 +94,8 @@ public class Enemy extends Entity {
                     continue;
                 };
                 break;
-
             }
             System.out.println(collisionOn);
-
-            
     }
 
     public void update() {
@@ -107,12 +104,10 @@ public class Enemy extends Entity {
             setAction();
             super.update();    
         }
-
     }
 
     public void retry() {
         onPath = true;
-
     }
 
     public void searchPath(int goalCol, int goalRow, String[] pathOrderedList) {
@@ -122,21 +117,8 @@ public class Enemy extends Entity {
             int nextX = gp.findPath.pathList.get(0).col * gp.tileSize ;
             int nextY = gp.findPath.pathList.get(0).row * gp.tileSize ;
             System.out.println("nextX = " + nextX/48 + " solidArea.x = " + solidArea.x/48 + " nextY = " + nextY/48 + " solidArea.y = " + solidArea.y/48);
-            // Entity's solid Area pos
-            int enLeftX = solidArea.x;
-            // int enLeftX = x + solidArea.x;
-
-            // int enRightX = x + solidArea.x + solidArea.width;
-            int enRightX = solidArea.x + solidArea.width;
-
-            int enTopY = solidArea.y;
-            // int enTopY = y + solidArea.y;
-
-            // int enBottomY = y + solidArea.y + solidArea.height;
-            int enBottomY = solidArea.y + solidArea.height;
 
             Boolean takeNextX= Math.abs(nextX - solidArea.x) > Math.abs(nextY - solidArea.y);
-
             if (takeNextX) {
               pathOrderedList[0] = (nextX < solidArea.x) ? "left" : "right";
               pathOrderedList[3] = (nextX < solidArea.x) ? "right" : "left";
@@ -149,76 +131,11 @@ public class Enemy extends Entity {
               pathOrderedList[2] = (nextX < solidArea.x) ? "right" : "left";
             }
 
-    
-
-
-
-
-
-// 
-            // if (enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
-                // direction = "up";
-            // } else if (enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
-                // direction = "down";
-            // } else if (enTopY >= nextY && enBottomY < nextY + gp.tileSize) {
-                // left or right
-                // if (enLeftX > nextX) {
-                    // direction = "left";
-                // }
-                // if (enLeftX < nextX) {
-                    // direction = "right";
-                // }
-            // } else if (enTopY > nextY && enLeftX > nextX) {
-                // up or left
-                // direction = "up";
-                // collisionOn = false;
-                // collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-                // if (collisionOn)
-                    // direction = "left";
-            // } else if (enTopY > nextY && enLeftX < nextX) {
-                // direction = "up";
-                // collisionOn = false;
-                // collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-                // if (collisionOn)
-                    // direction = "right";
-            // } else if (enTopY < nextY && enLeftX > nextX) {
-                // direction = "down";
-                // collisionOn = false;
-                // collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-                // if (collisionOn)
-                    // direction = "left";
-            // } else if (enTopY < nextY && enLeftX < nextX) {
-                // direction = "down";
-                // collisionOn = false;
-                // collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-                // if (collisionOn)
-                    // direction = "right";
-            // }
             // If reach the goal STOP search
             int nextCol = gp.findPath.pathList.get(0).col;
             int nextRow = gp.findPath.pathList.get(0).row;
             if (nextCol == goalCol && nextRow == goalRow)
                 onPath = false;
         }
-
-}
-
-public void changeDirection(){
-    switch(direction){
-        case "right":
-            direction = "down";
-            break;
-        case "down" :
-            direction = "left";
-            break;
-        case "left":
-            direction = "up";
-            break;
-        case "up":
-            direction = "right";
-            break;
-
-        
     }
-}
 }
