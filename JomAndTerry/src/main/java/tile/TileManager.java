@@ -110,7 +110,6 @@ public class TileManager {
     public void exit_update(){
         int tileNum = mapTileNum[19][14];
         tile[tileNum].collision = false;
-        System.out.println("tile collision " + tile[tileNum].collision);
     }
 
     // METHOD FOR DRAWING MAP WHEN ONLY IN A SCREEN.

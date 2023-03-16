@@ -327,7 +327,7 @@ public class UI {
             double elapsedSeconds = (currentTime - (double) lastTime) / 1000.0; // convert elapsed time to seconds
             playTime += elapsedSeconds; // update playTime by adding elapsed time
             lastTime = currentTime; // update lastTime to current time
-            System.out.println("play time: " + playTime + " ela time: " + elapsedSeconds);
+            // System.out.println("play time: " + playTime + " ela time: " + elapsedSeconds);
         }
 
         g2.drawString("Time:  " + decimalFormat.format(playTime), 800, 40);

@@ -68,15 +68,10 @@ public class Enemy extends Entity {
 
         int goalCol = (gp.player.solidArea.x) / gp.tileSize;
         int goalRow = (gp.player.solidArea.y) / gp.tileSize;
-        //System.out.println("excauting the set AATION==========================================================================");
         searchPath(goalCol, goalRow);
         solidArea.x = x + solidArea.width;
         solidArea.y = y + solidArea.height;
 
-        // Rectangle solidAreaP = new Rectangle(gp.player.x,gp.player.y,30,30);
-        // Rectangle solidAreaC = new Rectangle(this.x,this.y,30,30);
-        // if(solidAreaP.intersects(solidAreaC))
-            // gp.ui.gameLose = true;
     }
 
     public void update() {

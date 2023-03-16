@@ -32,12 +32,11 @@ public class Entity {
         this.gp = gp;
         // SOLID AREA FOR COLLISION
         solidArea = new Rectangle(); // (x, y, width, height)
-        solidArea.x = 8;
-        solidArea.y = 16;
         solidArea.width = 22;
         solidArea.height = 22;
         speed = 48;
-
+        solidArea.x = x + solidArea.width;
+        solidArea.y = y + solidArea.height;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDefaultValues();
@@ -58,6 +57,7 @@ public class Entity {
     public void update() {
         if (gp.player.doMove) {
             System.out.println("x = " + x + " y = " + y + " solidArea.x = " +solidArea.x + " solidArea.y = " +solidArea.y);
+            System.out.println("hole: " + gp.obj[9]);
             if (!collisionOn) {
 
                 switch (direction) {

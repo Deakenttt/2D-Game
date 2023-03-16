@@ -1,5 +1,7 @@
 package object;
 
+import javax.swing.border.EmptyBorder;
+
 import entity.Enemy;
 import main.GamePanel;
 

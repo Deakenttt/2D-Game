@@ -92,12 +92,14 @@ public class Player extends Entity {
         // CHECK OBJECT INTERACTION.
         // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
         setAction();
+        if (gp.player.doMove) {
         solidArea.x = x + solidArea.width;
         solidArea.y = y + solidArea.height;
         collisionOn = false;
         collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
         gp.collisionChecker.checkObject(this);
         super.update();
+        }
     }
 
 
@@ -143,7 +145,7 @@ public class Player extends Entity {
                 }
 
                 case "Hole" -> {
-                    if (totalScore >= 1) {
+                    if (totalScore >= 6) {
                         gp.ui.showMessage("You escape successfully!"); // Show the msg when get the cheese.
                         gp.ui.gameEnd = true; // End the game
                     } else {
