@@ -88,9 +88,11 @@ public class Enemy extends Entity {
                 System.out.println("Direction set = " + direction );
                 collisionOn = false;
                 if(gp.collisionChecker.checkTile(this)){
+                    System.out.println("tile invalid");
                     continue;
                 }
                 if(gp.collisionChecker.checkEntity(this)){
+                    System.out.println("tile has cat");
                     continue;
                 };
                 break;
