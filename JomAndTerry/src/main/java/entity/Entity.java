@@ -84,7 +84,9 @@ public class Entity {
                 spriteCounter = 0;
             gp.assetSetter.steak_update();
             }
-            System.out.println("entity updated");
+
+            solidArea.x = x + solidArea.width;
+            solidArea.y = y + solidArea.height;
             
         }
     }

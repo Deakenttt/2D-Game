@@ -24,7 +24,6 @@ public class CollisionChecker {
         simulateNode(entity);
 
         tileNum = gp.tileManager.mapTileNum[entity.solidArea.x/entity.speed][entity.solidArea.y/entity.speed];
-        // tileNum = gp.tileManager.mapTileNum[(entity.solidArea.y - entity.solidArea.width)/entity.speed][(entity.solidArea.x - entity.solidArea.height)/entity.speed];
             if (gp.tileManager.tile[tileNum].collision) {
                     entity.solidArea.x = col; 
                     entity.solidArea.y = row;
@@ -47,7 +46,6 @@ public class CollisionChecker {
                 break;
             }
         }
-        
         entity.solidArea.x = col;
         entity.solidArea.y = row;
 
@@ -62,21 +60,24 @@ public class CollisionChecker {
 
             if (gp.enemy[i] != null) {
                 if(gp.enemy[i] != entity) {
-
                     if (entity.solidArea.intersects(gp.enemy[i].solidArea)) {
-                        // index = i;
                         entity.collisionOn = true;
+                        System.out.println("CATS HAVE COLLIDED");
                     }
                 }
                 else index = i;
              }
         }
         if (entity.solidArea.intersects(gp.player.solidArea)) {
+            System.out.println("player intersects at: " + gp.player.solidArea.x + ", " + gp.player.solidArea.y);
             gp.player.captured(index);
         }
-
         entity.solidArea.x = col;
         entity.solidArea.y = row;
+        if (entity.solidArea.intersects(gp.player.solidArea)) {
+            System.out.println("player intersects at: " + gp.player.solidArea.x + ", " + gp.player.solidArea.y);
+            gp.player.captured(index);        
+        }        
     }
 
     public void simulateNode(Entity entity){
@@ -99,5 +100,6 @@ public class CollisionChecker {
                 entity.solidArea.x += entity.speed;
                 break;
         }
+        System.out.println("simulating step = " + entity.solidArea.x + ", " + entity.solidArea.y );
     }
 }

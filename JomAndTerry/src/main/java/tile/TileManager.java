@@ -63,8 +63,6 @@ public class TileManager {
             if(!Objects.equals(imageName, "floor")){
                 tile[index].exist = true;
             }
-            // if tile[index].image = "/assets/new_tiles/floor.png":  # add res on floor tile
-
         } catch (IOException e) {
             e.printStackTrace();
         }

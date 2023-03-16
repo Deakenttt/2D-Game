@@ -25,10 +25,7 @@ public class Enemy extends Entity {
     }
 
     public void setDefaultValues() {
-        x = 13 * gp.tileSize;
-        y = 12 * gp.tileSize;
         getPlayerImage();
-
         direction = "right";
         onPath = true;  // Using the A* setAction on SmCat
     }
@@ -76,11 +73,14 @@ public class Enemy extends Entity {
 
     public void update() {
         setAction();
-        collisionOn = false;
-        collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-        gp.collisionChecker.checkEntity(this);
+        if (gp.player.doMove) {
 
-        super.update();    
+            collisionOn = false;
+            collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+            gp.collisionChecker.checkEntity(this);
+            
+            super.update();    
+        }
 
     }
 
