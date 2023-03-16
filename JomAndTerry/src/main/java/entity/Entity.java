@@ -54,8 +54,6 @@ public class Entity {
 
     public void update() {
         if (gp.player.doMove) {
-            System.out.println("x = " + x/48 + " y = " + y/48 + " solidArea.x = " +solidArea.x/48 + " solidArea.y = " +solidArea.y/48);
-            System.out.println("hole: " + gp.obj[9]);
             if (!collisionOn) {
                 switch (direction) {
                     case "up":
@@ -83,9 +81,7 @@ public class Entity {
             }
 
             solidArea.x = x + solidArea.width;
-            solidArea.y = y + solidArea.height;
-            System.out.println("done");
-            
+            solidArea.y = y + solidArea.height;            
         }
     }
 

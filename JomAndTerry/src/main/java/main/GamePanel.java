@@ -152,7 +152,6 @@ public class GamePanel extends JPanel implements Runnable {
                 || gameState == gameOverState || gameState == gameWinState) {
 
             tileManager.draw(g2);
-            // System.out.println("player ");
             player.draw(g2);
 
 

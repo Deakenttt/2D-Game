@@ -15,16 +15,12 @@ public class Enemy extends Entity {
 
     public Enemy(GamePanel gp, int col, int row){
         super(gp);
-
         x = col * gp.tileSize;
         y = row * gp.tileSize;
         solidArea.x = x + solidArea.width;
         solidArea.y = y + solidArea.height;
-        System.out.println("SolidArea.x = " + solidArea.x + " SolidArea.y = " + solidArea.y);
-
         getPlayerImage();
         speed = 48;
-        direction = "right";
         onPath = true;  // Using the A* setAction on SmCat
 
     }
@@ -85,24 +81,19 @@ public class Enemy extends Entity {
 
             for(int i = 0; i < 4; i++){
                 direction = pathOrderedList[i];
-                System.out.println("Direction set = " + direction );
                 collisionOn = false;
                 if(gp.collisionChecker.checkTile(this)){
-                    System.out.println("tile invalid");
                     continue;
                 }
                 if(gp.collisionChecker.checkEntity(this)){
-                    System.out.println("tile has cat");
                     continue;
                 };
                 break;
             }
-            System.out.println(collisionOn);
     }
 
     public void update() {
         if (gp.player.doMove) {
-            System.out.println("ENEMY: ");
             setAction();
             super.update();    
         }
@@ -118,7 +109,6 @@ public class Enemy extends Entity {
             // next world x and world y
             int nextX = gp.findPath.pathList.get(0).col * gp.tileSize ;
             int nextY = gp.findPath.pathList.get(0).row * gp.tileSize ;
-            System.out.println("nextX = " + nextX/48 + " solidArea.x = " + solidArea.x/48 + " nextY = " + nextY/48 + " solidArea.y = " + solidArea.y/48);
 
             Boolean takeNextX= Math.abs(nextX - solidArea.x) > Math.abs(nextY - solidArea.y);
             if (takeNextX) {

@@ -104,7 +104,6 @@ public class Player extends Entity {
         // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
         setAction();
         if(doMove){
-            System.out.println("PERSON: ");
             collisionOn = false;
             collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
             gp.collisionChecker.checkObject(this);
