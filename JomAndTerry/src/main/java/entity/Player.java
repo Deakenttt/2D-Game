@@ -86,10 +86,6 @@ public class Player extends Entity {
             } else {
                 direction = "right";
             }
-            collisionOn = false;
-            collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-            gp.collisionChecker.checkObject(this);
-
         
         } else {
             KeyHoldTimer = -1;
@@ -109,10 +105,12 @@ public class Player extends Entity {
         setAction();
         if(doMove){
             System.out.println("PERSON: ");
-
-            super.update();
+            collisionOn = false;
+            collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
+            gp.collisionChecker.checkObject(this);
+            gp.collisionChecker.checkEntity(this);
         }
-
+        super.update();
 
     }
 

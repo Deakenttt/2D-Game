@@ -61,32 +61,31 @@ public class CollisionChecker {
         simulateNode(entity);
         System.out.println("checkEntity, entity = " + entity.solidArea.x/48 + ", " + entity.solidArea.y/48 );
 
+
+        // Check collisions between entity and a cat
         for (int i = 0; i < gp.enemy.length; i++) {
 
             if (gp.enemy[i] != null) {
-                if(gp.enemy[i] != entity) {
-                    if (entity.solidArea.intersects(gp.enemy[i].solidArea)) {
+                if(gp.enemy[i] != entity && entity.solidArea.intersects(gp.enemy[i].solidArea)) {
                         entity.collisionOn = true;
-                        System.out.println("CATS HAVE COLLIDED");
                         entity.solidArea.x = col;
                         entity.solidArea.y = row;
+                        // check if entity is player
+                        if(entity == gp.player){
+                            gp.player.captured(i);
+                        }
                         return true;
-
-                    }
                 }
                 else index = i;
              }
         }
-        if (entity.solidArea.intersects(gp.player.solidArea)) {
+        // Check collisions between entity and person
+        if (entity.solidArea.intersects(gp.player.solidArea) && entity != gp.player) {
             System.out.println("player intersects at: " + gp.player.solidArea.x + ", " + gp.player.solidArea.y);
             gp.player.captured(index);
         }
         entity.solidArea.x = col;
         entity.solidArea.y = row;
-        if (entity.solidArea.intersects(gp.player.solidArea)) {
-            System.out.println("player intersects at: " + gp.player.solidArea.x + ", " + gp.player.solidArea.y);
-            gp.player.captured(index);        
-        }
         return false;
     }
 
