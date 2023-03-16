@@ -93,6 +93,10 @@ public class Player extends Entity {
 
     // Player bug: wall collision to the right stops it from going up and then collision to the left stops it from going down
     public void update() {
+        if (totalScore >= 6) {
+            gp.ui.showMessage("Door is open!", 5);
+        }
+
         // CHECK OBJECT INTERACTION.
         // GET THE INDEX OF OBJECT THAT BEING TOUCH BY PLAYER.
         setAction();
@@ -118,7 +122,7 @@ public class Player extends Entity {
                     totalScore++;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
-                    gp.ui.showMessage("You got a cheese!"); // Show the msg when touch object.
+                    gp.ui.showMessage("You got a cheese!", 1); // Show the msg when touch object.
                     if (hasCheese == 6 && gp.exitcondition) {
                         gp.playSE(1);
                         gp.exitcondition = false;
@@ -131,7 +135,7 @@ public class Player extends Entity {
                     totalScore += 5;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
-                    gp.ui.showMessage("You got a steak!"); // Show the msg when touch object.
+                    gp.ui.showMessage("You got a steak!", 2); // Show the msg when touch object.
                     if (hasCheese == 6 && gp.exitcondition) {
                         gp.playSE(1);
                         gp.exitcondition = false;
@@ -143,17 +147,17 @@ public class Player extends Entity {
                     totalScore -= 5;
                     gp.obj[i] = null;
                     System.out.println("score: " + totalScore);
-                    gp.ui.showMessage("You touched a trap!"); // Show the msg when touch object.
+                    gp.ui.showMessage("Ouch! You touched a trap!", 3); // Show the msg when touch object.
                     if (gp.player.totalScore < 0)
                         gp.ui.gameLose = true;
                 }
 
                 case "Hole" -> {
                     if (totalScore >= 1) {
-                        gp.ui.showMessage("You escape successfully!"); // Show the msg when get the cheese.
+                        gp.ui.showMessage("You escape successfully!", 4); // Show the msg when get the cheese.
                         gp.ui.gameEnd = true; // End the game
                     } else {
-                        gp.ui.showMessage("You need collect all the cheese!"); // Show the msg when get the cheese.
+                        gp.ui.showMessage("You need collect all the cheese!", 1); // Show the msg when get the cheese.
                     }
                 }
             }
@@ -173,17 +177,17 @@ public class Player extends Entity {
         hasCheese = 0; // resets the number of cheese.
         hasSteak = 0; // resets the number of steak.
         totalScore = 0; // resets the total score.
+        captureFlag = false;
         gp.ui.resumeTimer();
+        gp.ui.resetMsg();
+        gp.ui.resetGameState();
         gp.assetSetter.setObject();
         gp.assetSetter.setEnemy();
-        captureFlag = false;
-        gp.ui.gameLose = false;
-        gp.ui.gameEnd = false;
         gp.gameState = gp.gamePlay;
-        for(int i = 0; i<gp.enemy.length;i++) {
+        for (int i = 0; i < gp.enemy.length; i++) {
             gp.enemy[i].retry();
         }
-        for(int i = 0; i<gp.enemy.length;i++) {
+        for (int i = 0; i < gp.enemy.length; i++) {
             gp.enemy[i].retry();
         }
     }
