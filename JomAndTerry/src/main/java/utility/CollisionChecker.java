@@ -28,6 +28,8 @@ public class CollisionChecker {
             if (gp.tileManager.tile[tileNum].collision) {
                     entity.solidArea.x = col; 
                     entity.solidArea.y = row;
+                    System.out.println("checkTile after collision, entity = " + entity.solidArea.x/48 + ", " + entity.solidArea.y/48 );
+
                     return true;
                 }
         entity.solidArea.x = col;
@@ -66,6 +68,8 @@ public class CollisionChecker {
                     if (entity.solidArea.intersects(gp.enemy[i].solidArea)) {
                         entity.collisionOn = true;
                         System.out.println("CATS HAVE COLLIDED");
+                        entity.solidArea.x = col;
+                        entity.solidArea.y = row;
                         return true;
 
                     }
