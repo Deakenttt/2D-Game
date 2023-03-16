@@ -162,7 +162,7 @@ public class Player extends Entity {
 
                 case "Hole" -> {
                     if (totalScore >= 6) {
-                        gp.ui.showMessage("You escape successfully!"); // Show the msg when get the cheese.
+                        gp.ui.showMessage("You escape successfully!", i); // Show the msg when get the cheese.
                         gp.ui.gameEnd = true; // End the game
                     } else {
                         gp.ui.showMessage("You need collect all the cheese!", 1); // Show the msg when get the cheese.
