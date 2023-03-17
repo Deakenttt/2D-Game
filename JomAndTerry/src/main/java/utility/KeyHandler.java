@@ -143,7 +143,7 @@ public class KeyHandler implements KeyListener {
 
                     case KeyEvent.VK_ENTER:
                         if (gp.ui.commandNum == START_BUTTON)
-                            gp.ui.titleScreenState = INSTR_TITLE;
+                            gp.ui.titleScreenState = LEVEL_TITLE;
 
                         if (gp.ui.commandNum == BACK_BUTTON)
                             gp.ui.titleScreenState = MAIN_TITLE;
@@ -205,7 +205,7 @@ public class KeyHandler implements KeyListener {
                         System.exit(0);
                         break;
                     case 2: // back
-                        gp.gameState = gp.titleState;
+                        gp.gameState = GamePanel.titleState;
                         gp.ui.titleScreenState = 0;
                         break;
                     default: break;
