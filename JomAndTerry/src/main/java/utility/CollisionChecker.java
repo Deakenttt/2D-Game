@@ -23,14 +23,14 @@ public class CollisionChecker {
     public boolean checkTile(Entity entity) {
         int tileNum;
         simulateNode(entity);
-
-        tileNum = gp.tileManager.mapTileNum[entity.solidArea.x/entity.speed][entity.solidArea.y/entity.speed];
+        if ((entity.solidArea.x/entity.speed) >= 0){
+            tileNum = gp.tileManager.mapTileNum[entity.solidArea.x/entity.speed][entity.solidArea.y/entity.speed];
             if (gp.tileManager.tile[tileNum].collision) {
-                    entity.solidArea.x = col; 
-                    entity.solidArea.y = row;
-
-                    return true;
-                }
+                entity.solidArea.x = col; 
+                entity.solidArea.y = row;
+                return true;
+            }
+        }
         entity.solidArea.x = col;
         entity.solidArea.y = row;
         return false;
