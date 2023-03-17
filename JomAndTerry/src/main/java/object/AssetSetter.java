@@ -1,7 +1,5 @@
 package object;
 
-import javax.swing.border.EmptyBorder;
-
 import entity.Enemy;
 import main.GamePanel;
 
@@ -11,7 +9,7 @@ import main.GamePanel;
 public class AssetSetter {
     GamePanel gp;
     int[][] objectsMap;
-
+   QuadRangeChooser chooser = new QuadRangeChooser();
 
     public int[] destHolder;  // store x, y pos
     int steakCounter = 2;
@@ -57,8 +55,8 @@ public class AssetSetter {
     }
 
     public void setEnemy(){
-        gp.enemy[0] = new Enemy(gp, 14, 12);
-        gp.enemy[1] = new Enemy(gp, 8, 10);
+        gp.enemy[0] = new Enemy(gp, 1, 14);
+        gp.enemy[1] = new Enemy(gp, 18, 1);
     }
 
     public void exit_open(){
@@ -77,26 +75,29 @@ public class AssetSetter {
             else if (gp.obj[6] != null){
                 gp.obj[6] = null;
             }
-            steakCounter = getRandomNumber(4, 8);
+            steakCounter = getRandomNumber(3, 7);
         }
         steakCounter--;
     }
 
     public void object_setter(int i){
-        int tileNum;
-        int row;
-        int col;
-
+        int row, col;
+        int[] quad = chooser.getNextRange();
         do {
-            row = getRandomNumber(1, 15);
-            col = getRandomNumber(1, 15);
-            tileNum = gp.tileManager.mapTileNum[col][row];
-        } while (gp.tileManager.tile[tileNum].exist || objectsMap[row][col] != 0);  // there isn't anything existing on the object position
-        gp.obj[i].x = (col ) * gp.tileSize;
-        gp.obj[i].y = (row ) * gp.tileSize;
+            row = getRandomNumber(quad[0], quad[1]);
+            col = getRandomNumber(quad[2], quad[3]);
+        } while (!isTileAvailable(col, row));  // there isn't anything existing on the object position
+
+        gp.obj[i].x = (col) * gp.tileSize;
+        gp.obj[i].y = (row) * gp.tileSize;
         gp.obj[i].solidArea.x = gp.obj[i].x + gp.obj[i].solidAreaDefaultX;
         gp.obj[i].solidArea.y = gp.obj[i].y + gp.obj[i].solidAreaDefaultY;
-        objectsMap[row][col] = 1;
+        objectsMap[col][row] = 1;
+    }
+
+    private boolean isTileAvailable(int col, int row) {
+        int tileNum = gp.tileManager.mapTileNum[col][row];
+        return !gp.tileManager.tile[tileNum].collision && objectsMap[col][row] == 0;
     }
 
 }

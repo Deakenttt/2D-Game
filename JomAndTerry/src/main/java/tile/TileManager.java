@@ -60,8 +60,8 @@ public class TileManager {
             tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/" + imageName + ".png")));
             tile[index].image = utilityTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
-            if(!Objects.equals(imageName, "floor")){
-                tile[index].exist = true;
+            if(Objects.equals(imageName, "floor")){
+                tile[index].objectEnabled = true;
             }
         } catch (IOException e) {
             e.printStackTrace();
