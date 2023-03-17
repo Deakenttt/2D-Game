@@ -1,5 +1,9 @@
 package ai;
-
+/**
+* Creates a new Node object with the given col and row values.
+* @param col The column value of the node.
+* @param row The row value of the node.
+*/
 public class Node {
     Node parent;
     public int row;

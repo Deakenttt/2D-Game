@@ -160,6 +160,7 @@ public class FindPath {
             currentNode = openList.get(bestNodeIndex);
             if (currentNode == goalNode) {
                 goalReached = true; 
+
                 trackPath();
             }
             step++;
@@ -180,6 +181,7 @@ public class FindPath {
             openList.add(node);
         }
     }
+    
     /**
     * Tracks the path from the goal node back to the start node by following the parent links from each node in the path.
     * The path is stored in the pathList field, which contains the nodes in reverse order starting with the goal node and
