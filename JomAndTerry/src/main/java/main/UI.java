@@ -137,6 +137,15 @@ public class UI {
         if (commandNum == 2) {
             g2.drawString(">", x - 40, y);
         }
+
+        //change the level
+        text = "Change Level";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if (commandNum == 3) {
+            g2.drawString(">", x - 40, y);
+        }
         pauseTimer();
         drawScoreAndTimer(g2);
 
@@ -188,6 +197,16 @@ public class UI {
         y += 55;
         g2.drawString(text, x, y);
         if (commandNum == 2) {
+            g2.drawString(">", x - 40, y);
+        }
+        g2.setFont(g2.getFont().deriveFont(50f));
+
+        //change the level
+        text = "Change Level";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if (commandNum == 3) {
             g2.drawString(">", x - 40, y);
         }
         pauseTimer();

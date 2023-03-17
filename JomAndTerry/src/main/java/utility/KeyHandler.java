@@ -244,12 +244,12 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_W:
                 gp.ui.commandNum--;
                 if (gp.ui.commandNum < 0) 
-                    gp.ui.commandNum = 2;
+                    gp.ui.commandNum = 3;
                 break;
 
             case KeyEvent.VK_S:
                 gp.ui.commandNum++;
-                if (gp.ui.commandNum > 2) 
+                if (gp.ui.commandNum > 3) 
                     gp.ui.commandNum = 0;
                 break;
 
@@ -266,6 +266,10 @@ public class KeyHandler implements KeyListener {
                         gp.gameState = MAIN_TITLE;
                         gp.ui.titleScreenState = MAIN_TITLE;
                         break;
+                    case 3: // choose level
+                    gp.gameState = MAIN_TITLE;
+                    gp.ui.titleScreenState = LEVEL_TITLE;
+                    break;
                 }
                 break;
             default: break;
