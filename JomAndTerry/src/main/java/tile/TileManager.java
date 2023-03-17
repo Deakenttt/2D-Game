@@ -121,12 +121,19 @@ public class TileManager {
         }
     }
 
+    /**
+     * This is a method for trigger the tile's collision on the exit position to false.
+     */
     public void exit_update() {
         int tileNum = mapTileNum[19][14];
         tile[tileNum].collision = false;
     }
 
-    // METHOD FOR DRAWING MAP WHEN ONLY IN A SCREEN.
+    /**
+     * This is a method for drawing the map for the game.
+     *
+     * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
+     */
     public void draw(Graphics2D g2) {
 
         int col = 0;
