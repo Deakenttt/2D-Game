@@ -121,7 +121,7 @@ public class GamePanel extends JPanel implements Runnable {
         
         if (gameState == gamePlay) {
             player.update();
-            if (player.totalScore >= 6){
+            if (player.hasCheese >= 6){
                 assetSetter.exit_open();
             }
 
