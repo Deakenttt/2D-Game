@@ -31,7 +31,6 @@ public class TileManager {
 
         getTileImage(); // Set each tiles bufferedImage.
         String fileName = "/assets/Map/map0%d.txt".formatted(gp.levelState);
-        System.out.println(fileName);
         loadMap(fileName); // Load a map text into 2D array and draw the map.
         int tileNum = mapTileNum[0][0];
         tile[tileNum].collision = true;

@@ -70,7 +70,6 @@ public class Entity {
         UtilityTool utilityTool = new UtilityTool();
         BufferedImage image = null;
         try {
-            System.out.println("imageName " + imageName);
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/%s/%s.png".formatted(name, imageName))));
             image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {

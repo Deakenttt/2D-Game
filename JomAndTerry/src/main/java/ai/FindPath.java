@@ -112,9 +112,8 @@ public class FindPath {
     * @return true if the goal node is reached, false otherwise
     */
     public boolean aStarSearch() {
-        System.out.println("A START SEARCH STARTING");
-
         int col, row, bestNodeIndex, bestNodefCost;
+
         while (!goalReached && step < 500) {
             col = currentNode.col;
             row = currentNode.row;
@@ -161,8 +160,6 @@ public class FindPath {
             currentNode = openList.get(bestNodeIndex);
             if (currentNode == goalNode) {
                 goalReached = true; 
-                System.out.println("col: %d row: %d".formatted(col, row));
-
                 trackPath();
             }
             step++;
