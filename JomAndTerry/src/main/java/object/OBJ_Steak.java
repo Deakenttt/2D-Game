@@ -4,6 +4,9 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * @Des This is a steak class inheritance from SuperObject.
+ */
 public class OBJ_Steak extends SuperObject {
     public OBJ_Steak() {
 

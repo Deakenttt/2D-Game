@@ -4,6 +4,9 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * @Des This is a hole class inheritance from SuperObject.
+ */
 public class OBJ_Hole extends SuperObject {
     public OBJ_Hole() {
 
@@ -18,5 +21,5 @@ public class OBJ_Hole extends SuperObject {
         } catch (IOException e) {
             e.printStackTrace();
         }
-  }
+    }
 }

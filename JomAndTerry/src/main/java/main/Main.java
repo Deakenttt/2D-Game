@@ -3,10 +3,10 @@ package main;
 import javax.swing.*;
 
 /**
+ * @author Katherine Lee, Deep Bhimani, Wendi Xiao, Beibei Tang
  * @title Jom and Terry
- * @des This is a project for CMPT 276
- * @author  Wendi Xiao, Katherine Lee, Deep Bhimani, Beibei Tang
- * @since  02-23-2023
+ * @des Project for CMPT 276
+ * @since 02-23-2023
  */
 public class Main {
     public static void main(String[] args) {
