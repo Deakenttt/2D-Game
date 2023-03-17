@@ -13,6 +13,18 @@ public class KeyHandler implements KeyListener {
 
     public GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed;
+    public static final int MAIN_TITLE = 0;
+    public static final int INSTR_TITLE = 1;
+    public static final int LEVEL_TITLE = 2;
+
+    public static final int GAME_PLAY =1;
+
+    public static final int START_BUTTON = 0;
+    public static final int INSTR_BUTTON = 1;
+    public static final int QUIT_BUTTON = 2;
+    public static final int BACK_BUTTON = 1;
+
+
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -26,149 +38,37 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        int code = e.getKeyCode(); // Returns the integer keyCode associated with the key in this event.
-
-        //Title page arrow
-        if (gp.gameState == gp.titleState) {
-
-            if (gp.ui.titleScreenState == 0) {
-                if (code == KeyEvent.VK_W) {
-                    gp.ui.commandNum--;
-                    if (gp.ui.commandNum < 0) {
-                        gp.ui.commandNum = 2;
-                    }
-                }
-                if (code == KeyEvent.VK_S) {
-                    gp.ui.commandNum++;
-                    if (gp.ui.commandNum > 2) {
-                        gp.ui.commandNum = 0;
-                    }
-                }
-                if (code == KeyEvent.VK_ENTER) {
-                    if (gp.ui.commandNum == 0) {
-                        gp.ui.titleScreenState = 2;
-                        //gp.gameState = gp.gamePlay; //this displays the game board and starts the game
-                    }
-                    if (gp.ui.commandNum == 1) {
-                        gp.ui.titleScreenState = 1;
-                    }
-                    if (gp.ui.commandNum == 2) {
-                        System.exit(0);
-                    }
-                }
-            } else if (gp.ui.titleScreenState == 1) {
-                if (code == KeyEvent.VK_W) {
-                    gp.ui.commandNum--;
-                    if (gp.ui.commandNum < 0) {
-                        gp.ui.commandNum = 1;
-                    }
-                }
-                if (code == KeyEvent.VK_S) {
-                    gp.ui.commandNum++;
-                    if (gp.ui.commandNum > 1) {
-                        gp.ui.commandNum = 0;
-                    }
-                }
-                if (code == KeyEvent.VK_ENTER) {
-                    if (gp.ui.commandNum == 0) {
-                        gp.retry();
-                    }
-                    if (gp.ui.commandNum == 1) {
-                        gp.ui.titleScreenState = 0;
-                    }
-                }
-            } else if (gp.ui.titleScreenState == 2) {
-                if (code == KeyEvent.VK_W) {
-                    gp.ui.commandNum--;
-                    if (gp.ui.commandNum < 0) {
-                        gp.ui.commandNum = 2;
-                    }
-                }
-                if (code == KeyEvent.VK_S) {
-                    gp.ui.commandNum++;
-                    if (gp.ui.commandNum > 2) {
-                        gp.ui.commandNum = 0;
-                    }
-                }
-                if (code == KeyEvent.VK_ENTER) {
-                    if (gp.ui.commandNum == 0) {
-                        //this displays the game board and starts the game
-                        gp.retry();
-                    }
-                    if (gp.ui.commandNum == 1) {
-                        //new map will go here
-                        //gp.retry();
-                    }
-                    if (gp.ui.commandNum == 2) {
-                        gp.ui.titleScreenState = 0;
-                    }
-                }
-            }
-        } else if (gp.gameState == gp.gameOverState) {
-            if (code == KeyEvent.VK_W) {
-                gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) {
-                    gp.ui.commandNum = 2;
-                }
-            }
-            if (code == KeyEvent.VK_S) {
-                gp.ui.commandNum++;
-                if (gp.ui.commandNum > 2) {
-                    gp.ui.commandNum = 0;
-                }
-            }
-            if (code == KeyEvent.VK_ENTER) {
-                if (gp.ui.commandNum == 0) {
-                    gp.retry();
-                    //gp.gameState = gp.gamePlay;
-                }
-                if (gp.ui.commandNum == 1) {
-                    System.exit(0);
-                }
-                if (gp.ui.commandNum == 2) {
-                    gp.gameState = gp.titleState;
-                    gp.ui.titleScreenState = 0;
-                }
-
-            }
-
-        } else if (gp.gameState == gp.gameWinState) {
-            if (code == KeyEvent.VK_W) {
-                gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) {
-                    gp.ui.commandNum = 2;
-                }
-            }
-            if (code == KeyEvent.VK_S) {
-                gp.ui.commandNum++;
-                if (gp.ui.commandNum > 2) {
-                    gp.ui.commandNum = 0;
-                }
-            }
-            if (code == KeyEvent.VK_ENTER) {
-                if (gp.ui.commandNum == 0) {
-                    gp.retry();
-                }
-                if (gp.ui.commandNum == 1) {
-                    System.exit(0);
-                }
-                if (gp.ui.commandNum == 2) {
-                    gp.gameState = gp.titleState;
-                    gp.ui.titleScreenState = 0;
-                }
-            }
+        int keyCode = e.getKeyCode(); // Returns the integer keyCode associated with the key in this event.
+        switch(gp.gameState){
+            case(GamePanel.titleState):
+                handleTitleStateInput(keyCode);
+                break;
+            case(GamePanel.gamePlay):
+                handlePlayStateInput(keyCode);
+                break;
+            case(GamePanel.gameOverState):
+                handleOverStateInput(keyCode);
+                break;
+            case(GamePanel.gameWinState):
+                handleWinStateInput(keyCode);
+                break;
+            case(GamePanel.gamePause):
+                handleOverStateInput(keyCode);
+                break;
+            default:
+                break;
         }
 
-        if (code == KeyEvent.VK_W) {
+        if (keyCode == KeyEvent.VK_W) {
             upPressed = true;
         }
-        if (code == KeyEvent.VK_S) {
+        if (keyCode == KeyEvent.VK_S) {
             downPressed = true;
         }
-        if (code == KeyEvent.VK_A) {
+        if (keyCode == KeyEvent.VK_A) {
             leftPressed = true;
         }
-        if (code == KeyEvent.VK_D) {
+        if (keyCode == KeyEvent.VK_D) {
             rightPressed = true;
         }
     }
@@ -189,6 +89,165 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D) {
             rightPressed = false;
         }
+    }
+
+    private void handleTitleStateInput(int keyCode) {
+        switch(gp.ui.titleScreenState){
+            case(MAIN_TITLE):
+                switch(keyCode){
+                    case(KeyEvent.VK_W):
+                        gp.ui.commandNum--;
+                        if (gp.ui.commandNum < 0)
+                            gp.ui.commandNum = 2;
+                        break;
+
+                    case(KeyEvent.VK_S):
+                        gp.ui.commandNum++;
+                        if (gp.ui.commandNum > 2) 
+                            gp.ui.commandNum = 0;
+                        break;
+
+                    case(KeyEvent.VK_ENTER):
+                        switch(gp.ui.commandNum){
+                            case START_BUTTON: // 
+                                gp.ui.titleScreenState = LEVEL_TITLE;
+                                break;
+
+                            case INSTR_BUTTON:
+                                gp.ui.titleScreenState = INSTR_TITLE;
+                                break;
+
+                            case QUIT_BUTTON:
+                                System.exit(0);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+            break; // End of Main Title
+            
+            case INSTR_TITLE:
+                switch(keyCode){
+                    case KeyEvent.VK_W:
+                        gp.ui.commandNum--;
+                        if (gp.ui.commandNum < 0) 
+                            gp.ui.commandNum = 1;
+                        break;
+
+                    case KeyEvent.VK_S:
+                        gp.ui.commandNum++;
+                        if (gp.ui.commandNum > 1) 
+                            gp.ui.commandNum = 0;
+                        break;
+
+                    case KeyEvent.VK_ENTER:
+                        if (gp.ui.commandNum == START_BUTTON)
+                            gp.ui.titleScreenState = INSTR_TITLE;
+
+                        if (gp.ui.commandNum == BACK_BUTTON)
+                            gp.ui.titleScreenState = MAIN_TITLE;
+                        break;            
+                    }
+                break;
+
+            case LEVEL_TITLE:
+                switch(keyCode){
+                    case(KeyEvent.VK_W): 
+                        gp.ui.commandNum--;
+                        if (gp.ui.commandNum < 0) 
+                            gp.ui.commandNum = 2;
+                        break;
+                
+                    case(KeyEvent.VK_S):
+                        gp.ui.commandNum++;
+                        if (gp.ui.commandNum > 2)
+                            gp.ui.commandNum = 0;
+                        break;
+                
+                    case KeyEvent.VK_ENTER:
+                        //this displays the game board and starts the game
+                        if (gp.ui.commandNum == 0) 
+                            gp.retry(1);
+                        if (gp.ui.commandNum == 1)
+                            gp.retry(2);
+
+                        if (gp.ui.commandNum == 2) // go back to title page
+                            gp.ui.titleScreenState = MAIN_TITLE;
+                        break;
+
+                    default: break;
+            }
+            default: break;
+
+        }
+
+    }
+    private void handleWinStateInput(int keyCode) {
+        switch(keyCode){
+            case KeyEvent.VK_W:
+                gp.ui.commandNum--;
+                if (gp.ui.commandNum < 0) 
+                    gp.ui.commandNum = 2;
+                break;
+        
+            case KeyEvent.VK_S:
+                gp.ui.commandNum++;
+                if (gp.ui.commandNum > 2)
+                    gp.ui.commandNum = 0;
+                break;
+            case KeyEvent.VK_ENTER:
+                switch(gp.ui.commandNum){
+                    case 0: // retry
+                        gp.retry(1);
+                        break;
+                    case 1: //quit
+                        System.exit(0);
+                        break;
+                    case 2: // back
+                        gp.gameState = gp.titleState;
+                        gp.ui.titleScreenState = 0;
+                        break;
+                    default: break;
+                }
+            default: break;
+                
+        }
+    }   
+    private void handleOverStateInput(int keyCode) {
+        switch(keyCode) {
+            case KeyEvent.VK_W:
+                gp.ui.commandNum--;
+                if (gp.ui.commandNum < 0) 
+                    gp.ui.commandNum = 2;
+                break;
+
+            case KeyEvent.VK_S:
+                gp.ui.commandNum++;
+                if (gp.ui.commandNum > 2) 
+                    gp.ui.commandNum = 0;
+                break;
+
+            case KeyEvent.VK_ENTER:
+                switch(gp.ui.commandNum){
+                    case 0: // retry
+                        gp.retry(gp.levelState);
+                        //gp.gameState = gp.gamePlay;
+                        break;
+                    case 1: //quit
+                        System.exit(0);
+                        break;         
+                    case 2: // back
+                        gp.gameState = MAIN_TITLE;
+                        gp.ui.titleScreenState = MAIN_TITLE;
+                        break;
+                }
+                break;
+            default: break;
+        }
+    }
+    private void handlePlayStateInput(int keyCode) {
+
     }
 }
 

@@ -57,18 +57,18 @@ public class UI {
         this.g2 = g2;
 
         g2.setColor(Color.white);
-        if (gp.gameState == gp.titleState) {
+        if (gp.gameState == GamePanel.titleState) {
             drawTitleScreen();
         }
 
         // Game state is gamePause.
-        if (gp.gameState == gp.gamePause) {
+        if (gp.gameState == GamePanel.gamePause) {
 
             drawGamePauseScreen(g2);
         }
 
         // Game state is gamePlay.
-        if (gp.gameState == gp.gamePlay) {
+        if (gp.gameState == GamePanel.gamePlay) {
 
             // SCORE AND TIMER
             drawScoreAndTimer(g2);
@@ -76,14 +76,14 @@ public class UI {
         }
 
         // Game state is gameOverState.
-        if (gp.gameState == gp.gameOverState) {
+        if (gp.gameState == GamePanel.gameOverState) {
 
             gameOverScreen();
         }
 
 
         // Game state is gameOverState.
-        if (gp.gameState == gp.gameWinState) {
+        if (gp.gameState == GamePanel.gameWinState) {
 
             gameWinScreen();
         }
@@ -479,14 +479,14 @@ public class UI {
         if (gameEnd) {
 
             // gp.gameThread = null;
-            gp.gameState = gp.gameWinState;
+            gp.gameState = GamePanel.gameWinState;
             gp.playSE(3);
         }
 
         if (gameLose) {
 
             // gp.gameThread = null;
-            gp.gameState = gp.gameOverState;
+            gp.gameState = GamePanel.gameOverState;
             gp.playSE(2);
         }
 

@@ -30,12 +30,12 @@ public class GamePanel extends JPanel implements Runnable {
 
     // GAME STATE
     public int gameState;
-    public final int titleState = 0;
-    public final int gamePlay = 1;
-    public final int gamePause = 2;
-    public final int gameOverState = 3;
-    public final int gameWinState = 4;
-    public final int level = 0;
+    public static final int titleState = 0;
+    public static final int gamePlay = 1;
+    public static final int gamePause = 2;
+    public static final int gameOverState = 3;
+    public static final int gameWinState = 4;
+    public int levelState = 0;
 
 
     public UI ui = new UI (this);
@@ -69,8 +69,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Method of setting up object placement.
     public void setUpGame() {
-        assetSetter.setObject();
-        assetSetter.setEnemy();
         gameState = titleState;
         playMusic(0);
     }
@@ -89,7 +87,6 @@ public class GamePanel extends JPanel implements Runnable {
         // System.nanoTime(); // Returns the current value of the running Java Virtual Machine's high-resolution time source in nanoseconds.
         double drawInterval = 1000000000 / FPS; // 0.01666 seconds
         double nextDrawTime = System.nanoTime() + drawInterval; // The allocated time for single loop is 0.01666 seconds.
-
         // Game Loop
         while (gameThread != null) {
 
@@ -194,6 +191,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void retry(int level) {
+        levelState = level;
+        tileManager.setUpMap();
         player.setDefaultValues();
         ui.resumeTimer();
         ui.resetMsg();

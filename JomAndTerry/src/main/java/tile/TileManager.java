@@ -22,16 +22,19 @@ public class TileManager {
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
+
+    }
+
+    public void setUpMap(){
         tile = new Tile[10];
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow]; // mapTileNum will store all numbers in map.txt.
 
         getTileImage(); // Set each tiles bufferedImage.
-        int i = gp.level;
-        String fileName = "/assets/Map/map0%d.txt".formatted(i);
+        String fileName = "/assets/Map/map0%d.txt".formatted(gp.levelState);
+        System.out.println(fileName);
         loadMap(fileName); // Load a map text into 2D array and draw the map.
         int tileNum = mapTileNum[0][0];
         tile[tileNum].collision = true;
-
     }
 
     public void getTileImage() {
