@@ -25,7 +25,7 @@ public class TileManager {
 
     }
 
-    public void setUpMap(){
+    public void setUpMap() {
         tile = new Tile[10];
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow]; // mapTileNum will store all numbers in map.txt.
 
@@ -37,6 +37,9 @@ public class TileManager {
         tile[tileNum].collision = true;
     }
 
+    /**
+     * This is a method for calling the setup methods for all tiles.
+     */
     public void getTileImage() {
 
         setup(0, "floor", false);
@@ -49,11 +52,15 @@ public class TileManager {
         setup(7, "plant", true);
         setup(8, "floor", false);
         setup(9, "floor", true);
-
-
     }
 
-    // METHOD OF SETTING UP THE IMAGE FOR TILES.
+    /**
+     * This is a method for getting all buffered images files into each tile objects.
+     *
+     * @param index     Index for the tile[] array that stores all type of tiles. e.g. floor, wall, ...etc.
+     * @param imageName The image's file name.
+     * @param collision The collision attributes of tile object.
+     */
     public void setup(int index, String imageName, boolean collision) {
 
         UtilityTool utilityTool = new UtilityTool();
@@ -65,7 +72,8 @@ public class TileManager {
             tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/" + imageName + ".png")));
             tile[index].image = utilityTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
-            if(Objects.equals(imageName, "floor")){
+
+            if (Objects.equals(imageName, "floor")) {
                 tile[index].objectEnabled = true;
             }
         } catch (IOException e) {
@@ -73,7 +81,11 @@ public class TileManager {
         }
     }
 
-    // METHOD OF LOADING MAP FILE INTO 2D ARRAY.
+    /**
+     * This is a method for loading a map.txt file into a 2D array that stored all tile's type in different position.
+     *
+     * @param filePath The map.txt files.
+     */
     public void loadMap(String filePath) {
         try {
 
@@ -107,10 +119,9 @@ public class TileManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        
     }
-    public void exit_update(){
+
+    public void exit_update() {
         int tileNum = mapTileNum[19][14];
         tile[tileNum].collision = false;
     }
@@ -128,7 +139,7 @@ public class TileManager {
             g2.drawRect(x, y, 48, 48);
             g2.drawImage(tile[tileNum].image, x, y, null);
             col++;
-            
+
             x += gp.tileSize;
             if (col == gp.maxScreenCol) {
                 col = 0;

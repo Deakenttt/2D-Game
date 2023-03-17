@@ -6,6 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="8b84b050-2c49-4765-8618-9bb345bd1d0f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/OBJ_Cheese.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Cheese.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/OBJ_Hole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Hole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/OBJ_Steak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Steak.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/OBJ_Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/OBJ_Trap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/SuperObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/SuperObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tile/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tile/TileManager.java" afterDir="false" />
+>>>>>>> javaDoc-woody
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="woody1.7" />
+        <entry key="$PROJECT_DIR$/.." value="woodyJavaDoc" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
