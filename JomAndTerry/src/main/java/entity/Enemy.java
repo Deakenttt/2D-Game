@@ -62,8 +62,8 @@ public class Enemy extends Entity {
     public void update() {
         if (gp.player.doMove) {
             setAction();
-            super.update();    
         }
+        super.update();    
     }
 
 

@@ -259,7 +259,11 @@ public class UI {
             g2.drawString(titleText, x, y);
 
             g2.setFont(g2.getFont().deriveFont(24F));
-            String instructionText = "You are the mouse (Terry). Collect 6 cheeses to unlock the exit door. Avoid the smart cat (Jom) and the dumb cats (Jom's friends). Cheese = 1 point, Steak (bonus) = 5 points, mouse trap (punishment) = -5 points. Negative points = Automatic loss. Exit with max points and the fastest time, there is no time limit. Enjoy!";
+            String instructionText =    "You are the mouse (Terry). Collect 6 cheeses to unlock the exit door. "+
+                                        "Avoid the smart cat (Jom) and the dumb cats (Jom's friends). " +
+                                        "Cheese = 1 point, Steak (bonus) = 5 points, mouse trap (punishment) = -5 points. "+
+                                        "Negative points = Automatic loss. " +
+                                        "Exit with max points and the fastest time, there is no time limit. Enjoy!";
             int maxWidth = 800; // maximum width of text
             String[] lines = getLines(instructionText, g2.getFontMetrics(), maxWidth);
 
@@ -298,7 +302,9 @@ public class UI {
             g2.drawString(titleText, x, y);
 
             g2.setFont(g2.getFont().deriveFont(35F));
-            String instructionText = "Level 1 is Easy and for beginners. Level 2 is more dificult and for is for intermediates. Choose Wisely! Good Luck!";
+            String instructionText =    "Level 1 is easy and for beginners." +
+                                        "Level 2 is more difficult and for intermediates." + 
+                                        "Choose Wisely! Good Luck! ";
             int maxWidth = 800; // maximum width of text
             String[] lines = getLines(instructionText, g2.getFontMetrics(), maxWidth);
 
@@ -373,9 +379,6 @@ public class UI {
 
     public void drawMessage(Graphics2D g2) {
         g2.setFont(arial_40);
-
-
-        //
         int x = 0;
         int y = gp.tileSize;
         int width = gp.screenWidth - (gp.tileSize * 14);
@@ -464,10 +467,9 @@ public class UI {
     }
 
     public void drawCenteredMessage(String text, Graphics2D g2) {
+        int x, y;
         g2.setFont(arial_40);
         g2.setColor(Color.WHITE);
-
-        int x, y;
 
         x = getXforCenteredText(text);
         y = gp.screenHeight / 2 - (gp.tileSize * 3);
@@ -477,30 +479,21 @@ public class UI {
     public void drawGamePlayScreen(Graphics2D g2) {
 
         if (gameEnd) {
-
-            // gp.gameThread = null;
             gp.gameState = GamePanel.gameWinState;
             gp.playSE(3);
         }
 
         if (gameLose) {
-
-            // gp.gameThread = null;
             gp.gameState = GamePanel.gameOverState;
             gp.playSE(2);
         }
 
-        // MESSAGE
         drawMessage(g2);
-
     }
 
 
     public void drawGamePauseScreen(Graphics2D g2) {
-
         drawCenteredMessage("Pause", g2);
-
-        // SCORE AND TIMER
         drawScoreAndTimer(g2);
     }
 
