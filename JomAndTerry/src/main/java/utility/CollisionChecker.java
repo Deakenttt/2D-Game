@@ -5,21 +5,30 @@ import entity.Player;
 import main.GamePanel;
 
 /**
- * @Des This is a class of checking collision.
+ * The CollisionChecker class provides methods for checking collisions between various entities in a game.
+ * It includes methods for checking collisions between an entity and a tile, an entity and an object, and an entity and another entity.
  */
 public class CollisionChecker {
 
     GamePanel gp;
-    // these hold the original row and col values before collision is checked on the next tile
-    int row = 0;
-    int col = 0;
+    /**
+     * Holds the original row and col values before collision is checked on the next tile.
+     */
+    int row = 0, col = 0;
 
-
+    /**
+     * Constructs a CollisionChecker object with the specified GamePanel object.
+     * @param gp The GamePanel object that represents the game screen.
+     */
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;
     }
    
-    // METHOD OF CHECKING ENTITY AND ENTITY
+    /**
+     * Checks if the specified entity collides with a tile on the game screen.
+     * @param entity The entity to check for collision.
+     * @return true if there is a collision, false otherwise.
+     */
     public boolean checkTile(Entity entity) {
         int tileNum;
         simulateNode(entity);
@@ -36,8 +45,10 @@ public class CollisionChecker {
         return false;
     }
 
-    // METHOD OF CHECKING OBJECT.
-    // WHEN PLAYER TOUCH THE OBJECT, IT RETURN THE INDEX OF THAT OBJECT.
+    /**
+     * Checks if the specified player collides with an object on the game screen.
+     * @param entity The player to check for collision.
+     */
     public void checkObject(Player entity) {
         simulateNode(entity);
 
@@ -53,7 +64,11 @@ public class CollisionChecker {
 
     } 
 
-    // NPC or Enemy
+    /**
+     * Checks if the specified entity collides with another entity on the game screen.
+     * @param entity The entity to check for collision.
+     * @return true if there is a collision, false otherwise.
+     */
     public Boolean checkEntity(Entity entity) {
         int index = 0;
         simulateNode(entity);
@@ -85,6 +100,10 @@ public class CollisionChecker {
         return false;
     }
 
+    /**
+     * Simulates the movement of the specified entity to the next tile based on its current direction and speed.
+     * @param entity The entity to simulate movement for.
+     */
     public void simulateNode(Entity entity){
         row = entity.solidArea.y;
         col = entity.solidArea.x;
