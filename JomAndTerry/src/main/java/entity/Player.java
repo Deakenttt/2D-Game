@@ -38,7 +38,10 @@ public class Player extends Entity {
         direction = "down";
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-
+        hasCheese = 0; // resets the number of cheese.
+        hasSteak = 0; // resets the number of steak.
+        totalScore = 0; // resets the total score.
+        captureFlag = false;
     }
 
     public void getPlayerImage() {
@@ -178,24 +181,5 @@ public class Player extends Entity {
         }
     }
 
-    public void retry() {
-        setDefaultValues();
-        hasCheese = 0; // resets the number of cheese.
-        hasSteak = 0; // resets the number of steak.
-        totalScore = 0; // resets the total score.
-        captureFlag = false;
-        gp.ui.resumeTimer();
-        gp.ui.resetMsg();
-        gp.ui.resetGameState();
-        gp.assetSetter.setObject();
-        gp.assetSetter.setEnemy();
-        gp.gameState = gp.gamePlay;
-        for (int i = 0; i < gp.enemy.length; i++) {
-            gp.enemy[i].retry();
-        }
-        for (int i = 0; i < gp.enemy.length; i++) {
-            gp.enemy[i].retry();
-        }
-    }
 
 }

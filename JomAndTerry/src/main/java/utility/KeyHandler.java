@@ -71,7 +71,7 @@ public class KeyHandler implements KeyListener {
                 }
                 if (code == KeyEvent.VK_ENTER) {
                     if (gp.ui.commandNum == 0) {
-                        gp.player.retry();
+                        gp.retry();
                     }
                     if (gp.ui.commandNum == 1) {
                         gp.ui.titleScreenState = 0;
@@ -93,11 +93,11 @@ public class KeyHandler implements KeyListener {
                 if (code == KeyEvent.VK_ENTER) {
                     if (gp.ui.commandNum == 0) {
                         //this displays the game board and starts the game
-                        gp.player.retry();
+                        gp.retry();
                     }
                     if (gp.ui.commandNum == 1) {
                         //new map will go here
-                        //gp.player.retry();
+                        //gp.retry();
                     }
                     if (gp.ui.commandNum == 2) {
                         gp.ui.titleScreenState = 0;
@@ -119,7 +119,7 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
-                    gp.player.retry();
+                    gp.retry();
                     //gp.gameState = gp.gamePlay;
                 }
                 if (gp.ui.commandNum == 1) {
@@ -147,7 +147,7 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
-                    gp.player.retry();
+                    gp.retry();
                 }
                 if (gp.ui.commandNum == 1) {
                     System.exit(0);

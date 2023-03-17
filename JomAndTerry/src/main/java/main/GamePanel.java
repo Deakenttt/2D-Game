@@ -35,6 +35,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int gamePause = 2;
     public final int gameOverState = 3;
     public final int gameWinState = 4;
+    public final int level = 0;
+
 
     public UI ui = new UI (this);
     Sound sound = new Sound();
@@ -189,5 +191,15 @@ public class GamePanel extends JPanel implements Runnable {
     public void playSE(int i){
         sound.setFile(i);
         sound.play();
+    }
+
+    public void retry(int level) {
+        player.setDefaultValues();
+        ui.resumeTimer();
+        ui.resetMsg();
+        ui.resetGameState();
+        assetSetter.setObject();
+        assetSetter.setEnemy();
+        gameState = gamePlay;
     }
 }

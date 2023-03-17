@@ -31,7 +31,6 @@ public class Enemy extends Entity {
         onPath = true;  // Using the A* setAction on SmCat
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-
     }
 
     public void getPlayerImage() {
@@ -99,9 +98,6 @@ public class Enemy extends Entity {
         }
     }
 
-    public void retry() {
-        onPath = true;
-    }
 
     public void searchPath(int goalCol, int goalRow, String[] pathOrderedList) {
         // we found the path

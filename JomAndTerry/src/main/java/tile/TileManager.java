@@ -26,7 +26,9 @@ public class TileManager {
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow]; // mapTileNum will store all numbers in map.txt.
 
         getTileImage(); // Set each tiles bufferedImage.
-        loadMap("/assets/Map/map02.txt"); // Load a map text into 2D array and draw the map.
+        int i = gp.level;
+        String fileName = "/assets/Map/map0%d.txt".formatted(i);
+        loadMap(fileName); // Load a map text into 2D array and draw the map.
         int tileNum = mapTileNum[0][0];
         tile[tileNum].collision = true;
 
