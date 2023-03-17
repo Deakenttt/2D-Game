@@ -24,17 +24,31 @@ public class KeyHandler implements KeyListener {
     public static final int QUIT_BUTTON = 2;
     public static final int BACK_BUTTON = 1;
 
-
-
+    /**
+    * Constructs a new KeyHandler object.
+    *
+    * @param gp the GamePanel to handle key input for
+    */
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
 
+    /**
+     * Invoked when a key has been typed.
+     * Does nothing in this implementation.
+     *
+     * @param e the KeyEvent that occurred
+     */
     @Override
     public void keyTyped(KeyEvent e) {
     }
 
-
+    /**
+     * Invoked when a key has been pressed.
+     * Handles key input for the GamePanel depending on the current game state.
+     *
+     * @param e the KeyEvent that occurred
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -59,7 +73,12 @@ public class KeyHandler implements KeyListener {
                 break;
         }
     }
-
+    /**
+     * Invoked when a key has been released.
+     * Sets the corresponding boolean value to false depending on which key was released.
+     *
+     * @param e the KeyEvent that occurred
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode(); // Returns the integer keyCode associated with the key in this event.
@@ -77,7 +96,12 @@ public class KeyHandler implements KeyListener {
             rightPressed = false;
         }
     }
-
+    /**
+     * Handles input for the title screen.
+     * Changes the titleScreenState depending on the user's input.
+     *
+     * @param keyCode
+    */
     private void handleTitleStateInput(int keyCode) {
         switch(gp.ui.titleScreenState){
             case(MAIN_TITLE):
@@ -170,17 +194,24 @@ public class KeyHandler implements KeyListener {
         }
 
     }
+
+    /**
+    * Handles input for the win screen.
+    * Changes the gameState depending on the user's input.
+    *
+    * @param keyCode
+    */
     private void handleWinStateInput(int keyCode) {
         switch(keyCode){
             case KeyEvent.VK_W:
                 gp.ui.commandNum--;
                 if (gp.ui.commandNum < 0) 
-                    gp.ui.commandNum = 2;
+                    gp.ui.commandNum = 3;
                 break;
         
             case KeyEvent.VK_S:
                 gp.ui.commandNum++;
-                if (gp.ui.commandNum > 2)
+                if (gp.ui.commandNum > 3)
                     gp.ui.commandNum = 0;
                 break;
             case KeyEvent.VK_ENTER:
@@ -195,23 +226,34 @@ public class KeyHandler implements KeyListener {
                         gp.gameState = GamePanel.titleState;
                         gp.ui.titleScreenState = 0;
                         break;
+                    case 3: // choose level
+                        gp.gameState = MAIN_TITLE;
+                        gp.ui.titleScreenState = LEVEL_TITLE;
+                        break;
                     default: break;
                 }
             default: break;
                 
         }
-    }   
+    }  
+
+    /**
+    * Handles input for the game over screen.
+    * Changes the gameState depending on the user's input.
+    *
+    * @param keyCode
+    */
     private void handleOverStateInput(int keyCode) {
         switch(keyCode) {
             case KeyEvent.VK_W:
                 gp.ui.commandNum--;
                 if (gp.ui.commandNum < 0) 
-                    gp.ui.commandNum = 2;
+                    gp.ui.commandNum = 3;
                 break;
 
             case KeyEvent.VK_S:
                 gp.ui.commandNum++;
-                if (gp.ui.commandNum > 2) 
+                if (gp.ui.commandNum > 3) 
                     gp.ui.commandNum = 0;
                 break;
 
@@ -228,11 +270,22 @@ public class KeyHandler implements KeyListener {
                         gp.gameState = MAIN_TITLE;
                         gp.ui.titleScreenState = MAIN_TITLE;
                         break;
+                    case 3: // choose level
+                    gp.gameState = MAIN_TITLE;
+                    gp.ui.titleScreenState = LEVEL_TITLE;
+                    break;
                 }
                 break;
             default: break;
         }
     }
+    /**
+    * Handles input for the play screen.
+    * provides the input for gameplay based on the user's input.
+    *
+    * @param keyCode
+    */
+
     private void handlePlayStateInput(int keyCode) {
         switch(keyCode){
             case KeyEvent.VK_W:

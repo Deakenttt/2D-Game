@@ -1,7 +1,7 @@
 package utility;
 
 /**
- * @Des Storing the static parameters of size.
+ * The SizeNumber class stores static parameters related to size, such as tile size and screen dimensions.
  */
 public class SizeNumber {
     public static int ORIGINAL_TILE_SIZE = 16;

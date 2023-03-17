@@ -152,6 +152,15 @@ public class UI {
             g2.drawString(">", x - 40, y);
         }
 
+        //change the level
+        text = "Change Level";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if (commandNum == 3) {
+            g2.drawString(">", x - 40, y);
+        }
+
         pauseTimer();
         drawScoreAndTimer(g2);
     }
@@ -208,6 +217,16 @@ public class UI {
         if (commandNum == 2) {
             g2.drawString(">", x - 40, y);
         }
+        g2.setFont(g2.getFont().deriveFont(50f));
+
+        //change the level
+        text = "Change Level";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if (commandNum == 3) {
+            g2.drawString(">", x - 40, y);
+        }
         pauseTimer();
         drawScoreAndTimer(g2);
     }
@@ -216,7 +235,7 @@ public class UI {
      * drawTitleScreen() is a method for handling all the visual elements on the page showing when
      * the user start the game, it has buttons for user to select, such as 'start', 'Instruction', 'quit'
      * when pressed the 'start' button, it will show another page for user to select the different difficulties.
-     * when preessed the 'instruction' button, it will show another page that showing all instuction about the game.
+     * when pressed the 'instruction' button, it will show another page that showing all instuction about the game.
      */
     public void drawTitleScreen() {
         if (titleScreenState == 0) {
