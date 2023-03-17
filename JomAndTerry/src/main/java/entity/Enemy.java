@@ -48,6 +48,7 @@ public class Enemy extends Entity {
 
             for(int i = 0; i < 4; i++){
                 direction = pathOrderedList[i];
+                System.out.println("Direction for cat = " + direction);
                 collisionOn = false;
                 if(gp.collisionChecker.checkTile(this)){
                     continue;
@@ -69,10 +70,14 @@ public class Enemy extends Entity {
 
     public void searchPath(int goalCol, int goalRow, String[] pathOrderedList) {
         // we found the path
+        System.out.println("SEARCH PATH STARTING");
         if (gp.findPath.aStarSearch()) {
+            System.out.println("A START SEARCH DONE");
+
             // next world x and world y
             int nextX = gp.findPath.pathList.get(0).col * gp.tileSize ;
             int nextY = gp.findPath.pathList.get(0).row * gp.tileSize ;
+            System.out.println("nextX = %s nextY = %s".formatted(nextX, nextY));
 
             Boolean takeNextX= Math.abs(nextX - solidArea.x) > Math.abs(nextY - solidArea.y);
             if (takeNextX) {

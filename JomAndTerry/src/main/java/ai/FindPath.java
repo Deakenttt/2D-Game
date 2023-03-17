@@ -1,8 +1,7 @@
 package ai;
 /**
-
-    The ai package contains classes related to AI pathfinding algorithms for game entities.
-    */
+* The ai package contains classes related to AI pathfinding algorithms for game entities.
+*/
 
 import entity.Entity;
 import main.GamePanel;
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 *    It stores all the nodes calculated based on the current start position and goal position and contains a list of open and closed nodes.
 *    A list of nodes representing the path from start to goal is also stored in this class.
 */
-
 public class FindPath {
     GamePanel gp;
     Node[][] node;  // Stores all of the node calculations based on the current start pos and goal pos
@@ -88,9 +86,9 @@ public class FindPath {
                 getCost(node[i][j]);   // defined the g cost, h cost, AND final cost for each node
             }
         }
-    } catch(Exception e){
-        System.out.println(e);
-    }
+        } catch(Exception e){
+            System.out.println(e);
+        }
     }
     /**
     * Calculates the g cost, h cost, and final cost for a given node.
@@ -114,10 +112,13 @@ public class FindPath {
     * @return true if the goal node is reached, false otherwise
     */
     public boolean aStarSearch() {
+        System.out.println("A START SEARCH STARTING");
+
         int col, row, bestNodeIndex, bestNodefCost;
         while (!goalReached && step < 500) {
             col = currentNode.col;
             row = currentNode.row;
+
             bestNodeIndex = 0;
             bestNodefCost = 999;
             
@@ -148,17 +149,20 @@ public class FindPath {
                     bestNodeIndex = i;
                     bestNodefCost = openList.get(i).fCost;
                 }
-                // If the final cost is equal between two nodes, then check greedy cost                else if (openList.get(i).fCost == bestNodefCost) {
-                if (openList.get(i).gCost < openList.get(bestNodeIndex).gCost)
+                // If the final cost is equal between two nodes, then check greedy cost                
+                else if (openList.get(i).fCost == bestNodefCost && openList.get(i).gCost < openList.get(bestNodeIndex).gCost)
                     bestNodeIndex = i;
             }
             // If there are no nodes in the open list, end the loop
             if (openList.size() == 0)
                 break;
             
-            // If the current node is the goal node, set goalReached to true and track the path            currentNode = openList.get(bestNodeIndex);
+            // If the current node is the goal node, set goalReached to true and track the path            
+            currentNode = openList.get(bestNodeIndex);
             if (currentNode == goalNode) {
-                goalReached = true;
+                goalReached = true; 
+                System.out.println("col: %d row: %d".formatted(col, row));
+
                 trackPath();
             }
             step++;

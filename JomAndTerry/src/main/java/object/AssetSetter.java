@@ -56,7 +56,7 @@ public class AssetSetter {
 
     public void setEnemy(){
         gp.enemy[0] = new Enemy(gp, 1, 14);
-        gp.enemy[1] = new Enemy(gp, 18, 1);
+        gp.enemy[1] = new Enemy(gp, 18, 14);
     }
 
     public void exit_open(){
