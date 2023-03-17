@@ -19,17 +19,17 @@ public class Player extends Entity {
 
     public Player(GamePanel gp, KeyHandler keyHandler) {
         super(gp);
-        solidArea.x = x + solidArea.width;
-        solidArea.y = y + solidArea.height;
         this.keyHandler = keyHandler;
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
+        solidAreaDefaultX = x + solidArea.width;
+        solidAreaDefaultY = y + solidArea.height;
  
     }
 
     public void setDefaultValues() {
         x = 0;
         y = 48;
+        solidArea.x = solidAreaDefaultX;
+        solidArea.y = solidAreaDefaultY;
         direction = "down";
         hasCheese = 0; // resets the number of cheese.
         hasSteak = 0; // resets the number of steak.
@@ -37,7 +37,7 @@ public class Player extends Entity {
         captureFlag = false;
         name = "mouse";
     }
-    
+
     public void setAction() {
         if (keyHandler.upPressed || keyHandler.downPressed
                 || keyHandler.leftPressed || keyHandler.rightPressed) {

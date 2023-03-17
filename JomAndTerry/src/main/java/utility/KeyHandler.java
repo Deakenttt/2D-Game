@@ -58,19 +58,6 @@ public class KeyHandler implements KeyListener {
             default:
                 break;
         }
-
-        if (keyCode == KeyEvent.VK_W) {
-            upPressed = true;
-        }
-        if (keyCode == KeyEvent.VK_S) {
-            downPressed = true;
-        }
-        if (keyCode == KeyEvent.VK_A) {
-            leftPressed = true;
-        }
-        if (keyCode == KeyEvent.VK_D) {
-            rightPressed = true;
-        }
     }
 
     @Override
@@ -247,7 +234,21 @@ public class KeyHandler implements KeyListener {
         }
     }
     private void handlePlayStateInput(int keyCode) {
-
+        switch(keyCode){
+            case KeyEvent.VK_W:
+                upPressed = true;
+                break;
+            case KeyEvent.VK_S:
+                downPressed = true;
+                break;
+            case KeyEvent.VK_A:
+                leftPressed = true;
+                break;
+            case KeyEvent.VK_D:
+                rightPressed = true;
+                break;
+            default: break;
+        }
     }
 }
 

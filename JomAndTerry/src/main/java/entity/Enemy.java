@@ -1,12 +1,5 @@
 package entity;
-
 import main.GamePanel;
-import utility.UtilityTool;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Objects;
 
 public class Enemy extends Entity {
 
@@ -19,10 +12,12 @@ public class Enemy extends Entity {
         super(gp);
         x = col * gp.tileSize;
         y = row * gp.tileSize;
-        solidArea.x = x + solidArea.width;
-        solidArea.y = y + solidArea.height;
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
+        solidAreaDefaultX = x + solidArea.width;
+        solidAreaDefaultY = y + solidArea.height;
+        solidArea.x = solidAreaDefaultX;
+        solidArea.y = solidAreaDefaultY;
+        
+        
         onPath = true;  // Using the A* setAction on SmCat
 
     }
@@ -31,6 +26,9 @@ public class Enemy extends Entity {
         onPath = true;  // Using the A* setAction on SmCat
         direction = "down";
         name = "cat";
+        solidArea.x = solidAreaDefaultX;
+        solidArea.y = solidAreaDefaultY;
+
     }
 
     public void setAction() {
