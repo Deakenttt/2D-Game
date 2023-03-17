@@ -4,7 +4,8 @@ import entity.Enemy;
 import main.GamePanel;
 
 /**
- * @Des This is a class for setting up objects.
+ * This is a class for setting up objects, such as setting buffered images and position for objects.
+ *
  */
 public class AssetSetter {
     GamePanel gp;
