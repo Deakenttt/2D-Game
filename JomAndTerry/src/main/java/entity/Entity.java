@@ -53,35 +53,31 @@ public class Entity {
     }
 
     public void update() {
-        if (gp.player.doMove) {
-            if (!collisionOn) {
-                switch (direction) {
-                    case "up":
-                        y -= speed;
-                        break;
-                    case "down":
-                        y += speed;
-                        break;
-                    case "left":
-                        x -= speed;
-                        break;
-                    case "right":
-                        x += speed;
-                        break;
-                }
+        if (gp.player.doMove && !collisionOn) {
+            switch (direction) {
+                case "up":
+                    y -= speed;
+                    break;
+                case "down":
+                    y += speed;
+                    break;
+                case "left":
+                    x -= speed;
+                    break;
+                case "right":
+                    x += speed;
+                    break;
             }
-            spriteCounter++;
-            if (spriteCounter > 5) {
-                if (spriteNum == 1)
-                    spriteNum = 2;
-                else if (spriteNum == 2)
-                    spriteNum = 1;
-                spriteCounter = 0;
-            gp.assetSetter.steak_update();
-            }
-
             solidArea.x = x + solidArea.width;
-            solidArea.y = y + solidArea.height;            
+            solidArea.y = y + solidArea.height;
+        }
+        spriteCounter++;
+        if (spriteCounter > 5) {
+            if (spriteNum == 1)
+                spriteNum = 2;
+            else if (spriteNum == 2)
+                spriteNum = 1;
+            spriteCounter = 0;
         }
     }
 

@@ -77,7 +77,9 @@ public class AssetSetter {
             }
             steakCounter = getRandomNumber(3, 7);
         }
+        System.out.println("steakCounter = " + steakCounter);
         steakCounter--;
+        
     }
 
     public void object_setter(int i){
