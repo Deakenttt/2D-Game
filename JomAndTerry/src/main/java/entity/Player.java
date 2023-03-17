@@ -109,8 +109,11 @@ public class Player extends Entity {
             gp.collisionChecker.checkObject(this);
             gp.collisionChecker.checkEntity(this);
         }
+        if(this.x == 0 && this.y == 48 && Objects.equals(this.direction, "left")) {
+            gp.ui.showMessage("sorry you can't go out of the map", 5);
+            direction = "right";
+        }
         super.update();
-
     }
 
 
