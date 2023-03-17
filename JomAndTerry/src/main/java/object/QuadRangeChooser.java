@@ -10,6 +10,7 @@ public class QuadRangeChooser {
     private int currentIndex;
 
     public QuadRangeChooser() {
+        // {min_row, max_row, min_col, max_col}
         int[][] quadRanges = {
             {3, 7, 3, 9}, // quad 0
             {3, 7, 10, 18}, // quad 1
@@ -20,6 +21,11 @@ public class QuadRangeChooser {
         ranges = Arrays.asList(quadRanges);
         currentIndex = 0;
     }
+    /**
+     * This is a helper method that shuffles of the quadrants to help reduce the clumping of objects dropped.
+     * 
+     * @return the range of indices for col and row for the chosen quadrant
+     */
 
     public int[] getNextRange() {
         if (currentIndex == 4) {
