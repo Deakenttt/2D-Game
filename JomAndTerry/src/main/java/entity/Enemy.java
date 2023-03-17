@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Enemy extends Entity {
+
+
     public Enemy(GamePanel gp) {
         super(gp);
     }
@@ -19,48 +21,16 @@ public class Enemy extends Entity {
         y = row * gp.tileSize;
         solidArea.x = x + solidArea.width;
         solidArea.y = y + solidArea.height;
-        getPlayerImage();
-        speed = 48;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
         onPath = true;  // Using the A* setAction on SmCat
 
     }
 
     public void setDefaultValues() {
-        getPlayerImage();
-        direction = "right";
         onPath = true;  // Using the A* setAction on SmCat
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
-    }
-
-    public void getPlayerImage() {
-
-        up1 = setup("smart_cat_up_1");
-        up2 = setup("smart_cat_up_2");
-
-        down1 = setup("smart_cat_down_1");
-        down2 = setup("smart_cat_down_2");
-
-        left1 = setup("smart_cat_left_1");
-        left2 = setup("smart_cat_left_2");
-
-        right1 = setup("smart_cat_right_1");
-        right2 = setup("smart_cat_right_2");
-    }
-    public BufferedImage setup(String imageName) {
-
-        UtilityTool utilityTool = new UtilityTool();
-        BufferedImage image = null;
-
-        try {
-
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/cat/" + imageName + ".png")));
-            image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
+        direction = "down";
+        name = "cat";
     }
 
     public void setAction() {

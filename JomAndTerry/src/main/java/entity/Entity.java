@@ -1,6 +1,11 @@
 package entity;
 
 import main.GamePanel;
+import utility.UtilityTool;
+
+import javax.imageio.ImageIO;
+import java.util.Objects;
+import java.io.IOException;
 
 import java.awt.image.BufferedImage;
 
@@ -26,7 +31,7 @@ public class Entity {
     public int spriteCounter = 0;
     public int spriteNum = 1;
     public boolean onPath = false;
-
+    String name;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -36,21 +41,47 @@ public class Entity {
         solidArea.height = 22;
         speed = 48;
         setDefaultValues();
+        getPlayerImage();
+
     }
 
     public void setDefaultValues() {
         x = 48;
         y = 48;
-        speed = 48;
-        direction = "right";
         onPath = true;  // Using the A* setAction on SmCat
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
 
+    }
+    public void getPlayerImage() {
+        up1 = setup("%s_up_1".formatted(name));
+        up2 = setup("%s_up_2".formatted(name));
+        
+        down1 = setup("%s_down_1".formatted(name));
+        down2 = setup("%s_down_2".formatted(name));
+        
+        left1 = setup("%s_left_1".formatted(name));
+        left2 = setup("%s_left_2".formatted(name));
+
+        right1 = setup("%s_right_1".formatted(name));
+        right2 = setup("%s_right_2".formatted(name));
+
+    }
+
+    public BufferedImage setup(String imageName) {
+        UtilityTool utilityTool = new UtilityTool();
+        BufferedImage image = null;
+        try {
+            System.out.println("imageName " + imageName);
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/%s/%s.png".formatted(name, imageName))));
+            image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
     }
 
     public void setAction() {
     }
+    
 
     public void update() {
         if (gp.player.doMove && !collisionOn) {

@@ -1,12 +1,7 @@
 package entity;
-
 import main.GamePanel;
 import utility.KeyHandler;
-import utility.UtilityTool;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Objects;
 
 /**
@@ -22,60 +17,27 @@ public class Player extends Entity {
 
     int KeyHoldTimer = 0; // Timer for how long the player has hold the key.
 
-
     public Player(GamePanel gp, KeyHandler keyHandler) {
         super(gp);
         solidArea.x = x + solidArea.width;
         solidArea.y = y + solidArea.height;
         this.keyHandler = keyHandler;
-        getPlayerImage();
-
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+ 
     }
 
     public void setDefaultValues() {
         x = 0;
         y = 48;
         direction = "down";
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
         hasCheese = 0; // resets the number of cheese.
         hasSteak = 0; // resets the number of steak.
         totalScore = 0; // resets the total score.
         captureFlag = false;
+        name = "mouse";
     }
-
-    public void getPlayerImage() {
-
-        up1 = setup("mouse_up_1");
-        up2 = setup("mouse_up_2");
-
-        down1 = setup("mouse_down_1");
-        down2 = setup("mouse_down_2");
-
-        left1 = setup("mouse_left_1");
-        left2 = setup("mouse_left_2");
-
-        right1 = setup("mouse_right_1");
-        right2 = setup("mouse_right_2");
-    }
-
-    // METHOD OF SETTING SCALED IMAGE FOR PLAYER
-    public BufferedImage setup(String imageName) {
-
-        UtilityTool utilityTool = new UtilityTool();
-        BufferedImage image = null;
-
-        try {
-
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/mouse/" + imageName + ".png")));
-            image = utilityTool.scaleImage(image, gp.tileSize - 10, gp.tileSize - 10);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
-
+    
     public void setAction() {
         if (keyHandler.upPressed || keyHandler.downPressed
                 || keyHandler.leftPressed || keyHandler.rightPressed) {
