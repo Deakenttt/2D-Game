@@ -139,7 +139,7 @@ public class Player extends Entity {
                         gp.ui.showMessage("You escape successfully!", object); // Show the msg when get the cheese.
                         gp.ui.gameEnd = true; // End the game
                     } else
-                        gp.ui.showMessage("You need collect all the cheese!", 1); // Show the msg when get the cheese.
+                        gp.ui.showMessage("You need to collect all of the cheese!", 1); // Show the msg when get the cheese.
                     
                     break;
             }
