@@ -150,9 +150,6 @@ public class UI {
     public void gameWinScreen() {
         g2.setColor(new Color(0, 0, 0, 150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-
-        int x;
-        int y;
         String text;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
 

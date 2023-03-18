@@ -219,7 +219,7 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_ENTER:
                 switch(gp.ui.commandNum){
                     case RETRY_BUTTON: // retry
-                        gp.retry(1);
+                        gp.retry(gp.levelState);
                         break;
                     case 1: //quit
                         System.exit(0);
