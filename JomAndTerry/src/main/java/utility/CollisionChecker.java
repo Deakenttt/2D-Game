@@ -61,7 +61,6 @@ public class CollisionChecker {
         }
         entity.solidArea.x = col;
         entity.solidArea.y = row;
-
     } 
 
     /**
@@ -72,7 +71,6 @@ public class CollisionChecker {
     public Boolean checkEntity(Entity entity) {
         int index = 0;
         simulateNode(entity);
-
 
         // Check collisions between entity and a cat
         for (int i = 0; i < gp.enemy.length; i++) {

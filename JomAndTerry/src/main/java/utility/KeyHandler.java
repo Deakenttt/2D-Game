@@ -19,10 +19,12 @@ public class KeyHandler implements KeyListener {
 
     public static final int GAME_PLAY =1;
 
-    public static final int START_BUTTON = 0;
+    public static final int LEVEL_BUTTON = 0;
+    public static final int RETRY_BUTTON = 0;
     public static final int INSTR_BUTTON = 1;
-    public static final int QUIT_BUTTON = 2;
     public static final int BACK_BUTTON = 1;
+    public static final int QUIT_BUTTON = 2;
+
 
     /**
     * Constructs a new KeyHandler object.
@@ -72,6 +74,9 @@ public class KeyHandler implements KeyListener {
             default:
                 break;
         }
+        if (keyCode == KeyEvent.VK_ENTER){
+            gp.ui.commandNum = 0;
+        }
     }
     /**
      * Invoked when a key has been released.
@@ -120,7 +125,7 @@ public class KeyHandler implements KeyListener {
 
                     case(KeyEvent.VK_ENTER):
                         switch(gp.ui.commandNum){
-                            case START_BUTTON: // 
+                            case LEVEL_BUTTON: // 
                                 gp.ui.titleScreenState = LEVEL_TITLE;
                                 break;
 
@@ -153,7 +158,7 @@ public class KeyHandler implements KeyListener {
                         break;
 
                     case KeyEvent.VK_ENTER:
-                        if (gp.ui.commandNum == START_BUTTON)
+                        if (gp.ui.commandNum == LEVEL_BUTTON)
                             gp.ui.titleScreenState = LEVEL_TITLE;
 
                         if (gp.ui.commandNum == BACK_BUTTON)
@@ -177,14 +182,11 @@ public class KeyHandler implements KeyListener {
                         break;
                 
                     case KeyEvent.VK_ENTER:
-                        //this displays the game board and starts the game
-                        if (gp.ui.commandNum == 0) 
-                            gp.retry(1);
-                        if (gp.ui.commandNum == 1)
-                            gp.retry(2);
-
                         if (gp.ui.commandNum == 2) // go back to title page
-                            gp.ui.titleScreenState = MAIN_TITLE;
+                        gp.ui.titleScreenState = MAIN_TITLE;
+                        //this displays the game board and starts the game
+                        else
+                            gp.retry((gp.ui.commandNum + 1));                                           
                         break;
 
                     default: break;
@@ -216,8 +218,8 @@ public class KeyHandler implements KeyListener {
                 break;
             case KeyEvent.VK_ENTER:
                 switch(gp.ui.commandNum){
-                    case 0: // retry
-                        gp.retry(1);
+                    case RETRY_BUTTON: // retry
+                        gp.retry(gp.levelState);
                         break;
                     case 1: //quit
                         System.exit(0);
@@ -233,7 +235,6 @@ public class KeyHandler implements KeyListener {
                     default: break;
                 }
             default: break;
-                
         }
     }  
 
@@ -261,7 +262,6 @@ public class KeyHandler implements KeyListener {
                 switch(gp.ui.commandNum){
                     case 0: // retry
                         gp.retry(gp.levelState);
-                        //gp.gameState = gp.gamePlay;
                         break;
                     case 1: //quit
                         System.exit(0);

@@ -72,6 +72,8 @@ public class AssetSetter {
     public void setEnemy(){
         gp.enemy[0] = new Enemy(gp, 1, 14);
         gp.enemy[1] = new Enemy(gp, 18, 14);
+        if(gp.levelState == 2)
+            gp.enemy[2] = new Enemy(gp, 18, 1);
     }
 
     /**

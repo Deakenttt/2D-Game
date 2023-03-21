@@ -33,7 +33,8 @@ public class UI {
     public String message = "";
     public int msgCounter = 0;
     public int objectCollectType = 0;
-
+    public int y;
+    public int x;
     // For game win or game lose.
     public boolean gameEnd = false;
     public boolean gameLose = false;
@@ -108,8 +109,6 @@ public class UI {
         g2.setColor(new Color(0, 0, 0, 150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
-        int x;
-        int y;
         String text;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
 
@@ -122,44 +121,23 @@ public class UI {
         g2.drawString(text, x, y);
         g2.setColor(Color.white);
         g2.drawString(text, x - 4, y - 4);
+        //retry button
+        g2.setFont(g2.getFont().deriveFont(50f));
+        
+        // y += gp.tileSize;
+        titleButtons("Retry", 0);
+        y -= gp.tileSize/2;
 
-        // Retry button
-        g2.setFont(g2.getFont().deriveFont(50f));
-        text = "Retry";
-        x = getXforCenteredText(text);
-        y += gp.tileSize * 4;
-        g2.drawString(text, x, y);
-        if (commandNum == 0) {
-            g2.drawString(">", x - 40, y);
-        }
+        //Quit button
+        titleButtons("Quit", 1);
+        y -= gp.tileSize/2;
 
-        // Quit button
-        g2.setFont(g2.getFont().deriveFont(50f));
-        text = "Quit";
-        x = getXforCenteredText(text);
-        y += 55;
-        g2.drawString(text, x, y);
-        if (commandNum == 1) {
-            g2.drawString(">", x - 40, y);
-        }
-        // Home page
-        g2.setFont(g2.getFont().deriveFont(50f));
-        text = "Home Page";
-        x = getXforCenteredText(text);
-        y += 55;
-        g2.drawString(text, x, y);
-        if (commandNum == 2) {
-            g2.drawString(">", x - 40, y);
-        }
+        //Home page
+        titleButtons("Home Page", 2);
+        y -= gp.tileSize/2;
 
         //change the level
-        text = "Change Level";
-        x = getXforCenteredText(text);
-        y += 55;
-        g2.drawString(text, x, y);
-        if (commandNum == 3) {
-            g2.drawString(">", x - 40, y);
-        }
+        titleButtons("Change Level", 3);
 
         pauseTimer();
         drawScoreAndTimer(g2);
@@ -172,9 +150,6 @@ public class UI {
     public void gameWinScreen() {
         g2.setColor(new Color(0, 0, 0, 150));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-
-        int x;
-        int y;
         String text;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
 
@@ -190,43 +165,17 @@ public class UI {
 
         // Retry button
         g2.setFont(g2.getFont().deriveFont(50f));
-        text = "Retry";
-        x = getXforCenteredText(text);
-        y += gp.tileSize * 4;
-        g2.drawString(text, x, y);
-        if (commandNum == 0) {
-            g2.drawString(">", x - 40, y);
-        }
+        titleButtons("Retry", 0);
 
-        // Quit button
-        g2.setFont(g2.getFont().deriveFont(50f));
-        text = "Quit";
-        x = getXforCenteredText(text);
-        y += 55;
-        g2.drawString(text, x, y);
-        if (commandNum == 1) {
-            g2.drawString(">", x - 40, y);
-        }
+        //Quit button
+        titleButtons("Quit", 1);
 
-        // Home page
-        g2.setFont(g2.getFont().deriveFont(50f));
-        text = "Home Page";
-        x = getXforCenteredText(text);
-        y += 55;
-        g2.drawString(text, x, y);
-        if (commandNum == 2) {
-            g2.drawString(">", x - 40, y);
-        }
-        g2.setFont(g2.getFont().deriveFont(50f));
+        //Home page
+        titleButtons("Home Page", 2);
 
         //change the level
-        text = "Change Level";
-        x = getXforCenteredText(text);
-        y += 55;
-        g2.drawString(text, x, y);
-        if (commandNum == 3) {
-            g2.drawString(">", x - 40, y);
-        }
+        titleButtons("Change Level", 3);
+
         pauseTimer();
         drawScoreAndTimer(g2);
     }
@@ -247,7 +196,7 @@ public class UI {
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
             String text = "Jom and Terry";
             int x = getXforCenteredText(text);
-            int y = gp.tileSize * 3;
+            y = gp.tileSize * 3;
 
             // Shadow
             g2.setColor(Color.gray);
@@ -264,30 +213,11 @@ public class UI {
 
             // Menu options
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
-
-            text = "Start";
-            x = getXforCenteredText(text);
-            y += gp.tileSize * 4;
-            g2.drawString(text, x, y);
-            if (commandNum == 0) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-
-            text = "Instructions";
-            x = getXforCenteredText(text);
             y += gp.tileSize * 2;
-            g2.drawString(text, x, y);
-            if (commandNum == 1) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-
-            text = "Quit";
-            x = getXforCenteredText(text);
-            y += gp.tileSize * 2;
-            g2.drawString(text, x, y);
-            if (commandNum == 2) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
+            
+            titleButtons("Start", 0);
+            titleButtons("Instructions", 1);
+            titleButtons("Quit", 2);
 
         } else if (titleScreenState == 1) {
 
@@ -297,8 +227,8 @@ public class UI {
             g2.setFont(g2.getFont().deriveFont(60F));
 
             String titleText = "Instructions";
-            int x = getXforCenteredText(titleText);
-            int y = gp.tileSize * 3;
+            x = getXforCenteredText(titleText);
+            y = gp.tileSize * 3;
             g2.drawString(titleText, x, y);
 
             g2.setFont(g2.getFont().deriveFont(24F));
@@ -318,30 +248,17 @@ public class UI {
             }
 
             g2.setFont(g2.getFont().deriveFont(40F));
-            String playText = "Play The Game";
-            x = getXforCenteredText(playText);
-            y += gp.tileSize * 2;
-            g2.drawString(playText, x, y);
+            titleButtons("Play The Game", 0);
+            titleButtons("Go Back", 1);
 
-            if (commandNum == 0) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-
-            String backText = "Go Back";
-            x = getXforCenteredText(backText);
-            y += gp.tileSize;
-            g2.drawString(backText, x, y);
-            if (commandNum == 1) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-        } else if (titleScreenState == 2) {
+        }else if (titleScreenState == 2) {
             g2.setColor(Color.white);
 
             g2.setFont(g2.getFont().deriveFont(60F));
 
             String titleText = "Select the Level";
-            int x = getXforCenteredText(titleText);
-            int y = gp.tileSize * 3;
+            x = getXforCenteredText(titleText);
+            y = gp.tileSize * 3;
             g2.drawString(titleText, x, y);
 
             g2.setFont(g2.getFont().deriveFont(35F));
@@ -359,34 +276,10 @@ public class UI {
             }
 
             g2.setFont(g2.getFont().deriveFont(40F));
-            String playText = "Level 1";
-            x = getXforCenteredText(playText);
-            y += gp.tileSize * 2;
-            g2.drawString(playText, x, y);
-
-            if (commandNum == 0) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-
-            g2.setFont(g2.getFont().deriveFont(40F));
-            playText = "Level 2";
-            x = getXforCenteredText(playText);
-            y += gp.tileSize;
-            g2.drawString(playText, x, y);
-
-            if (commandNum == 1) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-
-            g2.setFont(g2.getFont().deriveFont(40F));
-            playText = "Go Back";
-            x = getXforCenteredText(playText);
-            y += gp.tileSize * 2;
-            g2.drawString(playText, x, y);
-
-            if (commandNum == 2) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
+            titleButtons("Level 1", 0);
+            y = y - gp.tileSize;
+            titleButtons("Level 2", 1);
+            titleButtons("Go Back", 2);
         }
     }
 
@@ -425,7 +318,7 @@ public class UI {
      */
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.screenWidth / 2 - length / 2;
+        int x = (gp.screenWidth-1) / 2 - length / 2;
         return x;
     }
 
@@ -454,20 +347,21 @@ public class UI {
         int height = gp.tileSize * 2;
 
         if (messageOn) {
+            int length = (int) g2.getFontMetrics().getStringBounds(message, g2).getWidth();
 
-            drawMsgWindow(x, y, width, height);
+            drawMsgWindow(x, y, length+50, height);
 
             g2.setColor(Color.WHITE);
             g2.drawString(message, gp.tileSize / 2, height + 5);
 
             if (objectCollectType == 1) {
-                g2.drawImage(cheeseImg, width - 40, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
+                g2.drawImage(cheeseImg, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
             } else if (objectCollectType == 2) {
-                g2.drawImage(steakImg, width - 40, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
+                g2.drawImage(steakImg, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
             } else if (objectCollectType == 3) {
-                g2.drawImage(trapImg, width - 40, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
+                g2.drawImage(trapImg, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
             } else if (objectCollectType == 4) {
-                g2.drawImage(doorImg, width - 40, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
+                g2.drawImage(doorImg, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
             }
 
             // Only show the message in a short period of the time.
@@ -607,5 +501,23 @@ public class UI {
         drawScoreAndTimer(g2);
     }
 
+    /**
+    * Draws a button with the specified text and number.
+    * The button is centered horizontally and positioned below the previously drawn button. 
+    * If the button number matches the current command number, a ">" symbol is drawn to the left of the text.
+    * @param button_text the text to be displayed on the button
+    * @param button_num the number of the button
+    * @return void
+    */
+    
+    public void titleButtons(String button_text, int button_num){
+        x = getXforCenteredText(button_text);
+        y += gp.tileSize * 2;
+        g2.drawString(button_text, x, y);
+        if (commandNum == button_num) {
+            System.out.println(commandNum);
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+    }
 
 }

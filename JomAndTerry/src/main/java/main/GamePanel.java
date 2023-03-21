@@ -37,7 +37,7 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int gamePause = 2;
     public static final int gameOverState = 3;
     public static final int gameWinState = 4;
-    public int levelState = 0;
+    public int levelState = 1;
 
     // UI and sound
     public UI ui = new UI(this);
@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public FindPath findPath = new FindPath(this);
     public Player player = new Player(this, keyHandler); // Initiate a Player object.
-    public Enemy[] enemy = new Enemy[2];
+    public Enemy[] enemy = new Enemy[3];
     public SuperObject[] obj = new SuperObject[20]; // 20 slots for object, can replace the content during the game.
 
     public TileManager tileManager = new TileManager(this); // Initiate tileManger object.
@@ -230,6 +230,12 @@ public class GamePanel extends JPanel implements Runnable {
         ui.resetMsg();
         ui.resetGameState();
         assetSetter.setObject();
+        if (levelState == 1){
+            enemy = new Enemy[2];
+        }
+        else if (levelState == 2){
+            enemy = new Enemy[3];
+        }
         assetSetter.setEnemy();
         gameState = gamePlay;
     }
