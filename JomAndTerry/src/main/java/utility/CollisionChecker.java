@@ -47,13 +47,10 @@ public class CollisionChecker {
     }
 
     /**
-     * Checks if the specified player collides with an object on the game screen.
-     * @param entity The player to check for collision.
+     * Checks if the specified area collides with an object on the game screen.
+     * @param solidArea The area to check for collision.
      */
     public int checkObject(Rectangle solidArea) {
-        // simulateNode(entity);
-        System.out.println("x = " + solidArea.x + " y = " + solidArea.y);
-
         for (int i = 0; i < gp.obj.length; i++) {
             // Checks that the object exists, that it intersects with the object
             if (gp.obj[i] != null && solidArea.intersects(gp.obj[i].solidArea)){

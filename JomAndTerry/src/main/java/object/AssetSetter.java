@@ -60,14 +60,9 @@ public class AssetSetter {
         int[] quad = chooser.getNextRange();
 
         do {
-
             row = getRandomNumber(quad[0], quad[1]);
             col = getRandomNumber(quad[2], quad[3]);
-            
         } while (!isTileAvailable(col, row));  // there isn't anything existing on the object position
-
-        // gp.obj[i].x = (col) * gp.tileSize;
-        // gp.obj[i].y = (row) * gp.tileSize;
         gp.obj[i].solidArea.x = (col) * gp.tileSize;//gp.obj[i].x;
         gp.obj[i].solidArea.y = (row) * gp.tileSize;//gp.obj[i].y;
     }
