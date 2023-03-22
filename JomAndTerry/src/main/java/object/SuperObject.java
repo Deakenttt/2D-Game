@@ -42,7 +42,7 @@ public class SuperObject {
      * @param gp GamePanel, provides space in which an application can attach any other component, including other panels.
      */
     public void draw(Graphics2D g2, GamePanel gp) {
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, solidArea.x, solidArea.y, gp.tileSize, gp.tileSize, null);
     }
 
     public void setImage(){

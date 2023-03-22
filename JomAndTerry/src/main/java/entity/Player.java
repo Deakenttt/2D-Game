@@ -80,11 +80,13 @@ public class Player extends Entity {
             collisionOn = false;
             collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
             gp.collisionChecker.checkEntity(this);
+            int object = gp.collisionChecker.checkObject(solidArea);
+            pickUpObject(object);
             gp.assetSetter.steakUpdate();      
         }
         super.update();
-        int object = gp.collisionChecker.checkObject(solidArea);
-        pickUpObject(object);
+        
+        
     }
 
 

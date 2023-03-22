@@ -66,10 +66,10 @@ public class AssetSetter {
             
         } while (!isTileAvailable(col, row));  // there isn't anything existing on the object position
 
-        gp.obj[i].x = (col) * gp.tileSize;
-        gp.obj[i].y = (row) * gp.tileSize;
-        gp.obj[i].solidArea.x = gp.obj[i].x;
-        gp.obj[i].solidArea.y = gp.obj[i].y;
+        // gp.obj[i].x = (col) * gp.tileSize;
+        // gp.obj[i].y = (row) * gp.tileSize;
+        gp.obj[i].solidArea.x = (col) * gp.tileSize;//gp.obj[i].x;
+        gp.obj[i].solidArea.y = (row) * gp.tileSize;//gp.obj[i].y;
     }
 
     /**
@@ -109,7 +109,7 @@ public class AssetSetter {
 
     private boolean isTileAvailable(int col, int row) {
         int tileNum = gp.tileManager.mapTileNum[col][row];
-        Rectangle rect = new Rectangle(col*gp.tileSize, row*gp.tileSize);
-        return !gp.tileManager.tile[tileNum].collision && gp.collisionChecker.checkObject(rect) != 999;
+        Rectangle rect = new Rectangle(col*gp.tileSize, row*gp.tileSize, 48, 48);
+        return !gp.tileManager.tile[tileNum].collision && gp.collisionChecker.checkObject(rect) == 999;
     }
 }
