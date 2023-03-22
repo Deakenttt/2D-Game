@@ -80,13 +80,10 @@ public class Player extends Entity {
             collisionOn = false;
             collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
             gp.collisionChecker.checkEntity(this);
-            int object = gp.collisionChecker.checkObject(solidArea);
-            pickUpObject(object);
             gp.assetSetter.steakUpdate();      
         }
         super.update();
-        
-        
+        pickUpObject(gp.collisionChecker.checkObject(solidArea));
     }
 
 
@@ -98,7 +95,6 @@ public class Player extends Entity {
     public void pickUpObject(int object) {
         if (object != 999) {
             String objectName = gp.obj[object].name; // Get the type of different objects.
-            System.out.println("Picking up item " + object);
             switch (objectName) {
 
 
@@ -122,10 +118,6 @@ public class Player extends Entity {
                     gp.obj[object] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("You got a steak!", 2); // Show the msg when touch object.
-                    if (hasCheese == 6 && gp.exitcondition) {
-                        gp.playSE(1);
-                        gp.exitcondition = false;
-                    }
                     break;
 
                 case "trap": 
@@ -134,7 +126,6 @@ public class Player extends Entity {
                     gp.obj[object] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("Ouch! You touched a trap!", 3); // Show the msg when touch object.
-                    System.out.println("YOU TOUCHED A TRAP");
                     if (gp.player.totalScore < 0)
                         gp.ui.gameLose = true;
                     break;
