@@ -1,25 +1,18 @@
 package object;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
-
 /**
  * @Des This is a hole class inheritance from SuperObject.
  */
 public class OBJ_Hole extends SuperObject {
     public OBJ_Hole() {
+        super();
+    }
 
-        name = "Hole";
+    public void setDefaultValues(){
+        name = "hole";
         x = 19 * 48;
         y = 14 * 48;
-        solidArea.x = x;
-        solidArea.y = y;
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/Object/door.png")));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        super.setDefaultValues();
+        randomPosition = false;
     }
 }

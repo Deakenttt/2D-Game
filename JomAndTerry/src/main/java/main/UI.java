@@ -343,7 +343,7 @@ public class UI {
         g2.setFont(arial_40);
         int x = 0;
         int y = gp.tileSize;
-        int width = gp.screenWidth - (gp.tileSize * 14);
+        // int width = gp.screenWidth - (gp.tileSize * 14);
         int height = gp.tileSize * 2;
 
         if (messageOn) {

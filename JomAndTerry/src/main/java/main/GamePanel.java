@@ -38,6 +38,8 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int gameOverState = 3;
     public static final int gameWinState = 4;
     public int levelState = 1;
+    public SuperObject[][] objectsMap;
+
 
     // UI and sound
     public UI ui = new UI(this);
@@ -132,7 +134,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == gamePlay) {
             player.update();
             if (player.hasCheese >= 6) {
-                assetSetter.exit_open();
+                assetSetter.exitOpen();
             }
 
             for (int i = 0; i < enemy.length; i++) {
@@ -223,13 +225,17 @@ public class GamePanel extends JPanel implements Runnable {
      * @param level For selecting different map.
      */
     public void retry(int level) {
+        // objectsMap = new int[maxScreenCol][maxScreenRow];  // contain all 0's
         levelState = level;
         tileManager.setUpMap();
         player.setDefaultValues();
+
         ui.resumeTimer();
         ui.resetMsg();
         ui.resetGameState();
+
         assetSetter.setObject();
+
         if (levelState == 1){
             enemy = new Enemy[2];
         }
@@ -238,5 +244,6 @@ public class GamePanel extends JPanel implements Runnable {
         }
         assetSetter.setEnemy();
         gameState = gamePlay;
+
     }
 }

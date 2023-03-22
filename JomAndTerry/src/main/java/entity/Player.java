@@ -71,6 +71,7 @@ public class Player extends Entity {
      * Updates the player's position and checks for object interactions.
      */    
     public void update() {
+
         if (hasCheese >= 6) 
             gp.ui.showMessage("Door is open!", 5);
 
@@ -78,11 +79,12 @@ public class Player extends Entity {
         if(doMove){
             collisionOn = false;
             collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-            gp.collisionChecker.checkObject(this);
             gp.collisionChecker.checkEntity(this);
-            gp.assetSetter.steak_update();      
+            gp.assetSetter.steakUpdate();      
         }
         super.update();
+        int object = gp.collisionChecker.checkObject(solidArea);
+        pickUpObject(object);
     }
 
 
@@ -92,12 +94,13 @@ public class Player extends Entity {
      * @param i The index of the object being picked up.
      */
     public void pickUpObject(int object) {
-
         if (object != 999) {
             String objectName = gp.obj[object].name; // Get the type of different objects.
-
+            System.out.println("Picking up item " + object);
             switch (objectName) {
-                case "Cheese":
+
+
+                case "cheese":
                     gp.playSE(4);
                     hasCheese++;
                     totalScore++;
@@ -110,7 +113,7 @@ public class Player extends Entity {
                     }
                     break;
 
-                case "Steak":
+                case "steak":
                     gp.playSE(5);
                     hasSteak += 5;
                     totalScore += 5;
@@ -123,18 +126,19 @@ public class Player extends Entity {
                     }
                     break;
 
-                case "Trap": 
+                case "trap": 
                     gp.playSE(7);
                     totalScore -= 5;
                     gp.obj[object] = null;
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("Ouch! You touched a trap!", 3); // Show the msg when touch object.
+                    System.out.println("YOU TOUCHED A TRAP");
                     if (gp.player.totalScore < 0)
                         gp.ui.gameLose = true;
                     break;
                     
 
-                case "Hole":
+                case "hole":
                     if (hasCheese >= 6) {
                         gp.ui.showMessage("You escape successfully!", object); // Show the msg when get the cheese.
                         gp.ui.gameEnd = true; // End the game
@@ -142,6 +146,8 @@ public class Player extends Entity {
                         gp.ui.showMessage("You need to collect all of the cheese!", 1); // Show the msg when get the cheese.
                     
                     break;
+                default:
+                break;
             }
         }
     }

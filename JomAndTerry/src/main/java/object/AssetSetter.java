@@ -1,5 +1,7 @@
 package object;
 
+import java.awt.Rectangle;
+
 import entity.Enemy;
 import main.GamePanel;
 
@@ -9,50 +11,65 @@ import main.GamePanel;
  */
 public class AssetSetter {
     GamePanel gp;
-    int[][] objectsMap;
     QuadRangeChooser chooser = new QuadRangeChooser();
-
-    public int[] destHolder;  // store x, y pos
     int steakCounter = 2;
 
     public AssetSetter(GamePanel gp) {
         this.gp = gp;
     }
 
-
     /**
      * Setting all the buffered images to each type of objects.
      */
     public void setObject() {
-        destHolder = new int[10];
-        objectsMap = new int[gp.maxScreenCol][gp.maxScreenRow];  // contain all 0's
         gp.obj[0] = new OBJ_Cheese();
         gp.obj[1] = new OBJ_Cheese();
         gp.obj[2] = new OBJ_Cheese();
         gp.obj[3] = new OBJ_Cheese();
         gp.obj[4] = new OBJ_Cheese();
         gp.obj[5] = new OBJ_Cheese();
+        gp.obj[6] = null; // Steak
         gp.obj[7] = new OBJ_Trap();
         gp.obj[8] = new OBJ_Trap();
+        gp.obj[9] = new OBJ_Hole();
 
-        for (int i = 0; i < gp.obj.length; i++) {
-            if (gp.obj[i] != null) {
+        for (int i = 0; i < 9; i++) {
+
+            if (gp.obj[i] != null && gp.obj[i].randomPosition) {
                 object_setter(i);
             }
         }
+    }
+    /**
+    * This is a method for creating enemy objects, and stores these into the array.
+    */
+    public void setEnemy(){
+        gp.enemy[0] = new Enemy(gp, 1, 14);
+        gp.enemy[1] = new Enemy(gp, 18, 14);
+        if(gp.levelState == 2)
+            gp.enemy[2] = new Enemy(gp, 18, 1);
+    }
 
-        // Door
-        destHolder[2] = gp.obj[7].x;
-        destHolder[3] = gp.obj[7].y;
+    /**
+    * This is a method for setting object's solidArea and position.
+    *
+    * @param i object to be set
+    */
+    public void object_setter(int i) {
+        int row, col;
+        int[] quad = chooser.getNextRange();
 
-        // Hole
-        gp.obj[9] = new OBJ_Hole();
-        gp.obj[9].x = 19 * gp.tileSize;
-        gp.obj[9].y = 14 * gp.tileSize;
+        do {
 
+            row = getRandomNumber(quad[0], quad[1]);
+            col = getRandomNumber(quad[2], quad[3]);
+            
+        } while (!isTileAvailable(col, row));  // there isn't anything existing on the object position
 
-        // Steak
-        gp.obj[6] = null;
+        gp.obj[i].x = (col) * gp.tileSize;
+        gp.obj[i].y = (row) * gp.tileSize;
+        gp.obj[i].solidArea.x = gp.obj[i].x;
+        gp.obj[i].solidArea.y = gp.obj[i].y;
     }
 
     /**
@@ -67,19 +84,9 @@ public class AssetSetter {
     }
 
     /**
-     * This is a method for creating enemy objects, and stores these into the array.
-     */
-    public void setEnemy(){
-        gp.enemy[0] = new Enemy(gp, 1, 14);
-        gp.enemy[1] = new Enemy(gp, 18, 14);
-        if(gp.levelState == 2)
-            gp.enemy[2] = new Enemy(gp, 18, 1);
-    }
-
-    /**
      * This is a method for triggering the door object's status to open.
      */
-    public void exit_open() {
+    public void exitOpen() {
         gp.tileManager.exit_update();
         gp.obj[9].image = null;
     }
@@ -87,7 +94,7 @@ public class AssetSetter {
     /**
      * This is a method for updating the steak object position during the game.
      */
-    public void steak_update() {
+    public void steakUpdate() {
         if (steakCounter == 0) {
             if (gp.obj[6] == null) {
                 gp.obj[6] = new OBJ_Steak();
@@ -98,32 +105,11 @@ public class AssetSetter {
             steakCounter = getRandomNumber(3, 7);
         }
         steakCounter--;
-
-    }
-
-    /**
-     * This is a method for setting object's solidArea and position.
-     *
-     * @param i
-     */
-    public void object_setter(int i) {
-        int row, col;
-        int[] quad = chooser.getNextRange();
-        do {
-            row = getRandomNumber(quad[0], quad[1]);
-            col = getRandomNumber(quad[2], quad[3]);
-        } while (!isTileAvailable(col, row));  // there isn't anything existing on the object position
-
-        gp.obj[i].x = (col) * gp.tileSize;
-        gp.obj[i].y = (row) * gp.tileSize;
-        gp.obj[i].solidArea.x = gp.obj[i].x + gp.obj[i].solidAreaDefaultX;
-        gp.obj[i].solidArea.y = gp.obj[i].y + gp.obj[i].solidAreaDefaultY;
-        objectsMap[col][row] = 1;
-    }
+    }                                                      
 
     private boolean isTileAvailable(int col, int row) {
         int tileNum = gp.tileManager.mapTileNum[col][row];
-        return !gp.tileManager.tile[tileNum].collision && objectsMap[col][row] == 0;
+        Rectangle rect = new Rectangle(col*gp.tileSize, row*gp.tileSize);
+        return !gp.tileManager.tile[tileNum].collision && gp.collisionChecker.checkObject(rect) != 999;
     }
-
 }
