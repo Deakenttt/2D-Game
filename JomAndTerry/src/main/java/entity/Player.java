@@ -127,14 +127,15 @@ public class Player extends Entity {
                     System.out.println("score: " + totalScore);
                     gp.ui.showMessage("Ouch! You touched a trap!", 3); // Show the msg when touch object.
                     if (gp.player.totalScore < 0)
-                        gp.ui.gameLose = true;
+                        gp.gameOver();
                     break;
                     
 
                 case "hole":
                     if (hasCheese >= 6) {
-                        gp.ui.showMessage("You escape successfully!", object); // Show the msg when get the cheese.
                         gp.ui.gameEnd = true; // End the game
+
+                        gp.ui.showMessage("You escape successfully!", object); // Show the msg when get the cheese.
                     } else
                         gp.ui.showMessage("You need to collect all of the cheese!", 1); // Show the msg when get the cheese.
                     
@@ -152,8 +153,8 @@ public class Player extends Entity {
     public void captured(int cat) {
         if (cat != 999 || captureFlag) {
             captureFlag = true;
-            gp.ui.gameLose = true; // End the game.
-            gp.playSE(6);
+            gp.gameOver();
+\           gp.playSE(6);
         }
     }
 }

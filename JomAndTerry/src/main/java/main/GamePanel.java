@@ -246,4 +246,11 @@ public class GamePanel extends JPanel implements Runnable {
         gameState = gamePlay;
 
     }
+
+    public void gameOver(){
+        gameState = 3;
+        playSE(2);
+
+        // ui.drawGameOver();
+    }
 }
