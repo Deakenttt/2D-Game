@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class UI {
     GamePanel gp;
-    Graphics2D g2;
+    // Graphics2D g2;
     Font arial_40, arial_80B;
     BufferedImage cheeseImg;
     BufferedImage steakImg;
@@ -38,6 +38,8 @@ public class UI {
     // For game win or game lose.
     public boolean gameEnd = false;
     public boolean gameLose = false;
+    String text;
+    FontMetrics metrics;
 
     Color dBrown = new Color(54, 46, 57, 255);
     Color lBrown = new Color(205, 159, 100);
@@ -65,62 +67,20 @@ public class UI {
     }
 
     /**
-     * This is a method for calling the draw() method.
-     *
-     * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
-     */
-    public void draw(Graphics2D g2) {
-        this.g2 = g2;
-
-        g2.setColor(Color.white);
-        if (gp.gameState == GamePanel.titleState) {
-            drawTitleScreen();
-        }
-
-        // When the game is pause.
-        if (gp.gameState == GamePanel.gamePause) {
-
-            drawGamePauseScreen(g2);
-        }
-
-        // When the game is playing.
-        if (gp.gameState == GamePanel.gamePlay) {
-
-
-            drawScoreAndTimer(g2);
-            drawGamePlayScreen(g2);
-        }
-
-        // When the game is over.
-        if (gp.gameState == GamePanel.gameOverState) {
-
-            gameOverScreen();
-        }
-
-
-        // When the game is win.
-        if (gp.gameState == GamePanel.gameWinState) {
-
-            gameWinScreen();
-        }
-    }
-
-    /**
      * gameOverScreen() is a method for handling all the visual elements on the page showing when
      * the game is over, it will show the massage of 'You lose' and some buttons.
      */
-    public void gameOverScreen() {
+    public void gameOverScreen(Graphics2D g2) {
         g2.setColor(grey);
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
-        String text;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
 
         text = "You Lose!";
 
         // Shadow layer
         g2.setColor(Color.black);
-        x = getXforCenteredText(text);
+        x = getXforCenteredText(text, g2);
         y = gp.tileSize * 4;
         g2.drawString(text, x, y);
         g2.setColor(Color.white);
@@ -129,19 +89,19 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(50f));
         
         // y += gp.tileSize;
-        titleButtons("Retry", 0);
+        titleButtons("Retry", 0, g2);
         y -= gp.tileSize/2;
 
         //Quit button
-        titleButtons("Quit", 1);
+        titleButtons("Quit", 1, g2);
         y -= gp.tileSize/2;
 
         //Home page
-        titleButtons("Home Page", 2);
+        titleButtons("Home Page", 2, g2);
         y -= gp.tileSize/2;
 
         //change the level
-        titleButtons("Change Level", 3);
+        titleButtons("Change Level", 3, g2);
 
         pauseTimer();
         drawScoreAndTimer(g2);
@@ -151,17 +111,16 @@ public class UI {
      * gameWinScreen() is a method for handling all the visual elements on the page showing when
      * the game is win, it will show the massage of 'You win' and some buttons (such as 'retry', 'homePage', 'quit').
      */
-    public void gameWinScreen() {
+    public void gameWinScreen(Graphics2D g2) {
         g2.setColor(grey);
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        String text;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
 
         text = "You Win!";
 
         // Shadow layer
         g2.setColor(Color.black);
-        x = getXforCenteredText(text);
+        x = getXforCenteredText(text, g2);
         y = gp.tileSize * 4;
         g2.drawString(text, x, y);
         g2.setColor(Color.white);
@@ -169,16 +128,16 @@ public class UI {
 
         // Retry button
         g2.setFont(g2.getFont().deriveFont(50f));
-        titleButtons("Retry", 0);
+        titleButtons("Retry", 0, g2);
 
         //Quit button
-        titleButtons("Quit", 1);
+        titleButtons("Quit", 1, g2);
 
         //Home page
-        titleButtons("Home Page", 2);
+        titleButtons("Home Page", 2, g2);
 
         //change the level
-        titleButtons("Change Level", 3);
+        titleButtons("Change Level", 3, g2);
 
         pauseTimer();
         drawScoreAndTimer(g2);
@@ -190,7 +149,7 @@ public class UI {
      * when pressed the 'start' button, it will show another page for user to select the different difficulties.
      * when pressed the 'instruction' button, it will show another page that showing all instuction about the game.
      */
-    public void drawTitleScreen() {
+    public void drawTitleScreen(Graphics2D g2) {
         if (titleScreenState == 0) {
 
             // Title screen page
@@ -200,7 +159,7 @@ public class UI {
 
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
             String text = "Jom and Terry";
-            int x = getXforCenteredText(text);
+            int x = getXforCenteredText(text, g2);
             y = gp.tileSize * 3;
 
             // Shadow
@@ -220,9 +179,9 @@ public class UI {
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
             y += gp.tileSize * 2;
             
-            titleButtons("Start", 0);
-            titleButtons("Instructions", 1);
-            titleButtons("Quit", 2);
+            titleButtons("Start", 0, g2);
+            titleButtons("Instructions", 1, g2);
+            titleButtons("Quit", 2, g2);
 
         } else if (titleScreenState == 1) {
 
@@ -232,7 +191,7 @@ public class UI {
             g2.setFont(g2.getFont().deriveFont(60F));
 
             String titleText = "Instructions";
-            x = getXforCenteredText(titleText);
+            x = getXforCenteredText(titleText, g2);
             y = gp.tileSize * 3;
             g2.drawString(titleText, x, y);
 
@@ -245,7 +204,7 @@ public class UI {
             int maxWidth = 800; // maximum width of text
             String[] lines = getLines(instructionText, g2.getFontMetrics(), maxWidth);
 
-            x = getXforCenteredText(lines[0]); // use the x position of the first line for centering
+            x = getXforCenteredText(lines[0], g2); // use the x position of the first line for centering
             y += gp.tileSize * 3;
             for (int i = 0; i < lines.length; i++) {
                 g2.drawString(lines[i], x, y);
@@ -253,8 +212,8 @@ public class UI {
             }
 
             g2.setFont(g2.getFont().deriveFont(40F));
-            titleButtons("Play The Game", 0);
-            titleButtons("Go Back", 1);
+            titleButtons("Play The Game", 0, g2);
+            titleButtons("Go Back", 1, g2);
 
         }else if (titleScreenState == 2) {
             g2.setColor(Color.white);
@@ -262,7 +221,7 @@ public class UI {
             g2.setFont(g2.getFont().deriveFont(60F));
 
             String titleText = "Select the Level";
-            x = getXforCenteredText(titleText);
+            x = getXforCenteredText(titleText, g2);
             y = gp.tileSize * 3;
             g2.drawString(titleText, x, y);
 
@@ -273,7 +232,7 @@ public class UI {
             int maxWidth = 800; // maximum width of text
             String[] lines = getLines(instructionText, g2.getFontMetrics(), maxWidth);
 
-            x = getXforCenteredText(lines[0]); // use the x position of the first line for centering
+            x = getXforCenteredText(lines[0], g2); // use the x position of the first line for centering
             y += gp.tileSize * 3;
             for (int i = 0; i < lines.length; i++) {
                 g2.drawString(lines[i], x, y);
@@ -281,10 +240,10 @@ public class UI {
             }
 
             g2.setFont(g2.getFont().deriveFont(40F));
-            titleButtons("Level 1", 0);
+            titleButtons("Level 1", 0, g2);
             y = y - gp.tileSize;
-            titleButtons("Level 2", 1);
-            titleButtons("Go Back", 2);
+            titleButtons("Level 2", 1, g2);
+            titleButtons("Go Back", 2, g2);
         }
     }
 
@@ -321,7 +280,7 @@ public class UI {
      * @param text String type context to be process.
      * @return The x position of the text that start from the middle.
      */
-    public int getXforCenteredText(String text) {
+    public int getXforCenteredText(String text, Graphics2D g2) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = (gp.screenWidth-1) / 2 - length / 2;
         return x;
@@ -354,7 +313,7 @@ public class UI {
         if (messageOn) {
             int length = (int) g2.getFontMetrics().getStringBounds(message, g2).getWidth();
 
-            drawMsgWindow(x, y, length+50, height);
+            drawMsgWindow(x, y, length+50, height, g2);
 
             g2.setColor(Color.WHITE);
             g2.drawString(message, gp.tileSize / 2, height + 5);
@@ -386,7 +345,7 @@ public class UI {
      * @param width  window's width value.
      * @param height window's height value.
      */
-    public void drawMsgWindow(int x, int y, int width, int height) {
+    public void drawMsgWindow(int x, int y, int width, int height, Graphics2D g2) {
 
         // Color c = new Color(54, 46, 57, 255);
 
@@ -471,7 +430,7 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.WHITE);
 
-        x = getXforCenteredText(text);
+        x = getXforCenteredText(text, g2);
         y = gp.screenHeight / 2 - (gp.tileSize * 3);
         g2.drawString(text, x, y);
     }
@@ -482,24 +441,9 @@ public class UI {
      * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
      */
     public void drawGamePlayScreen(Graphics2D g2) {
-
-        // if (gameEnd) {
-            // gp.gameState = GamePanel.gameWinState;
-            // gp.playSE(3);
-        // }
-
-        // if (gameLose) {
-            // gp.gameState = GamePanel.gameOverState;
-            // gp.playSE(2);
-        // }
-
+        drawScoreAndTimer(g2);
         drawMessage(g2);
     }
-
-    // public void drawGameOver() {
-        // drawMessage(g2);
-    // }
-        
 
     /**
      * This is a method for drawing the pause screen when player pause the game.
@@ -520,8 +464,8 @@ public class UI {
     * @return void
     */
     
-    public void titleButtons(String button_text, int button_num){
-        x = getXforCenteredText(button_text);
+    public void titleButtons(String button_text, int button_num, Graphics2D g2){
+        x = getXforCenteredText(button_text, g2);
         y += gp.tileSize * 2;
         g2.drawString(button_text, x, y);
         if (commandNum == button_num) {

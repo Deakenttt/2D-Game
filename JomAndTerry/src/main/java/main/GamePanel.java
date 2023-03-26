@@ -157,15 +157,16 @@ public class GamePanel extends JPanel implements Runnable {
         // convert Graphics to Graphics2D class extends the Graphics class to provide more sophisticated control over
         // geometry, coordinate transformations, color management, and text layout.
         Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.white);
 
-        // When start the game but not start to play yet.
-        if (gameState != titleState) {
-        
         // When the game is playing, pause, over, or win.
+        if (gameState == titleState) {
+            ui.drawTitleScreen(g2);
+        }
 
+        else{
             tileManager.draw(g2);
             player.draw(g2);
-
 
             // Draw objects
             for (int i = 0; i < obj.length; i++) {
@@ -180,10 +181,23 @@ public class GamePanel extends JPanel implements Runnable {
                     enemy[i].draw(g2);
                 }
             }
+            if(gameState == gamePause){
+                ui.drawGamePauseScreen(g2);
+            }
+            else if(gameState == gamePlay){
+                ui.drawGamePlayScreen(g2);
+            }
 
-            // Draw UI
+            else if(gameState == gameOverState){
+                ui.gameOverScreen(g2);
+            }
+
+            else if(gameState == gameWinState){
+                ui.gameWinScreen(g2);
+
+            }
+
         }
-        ui.draw(g2);
 
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
@@ -249,5 +263,9 @@ public class GamePanel extends JPanel implements Runnable {
         playSE(2);
 
         // ui.drawGameOver();
+    }
+    public void escaped(){
+        gameState = GamePanel.gameWinState;
+        playSE(3);
     }
 }
