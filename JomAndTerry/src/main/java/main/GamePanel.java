@@ -159,11 +159,9 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         // When start the game but not start to play yet.
-        if (gameState == titleState) {
-            ui.draw(g2);
-        }
+        if (gameState != titleState) {
+        
         // When the game is playing, pause, over, or win.
-        else {
 
             tileManager.draw(g2);
             player.draw(g2);
@@ -184,8 +182,8 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             // Draw UI
-            ui.draw(g2);
         }
+        ui.draw(g2);
 
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
