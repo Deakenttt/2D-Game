@@ -154,7 +154,7 @@ public class Player extends Entity {
         if (cat != 999 || captureFlag) {
             captureFlag = true;
             gp.gameOver();
-\           gp.playSE(6);
+           gp.playSE(6);
         }
     }
 }
