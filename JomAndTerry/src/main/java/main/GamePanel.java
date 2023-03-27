@@ -45,11 +45,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     // UI and sound
     public UI ui;
-    public UI elseUI;
+    public UI playUI;
     public GameTitleUI titleUI;
     public GameOverUI overUI;
     public GameWinUI winUI;
-
     Sound sound = new Sound();
 
     // Fps
@@ -73,7 +72,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel() {
         loadAllImages();
         ui = titleUI;
-        elseUI = new UI(this);
+        playUI = new UI(this);
         titleUI = new GameTitleUI(this);
         overUI = new GameOverUI(this);
         winUI = new GameWinUI(this);
@@ -149,7 +148,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
        
         player.update();
-        if (player.hasCheese >= 6) {
+        if (player.cheeseCount >= 6) {
             assetSetter.exitOpen();
         }
 
@@ -235,8 +234,8 @@ public class GamePanel extends JPanel implements Runnable {
         levelState = level;
         tileManager.setUpMap();
         player.setDefaultValues();
+        ui = playUI;
         ui.resetUI();
-        ui = elseUI;
 
         if (levelState == 1){
             enemy = new Enemy[2];
@@ -248,31 +247,36 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setObject();
 
         gameState = gamePlay;
-        ui = elseUI;
-
-    }
-    
-    public void pickLevel(){
-        gameState = 0;
-        ui = titleUI;
-        ui.titleScreenState = 2;
+        ui = playUI;
     }
 
     public void gameOver(){
         gameState = 3;
         ui = overUI;
+        ui.text = "You Lose!";
         playSE(2);
     }
 
-    public void escaped(){
+    public void gameWin(){
         gameState = GamePanel.gameWinState;
-        ui = winUI;
+        ui = overUI;
+        ui.text = "You Win!";
         playSE(3);
     }
 
-    public void title(){
+    public void titleMain(){
         gameState = 0;
         ui = titleUI;
+        String subText = "You are the mouse (Terry). Collect 6 cheeses to unlock the exit door. " +
+        "Avoid the smart cats (Joms; yes they're all named Jom). " +
+        "Cheese = 1 point, Steak (bonus) = 5 points, mouse trap (punishment) = -5 points. " +
+        "Negative points = Automatic loss. " +
+        "Exit with max points and the fastest time, there is no time limit. Enjoy!";
+    }
+    public void titleLevel(){
+        gameState = 0;
+        ui = titleUI;
+
     }
 
     public void loadAllImages(){

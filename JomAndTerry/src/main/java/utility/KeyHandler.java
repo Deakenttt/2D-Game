@@ -225,13 +225,13 @@ public class KeyHandler implements KeyListener {
                         System.exit(0);
                         break;
                     case 2: // back
-                        gp.title();
+                        gp.titleMain();
                         gp.ui.titleScreenState = 0;
 
                         break;
                     case 3: // choose level
-                        gp.title();
-                        gp.ui.titleScreenState = 3;
+                        gp.titleLevel();
+                        gp.ui.titleScreenState = LEVEL_TITLE;
 
                         break;
                     default: break;
@@ -269,11 +269,11 @@ public class KeyHandler implements KeyListener {
                         System.exit(0);
                         break;         
                     case 2: // back
-                        gp.title();
+                        gp.titleMain();
                         gp.ui.titleScreenState = 0;
                         break;
                     case 3: // choose level
-                    gp.title();
+                    gp.titleLevel();
                     gp.ui.titleScreenState = LEVEL_TITLE;
 
                     break;

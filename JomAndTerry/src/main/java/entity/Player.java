@@ -9,9 +9,9 @@ import utility.KeyHandler;
 */
 public class Player extends Entity {
     KeyHandler keyHandler;
-    public int hasCheese = 0; // Tracking the number of cheese.
-    public int hasSteak = 0; // Tracking the number of steak.
-    public int totalScore = 0; // Tracking the total score.
+    public int cheeseCount = 0; // Tracking the number of cheese.
+    public int steakCount = 0; // Tracking the number of steak.
+    public int scoreCount = 0; // Tracking the total score.
     boolean captureFlag = false; // Flag for being caught.
     int KeyHoldTimer = 0; // Timer for how long the player has hold the key.
 
@@ -38,9 +38,9 @@ public class Player extends Entity {
         solidArea.x = solidAreaDefaultX;
         solidArea.y = solidAreaDefaultY;
         direction = "down";
-        hasCheese = 0; // resets the number of cheese.
-        hasSteak = 0; // resets the number of steak.
-        totalScore = 0; // resets the total score.
+        cheeseCount = 0; // resets the number of cheese.
+        steakCount = 0; // resets the number of steak.
+        scoreCount = 0; // resets the total score.
         captureFlag = false;
         name = "mouse";
     }
@@ -72,7 +72,7 @@ public class Player extends Entity {
      */    
     public void update() {
 
-        if (hasCheese >= 6) 
+        if (cheeseCount >= 6) 
             gp.ui.showMessage("Door is open!", 5);
 
         setAction();
@@ -96,16 +96,14 @@ public class Player extends Entity {
         if (object != 999) {
             String objectName = gp.obj[object].name; // Get the type of different objects.
             switch (objectName) {
-
-
                 case "cheese":
                     gp.playSE(4);
-                    hasCheese++;
-                    totalScore++;
+                    cheeseCount++;
+                    scoreCount++;
                     gp.obj[object] = null;
-                    System.out.println("score: " + totalScore);
+                    System.out.println("score: " + scoreCount);
                     gp.ui.showMessage("You got a cheese!", 1); // Show the msg when touch object.
-                    if (hasCheese == 6 && gp.exitcondition) {
+                    if (cheeseCount == 6 && gp.exitcondition) {
                         gp.playSE(1);
                         gp.exitcondition = false;
                     }
@@ -113,27 +111,27 @@ public class Player extends Entity {
 
                 case "steak":
                     gp.playSE(5);
-                    hasSteak += 5;
-                    totalScore += 5;
+                    steakCount += 5;
+                    scoreCount += 5;
                     gp.obj[object] = null;
-                    System.out.println("score: " + totalScore);
+                    System.out.println("score: " + scoreCount);
                     gp.ui.showMessage("You got a steak!", 2); // Show the msg when touch object.
                     break;
 
                 case "trap": 
                     gp.playSE(7);
-                    totalScore -= 5;
+                    scoreCount -= 5;
                     gp.obj[object] = null;
-                    System.out.println("score: " + totalScore);
+                    System.out.println("score: " + scoreCount);
                     gp.ui.showMessage("Ouch! You touched a trap!", 3); // Show the msg when touch object.
-                    if (gp.player.totalScore < 0)
+                    if (gp.player.scoreCount < 0)
                         gp.gameOver();
                     break;
                     
 
                 case "hole":
-                    if (hasCheese >= 6) {
-                        gp.escaped();
+                    if (cheeseCount >= 6) {
+                        gp.gameWin();
                         gp.ui.showMessage("You escaped successfully!", object); // Show the msg when get the cheese.
                     } else
                         gp.ui.showMessage("You need to collect all of the cheese!", 1); // Show the msg when get the cheese.

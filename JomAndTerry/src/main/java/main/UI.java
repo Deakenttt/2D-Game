@@ -30,9 +30,6 @@ public class UI {
     public int objectCollectType = 0;
     public int y;
     public int x;
-    // For game win or game lose.
-    public boolean gameEnd = false;
-    public boolean gameLose = false;
     String text;
     FontMetrics metrics;
 
@@ -50,14 +47,13 @@ public class UI {
         arial_40 = new Font("Arial", Font.PLAIN, 20);
         arial_80B = new Font("Arial", Font.BOLD, 80);
 
-        // OBJ_Cheese cheese = new OBJ_Cheese();
         cheeseImg = gp.imageLoader.getImage("cheese");
-        // OBJ_Steak steak = new OBJ_Steak();
         steakImg = gp.imageLoader.getImage("steak");
-        // OBJ_Trap trap = new OBJ_Trap();
         trapImg = gp.imageLoader.getImage("trap");
-        // OBJ_Hole door = new OBJ_Hole();
         doorImg = gp.imageLoader.getImage("door");
+        // g2.setColor(Color.black);
+ 
+        // g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
     }
 
     public void draw(Graphics2D g2) {
@@ -125,7 +121,6 @@ public class UI {
         g2.setFont(arial_40);
         int x = 0;
         int y = gp.tileSize;
-        // int width = gp.screenWidth - (gp.tileSize * 14);
         int height = gp.tileSize * 2;
 
         if (messageOn) {
@@ -182,14 +177,6 @@ public class UI {
         messageOn = false;
     }
 
-    /**
-     * resetGameState() is a method for resetting the gameLose and gameEnd to false when user pressed the retry button.
-     */
-    public void resetGameState() {
-        gameLose = false;
-        gameEnd = false;
-    }
-
     public double playTime = 0.0; // start at 0 seconds
     private long lastTime = System.currentTimeMillis(); // initialize lastTime to current time
     private boolean paused = false; // initialize paused to false
@@ -204,11 +191,11 @@ public class UI {
 
         g2.setFont(arial_40);
         g2.setColor(Color.WHITE);
-        g2.drawString("Score: " + gp.player.totalScore, 25, 40);
+        g2.drawString("Score: " + gp.player.scoreCount, 25, 40);
         g2.drawImage(cheeseImg, gp.tileSize / 2 + 100, 20, gp.tileSize / 2, gp.tileSize / 2, null);
-        g2.drawString(" X " + gp.player.hasCheese, 150, 40);
+        g2.drawString(" X " + gp.player.cheeseCount, 150, 40);
         g2.drawImage(steakImg, gp.tileSize / 2 + 170, 20, gp.tileSize / 2, gp.tileSize / 2, null);
-        g2.drawString(" X " + gp.player.hasSteak / 5, 220, 40);
+        g2.drawString(" X " + gp.player.steakCount / 5, 220, 40);
 
         if (!paused) { // only update playTime if not paused
             long currentTime = System.currentTimeMillis();
@@ -285,14 +272,31 @@ public class UI {
         y += gp.tileSize * 2;
         g2.drawString(button_text, x, y);
         if (commandNum == button_num) {
-            System.out.println(commandNum);
             g2.drawString(">", x-gp.tileSize, y);
         }
     }
     public void resetUI(){
         resumeTimer();
         resetMsg();
-        resetGameState();
+    }
+
+    public void textWithShadow(String text, Graphics2D g2, int shadowShift){
+        x = getXforCenteredText(text, g2);
+        g2.drawString(text, x + 5, y + 5);
+        g2.setColor(Color.white);
+        g2.drawString(text, x , y);
+    }
+
+    public void gameStoppedMenuButtons(Graphics2D g2){
+        g2.setFont(g2.getFont().deriveFont(50f));
+        // Retry button
+        titleButtons("Retry", 0, g2);
+        //Quit button
+        titleButtons("Quit", 1, g2);
+        //Home page
+        titleButtons("Home Page", 2, g2);
+        //change the level
+        titleButtons("Change Level", 3, g2);
     }
 
 }
