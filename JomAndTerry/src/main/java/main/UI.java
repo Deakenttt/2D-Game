@@ -56,7 +56,6 @@ public class UI {
         arial_80B = new Font("Arial", Font.BOLD, 80);
 
         OBJ_Cheese cheese = new OBJ_Cheese();
-        
         cheeseImg = cheese.image;
         OBJ_Steak steak = new OBJ_Steak();
         steakImg = steak.image;
@@ -472,6 +471,11 @@ public class UI {
             System.out.println(commandNum);
             g2.drawString(">", x-gp.tileSize, y);
         }
+    }
+    public void resetUI(){
+        resumeTimer();
+        resetMsg();
+        resetGameState();
     }
 
 }

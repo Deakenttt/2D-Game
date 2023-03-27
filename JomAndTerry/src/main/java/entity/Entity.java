@@ -67,17 +67,27 @@ public class Entity {
     * Sets the image of an entity.
     */
     public void getPlayerImage() {
-        up1 = setup("%s_up_1".formatted(name));
-        up2 = setup("%s_up_2".formatted(name));
-        
-        down1 = setup("%s_down_1".formatted(name));
-        down2 = setup("%s_down_2".formatted(name));
-        
-        left1 = setup("%s_left_1".formatted(name));
-        left2 = setup("%s_left_2".formatted(name));
+        // up1 = setup("%s_up_1".formatted(name));
+        up1 =  gp.imageLoader.getImage("%s_up_1".formatted(name));
 
-        right1 = setup("%s_right_1".formatted(name));
-        right2 = setup("%s_right_2".formatted(name));
+        // up2 = setup("%s_up_2".formatted(name));
+        up2 =  gp.imageLoader.getImage("%s_up_2".formatted(name));
+
+        
+        // down1 = setup("%s_down_1".formatted(name));
+        down1 = gp.imageLoader.getImage("%s_down_1".formatted(name));
+        // down2 = setup("%s_down_2".formatted(name));
+        down2 =  gp.imageLoader.getImage("%s_down_2".formatted(name));
+        
+        // left1 = setup("%s_left_1".formatted(name));
+        left1 =  gp.imageLoader.getImage("%s_left_1".formatted(name));
+        // left2 = setup("%s_left_2".formatted(name));
+        left2 =  gp.imageLoader.getImage("%s_left_2".formatted(name));
+
+        // right1 = setup("%s_right_1".formatted(name));
+        right1 =  gp.imageLoader.getImage("%s_right_1".formatted(name));
+        // right2 = setup("%s_right_2".formatted(name));
+        right2 =  gp.imageLoader.getImage("%s_right_2".formatted(name));
 
     }
     /**

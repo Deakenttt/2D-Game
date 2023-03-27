@@ -7,10 +7,13 @@ import object.AssetSetter;
 import object.SuperObject;
 import tile.TileManager;
 import utility.CollisionChecker;
+import utility.ImageLoader;
 import utility.KeyHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 import static utility.SizeNumber.*;
 import static utility.SizeNumber.MAX_SCREEN_ROW;
@@ -53,16 +56,18 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler(this); // Key handler class.
 
     public FindPath findPath = new FindPath(this);
-    public Player player = new Player(this, keyHandler); // Initiate a Player object.
+    public Player player;
     public Enemy[] enemy = new Enemy[3];
     public SuperObject[] obj = new SuperObject[20]; // 20 slots for object, can replace the content during the game.
 
     public TileManager tileManager = new TileManager(this); // Initiate tileManger object.
     public CollisionChecker collisionChecker = new CollisionChecker(this); // Initiate a CollisionChecker object.
     public AssetSetter assetSetter = new AssetSetter(this); // Initiate AssetSetter object.
-
+    public ImageLoader imageLoader = new ImageLoader();
 
     public GamePanel() {
+        System.out.println("GP");
+        loadAllImages();
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         Rectangle rect = new Rectangle(1, 1, 1, screenHeight);
         this.scrollRectToVisible(rect);
@@ -78,6 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame() {
         gameState = titleState;
         playMusic(0);
+        player = new Player(this, keyHandler); // Initiate a Player object.
     }
 
     /**
@@ -103,7 +109,9 @@ public class GamePanel extends JPanel implements Runnable {
         while (gameThread != null) {
 
             // 1. UPDATE: update info such as character position.
-            update();
+            if (gameState == gamePlay) {
+                update();
+            }
 
             // 2. DRAW: draw the screen with the updated information.
             repaint(); // is the way to call paintComponent method.
@@ -129,18 +137,15 @@ public class GamePanel extends JPanel implements Runnable {
      * Method of update() is updating the player object and enemies objects.
      */
     public void update() {
+       
+        player.update();
+        if (player.hasCheese >= 6) {
+            assetSetter.exitOpen();
+        }
 
-        // When the game is playing.
-        if (gameState == gamePlay) {
-            player.update();
-            if (player.hasCheese >= 6) {
-                assetSetter.exitOpen();
-            }
-
-            for (int i = 0; i < enemy.length; i++) {
-                if (enemy[i] != null) {
-                    enemy[i].update();
-                }
+        for (int i = 0; i < enemy.length; i++) {
+            if (enemy[i] != null) {
+                enemy[i].update();
             }
         }
     }
@@ -236,16 +241,10 @@ public class GamePanel extends JPanel implements Runnable {
      * @param level For selecting different map.
      */
     public void retry(int level) {
-        // objectsMap = new int[maxScreenCol][maxScreenRow];  // contain all 0's
         levelState = level;
         tileManager.setUpMap();
         player.setDefaultValues();
-
-        ui.resumeTimer();
-        ui.resetMsg();
-        ui.resetGameState();
-
-        assetSetter.setObject();
+        ui.resetUI();
 
         if (levelState == 1){
             enemy = new Enemy[2];
@@ -254,6 +253,8 @@ public class GamePanel extends JPanel implements Runnable {
             enemy = new Enemy[3];
         }
         assetSetter.setEnemy();
+        assetSetter.setObject();
+
         gameState = gamePlay;
 
     }
@@ -261,11 +262,43 @@ public class GamePanel extends JPanel implements Runnable {
     public void gameOver(){
         gameState = 3;
         playSE(2);
-
-        // ui.drawGameOver();
     }
     public void escaped(){
         gameState = GamePanel.gameWinState;
         playSE(3);
+    }
+
+    public void loadAllImages(){
+        File folder;
+
+        folder = new File("src/main/resources/assets");
+        System.out.println(folder.getAbsolutePath()+ folder.exists());
+        getImageFromFolder(folder);
+
+
+        System.out.println("loading image");
+        // imageLoader.getImage("mouse", "mouse_down_1");
+        // imageLoader.getImage("mouse", "mouse_down_2");
+        // imageLoader.getImage("mouse", "mouse_up_1");
+        // imageLoader.getImage("mouse", "mouse_up_2");
+        // imageLoader.getImage("mouse", "mouse_right_1");
+        // imageLoader.getImage("mouse", "mouse_right_2");
+        // imageLoader.getImage("mouse", "mouse_left_1");
+        // imageLoader.getImage("mouse", "mouse_left_2");
+    }
+
+    public void getImageFromFolder(File folder){
+        File[] listOfFiles = folder.listFiles();
+
+        for (File file : listOfFiles) {
+            if (file.isFile() && file.getName().endsWith(".png")) {
+                System.out.println("File: " + file.getName());
+                imageLoader.setImage(file);
+            } else if (file.isDirectory()) {
+                System.out.println("Directory: " + file.getName());
+                getImageFromFolder(file);
+            }
+        }
+
     }
 }
