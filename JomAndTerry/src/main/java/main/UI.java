@@ -60,82 +60,87 @@ public class UI {
         doorImg = gp.imageLoader.getImage("door");
     }
 
+    public void draw(Graphics2D g2) {
+        drawScoreAndTimer(g2);
+        drawMessage(g2);
+    }
+
     /**
      * gameOverScreen() is a method for handling all the visual elements on the page showing when
      * the game is over, it will show the massage of 'You lose' and some buttons.
      */
-    public void gameOverScreen(Graphics2D g2) {
-        g2.setColor(grey);
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+    // public void gameOverScreen(Graphics2D g2) {
+        // g2.setColor(grey);
+        // g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
+        // g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
 
-        text = "You Lose!";
+        // text = "You Lose!";
 
         // Shadow layer
-        g2.setColor(Color.black);
-        x = getXforCenteredText(text, g2);
-        y = gp.tileSize * 4;
-        g2.drawString(text, x, y);
-        g2.setColor(Color.white);
-        g2.drawString(text, x - 4, y - 4);
-        //retry button
-        g2.setFont(g2.getFont().deriveFont(50f));
-        
+        // g2.setColor(Color.black);
+        // x = getXforCenteredText(text, g2);
+        // y = gp.tileSize * 4;
+        // g2.drawString(text, x, y);
+        // g2.setColor(Color.white);
+        // g2.drawString(text, x - 4, y - 4);
+        // retry button
+        // g2.setFont(g2.getFont().deriveFont(50f));
+        // 
         // y += gp.tileSize;
-        titleButtons("Retry", 0, g2);
-        y -= gp.tileSize/2;
+        // titleButtons("Retry", 0, g2);
+        // y -= gp.tileSize/2;
 
-        //Quit button
-        titleButtons("Quit", 1, g2);
-        y -= gp.tileSize/2;
+        // Quit button
+        // titleButtons("Quit", 1, g2);
+        // y -= gp.tileSize/2;
 
-        //Home page
-        titleButtons("Home Page", 2, g2);
-        y -= gp.tileSize/2;
+        // Home page
+        // titleButtons("Home Page", 2, g2);
+        // y -= gp.tileSize/2;
 
-        //change the level
-        titleButtons("Change Level", 3, g2);
+        // change the level
+        // titleButtons("Change Level", 3, g2);
 
-        pauseTimer();
-        drawScoreAndTimer(g2);
-    }
+        // pauseTimer();
+        // drawScoreAndTimer(g2);
+    // }
 
     /**
      * gameWinScreen() is a method for handling all the visual elements on the page showing when
      * the game is win, it will show the massage of 'You win' and some buttons (such as 'retry', 'homePage', 'quit').
      */
-    public void gameWinScreen(Graphics2D g2) {
-        g2.setColor(grey);
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
-
-        text = "You Win!";
-
+    // public void gameWinScreen(Graphics2D g2) {
+        // g2.setColor(grey);
+        // g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        // g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
+// 
+        // text = "You Win!";
+// 
         // Shadow layer
-        g2.setColor(Color.black);
-        x = getXforCenteredText(text, g2);
-        y = gp.tileSize * 4;
-        g2.drawString(text, x, y);
-        g2.setColor(Color.white);
-        g2.drawString(text, x - 4, y - 4);
-
+        // g2.setColor(Color.black);
+        // x = getXforCenteredText(text, g2);
+        // y = gp.tileSize * 4;
+        // g2.drawString(text, x, y);
+        // g2.setColor(Color.white);
+        // g2.drawString(text, x - 4, y - 4);
+// 
         // Retry button
-        g2.setFont(g2.getFont().deriveFont(50f));
-        titleButtons("Retry", 0, g2);
+        // g2.setFont(g2.getFont().deriveFont(50f));
+        // titleButtons("Retry", 0, g2);
 
         //Quit button
-        titleButtons("Quit", 1, g2);
+        // titleButtons("Quit", 1, g2);
 
         //Home page
-        titleButtons("Home Page", 2, g2);
+        // titleButtons("Home Page", 2, g2);
 
         //change the level
-        titleButtons("Change Level", 3, g2);
+        // titleButtons("Change Level", 3, g2);
 
-        pauseTimer();
-        drawScoreAndTimer(g2);
-    }
+        // pauseTimer();
+        // drawScoreAndTimer(g2);
+    // }
 
     /**
      * drawTitleScreen() is a method for handling all the visual elements on the page showing when
@@ -251,7 +256,7 @@ public class UI {
      * @param maxWidth    The value for setting one block of text's maximum width.
      * @return String type arraylist that stores all the lines.
      */
-    private String[] getLines(String text, FontMetrics fontMetrics, int maxWidth) {
+    protected String[] getLines(String text, FontMetrics fontMetrics, int maxWidth) {
         List<String> lines = new ArrayList<>();
         String[] words = text.split("\\s+");
         StringBuilder line = new StringBuilder();

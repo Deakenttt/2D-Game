@@ -45,6 +45,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     // UI and sound
     public UI ui;
+    public UI elseUI;
+    public GameTitleUI titleUI;
+    public GameOverUI overUI;
+    public GameWinUI winUI;
+
     Sound sound = new Sound();
 
     // Fps
@@ -64,9 +69,14 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter assetSetter = new AssetSetter(this); // Initiate AssetSetter object.
     public ImageLoader imageLoader = new ImageLoader();
 
+
     public GamePanel() {
         loadAllImages();
-        ui = new UI(this);
+        ui = titleUI;
+        elseUI = new UI(this);
+        titleUI = new GameTitleUI(this);
+        overUI = new GameOverUI(this);
+        winUI = new GameWinUI(this);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         Rectangle rect = new Rectangle(1, 1, 1, screenHeight);
         this.scrollRectToVisible(rect);
@@ -81,6 +91,7 @@ public class GamePanel extends JPanel implements Runnable {
      */
     public void setUpGame() {
         gameState = titleState;
+        ui = titleUI;
         playMusic(0);
         player = new Player(this, keyHandler); // Initiate a Player object.
     }
@@ -165,7 +176,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         // When the game is playing, pause, over, or win.
         if (gameState == titleState) {
-            ui.drawTitleScreen(g2);
+            ui.draw(g2);
         }
 
         else{
@@ -178,6 +189,7 @@ public class GamePanel extends JPanel implements Runnable {
                     obj[i].draw(g2, this);
                 }
             }
+            
 
             // Draw Enemies
             for (int i = 0; i < enemy.length; i++) {
@@ -185,21 +197,26 @@ public class GamePanel extends JPanel implements Runnable {
                     enemy[i].draw(g2);
                 }
             }
-            if(gameState == gamePause){
-                ui.drawGamePauseScreen(g2);
-            }
-            else if(gameState == gamePlay){
-                ui.drawGamePlayScreen(g2);
-            }
+                ui.draw(g2);
 
-            else if(gameState == gameOverState){
-                ui.gameOverScreen(g2);
-            }
-
-            else if(gameState == gameWinState){
-                ui.gameWinScreen(g2);
-
-            }
+            // if(gameState == gamePause){
+                // ui.drawGamePauseScreen(g2);
+            // }
+            // else if(gameState == gamePlay){
+                // ui.drawGamePlayScreen(g2);
+            // }
+// 
+            // else if(gameState == gameOverState){
+                // ui.gameOverScreen(g2);
+                // ui.draw(g2);
+// 
+            // }
+// 
+            // else if(gameState == gameWinState){
+                // ui.gameWinScreen(g2);
+                // ui.draw(g2);
+// 
+            // }
 
         }
 
@@ -244,6 +261,7 @@ public class GamePanel extends JPanel implements Runnable {
         tileManager.setUpMap();
         player.setDefaultValues();
         ui.resetUI();
+        ui = elseUI;
 
         if (levelState == 1){
             enemy = new Enemy[2];
@@ -255,16 +273,31 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setObject();
 
         gameState = gamePlay;
+        ui = elseUI;
 
+    }
+    public void pickLevel(){
+        gameState = 0;
+        ui = titleUI;
+        ui.titleScreenState = 2;
     }
 
     public void gameOver(){
         gameState = 3;
+        ui = overUI;
         playSE(2);
     }
+
     public void escaped(){
         gameState = GamePanel.gameWinState;
+        ui = winUI;
         playSE(3);
+    }
+
+    public void title(){
+        gameState = 0;
+        ui.titleScreenState = 0;
+        ui = titleUI;
     }
 
     public void loadAllImages(){
