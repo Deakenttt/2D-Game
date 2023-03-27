@@ -272,7 +272,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void title(){
         gameState = 0;
-        ui.titleScreenState = 0;
         ui = titleUI;
     }
 
