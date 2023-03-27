@@ -65,7 +65,6 @@ public class GamePanel extends JPanel implements Runnable {
     public ImageLoader imageLoader = new ImageLoader();
 
     public GamePanel() {
-        System.out.println("GP");
         loadAllImages();
         ui = new UI(this);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
