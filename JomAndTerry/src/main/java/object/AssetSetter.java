@@ -22,16 +22,16 @@ public class AssetSetter {
      * Setting all the buffered images to each type of objects.
      */
     public void setObject() {
-        gp.obj[0] = new OBJ_Cheese();
-        gp.obj[1] = new OBJ_Cheese();
-        gp.obj[2] = new OBJ_Cheese();
-        gp.obj[3] = new OBJ_Cheese();
-        gp.obj[4] = new OBJ_Cheese();
-        gp.obj[5] = new OBJ_Cheese();
+        gp.obj[0] = new OBJ_Cheese(gp);
+        gp.obj[1] = new OBJ_Cheese(gp);
+        gp.obj[2] = new OBJ_Cheese(gp);
+        gp.obj[3] = new OBJ_Cheese(gp);
+        gp.obj[4] = new OBJ_Cheese(gp);
+        gp.obj[5] = new OBJ_Cheese(gp);
         gp.obj[6] = null; // Steak
-        gp.obj[7] = new OBJ_Trap();
-        gp.obj[8] = new OBJ_Trap();
-        gp.obj[9] = new OBJ_Hole();
+        gp.obj[7] = new OBJ_Trap(gp);
+        gp.obj[8] = new OBJ_Trap(gp);
+        gp.obj[9] = new OBJ_Hole(gp);
 
         for (int i = 0; i < 9; i++) {
 
@@ -92,7 +92,7 @@ public class AssetSetter {
     public void steakUpdate() {
         if (steakCounter == 0) {
             if (gp.obj[6] == null) {
-                gp.obj[6] = new OBJ_Steak();
+                gp.obj[6] = new OBJ_Steak(gp);
                 object_setter(6);
             } else {
                 gp.obj[6] = null;

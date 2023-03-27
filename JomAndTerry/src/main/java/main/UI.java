@@ -1,10 +1,5 @@
 package main;
 
-import object.OBJ_Cheese;
-import object.OBJ_Hole;
-import object.OBJ_Steak;
-import object.OBJ_Trap;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
@@ -55,14 +50,14 @@ public class UI {
         arial_40 = new Font("Arial", Font.PLAIN, 20);
         arial_80B = new Font("Arial", Font.BOLD, 80);
 
-        OBJ_Cheese cheese = new OBJ_Cheese();
-        cheeseImg = cheese.image;
-        OBJ_Steak steak = new OBJ_Steak();
-        steakImg = steak.image;
-        OBJ_Trap trap = new OBJ_Trap();
-        trapImg = trap.image;
-        OBJ_Hole door = new OBJ_Hole();
-        doorImg = door.image;
+        // OBJ_Cheese cheese = new OBJ_Cheese();
+        cheeseImg = gp.imageLoader.getImage("cheese");
+        // OBJ_Steak steak = new OBJ_Steak();
+        steakImg = gp.imageLoader.getImage("steak");
+        // OBJ_Trap trap = new OBJ_Trap();
+        trapImg = gp.imageLoader.getImage("trap");
+        // OBJ_Hole door = new OBJ_Hole();
+        doorImg = gp.imageLoader.getImage("door");
     }
 
     /**

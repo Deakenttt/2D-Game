@@ -13,7 +13,6 @@ import utility.KeyHandler;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
 import static utility.SizeNumber.*;
 import static utility.SizeNumber.MAX_SCREEN_ROW;
@@ -45,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     // UI and sound
-    public UI ui = new UI(this);
+    public UI ui;
     Sound sound = new Sound();
 
     // Fps
@@ -68,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel() {
         System.out.println("GP");
         loadAllImages();
+        ui = new UI(this);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         Rectangle rect = new Rectangle(1, 1, 1, screenHeight);
         this.scrollRectToVisible(rect);
@@ -270,21 +270,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void loadAllImages(){
         File folder;
-
         folder = new File("src/main/resources/assets");
-        System.out.println(folder.getAbsolutePath()+ folder.exists());
         getImageFromFolder(folder);
-
-
-        System.out.println("loading image");
-        // imageLoader.getImage("mouse", "mouse_down_1");
-        // imageLoader.getImage("mouse", "mouse_down_2");
-        // imageLoader.getImage("mouse", "mouse_up_1");
-        // imageLoader.getImage("mouse", "mouse_up_2");
-        // imageLoader.getImage("mouse", "mouse_right_1");
-        // imageLoader.getImage("mouse", "mouse_right_2");
-        // imageLoader.getImage("mouse", "mouse_left_1");
-        // imageLoader.getImage("mouse", "mouse_left_2");
     }
 
     public void getImageFromFolder(File folder){
@@ -292,10 +279,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         for (File file : listOfFiles) {
             if (file.isFile() && file.getName().endsWith(".png")) {
-                System.out.println("File: " + file.getName());
                 imageLoader.setImage(file);
             } else if (file.isDirectory()) {
-                System.out.println("Directory: " + file.getName());
                 getImageFromFolder(file);
             }
         }

@@ -4,9 +4,6 @@ import main.GamePanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
 
 
 /**
@@ -23,10 +20,12 @@ public class SuperObject {
 
     public Rectangle solidArea = new Rectangle(x, y, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
-
-    public SuperObject(){
+    public GamePanel gp;
+    public SuperObject(GamePanel gp){
+        this.gp = gp;
         setDefaultValues();
         setImage();
+        
     }
 
     public void setDefaultValues(){
@@ -46,11 +45,7 @@ public class SuperObject {
     }
 
     public void setImage(){
-        try{
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(("/assets/items/%s.png").formatted(this.name))));
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
+        image = gp.imageLoader.getImage(name);
     }
 }
 

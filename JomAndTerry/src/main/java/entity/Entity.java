@@ -1,11 +1,7 @@
 package entity;
 
 import main.GamePanel;
-import utility.UtilityTool;
 
-import javax.imageio.ImageIO;
-import java.util.Objects;
-import java.io.IOException;
 import java.awt.image.BufferedImage;
 
 // Blueprint for character classes
@@ -67,45 +63,32 @@ public class Entity {
     * Sets the image of an entity.
     */
     public void getPlayerImage() {
-        // up1 = setup("%s_up_1".formatted(name));
         up1 =  gp.imageLoader.getImage("%s_up_1".formatted(name));
-
-        // up2 = setup("%s_up_2".formatted(name));
         up2 =  gp.imageLoader.getImage("%s_up_2".formatted(name));
-
-        
-        // down1 = setup("%s_down_1".formatted(name));
         down1 = gp.imageLoader.getImage("%s_down_1".formatted(name));
-        // down2 = setup("%s_down_2".formatted(name));
         down2 =  gp.imageLoader.getImage("%s_down_2".formatted(name));
-        
-        // left1 = setup("%s_left_1".formatted(name));
         left1 =  gp.imageLoader.getImage("%s_left_1".formatted(name));
-        // left2 = setup("%s_left_2".formatted(name));
         left2 =  gp.imageLoader.getImage("%s_left_2".formatted(name));
-
-        // right1 = setup("%s_right_1".formatted(name));
         right1 =  gp.imageLoader.getImage("%s_right_1".formatted(name));
-        // right2 = setup("%s_right_2".formatted(name));
         right2 =  gp.imageLoader.getImage("%s_right_2".formatted(name));
-
     }
+
     /**
     * Loads and scales a BufferedImage from the "/assets" directory with the given imageName.
     * @param imageName the name of the image file to load
     * @return the scaled BufferedImage object
     */
-    public BufferedImage setup(String imageName) {
-        UtilityTool utilityTool = new UtilityTool();
-        BufferedImage image = null;
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/%s/%s.png".formatted(name, imageName))));
-            image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
+    // public BufferedImage setup(String imageName) {
+        // UtilityTool utilityTool = new UtilityTool();
+        // BufferedImage image = null;
+        // try {
+            // image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/%s/%s.png".formatted(name, imageName))));
+            // image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
+        // } catch (IOException e) {
+            // e.printStackTrace();
+        // }
+        // return image;
+    // }
     /**
     * Sets the action of the entity.
     */

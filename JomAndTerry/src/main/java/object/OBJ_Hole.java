@@ -1,11 +1,13 @@
 package object;
 
+import main.GamePanel;
+
 /**
  * @Des This is a hole class inheritance from SuperObject.
  */
 public class OBJ_Hole extends SuperObject {
-    public OBJ_Hole() {
-        super();
+    public OBJ_Hole(GamePanel gp) {
+        super(gp);
     }
 
     public void setDefaultValues(){
