@@ -185,7 +185,6 @@ public class GamePanel extends JPanel implements Runnable {
                     obj[i].draw(g2, this);
                 }
             }
-            
 
             // Draw Enemies
             for (int i = 0; i < enemy.length; i++) {
@@ -252,6 +251,7 @@ public class GamePanel extends JPanel implements Runnable {
         ui = elseUI;
 
     }
+    
     public void pickLevel(){
         gameState = 0;
         ui = titleUI;
