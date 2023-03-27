@@ -22,15 +22,20 @@ public class GameWinUI extends UI {
         g2.drawString(text, x, y);
         g2.setColor(Color.white);
         g2.drawString(text, x - 4, y - 4);
+        
         // Retry button
         g2.setFont(g2.getFont().deriveFont(50f));
         titleButtons("Retry", 0, g2);
+
         //Quit button
         titleButtons("Quit", 1, g2);
+
         //Home page
         titleButtons("Home Page", 2, g2);
+
         //change the level
         titleButtons("Change Level", 3, g2);
+        
         pauseTimer();
         drawScoreAndTimer(g2);
     }

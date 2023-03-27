@@ -175,11 +175,7 @@ public class GamePanel extends JPanel implements Runnable {
         g2.setColor(Color.white);
 
         // When the game is playing, pause, over, or win.
-        if (gameState == titleState) {
-            ui.draw(g2);
-        }
-
-        else{
+        if (gameState != titleState) {
             tileManager.draw(g2);
             player.draw(g2);
 
@@ -197,29 +193,9 @@ public class GamePanel extends JPanel implements Runnable {
                     enemy[i].draw(g2);
                 }
             }
-                ui.draw(g2);
-
-            // if(gameState == gamePause){
-                // ui.drawGamePauseScreen(g2);
-            // }
-            // else if(gameState == gamePlay){
-                // ui.drawGamePlayScreen(g2);
-            // }
-// 
-            // else if(gameState == gameOverState){
-                // ui.gameOverScreen(g2);
-                // ui.draw(g2);
-// 
-            // }
-// 
-            // else if(gameState == gameWinState){
-                // ui.gameWinScreen(g2);
-                // ui.draw(g2);
-// 
-            // }
-
         }
-
+        
+        ui.draw(g2);
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
 
