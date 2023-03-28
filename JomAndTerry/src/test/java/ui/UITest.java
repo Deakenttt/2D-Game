@@ -21,6 +21,7 @@ public class UITest {
     Font font;
     @Mock
     Graphics2D g2;   
+    FontMetrics metrics;
 
     @Before
     public void setup(){
@@ -37,6 +38,16 @@ public class UITest {
         String text = "This is a long text string that should be split into multiple lines when it exceeds the maximum width.";
         String[] expectedLines = {"This is a long text", "string that should", "be split into", "multiple lines", "when it exceeds", "the maximum", "width."};
         String[] actualLines = ui.getLines(text, metrics, maxWidth);
+        assertArrayEquals(expectedLines, actualLines);
+    }
+
+    @Test
+    public void testGetLinesWithNullMetrics() {
+        int maxWidth = 100;
+        String text = "This is a long text string that should be split into multiple lines when it exceeds the maximum width.";
+        String[] expectedLines = {"This is a long text string that should", "be split into multiple lines when it exceeds",  "the maximum width."};
+        String[] actualLines = ui.getLines(text, metrics, maxWidth);
+        
         assertArrayEquals(expectedLines, actualLines);
     }
 

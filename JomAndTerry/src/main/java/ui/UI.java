@@ -21,6 +21,7 @@ public class UI {
     Font textFont = new Font("Arial", Font.PLAIN, 24);
     Font XLFont = new Font("Arial", Font.BOLD, 110);
     Font buttonFont = new Font ("Arial", Font.BOLD, 50);
+    FontMetrics fontMetrics;
 
     protected BufferedImage cheese;
     protected BufferedImage steak;
@@ -88,17 +89,37 @@ public class UI {
         List<String> lines = new ArrayList<>();
         String[] words = text.split("\\s+");
         StringBuilder line = new StringBuilder();
-        for (String word : words) {
-            int width = metrics.stringWidth(line + " " + word);
-            if (width <= maxWidth) {
-                line.append(" ").append(word);
-            } else {
-                lines.add(line.toString().trim());
-                line = new StringBuilder(word);
+        try {
+            for (String word : words) {
+                int width = metrics.stringWidth(line + " " + word);
+                if (width <= maxWidth) {
+                    line.append(" ").append(word);
+                } else {
+                    lines.add(line.toString().trim());
+                    line = new StringBuilder(word);
+                }
             }
+        } catch (NullPointerException e){
+            System.out.println("Error: getLines method in UI recieved a null pointer from FontMetrics metrics, manually print 8 words per line\n"+e);
+            int counter = 0;
+            for (String word : words){
+                if (counter < 8) {
+                    line.append(" ").append(word);
+                    counter++;
+                }
+                else {
+                    lines.add(line.toString().trim());
+                    line = new StringBuilder(word);
+                    counter = 0;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
         }
+
         lines.add(line.toString().trim());
         return lines.toArray(new String[lines.size()]);
+        
     }
 
         
