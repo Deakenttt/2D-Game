@@ -1,10 +1,12 @@
-package main;
+package ui;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import main.GamePanel;
 
 /**
  * UI class is handling all the UI elements for the game screen, included the score display,
@@ -14,26 +16,26 @@ public class UI {
     GamePanel gp;
     // Graphics2D g2;
     Font arial_40, arial_80B;
-    BufferedImage cheeseImg;
-    BufferedImage steakImg;
-    BufferedImage trapImg;
-    BufferedImage doorImg;
+    protected BufferedImage cheeseImg;
+    protected BufferedImage steakImg;
+    protected BufferedImage trapImg;
+    protected BufferedImage doorImg;
 
 
     // For the command cursor.
     public int commandNum = 0;
 
     // For showing message.
-    public boolean messageOn = false;
+    protected boolean messageOn = false;
     public String message = "";
     public int msgCounter = 0;
     public int objectCollectType = 0;
     public int y;
     public int x;
-    String text;
+    public String text;
     FontMetrics metrics;
-    String titleText;
-    String subText;
+    protected String titleText;
+    protected String subText;
     
     Color dBrown = new Color(54, 46, 57, 255);
     Color lBrown = new Color(205, 159, 100);
@@ -300,5 +302,4 @@ public class UI {
         //change the level
         titleButtons("Change Level", 3, g2);
     }
-
 }

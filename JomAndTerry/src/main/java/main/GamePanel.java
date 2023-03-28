@@ -6,6 +6,11 @@ import entity.Enemy;
 import object.AssetSetter;
 import object.SuperObject;
 import tile.TileManager;
+import ui.GameOverUI;
+import ui.InstructionUI;
+import ui.LevelUI;
+import ui.MainTitleUI;
+import ui.UI;
 import utility.CollisionChecker;
 import utility.ImageLoader;
 import utility.KeyHandler;
@@ -34,14 +39,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Game state
     public int gameState;
-    public static final int titleState = 0;
-    public static final int gamePlay = 1;
-    public static final int gamePause = 2;
-    public static final int gameOverState = 3;
-    public static final int gameWinState = 4;
+    public static final int TITLE_STATE = 0;
+    public static final int PLAY_STATE = 1;
+    public static final int PAUSE_STATE = 2;
+    public static final int LOSE_STATE = 3;
+    public static final int WIN_STATE = 4;
     public int levelState = 1;
     public SuperObject[][] objectsMap;
-
 
     // UI and sound
     public UI currentUI;
@@ -69,18 +73,21 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public GamePanel() {
+        // Pre-load all images from assets
         loadAllImages();
-        gameUI[0] = new MainUI(this); // main screen
+
+        // Add desired ui to gameUI in order to easily switch between game ui
+        gameUI[0] = new MainTitleUI(this); // main screen
         gameUI[1] = new InstructionUI(this); // instructions screen
         gameUI[2] = new LevelUI(this); // level screen
         gameUI[3] = new UI(this); // play screen
         gameUI[4] = new GameOverUI(this); // game over screen
-        currentUI = gameUI[0];
+
+        // Set up game panel
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         Rectangle rect = new Rectangle(1, 1, 1, screenHeight);
         this.scrollRectToVisible(rect);
         this.setBackground(Color.black);
-
         this.addKeyListener(keyHandler); // So this GamePanel can recognize key input.
         this.setFocusable(true); // With this, this main.GamePanel can be "focused" to receive key input.
     }
@@ -89,7 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
      * Method of setting up object placement.
      */
     public void setUpGame() {
-        gameState = titleState;
+        gameState = TITLE_STATE;
         currentUI = gameUI[0];
         playMusic(0);
         player = new Player(this, keyHandler); // Initiate a Player object.
@@ -118,7 +125,7 @@ public class GamePanel extends JPanel implements Runnable {
         while (gameThread != null) {
 
             // 1. UPDATE: update info such as character position.
-            if (gameState == gamePlay) {
+            if (gameState == PLAY_STATE) {
                 update();
             }
 
@@ -174,7 +181,7 @@ public class GamePanel extends JPanel implements Runnable {
         g2.setColor(Color.white);
 
         // When the game is playing, pause, over, or win.
-        if (gameState != titleState) {
+        if (gameState != TITLE_STATE) {
             tileManager.draw(g2);
             player.draw(g2);
 
@@ -192,7 +199,6 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
-        System.out.println(currentUI.titleText);
         currentUI.draw(g2);
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
@@ -246,33 +252,35 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setEnemy();
         assetSetter.setObject();
 
-        gameState = gamePlay;
+        gameState = PLAY_STATE;
     }
 
     public void gameOver(){
-        gameState = 3;
+        gameState = LOSE_STATE;
         currentUI = gameUI[4];
         currentUI.text = "You Lose!";
         playSE(2);
     }
 
     public void gameWin(){
-        gameState = GamePanel.gameWinState;
+        gameState = WIN_STATE;
         currentUI = gameUI[4];
         currentUI.text = "You Win!";
         playSE(3);
     }
 
     public void titleMain(){
-        gameState = 0;
+        gameState = TITLE_STATE;
         currentUI = gameUI[0];
     }
 
     public void titleInstruction(){
+        gameState = TITLE_STATE;
         currentUI = gameUI[1];
     }
 
     public void titleLevel(){
+        gameState = TITLE_STATE;
         currentUI = gameUI[2];
     }
 

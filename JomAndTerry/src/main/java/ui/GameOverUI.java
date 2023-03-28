@@ -1,8 +1,10 @@
-package main;
+package ui;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+
+import main.GamePanel;
 
 public class GameOverUI extends UI{
     public GameOverUI(GamePanel gp) {
@@ -19,7 +21,7 @@ public class GameOverUI extends UI{
         pauseTimer();
         drawScoreAndTimer(g2);
     }
-
+    
     public void textWithShadow(String text, Graphics2D g2, int shadowShift){
         // Shadow colour
         g2.setColor(Color.black);

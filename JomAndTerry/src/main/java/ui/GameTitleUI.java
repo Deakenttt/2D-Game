@@ -1,8 +1,10 @@
-package main;
+package ui;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+
+import main.GamePanel;
 
 public class GameTitleUI extends UI{
 
@@ -11,12 +13,7 @@ public class GameTitleUI extends UI{
     public GameTitleUI(GamePanel gp) {
         super(gp);
     }
-     /**
-      * drawTitleScreen() is a method for handling all the visual elements on the page showing when
-      * the user start the game, it has buttons for user to select, such as 'start', 'Instruction', 'quit'
-      * when pressed the 'start' button, it will show another page for user to select the different difficulties.
-      * when pressed the 'instruction' button, it will show another page that showing all instuction about the game.
-      */
+        
     public void draw(Graphics2D g2) {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
         g2.setColor(Color.GRAY);

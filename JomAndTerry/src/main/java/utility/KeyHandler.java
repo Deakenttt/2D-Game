@@ -56,19 +56,19 @@ public class KeyHandler implements KeyListener {
 
         int keyCode = e.getKeyCode(); // Returns the integer keyCode associated with the key in this event.
         switch(gp.gameState){
-            case(GamePanel.titleState):
+            case(GamePanel.TITLE_STATE):
                 handleTitleStateInput(keyCode);
                 break;
-            case(GamePanel.gamePlay):
+            case(GamePanel.PLAY_STATE):
                 handlePlayStateInput(keyCode);
                 break;
-            case(GamePanel.gameOverState):
+            case(GamePanel.LOSE_STATE):
                 handleOverStateInput(keyCode);
                 break;
-            case(GamePanel.gameWinState):
+            case(GamePanel.WIN_STATE):
                 handleWinStateInput(keyCode);
                 break;
-            case(GamePanel.gamePause):
+            case(GamePanel.PAUSE_STATE):
                 handleOverStateInput(keyCode);
                 break;
             default:
