@@ -15,8 +15,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-import static utility.SizeNumber.*;
-import static utility.SizeNumber.MAX_SCREEN_ROW;
+import static utility.Size.*;
+import static utility.Size.MAX_SCREEN_ROW;
 
 /**
  * The GamePanel class is extends from the JPanel Object and implement with the Runnable interface, to handle player object,
