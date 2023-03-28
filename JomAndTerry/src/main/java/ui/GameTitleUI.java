@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import main.GamePanel;
 
 public class GameTitleUI extends UI{
-
-
    
     public GameTitleUI(GamePanel gp) {
         super(gp);

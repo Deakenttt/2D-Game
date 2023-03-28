@@ -16,10 +16,13 @@ public class UI {
     GamePanel gp;
     // Graphics2D g2;
     Font arial_40, arial_80B;
-    protected BufferedImage cheeseImg;
-    protected BufferedImage steakImg;
-    protected BufferedImage trapImg;
-    protected BufferedImage doorImg;
+    protected BufferedImage cheese;
+    protected BufferedImage steak;
+    protected BufferedImage trap;
+    protected BufferedImage door;
+    protected BufferedImage[] images = new BufferedImage[4];
+
+    public BufferedImage currentImage;
 
 
     // For the command cursor.
@@ -51,13 +54,14 @@ public class UI {
         arial_40 = new Font("Arial", Font.PLAIN, 20);
         arial_80B = new Font("Arial", Font.BOLD, 80);
 
-        cheeseImg = gp.imageLoader.getImage("cheese");
-        steakImg = gp.imageLoader.getImage("steak");
-        trapImg = gp.imageLoader.getImage("trap");
-        doorImg = gp.imageLoader.getImage("door");
-        // g2.setColor(Color.black);
- 
-        // g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        cheese = gp.imageLoader.getImage("cheese");
+        steak = gp.imageLoader.getImage("steak");
+        trap = gp.imageLoader.getImage("trap");
+        door = gp.imageLoader.getImage("door");
+        images[0] = cheese;
+        images[1] = steak;
+        images[2] = trap;
+        images[3] = door;
     }
 
     public void draw(Graphics2D g2) {
@@ -113,7 +117,7 @@ public class UI {
     public void showMessage(String text, int objectType) {
         message = text;
         messageOn = true;
-        objectCollectType = objectType;
+        currentImage = images[objectType];
     }
 
     /**
@@ -134,16 +138,7 @@ public class UI {
 
             g2.setColor(Color.WHITE);
             g2.drawString(message, gp.tileSize / 2, height + 5);
-
-            if (objectCollectType == 1) {
-                g2.drawImage(cheeseImg, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
-            } else if (objectCollectType == 2) {
-                g2.drawImage(steakImg, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
-            } else if (objectCollectType == 3) {
-                g2.drawImage(trapImg, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
-            } else if (objectCollectType == 4) {
-                g2.drawImage(doorImg, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
-            }
+            g2.drawImage(currentImage, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
 
             // Only show the message in a short period of the time.
             msgCounter++;
@@ -196,9 +191,9 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.WHITE);
         g2.drawString("Score: " + gp.player.scoreCount, 25, 40);
-        g2.drawImage(cheeseImg, gp.tileSize / 2 + 100, 20, gp.tileSize / 2, gp.tileSize / 2, null);
+        g2.drawImage(cheese, gp.tileSize / 2 + 100, 20, gp.tileSize / 2, gp.tileSize / 2, null);
         g2.drawString(" X " + gp.player.cheeseCount, 150, 40);
-        g2.drawImage(steakImg, gp.tileSize / 2 + 170, 20, gp.tileSize / 2, gp.tileSize / 2, null);
+        g2.drawImage(steak, gp.tileSize / 2 + 170, 20, gp.tileSize / 2, gp.tileSize / 2, null);
         g2.drawString(" X " + gp.player.steakCount / 5, 220, 40);
 
         if (!paused) { // only update playTime if not paused

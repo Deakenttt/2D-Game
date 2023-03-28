@@ -102,7 +102,7 @@ public class Player extends Entity {
                     scoreCount++;
                     gp.obj[object] = null;
                     System.out.println("score: " + scoreCount);
-                    gp.currentUI.showMessage("You got a cheese!", 1); // Show the msg when touch object.
+                    gp.currentUI.showMessage("You got a cheese!", 0); // Show the msg when touch object.
                     if (cheeseCount == 6 && gp.exitcondition) {
                         gp.playSE(1);
                         gp.exitcondition = false;
@@ -115,7 +115,7 @@ public class Player extends Entity {
                     scoreCount += 5;
                     gp.obj[object] = null;
                     System.out.println("score: " + scoreCount);
-                    gp.currentUI.showMessage("You got a steak!", 2); // Show the msg when touch object.
+                    gp.currentUI.showMessage("You got a steak!", 1); // Show the msg when touch object.
                     break;
 
                 case "trap": 
@@ -123,7 +123,7 @@ public class Player extends Entity {
                     scoreCount -= 5;
                     gp.obj[object] = null;
                     System.out.println("score: " + scoreCount);
-                    gp.currentUI.showMessage("Ouch! You touched a trap!", 3); // Show the msg when touch object.
+                    gp.currentUI.showMessage("Ouch! You touched a trap!", 2); // Show the msg when touch object.
                     if (gp.player.scoreCount < 0)
                         gp.gameOver();
                     break;
@@ -134,7 +134,7 @@ public class Player extends Entity {
                         gp.gameWin();
                         gp.currentUI.showMessage("You escaped successfully!", object); // Show the msg when get the cheese.
                     } else
-                        gp.currentUI.showMessage("You need to collect all of the cheese!", 1); // Show the msg when get the cheese.
+                        gp.currentUI.showMessage("You need to collect all of the cheese!", 0); // Show the msg when get the cheese.
                     
                     break;
                 default:
