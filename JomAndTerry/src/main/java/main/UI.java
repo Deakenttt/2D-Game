@@ -32,7 +32,9 @@ public class UI {
     public int x;
     String text;
     FontMetrics metrics;
-
+    String titleText;
+    String subText;
+    
     Color dBrown = new Color(54, 46, 57, 255);
     Color lBrown = new Color(205, 159, 100);
     Color grey = new Color(0, 0, 0, 150);

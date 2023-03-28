@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 public class GameOverUI extends UI{
     public GameOverUI(GamePanel gp) {
         super(gp);
-        //TODO Auto-generated constructor stub
     }
 
     public void draw(Graphics2D g2) {

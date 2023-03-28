@@ -44,11 +44,10 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     // UI and sound
-    public UI ui;
+    public UI currentUI;
     public UI playUI;
-    public GameTitleUI titleUI;
+    public UI[] gameUI = new UI[5];
     public GameOverUI overUI;
-    public GameWinUI winUI;
     Sound sound = new Sound();
 
     // Fps
@@ -71,11 +70,12 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel() {
         loadAllImages();
-        ui = titleUI;
-        playUI = new UI(this);
-        titleUI = new GameTitleUI(this);
-        overUI = new GameOverUI(this);
-        winUI = new GameWinUI(this);
+        gameUI[0] = new MainUI(this); // main screen
+        gameUI[1] = new InstructionUI(this); // instructions screen
+        gameUI[2] = new LevelUI(this); // level screen
+        gameUI[3] = new UI(this); // play screen
+        gameUI[4] = new GameOverUI(this); // game over screen
+        currentUI = gameUI[0];
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         Rectangle rect = new Rectangle(1, 1, 1, screenHeight);
         this.scrollRectToVisible(rect);
@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
      */
     public void setUpGame() {
         gameState = titleState;
-        ui = titleUI;
+        currentUI = gameUI[0];
         playMusic(0);
         player = new Player(this, keyHandler); // Initiate a Player object.
     }
@@ -192,8 +192,8 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
-        
-        ui.draw(g2);
+        System.out.println(currentUI.titleText);
+        currentUI.draw(g2);
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
 
@@ -234,8 +234,8 @@ public class GamePanel extends JPanel implements Runnable {
         levelState = level;
         tileManager.setUpMap();
         player.setDefaultValues();
-        ui = playUI;
-        ui.resetUI();
+        currentUI = gameUI[3];
+        currentUI.resetUI();
 
         if (levelState == 1){
             enemy = new Enemy[2];
@@ -247,36 +247,33 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setObject();
 
         gameState = gamePlay;
-        ui = playUI;
     }
 
     public void gameOver(){
         gameState = 3;
-        ui = overUI;
-        ui.text = "You Lose!";
+        currentUI = gameUI[4];
+        currentUI.text = "You Lose!";
         playSE(2);
     }
 
     public void gameWin(){
         gameState = GamePanel.gameWinState;
-        ui = overUI;
-        ui.text = "You Win!";
+        currentUI = gameUI[4];
+        currentUI.text = "You Win!";
         playSE(3);
     }
 
     public void titleMain(){
         gameState = 0;
-        ui = titleUI;
-        String subText = "You are the mouse (Terry). Collect 6 cheeses to unlock the exit door. " +
-        "Avoid the smart cats (Joms; yes they're all named Jom). " +
-        "Cheese = 1 point, Steak (bonus) = 5 points, mouse trap (punishment) = -5 points. " +
-        "Negative points = Automatic loss. " +
-        "Exit with max points and the fastest time, there is no time limit. Enjoy!";
+        currentUI = gameUI[0];
     }
-    public void titleLevel(){
-        gameState = 0;
-        ui = titleUI;
 
+    public void titleInstruction(){
+        currentUI = gameUI[1];
+    }
+
+    public void titleLevel(){
+        currentUI = gameUI[2];
     }
 
     public void loadAllImages(){
