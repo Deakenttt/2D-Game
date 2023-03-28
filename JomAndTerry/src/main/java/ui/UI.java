@@ -13,15 +13,14 @@ import main.GamePanel;
  * message display, title page, game win and lost page...etc.
  */
 public class UI {
-    GamePanel gp;
-    Graphics2D g2;
-    Font arial_80B;
-    Font gameFont = new Font("Arial", Font.PLAIN, 20);
-    Font titleFont = new Font("Arial", Font.BOLD, 96);
-    Font textFont = new Font("Arial", Font.PLAIN, 24);
-    Font XLFont = new Font("Arial", Font.BOLD, 110);
-    Font buttonFont = new Font ("Arial", Font.BOLD, 50);
-    FontMetrics fontMetrics;
+    public GamePanel gp;
+    // Graphics2D g2;
+    // Font arial_80B;
+    protected Font gameFont = new Font("Arial", Font.PLAIN, 20);
+    protected Font titleFont = new Font("Arial", Font.BOLD, 96);
+    protected Font textFont = new Font("Arial", Font.PLAIN, 24);
+    protected Font XLFont = new Font("Arial", Font.BOLD, 110);
+    protected Font buttonFont = new Font ("Arial", Font.BOLD, 50);
 
     protected BufferedImage cheese;
     protected BufferedImage steak;
@@ -58,7 +57,7 @@ public class UI {
     public UI(GamePanel gp) {
         this.gp = gp;
 
-        arial_80B = new Font("Arial", Font.BOLD, 80);
+        // arial_80B = new Font("Arial", Font.BOLD, 80);
         cheese = gp.imageLoader.getImage("cheese");
         steak = gp.imageLoader.getImage("steak");
         trap = gp.imageLoader.getImage("trap");
@@ -121,8 +120,6 @@ public class UI {
         return lines.toArray(new String[lines.size()]);
         
     }
-
-        
 
     /**
      * This is a method for getting a center x position of the text.
