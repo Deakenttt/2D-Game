@@ -1,7 +1,6 @@
 package ui;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 
 import main.GamePanel;
@@ -13,17 +12,16 @@ public class GameTitleUI extends UI{
     }
         
     public void draw(Graphics2D g2) {
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
+        g2.setFont(titleFont);
         g2.setColor(Color.GRAY);
         textWithShadow(titleText, g2, 5);
         // Menu Options
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 24F));
         longText(subText, g2);
     }
     
     public void longText(String text, Graphics2D g2){
-        int maxWidth = 800; // maximum width of text
-        String[] lines = getLines(text, g2.getFontMetrics(), maxWidth);
+        g2.setFont(textFont);
+        String[] lines = getLines(text, g2.getFontMetrics(), 800);
         x = getXforCenteredText(lines[0], g2); // use the x position of the first line for centering
         y += gp.tileSize;
         for (int i = 0; i < lines.length; i++) {

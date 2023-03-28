@@ -5,8 +5,8 @@ import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 import main.GamePanel;
+
 
 /**
  * UI class is handling all the UI elements for the game screen, included the score display,
@@ -14,8 +14,14 @@ import main.GamePanel;
  */
 public class UI {
     GamePanel gp;
-    // Graphics2D g2;
-    Font arial_40, arial_80B;
+    Graphics2D g2;
+    Font arial_80B;
+    Font gameFont = new Font("Arial", Font.PLAIN, 20);
+    Font titleFont = new Font("Arial", Font.BOLD, 96);
+    Font textFont = new Font("Arial", Font.PLAIN, 24);
+    Font XLFont = new Font("Arial", Font.BOLD, 110);
+    Font buttonFont = new Font ("Arial", Font.BOLD, 50);
+
     protected BufferedImage cheese;
     protected BufferedImage steak;
     protected BufferedImage trap;
@@ -36,7 +42,7 @@ public class UI {
     public int y;
     public int x;
     public String text;
-    FontMetrics metrics;
+    public FontMetrics metrics;
     protected String titleText;
     protected String subText;
     
@@ -51,9 +57,7 @@ public class UI {
     public UI(GamePanel gp) {
         this.gp = gp;
 
-        arial_40 = new Font("Arial", Font.PLAIN, 20);
         arial_80B = new Font("Arial", Font.BOLD, 80);
-
         cheese = gp.imageLoader.getImage("cheese");
         steak = gp.imageLoader.getImage("steak");
         trap = gp.imageLoader.getImage("trap");
@@ -79,12 +83,13 @@ public class UI {
      * @param maxWidth    The value for setting one block of text's maximum width.
      * @return String type arraylist that stores all the lines.
      */
-    protected String[] getLines(String text, FontMetrics fontMetrics, int maxWidth) {
+
+    protected String[] getLines(String text, FontMetrics metrics, int maxWidth) {
         List<String> lines = new ArrayList<>();
         String[] words = text.split("\\s+");
         StringBuilder line = new StringBuilder();
         for (String word : words) {
-            int width = fontMetrics.stringWidth(line + " " + word);
+            int width = metrics.stringWidth(line + " " + word);
             if (width <= maxWidth) {
                 line.append(" ").append(word);
             } else {
@@ -95,6 +100,8 @@ public class UI {
         lines.add(line.toString().trim());
         return lines.toArray(new String[lines.size()]);
     }
+
+        
 
     /**
      * This is a method for getting a center x position of the text.
@@ -126,7 +133,7 @@ public class UI {
      * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
      */
     public void drawMessage(Graphics2D g2) {
-        g2.setFont(arial_40);
+        g2.setFont(gameFont);
         int x = 0;
         int y = gp.tileSize;
         int height = gp.tileSize * 2;
@@ -188,7 +195,7 @@ public class UI {
      */
     public void drawScoreAndTimer(Graphics2D g2) {
 
-        g2.setFont(arial_40);
+        g2.setFont(gameFont);
         g2.setColor(Color.WHITE);
         g2.drawString("Score: " + gp.player.scoreCount, 25, 40);
         g2.drawImage(cheese, gp.tileSize / 2 + 100, 20, gp.tileSize / 2, gp.tileSize / 2, null);
@@ -229,7 +236,7 @@ public class UI {
      */
     public void drawCenteredMessage(String text, Graphics2D g2) {
         int x, y;
-        g2.setFont(arial_40);
+        g2.setFont(gameFont);
         g2.setColor(Color.WHITE);
 
         x = getXforCenteredText(text, g2);
@@ -267,6 +274,7 @@ public class UI {
     */
     
     public void titleButtons(String button_text, int button_num, Graphics2D g2){
+        g2.setFont(buttonFont);
         x = getXforCenteredText(button_text, g2);
         y += gp.tileSize * 2;
         g2.drawString(button_text, x, y);
@@ -287,7 +295,6 @@ public class UI {
     }
 
     public void gameStoppedMenuButtons(Graphics2D g2){
-        g2.setFont(g2.getFont().deriveFont(50f));
         // Retry button
         titleButtons("Retry", 0, g2);
         //Quit button
