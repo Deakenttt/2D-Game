@@ -1,7 +1,8 @@
 package utility;
 
+import java.awt.Rectangle;
+
 import entity.Entity;
-import entity.Player;
 import main.GamePanel;
 
 /**
@@ -46,21 +47,17 @@ public class CollisionChecker {
     }
 
     /**
-     * Checks if the specified player collides with an object on the game screen.
-     * @param entity The player to check for collision.
+     * Checks if the specified area collides with an object on the game screen.
+     * @param solidArea The area to check for collision.
      */
-    public void checkObject(Player entity) {
-        simulateNode(entity);
-
+    public int checkObject(Rectangle solidArea) {
         for (int i = 0; i < gp.obj.length; i++) {
             // Checks that the object exists, that it intersects with the object
-            if (gp.obj[i] != null && entity.solidArea.intersects(gp.obj[i].solidArea)){
-                entity.pickUpObject(i);
-                break;
+            if (gp.obj[i] != null && solidArea.intersects(gp.obj[i].solidArea)){
+                return i;
             }
         }
-        entity.solidArea.x = col;
-        entity.solidArea.y = row;
+        return 999;
     } 
 
     /**

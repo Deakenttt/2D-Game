@@ -1,12 +1,9 @@
 package tile;
 
 import main.GamePanel;
-import utility.UtilityTool;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
@@ -62,21 +59,11 @@ public class TileManager {
      */
     public void setup(int index, String imageName, boolean collision) {
 
-        UtilityTool utilityTool = new UtilityTool();
-
-        try {
-
-            // Handle all the half-duplicated part like Instantiation, import image, scale...
-            tile[index] = new Tile();
-            tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/new_tiles/" + imageName + ".png")));
-            tile[index].image = utilityTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
-            tile[index].collision = collision;
-
-            if (Objects.equals(imageName, "floor")) {
-                tile[index].objectEnabled = true;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        tile[index] = new Tile();
+        tile[index].image =  gp.imageLoader.getImage(imageName);
+        tile[index].collision = collision;
+        if (Objects.equals(imageName, "floor")) {
+            tile[index].objectEnabled = true;
         }
     }
 

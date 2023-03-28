@@ -6,11 +6,14 @@ import entity.Enemy;
 import object.AssetSetter;
 import object.SuperObject;
 import tile.TileManager;
+import ui.*;
 import utility.CollisionChecker;
+import utility.ImageLoader;
 import utility.KeyHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 import static utility.Size.*;
 import static utility.Size.MAX_SCREEN_ROW;
@@ -32,15 +35,19 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Game state
     public int gameState;
-    public static final int titleState = 0;
-    public static final int gamePlay = 1;
-    public static final int gamePause = 2;
-    public static final int gameOverState = 3;
-    public static final int gameWinState = 4;
+    public static final int TITLE_STATE = 0;
+    public static final int PLAY_STATE = 1;
+    public static final int PAUSE_STATE = 2;
+    public static final int LOSE_STATE = 3;
+    public static final int WIN_STATE = 4;
     public int levelState = 1;
+    public SuperObject[][] objectsMap;
 
     // UI and sound
-    public UI ui = new UI(this);
+    public UI currentUI;
+    public UI playUI;
+    public UI[] gameUI = new UI[5];
+    public GameOverUI overUI;
     Sound sound = new Sound();
 
     // Fps
@@ -51,21 +58,32 @@ public class GamePanel extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler(this); // Key handler class.
 
     public FindPath findPath = new FindPath(this);
-    public Player player = new Player(this, keyHandler); // Initiate a Player object.
+    public Player player;
     public Enemy[] enemy = new Enemy[3];
     public SuperObject[] obj = new SuperObject[20]; // 20 slots for object, can replace the content during the game.
 
     public TileManager tileManager = new TileManager(this); // Initiate tileManger object.
     public CollisionChecker collisionChecker = new CollisionChecker(this); // Initiate a CollisionChecker object.
     public AssetSetter assetSetter = new AssetSetter(this); // Initiate AssetSetter object.
+    public ImageLoader imageLoader = new ImageLoader();
 
 
     public GamePanel() {
+        // Pre-load all images from assets
+        loadAllImages();
+
+        // Add desired ui to gameUI in order to easily switch between game ui
+        gameUI[0] = new MainTitleUI(this); // main screen
+        gameUI[1] = new InstructionUI(this); // instructions screen
+        gameUI[2] = new LevelUI(this); // level screen
+        gameUI[3] = new UI(this); // play screen
+        gameUI[4] = new GameOverUI(this); // game over screen
+
+        // Set up game panel
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         Rectangle rect = new Rectangle(1, 1, 1, screenHeight);
         this.scrollRectToVisible(rect);
         this.setBackground(Color.black);
-
         this.addKeyListener(keyHandler); // So this GamePanel can recognize key input.
         this.setFocusable(true); // With this, this main.GamePanel can be "focused" to receive key input.
     }
@@ -74,8 +92,10 @@ public class GamePanel extends JPanel implements Runnable {
      * Method of setting up object placement.
      */
     public void setUpGame() {
-        gameState = titleState;
+        gameState = TITLE_STATE;
+        currentUI = gameUI[0];
         playMusic(0);
+        player = new Player(this, keyHandler); // Initiate a Player object.
     }
 
     /**
@@ -101,7 +121,9 @@ public class GamePanel extends JPanel implements Runnable {
         while (gameThread != null) {
 
             // 1. UPDATE: update info such as character position.
-            update();
+            if (gameState == PLAY_STATE) {
+                update();
+            }
 
             // 2. DRAW: draw the screen with the updated information.
             repaint(); // is the way to call paintComponent method.
@@ -127,18 +149,15 @@ public class GamePanel extends JPanel implements Runnable {
      * Method of update() is updating the player object and enemies objects.
      */
     public void update() {
+       
+        player.update();
+        if (player.cheeseCount >= 6) {
+            assetSetter.exitOpen();
+        }
 
-        // When the game is playing.
-        if (gameState == gamePlay) {
-            player.update();
-            if (player.hasCheese >= 6) {
-                assetSetter.exit_open();
-            }
-
-            for (int i = 0; i < enemy.length; i++) {
-                if (enemy[i] != null) {
-                    enemy[i].update();
-                }
+        for (int i = 0; i < enemy.length; i++) {
+            if (enemy[i] != null) {
+                enemy[i].update();
             }
         }
     }
@@ -155,18 +174,12 @@ public class GamePanel extends JPanel implements Runnable {
         // convert Graphics to Graphics2D class extends the Graphics class to provide more sophisticated control over
         // geometry, coordinate transformations, color management, and text layout.
         Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.white);
 
-        // When start the game but not start to play yet.
-        if (gameState == titleState) {
-            ui.draw(g2);
-        }
         // When the game is playing, pause, over, or win.
-        else if (gameState == gamePlay || gameState == gamePause
-                || gameState == gameOverState || gameState == gameWinState) {
-
+        if (gameState != TITLE_STATE) {
             tileManager.draw(g2);
             player.draw(g2);
-
 
             // Draw objects
             for (int i = 0; i < obj.length; i++) {
@@ -181,11 +194,8 @@ public class GamePanel extends JPanel implements Runnable {
                     enemy[i].draw(g2);
                 }
             }
-
-            // Draw UI
-            ui.draw(g2);
         }
-
+        currentUI.draw(g2);
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
 
@@ -226,10 +236,9 @@ public class GamePanel extends JPanel implements Runnable {
         levelState = level;
         tileManager.setUpMap();
         player.setDefaultValues();
-        ui.resumeTimer();
-        ui.resetMsg();
-        ui.resetGameState();
-        assetSetter.setObject();
+        currentUI = gameUI[3];
+        currentUI.resetUI();
+
         if (levelState == 1){
             enemy = new Enemy[2];
         }
@@ -237,6 +246,56 @@ public class GamePanel extends JPanel implements Runnable {
             enemy = new Enemy[3];
         }
         assetSetter.setEnemy();
-        gameState = gamePlay;
+        assetSetter.setObject();
+
+        gameState = PLAY_STATE;
+    }
+
+    public void gameOver(){
+        gameState = LOSE_STATE;
+        currentUI = gameUI[4];
+        currentUI.text = "You Lose!";
+        playSE(2);
+    }
+
+    public void gameWin(){
+        gameState = WIN_STATE;
+        currentUI = gameUI[4];
+        currentUI.text = "You Win!";
+        playSE(3);
+    }
+
+    public void titleMain(){
+        gameState = TITLE_STATE;
+        currentUI = gameUI[0];
+    }
+
+    public void titleInstruction(){
+        gameState = TITLE_STATE;
+        currentUI = gameUI[1];
+    }
+
+    public void titleLevel(){
+        gameState = TITLE_STATE;
+        currentUI = gameUI[2];
+    }
+
+    public void loadAllImages(){
+        File folder;
+        folder = new File("src/main/resources/assets");
+        getImageFromFolder(folder);
+    }
+
+    public void getImageFromFolder(File folder){
+        File[] listOfFiles = folder.listFiles();
+
+        for (File file : listOfFiles) {
+            if (file.isFile() && file.getName().endsWith(".png")) {
+                imageLoader.setImage(file);
+            } else if (file.isDirectory()) {
+                getImageFromFolder(file);
+            }
+        }
+
     }
 }

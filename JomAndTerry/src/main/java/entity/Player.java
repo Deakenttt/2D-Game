@@ -9,9 +9,9 @@ import utility.KeyHandler;
 */
 public class Player extends Entity {
     KeyHandler keyHandler;
-    public int hasCheese = 0; // Tracking the number of cheese.
-    public int hasSteak = 0; // Tracking the number of steak.
-    public int totalScore = 0; // Tracking the total score.
+    public int cheeseCount = 0; // Tracking the number of cheese.
+    public int steakCount = 0; // Tracking the number of steak.
+    public int scoreCount = 0; // Tracking the total score.
     boolean captureFlag = false; // Flag for being caught.
     int KeyHoldTimer = 0; // Timer for how long the player has hold the key.
 
@@ -38,9 +38,9 @@ public class Player extends Entity {
         solidArea.x = solidAreaDefaultX;
         solidArea.y = solidAreaDefaultY;
         direction = "down";
-        hasCheese = 0; // resets the number of cheese.
-        hasSteak = 0; // resets the number of steak.
-        totalScore = 0; // resets the total score.
+        cheeseCount = 0; // resets the number of cheese.
+        steakCount = 0; // resets the number of steak.
+        scoreCount = 0; // resets the total score.
         captureFlag = false;
         name = "mouse";
     }
@@ -71,18 +71,19 @@ public class Player extends Entity {
      * Updates the player's position and checks for object interactions.
      */    
     public void update() {
-        if (hasCheese >= 6) 
-            gp.ui.showMessage("Door is open!", 5);
+
+        if (cheeseCount >= 6) 
+            gp.currentUI.showMessage("Door is open!", 5);
 
         setAction();
         if(doMove){
             collisionOn = false;
             collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
-            gp.collisionChecker.checkObject(this);
             gp.collisionChecker.checkEntity(this);
-            gp.assetSetter.steak_update();      
+            gp.assetSetter.steakUpdate();      
         }
         super.update();
+        pickUpObject(gp.collisionChecker.checkObject(solidArea));
     }
 
 
@@ -92,56 +93,52 @@ public class Player extends Entity {
      * @param i The index of the object being picked up.
      */
     public void pickUpObject(int object) {
-
         if (object != 999) {
             String objectName = gp.obj[object].name; // Get the type of different objects.
-
             switch (objectName) {
-                case "Cheese":
+                case "cheese":
                     gp.playSE(4);
-                    hasCheese++;
-                    totalScore++;
+                    cheeseCount++;
+                    scoreCount++;
                     gp.obj[object] = null;
-                    System.out.println("score: " + totalScore);
-                    gp.ui.showMessage("You got a cheese!", 1); // Show the msg when touch object.
-                    if (hasCheese == 6 && gp.exitcondition) {
+                    System.out.println("score: " + scoreCount);
+                    gp.currentUI.showMessage("You got a cheese!", 0); // Show the msg when touch object.
+                    if (cheeseCount == 6 && gp.exitcondition) {
                         gp.playSE(1);
                         gp.exitcondition = false;
                     }
                     break;
 
-                case "Steak":
+                case "steak":
                     gp.playSE(5);
-                    hasSteak += 5;
-                    totalScore += 5;
+                    steakCount += 5;
+                    scoreCount += 5;
                     gp.obj[object] = null;
-                    System.out.println("score: " + totalScore);
-                    gp.ui.showMessage("You got a steak!", 2); // Show the msg when touch object.
-                    if (hasCheese == 6 && gp.exitcondition) {
-                        gp.playSE(1);
-                        gp.exitcondition = false;
-                    }
+                    System.out.println("score: " + scoreCount);
+                    gp.currentUI.showMessage("You got a steak!", 1); // Show the msg when touch object.
                     break;
 
-                case "Trap": 
+                case "trap": 
                     gp.playSE(7);
-                    totalScore -= 5;
+                    scoreCount -= 5;
                     gp.obj[object] = null;
-                    System.out.println("score: " + totalScore);
-                    gp.ui.showMessage("Ouch! You touched a trap!", 3); // Show the msg when touch object.
-                    if (gp.player.totalScore < 0)
-                        gp.ui.gameLose = true;
+                    System.out.println("score: " + scoreCount);
+                    gp.currentUI.showMessage("Ouch! You touched a trap!", 2); // Show the msg when touch object.
+                    if (gp.player.scoreCount < 0)
+                        gp.gameOver();
                     break;
                     
 
-                case "Hole":
-                    if (hasCheese >= 6) {
-                        gp.ui.showMessage("You escape successfully!", object); // Show the msg when get the cheese.
-                        gp.ui.gameEnd = true; // End the game
+                case "hole":
+                    if (cheeseCount >= 6) {
+                        gp.gameWin();
+                        gp.currentUI.showMessage("You escaped successfully!", object); // Show the msg when get the cheese.
                     } else
-                        gp.ui.showMessage("You need to collect all of the cheese!", 1); // Show the msg when get the cheese.
+                        gp.currentUI.showMessage("You need to collect all of the cheese!", 0); // Show the msg when get the cheese.
                     
                     break;
+                default:
+                break;
             }
         }
     }
@@ -153,8 +150,8 @@ public class Player extends Entity {
     public void captured(int cat) {
         if (cat != 999 || captureFlag) {
             captureFlag = true;
-            gp.ui.gameLose = true; // End the game.
-            gp.playSE(6);
+            gp.gameOver();
+           gp.playSE(6);
         }
     }
 }

@@ -1,21 +1,19 @@
 package object;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
+import main.GamePanel;
 
 /**
  * @Des This is a steak class inheritance from SuperObject.
  */
 public class OBJ_Steak extends SuperObject {
-    public OBJ_Steak() {
+    public OBJ_Steak(GamePanel gp) {
+        super(gp);
+    }
 
-        name = "Steak";
-        try{
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/items/steak.png")));
-
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void setDefaultValues() {
+        name = "steak";
+        points = 5;
+        super.setDefaultValues();
     }
 }

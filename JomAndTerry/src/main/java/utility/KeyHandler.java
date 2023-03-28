@@ -56,26 +56,26 @@ public class KeyHandler implements KeyListener {
 
         int keyCode = e.getKeyCode(); // Returns the integer keyCode associated with the key in this event.
         switch(gp.gameState){
-            case(GamePanel.titleState):
+            case(GamePanel.TITLE_STATE):
                 handleTitleStateInput(keyCode);
                 break;
-            case(GamePanel.gamePlay):
+            case(GamePanel.PLAY_STATE):
                 handlePlayStateInput(keyCode);
                 break;
-            case(GamePanel.gameOverState):
+            case(GamePanel.LOSE_STATE):
                 handleOverStateInput(keyCode);
                 break;
-            case(GamePanel.gameWinState):
+            case(GamePanel.WIN_STATE):
                 handleWinStateInput(keyCode);
                 break;
-            case(GamePanel.gamePause):
+            case(GamePanel.PAUSE_STATE):
                 handleOverStateInput(keyCode);
                 break;
             default:
                 break;
         }
         if (keyCode == KeyEvent.VK_ENTER){
-            gp.ui.commandNum = 0;
+            gp.currentUI.commandNum = 0;
         }
     }
     /**
@@ -108,29 +108,29 @@ public class KeyHandler implements KeyListener {
      * @param keyCode
     */
     private void handleTitleStateInput(int keyCode) {
-        switch(gp.ui.titleScreenState){
+        switch(gp.currentUI.titleScreenState){
             case(MAIN_TITLE):
                 switch(keyCode){
                     case(KeyEvent.VK_W):
-                        gp.ui.commandNum--;
-                        if (gp.ui.commandNum < 0)
-                            gp.ui.commandNum = 2;
+                        gp.currentUI.commandNum--;
+                        if (gp.currentUI.commandNum < 0)
+                            gp.currentUI.commandNum = 2;
                         break;
 
                     case(KeyEvent.VK_S):
-                        gp.ui.commandNum++;
-                        if (gp.ui.commandNum > 2) 
-                            gp.ui.commandNum = 0;
+                        gp.currentUI.commandNum++;
+                        if (gp.currentUI.commandNum > 2) 
+                            gp.currentUI.commandNum = 0;
                         break;
 
                     case(KeyEvent.VK_ENTER):
-                        switch(gp.ui.commandNum){
+                        switch(gp.currentUI.commandNum){
                             case LEVEL_BUTTON: // 
-                                gp.ui.titleScreenState = LEVEL_TITLE;
+                                gp.titleLevel();
                                 break;
 
                             case INSTR_BUTTON:
-                                gp.ui.titleScreenState = INSTR_TITLE;
+                                gp.titleInstruction();
                                 break;
 
                             case QUIT_BUTTON:
@@ -144,25 +144,28 @@ public class KeyHandler implements KeyListener {
             break; // End of Main Title
             
             case INSTR_TITLE:
+                System.out.println(gp.currentUI.commandNum);
+
                 switch(keyCode){
                     case KeyEvent.VK_W:
-                        gp.ui.commandNum--;
-                        if (gp.ui.commandNum < 0) 
-                            gp.ui.commandNum = 1;
+                        gp.currentUI.commandNum--;
+                        if (gp.currentUI.commandNum < 0) 
+                            gp.currentUI.commandNum = 1;
                         break;
 
                     case KeyEvent.VK_S:
-                        gp.ui.commandNum++;
-                        if (gp.ui.commandNum > 1) 
-                            gp.ui.commandNum = 0;
+                        gp.currentUI.commandNum++;
+                        if (gp.currentUI.commandNum > 1) 
+                            gp.currentUI.commandNum = 0;
                         break;
 
                     case KeyEvent.VK_ENTER:
-                        if (gp.ui.commandNum == LEVEL_BUTTON)
-                            gp.ui.titleScreenState = LEVEL_TITLE;
+                        System.out.println(gp.currentUI.commandNum);
+                        if (gp.currentUI.commandNum == 0)
+                            gp.titleLevel();
 
-                        if (gp.ui.commandNum == BACK_BUTTON)
-                            gp.ui.titleScreenState = MAIN_TITLE;
+                        if (gp.currentUI.commandNum == 1)
+                            gp.titleMain();
                         break;            
                     }
                 break;
@@ -170,23 +173,23 @@ public class KeyHandler implements KeyListener {
             case LEVEL_TITLE:
                 switch(keyCode){
                     case(KeyEvent.VK_W): 
-                        gp.ui.commandNum--;
-                        if (gp.ui.commandNum < 0) 
-                            gp.ui.commandNum = 2;
+                        gp.currentUI.commandNum--;
+                        if (gp.currentUI.commandNum < 0) 
+                            gp.currentUI.commandNum = 2;
                         break;
                 
                     case(KeyEvent.VK_S):
-                        gp.ui.commandNum++;
-                        if (gp.ui.commandNum > 2)
-                            gp.ui.commandNum = 0;
+                        gp.currentUI.commandNum++;
+                        if (gp.currentUI.commandNum > 2)
+                            gp.currentUI.commandNum = 0;
                         break;
                 
                     case KeyEvent.VK_ENTER:
-                        if (gp.ui.commandNum == 2) // go back to title page
-                        gp.ui.titleScreenState = MAIN_TITLE;
-                        //this displays the game board and starts the game
+                        if (gp.currentUI.commandNum == 2) // go back to title page
+                            gp.titleMain();
+                            //this displays the game board and starts the game
                         else
-                            gp.retry((gp.ui.commandNum + 1));                                           
+                            gp.retry((gp.currentUI.commandNum + 1));                                           
                         break;
 
                     default: break;
@@ -206,18 +209,18 @@ public class KeyHandler implements KeyListener {
     private void handleWinStateInput(int keyCode) {
         switch(keyCode){
             case KeyEvent.VK_W:
-                gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) 
-                    gp.ui.commandNum = 3;
+                gp.currentUI.commandNum--;
+                if (gp.currentUI.commandNum < 0) 
+                    gp.currentUI.commandNum = 3;
                 break;
         
             case KeyEvent.VK_S:
-                gp.ui.commandNum++;
-                if (gp.ui.commandNum > 3)
-                    gp.ui.commandNum = 0;
+                gp.currentUI.commandNum++;
+                if (gp.currentUI.commandNum > 3)
+                    gp.currentUI.commandNum = 0;
                 break;
             case KeyEvent.VK_ENTER:
-                switch(gp.ui.commandNum){
+                switch(gp.currentUI.commandNum){
                     case RETRY_BUTTON: // retry
                         gp.retry(gp.levelState);
                         break;
@@ -225,12 +228,14 @@ public class KeyHandler implements KeyListener {
                         System.exit(0);
                         break;
                     case 2: // back
-                        gp.gameState = GamePanel.titleState;
-                        gp.ui.titleScreenState = 0;
+                        gp.titleMain();
+                        gp.currentUI.titleScreenState = 0;
+
                         break;
                     case 3: // choose level
-                        gp.gameState = MAIN_TITLE;
-                        gp.ui.titleScreenState = LEVEL_TITLE;
+                        gp.titleLevel();
+                        gp.currentUI.titleScreenState = LEVEL_TITLE;
+
                         break;
                     default: break;
                 }
@@ -247,19 +252,19 @@ public class KeyHandler implements KeyListener {
     private void handleOverStateInput(int keyCode) {
         switch(keyCode) {
             case KeyEvent.VK_W:
-                gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) 
-                    gp.ui.commandNum = 3;
+                gp.currentUI.commandNum--;
+                if (gp.currentUI.commandNum < 0) 
+                    gp.currentUI.commandNum = 3;
                 break;
 
             case KeyEvent.VK_S:
-                gp.ui.commandNum++;
-                if (gp.ui.commandNum > 3) 
-                    gp.ui.commandNum = 0;
+                gp.currentUI.commandNum++;
+                if (gp.currentUI.commandNum > 3) 
+                    gp.currentUI.commandNum = 0;
                 break;
 
             case KeyEvent.VK_ENTER:
-                switch(gp.ui.commandNum){
+                switch(gp.currentUI.commandNum){
                     case 0: // retry
                         gp.retry(gp.levelState);
                         break;
@@ -267,12 +272,13 @@ public class KeyHandler implements KeyListener {
                         System.exit(0);
                         break;         
                     case 2: // back
-                        gp.gameState = MAIN_TITLE;
-                        gp.ui.titleScreenState = MAIN_TITLE;
+                        gp.titleMain();
+                        gp.currentUI.titleScreenState = 0;
                         break;
                     case 3: // choose level
-                    gp.gameState = MAIN_TITLE;
-                    gp.ui.titleScreenState = LEVEL_TITLE;
+                    gp.titleLevel();
+                    gp.currentUI.titleScreenState = LEVEL_TITLE;
+
                     break;
                 }
                 break;
