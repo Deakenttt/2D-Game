@@ -10,6 +10,7 @@ public class GameOverUI extends UI{
     }
 
     public void draw(Graphics2D g2) {
+        y = gp.tileSize * 4;
         g2.setColor(grey);
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
