@@ -94,7 +94,7 @@ public class Enemy extends Entity {
             int nextX = gp.findPath.pathList.get(0).col * gp.tileSize ;
             int nextY = gp.findPath.pathList.get(0).row * gp.tileSize ;
 
-            Boolean takeNextX= Math.abs(nextX - solidArea.x) > Math.abs(nextY - solidArea.y);
+            boolean takeNextX= Math.abs(nextX - solidArea.x) > Math.abs(nextY - solidArea.y);
             if (takeNextX) {
               pathOrderedList[0] = (nextX < solidArea.x) ? "left" : "right";
               pathOrderedList[3] = (nextX < solidArea.x) ? "right" : "left";

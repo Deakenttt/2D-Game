@@ -73,22 +73,7 @@ public class Entity {
         right2 =  gp.imageLoader.getImage("%s_right_2".formatted(name));
     }
 
-    /**
-    * Loads and scales a BufferedImage from the "/assets" directory with the given imageName.
-    * @param imageName the name of the image file to load
-    * @return the scaled BufferedImage object
-    */
-    // public BufferedImage setup(String imageName) {
-        // UtilityTool utilityTool = new UtilityTool();
-        // BufferedImage image = null;
-        // try {
-            // image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/assets/%s/%s.png".formatted(name, imageName))));
-            // image = utilityTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        // } catch (IOException e) {
-            // e.printStackTrace();
-        // }
-        // return image;
-    // }
+
     /**
     * Sets the action of the entity.
     */
