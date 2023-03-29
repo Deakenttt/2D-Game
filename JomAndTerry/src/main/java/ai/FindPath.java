@@ -66,9 +66,8 @@ public class FindPath {
     * @param startRow the row index of the start node
     * @param goalCol the column index of the goal node
     * @param goalRow the row index of the goal node
-    * @param entity the entity that is moving
-    */
-    public void setNode(int startCol, int startRow, int goalCol, int goalRow, Entity entity) {
+     */
+    public void setNode(int startCol, int startRow, int goalCol, int goalRow) {
         resetNode();
 
         // Set Start and Goal node

@@ -54,7 +54,7 @@ public class Enemy extends Entity {
         int startRow = (solidArea.y) / gp.tileSize;
         String[] pathOrderedList = new String[4];
 
-        gp.findPath.setNode(startCol, startRow, goalCol, goalRow, this);
+        gp.findPath.setNode(startCol, startRow, goalCol, goalRow);
         collisionOn = false;
         searchPath(goalCol, goalRow, pathOrderedList);
 
