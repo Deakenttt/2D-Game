@@ -5,32 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b84b050-2c49-4765-8618-9bb345bd1d0f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/FindPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/FindPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ai/FindPath.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ai/FindPath.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/axe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/blueheart.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/boots.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/chest (OLD).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/chest_opened.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/heart_full.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/heart_half.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/key.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/lantern.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/manacrystal_full.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/pickaxe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/shield_wood.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/sword_normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/assets/Object/tent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/Enemy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Enemy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/utility/CollisionChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/utility/CollisionChecker.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

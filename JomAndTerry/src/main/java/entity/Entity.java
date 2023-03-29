@@ -73,7 +73,6 @@ public class Entity {
         right2 =  gp.imageLoader.getImage("%s_right_2".formatted(name));
     }
 
-
     /**
     * Sets the action of the entity.
     */
