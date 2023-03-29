@@ -127,14 +127,28 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * This method is used to handle the effect (such as sound effect, updated score, remove the picked up object) when player collect rewards or trap.
+     *
+     * @param pickupObjectName  The object name in string that collected by the player, use to determine the different cases for updating the score.
+     * @param pickUpObjectMsg   The message in string that used to display to the game when player collect the objects.
+     * @param pickupObjectIndex The index of the object that picked up by player, used to indicate which object need to be removed from the arraylist.
+     * @param pickupObjectType  The number representing the index of the buffered image arraylist, it used to display in the message window.
+     * @param pickupObjectSound The number representing the index of the sound effect. it used to play the sound effect.
+     */
     public void pickupObjectEffect(String pickupObjectName, String pickUpObjectMsg, int pickupObjectIndex, int pickupObjectType, int pickupObjectSound) {
-        handleScore(pickupObjectName);
-        gp.playSE(pickupObjectSound);
-        gp.obj[pickupObjectIndex] = null;
+        handleScore(pickupObjectName);                               // Update the score.
+        gp.playSE(pickupObjectSound);                                // Play the sounds effect.
+        gp.obj[pickupObjectIndex] = null;                            // Remove that object.
         gp.currentUI.showMessage(pickUpObjectMsg, pickupObjectType); // Show the msg when touch object.
         System.out.println("score: " + scoreCount);
     }
 
+    /**
+     * This is a method for handling the score update.
+     *
+     * @param pickupObjectName A string type parameter to determine different cases of scores. such as pick up a cheese or trap, and how to deal with the score.
+     */
     public void handleScore(String pickupObjectName) {
         if (pickupObjectName == "cheese") {
             cheeseCount++;
@@ -147,6 +161,9 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * This is a method for handling the game state when the player meet some conditions.
+     */
     public void handleGameState() {
         if (cheeseCount >= 6) {
             gp.currentUI.showMessage("Door is open!", 3);
@@ -159,6 +176,9 @@ public class Player extends Entity {
             gp.gameOver();
     }
 
+    /**
+     * This is a method for handling the exit to disappear or not, determining if player can get in or not.
+     */
     public void handleExit() {
         if (cheeseCount >= 6) {
             gp.gameWin();
