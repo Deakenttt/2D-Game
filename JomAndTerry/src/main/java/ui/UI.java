@@ -121,7 +121,6 @@ public class UI {
 
         lines.add(line.toString().trim());
         return lines.toArray(new String[lines.size()]);
-        
     }
 
     /**
@@ -142,7 +141,7 @@ public class UI {
         }
     }
 
-    protected void textWithShadow(String text, Graphics2D g2, int shadowShift){
+    protected void textWithShadow(String text, Graphics2D g2){
         x = getXforCenteredText(text, g2);
         g2.drawString(text, x + 5, y + 5);
         g2.setColor(Color.white);

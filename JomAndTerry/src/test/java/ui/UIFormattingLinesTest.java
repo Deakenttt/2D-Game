@@ -40,10 +40,10 @@ public class UIFormattingLinesTest {
 
     @Test
     public void testGetLines() {
-        // FontMetrics metrics = new Canvas().getFontMetrics(font);
+        FontMetrics metrics = new Canvas().getFontMetrics(font);
         int maxWidth = 100;
         text = "This is a long text string that should be split into multiple lines when it exceeds the maximum width.";
-        String[] expectedLines = {"This is a long text string that should", "be split into multiple lines when it exceeds the", "maximum width."};
+        String[] expectedLines = {"This is a long text", "string that should", "be split into", "multiple lines", "when it exceeds", "the maximum", "width."};
         String[] actualLines = ui.getLines(text, metrics, maxWidth);
         assertArrayEquals(expectedLines, actualLines);
     }

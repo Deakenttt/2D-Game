@@ -17,7 +17,7 @@ public class GameOverUI extends GameUI{
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
         g2.setColor(Color.black);
-        textWithShadow(text, g2, 5);
+        textWithShadow(text, g2);
 
         // Retry button
         titleButtons("Retry", 0, g2);

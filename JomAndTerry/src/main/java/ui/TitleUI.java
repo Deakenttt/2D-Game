@@ -14,7 +14,7 @@ public class TitleUI extends UI{
     public void draw(Graphics2D g2) {
         g2.setFont(titleFont);
         g2.setColor(Color.GRAY);
-        textWithShadow(titleText, g2, 5);
+        textWithShadow(titleText, g2);
         longText(subText, g2);
     }
     
