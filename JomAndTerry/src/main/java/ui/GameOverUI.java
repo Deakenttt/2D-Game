@@ -17,6 +17,7 @@ public class GameOverUI extends GameUI{
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
         textWithShadow(text, g2, 5);
+
         // Retry button
         titleButtons("Retry", 0, g2);
         //Quit button
@@ -26,11 +27,10 @@ public class GameOverUI extends GameUI{
         //change the level
         titleButtons("Change Level", 3, g2);        
         pauseTimer();
-        drawScoreAndTimer(g2);
+        super.draw(g2);
     }
     
     public void textWithShadow(String text, Graphics2D g2, int shadowShift){
-        // Shadow colour
         g2.setColor(Color.black);
         super.textWithShadow(text, g2, shadowShift);
     }

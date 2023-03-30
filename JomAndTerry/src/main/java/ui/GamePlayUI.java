@@ -7,7 +7,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class GamePlayUI extends GameUI {
-
+    private long currentTime;
+    private int height = gp.tileSize * 2;
+    protected int msgLength;
+    protected int msgWindowLength;
+    protected boolean msgOn = false;
     public GamePlayUI(GamePanel gp) {
         super(gp);
     }
@@ -18,14 +22,19 @@ public class GamePlayUI extends GameUI {
      * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
      */
     public void draw(Graphics2D g2) {
-        drawScoreAndTimer(g2);
-        drawMessage(g2);
+        super.draw(g2);
+        if (msgOn){
+            drawMessage(g2);
+        }
     }
 
     public void showMessage(String text, int objectType) {
         message = text;
-        messageOn = true;
+        msgCounter = 0;
         currentImage = images[objectType];
+        msgLength = message.length()*10;
+        msgWindowLength = msgLength + gp.tileSize*2;
+        msgOn = true;
     }
 
     /**
@@ -34,27 +43,20 @@ public class GamePlayUI extends GameUI {
      * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
      */
     public void drawMessage(Graphics2D g2) {
-        g2.setFont(gameFont);
-        int x = 0;
-        int y = gp.tileSize;
-        int height = gp.tileSize * 2;
+        x = 0;
+        y = gp.tileSize;
+        drawMsgWindow(x, y, msgWindowLength, height, g2);
+        g2.setFont(textFont);
+        g2.setColor(Color.WHITE);
+        g2.drawString(message, gp.tileSize / 2, height + 5);
+        g2.drawImage(currentImage, msgLength+gp.tileSize, height-20 , gp.tileSize, gp.tileSize, null);
 
-        if (messageOn) {
-            int length = (int) g2.getFontMetrics().getStringBounds(message, g2).getWidth();
-
-            drawMsgWindow(x, y, length+50, height, g2);
-
-            g2.setColor(Color.WHITE);
-            g2.drawString(message, gp.tileSize / 2, height + 5);
-            g2.drawImage(currentImage, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
-
-            // Only show the message in a short period of the time.
-            msgCounter++;
-            if (msgCounter > 120) {
-                msgCounter = 0;
-                messageOn = false;
-            }
+        // Only show the message in a short period of the time.
+        msgCounter++;
+        if (msgCounter > 120) {
+            resetMsg();
         }
+        // }
     }
 
         /**
@@ -65,24 +67,34 @@ public class GamePlayUI extends GameUI {
      * @param width  window's width value.
      * @param height window's height value.
      */
-    public void drawMsgWindow(int x, int y, int width, int height, Graphics2D g2) {
+    public void drawMsgWindow(int x, int y, double width, int height, Graphics2D g2) {
         g2.setColor(dBrown);
-        g2.fillRoundRect(x, y, width, height, 5, 5);
-
+        g2.fillRoundRect(x, y, (int) width, height, 5, 5);
         g2.setColor(lBrown);
         g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 5, 5);
+        g2.drawRoundRect(x + 5, y + 5, (int) width - 10, height - 10, 5, 5);
     }
 
     public void drawScoreAndTimer(Graphics2D g2) {
-        if (!paused) { // only update playTime if not paused
-            long currentTime = System.currentTimeMillis();
-            double elapsedSeconds = (currentTime - (double) lastTime) / 1000.0; // convert elapsed time to seconds
-            playTime += elapsedSeconds; // update playTime by adding elapsed time
-            lastTime = currentTime; // update lastTime to current time
-        }
+        currentTime = System.currentTimeMillis();
+        playTime += (currentTime - (double) lastTime) / 1000.0; // convert elapsed time to seconds
+        lastTime = currentTime; // update lastTime to current time
         super.drawScoreAndTimer(g2);
     }
 
+    public void resetUI(){
+        resetTimer();
+        resetMsg();
+    }
+
+    /**
+     * resetMsg() is a method for resetting the msgCounter to 0 and messageOn to false when user pressed the retry button.
+     */
+    public void resetMsg() {
+        msgCounter = 0;
+        message = "";
+        currentImage = null;
+        msgOn = false;
+    }
 
 }

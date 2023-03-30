@@ -71,8 +71,8 @@ public class Player extends Entity {
      * Updates the player's position and checks for object interactions.
      */
     public void update() {
-        handleGameState();
         setAction();
+        handleGameState();
         if (doMove) {
             collisionOn = false;
             collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
@@ -98,6 +98,7 @@ public class Player extends Entity {
                     break;
 
                 case "steak":
+                    System.out.println("picked up a steak");
                     pickupObjectEffect(objectName, "You got a steak!", object, 1, 5);
                     break;
 

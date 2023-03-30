@@ -15,7 +15,6 @@ public class TitleUI extends UI{
         g2.setFont(titleFont);
         g2.setColor(Color.GRAY);
         textWithShadow(titleText, g2, 5);
-        // Menu Options
         longText(subText, g2);
     }
     

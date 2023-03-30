@@ -13,51 +13,41 @@ import main.GamePanel;
  */
 public class UI {
     public GamePanel gp;
-    protected Font gameFont = new Font("Arial", Font.PLAIN, 20);
-    protected Font titleFont = new Font("Arial", Font.BOLD, 96);
-    protected Font textFont = new Font("Arial", Font.PLAIN, 24);
-    protected Font XLFont = new Font("Arial", Font.BOLD, 110);
-    protected Font buttonFont = new Font ("Arial", Font.BOLD, 50);
 
-    protected BufferedImage cheeseImg;
-    protected BufferedImage steakImg;
-    protected BufferedImage trapImg;
-    protected BufferedImage doorImg;
     protected BufferedImage[] images = new BufferedImage[4];
     protected BufferedImage currentImage;
-
 
     // For the command cursor.
     public int commandNum = 0;
 
-    // For showing message.
-    protected int y;
-    protected int x;
+    // For showing messages
     public String text;
     protected String titleText;
     protected String subText;
-    
-    Color dBrown = new Color(54, 46, 57, 255);
-    Color lBrown = new Color(205, 159, 100);
-    Color grey = new Color(0, 0, 0, 150);
 
+    // Text positions
+    protected int y;
+    protected int x;
+    
+    // Font settings
+    protected Font titleFont = new Font("Arial", Font.BOLD, 96);
+    protected Font textFont = new Font("Arial", Font.PLAIN, 24);
+    protected Font XLFont = new Font("Arial", Font.BOLD, 110);
+    protected Font buttonFont = new Font ("Arial", Font.BOLD, 50);
+    protected Color dBrown = new Color(54, 46, 57, 255);
+    protected Color lBrown = new Color(205, 159, 100);
+    protected Color grey = new Color(0, 0, 0, 150);
 
     // 0 = title screen, 1 = instructions screen, 2 = Choose map screen
     public int titleScreenState = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
-
-        cheeseImg = gp.imageLoader.getImage("cheese");
-        steakImg = gp.imageLoader.getImage("steak");
-        trapImg = gp.imageLoader.getImage("trap");
-        doorImg = gp.imageLoader.getImage("door");
-        images[0] = cheeseImg;
-        images[1] = steakImg;
-        images[2] = trapImg;
-        images[3] = doorImg;
+        images[0] = gp.imageLoader.getImage("cheese");
+        images[1] = gp.imageLoader.getImage("steak");
+        images[2] = gp.imageLoader.getImage("trap");
+        images[3] = gp.imageLoader.getImage("hole");
     }
-
 
     /**
      * This is a method for getting the lines and store to the List when it processes a punch of string content.
@@ -93,7 +83,6 @@ public class UI {
     public void resetUI(){
     }
 
-
     /**
      * This is a method for getting a center x position of the text.
      *
@@ -114,21 +103,6 @@ public class UI {
      */
     public void showMessage(String text, int objectType) {
     }
-
-    // public void drawGamePlayScreen(Graphics2D g2) {
-        // drawScoreAndTimer(g2);
-        // drawMessage(g2);
-    // }
-
-    /**
-     * This is a method for drawing the pause screen when player pause the game.
-     *
-     * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
-     */
-    // public void drawGamePauseScreen(Graphics2D g2) {
-        // drawCenteredMessage("Pause", g2);
-        // drawScoreAndTimer(g2);
-    // }
 
     /**
     * Draws a button with the specified text and number.

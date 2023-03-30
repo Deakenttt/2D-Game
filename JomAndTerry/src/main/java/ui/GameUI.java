@@ -21,18 +21,21 @@ public class GameUI extends UI{
         super(gp);
     }
 
+    public void draw(Graphics2D g2) {
+        drawScoreAndTimer(g2);
+    }
     /**
      * This is a method for drawing the player score information and the timer information during the game.
      *
      * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
      */
     public void drawScoreAndTimer(Graphics2D g2) {
-        g2.setFont(gameFont);
+        g2.setFont(textFont);
         g2.setColor(Color.WHITE);
         g2.drawString("Score: " + gp.player.scoreCount, 25, 40);
-        g2.drawImage(cheeseImg, gp.tileSize / 2 + 100, 20, gp.tileSize / 2, gp.tileSize / 2, null);
+        g2.drawImage(images[0], gp.tileSize / 2 + 100, 20, gp.tileSize / 2, gp.tileSize / 2, null);
         g2.drawString(" X " + gp.player.cheeseCount, 150, 40);
-        g2.drawImage(steakImg, gp.tileSize / 2 + 170, 20, gp.tileSize / 2, gp.tileSize / 2, null);
+        g2.drawImage(images[1], gp.tileSize / 2 + 170, 20, gp.tileSize / 2, gp.tileSize / 2, null);
         g2.drawString(" X " + gp.player.steakCount / 5, 220, 40);
         g2.drawString("Time:  " + decimalFormat.format(playTime), 800, 40);
     }
@@ -45,7 +48,7 @@ public class GameUI extends UI{
      */
     public void drawCenteredMessage(String text, Graphics2D g2) {
         int x, y;
-        g2.setFont(gameFont);
+        g2.setFont(textFont);
         g2.setColor(Color.WHITE);
 
         x = getXforCenteredText(text, g2);
@@ -63,21 +66,9 @@ public class GameUI extends UI{
     /**
      * This is a method for resume the timer.
      */
-    public void resumeTimer() {
+    public void resetTimer() {
         playTime = 0.0;
         paused = false;
     }
 
-    public void resetUI(){
-        resumeTimer();
-        resetMsg();
-    }
-
-    /**
-     * resetMsg() is a method for resetting the msgCounter to 0 and messageOn to false when user pressed the retry button.
-     */
-    public void resetMsg() {
-        msgCounter = 0;
-        messageOn = false;
-    }
 }
