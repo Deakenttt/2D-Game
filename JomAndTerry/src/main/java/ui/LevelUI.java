@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 import main.GamePanel;
 
-public class LevelUI extends GameTitleUI {
+public class LevelUI extends TitleUI {
     public LevelUI(GamePanel gp) {
         super(gp);
         titleText = "Select the Level";

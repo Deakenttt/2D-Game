@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // UI and sound
     public UI currentUI;
-    public UI playUI;
+    // public UI playUI;
     public UI[] gameUI = new UI[5];
     public GameOverUI overUI;
     Sound sound = new Sound();
@@ -76,7 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
         gameUI[0] = new MainTitleUI(this); // main screen
         gameUI[1] = new InstructionUI(this); // instructions screen
         gameUI[2] = new LevelUI(this); // level screen
-        gameUI[3] = new UI(this); // play screen
+        gameUI[3] = new GamePlayUI(this); // play screen
         gameUI[4] = new GameOverUI(this); // game over screen
 
         // Set up game panel

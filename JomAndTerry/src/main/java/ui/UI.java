@@ -2,7 +2,6 @@ package ui;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import main.GamePanel;
@@ -13,36 +12,28 @@ import main.GamePanel;
  * message display, title page, game win and lost page...etc.
  */
 public class UI {
-    GamePanel gp;
-    Graphics2D g2;
-    Font arial_80B;
-    Font gameFont = new Font("Arial", Font.PLAIN, 20);
-    Font titleFont = new Font("Arial", Font.BOLD, 96);
-    Font textFont = new Font("Arial", Font.PLAIN, 24);
-    Font XLFont = new Font("Arial", Font.BOLD, 110);
-    Font buttonFont = new Font ("Arial", Font.BOLD, 50);
+    public GamePanel gp;
+    protected Font gameFont = new Font("Arial", Font.PLAIN, 20);
+    protected Font titleFont = new Font("Arial", Font.BOLD, 96);
+    protected Font textFont = new Font("Arial", Font.PLAIN, 24);
+    protected Font XLFont = new Font("Arial", Font.BOLD, 110);
+    protected Font buttonFont = new Font ("Arial", Font.BOLD, 50);
 
     protected BufferedImage cheeseImg;
     protected BufferedImage steakImg;
     protected BufferedImage trapImg;
     protected BufferedImage doorImg;
     protected BufferedImage[] images = new BufferedImage[4];
-
-    public BufferedImage currentImage;
+    protected BufferedImage currentImage;
 
 
     // For the command cursor.
     public int commandNum = 0;
 
     // For showing message.
-    protected boolean messageOn = false;
-    public String message = "";
-    public int msgCounter = 0;
-    public int objectCollectType = 0;
-    public int y;
-    public int x;
+    protected int y;
+    protected int x;
     public String text;
-    public FontMetrics metrics;
     protected String titleText;
     protected String subText;
     
@@ -57,7 +48,6 @@ public class UI {
     public UI(GamePanel gp) {
         this.gp = gp;
 
-        arial_80B = new Font("Arial", Font.BOLD, 80);
         cheeseImg = gp.imageLoader.getImage("cheese");
         steakImg = gp.imageLoader.getImage("steak");
         trapImg = gp.imageLoader.getImage("trap");
@@ -68,10 +58,6 @@ public class UI {
         images[3] = doorImg;
     }
 
-    public void draw(Graphics2D g2) {
-        drawScoreAndTimer(g2);
-        drawMessage(g2);
-    }
 
     /**
      * This is a method for getting the lines and store to the List when it processes a punch of string content.
@@ -101,7 +87,12 @@ public class UI {
         return lines.toArray(new String[lines.size()]);
     }
 
-        
+    public void draw(Graphics2D g2) {
+    }
+
+    public void resetUI(){
+    }
+
 
     /**
      * This is a method for getting a center x position of the text.
@@ -122,147 +113,22 @@ public class UI {
      * @param objectType Determine which object icon should be displayed.
      */
     public void showMessage(String text, int objectType) {
-        message = text;
-        messageOn = true;
-        currentImage = images[objectType];
     }
 
-    /**
-     * This is s method for drawing the message context when player touch any type of objects.
-     *
-     * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
-     */
-    public void drawMessage(Graphics2D g2) {
-        g2.setFont(gameFont);
-        int x = 0;
-        int y = gp.tileSize;
-        int height = gp.tileSize * 2;
-
-        if (messageOn) {
-            int length = (int) g2.getFontMetrics().getStringBounds(message, g2).getWidth();
-
-            drawMsgWindow(x, y, length+50, height, g2);
-
-            g2.setColor(Color.WHITE);
-            g2.drawString(message, gp.tileSize / 2, height + 5);
-            g2.drawImage(currentImage, x+length, height + 12, gp.tileSize / 2, gp.tileSize / 2, null);
-
-            // Only show the message in a short period of the time.
-            msgCounter++;
-            if (msgCounter > 120) {
-                msgCounter = 0;
-                messageOn = false;
-            }
-        }
-    }
-
-    /**
-     * This is a method for drawing a message window by using the x, y position and value of width, height.
-     *
-     * @param x      window's x position.
-     * @param y      window's y position.
-     * @param width  window's width value.
-     * @param height window's height value.
-     */
-    public void drawMsgWindow(int x, int y, int width, int height, Graphics2D g2) {
-
-
-        g2.setColor(dBrown);
-        g2.fillRoundRect(x, y, width, height, 5, 5);
-
-        g2.setColor(lBrown);
-        g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 5, 5);
-    }
-
-    /**
-     * resetMsg() is a method for resetting the msgCounter to 0 and messageOn to false when user pressed the retry button.
-     */
-    public void resetMsg() {
-        msgCounter = 0;
-        messageOn = false;
-    }
-
-    public double playTime = 0.0; // start at 0 seconds
-    private long lastTime = System.currentTimeMillis(); // initialize lastTime to current time
-    private boolean paused = false; // initialize paused to false
-    DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-
-    /**
-     * This is a method for drawing the player score information and the timer information during the game.
-     *
-     * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
-     */
-    public void drawScoreAndTimer(Graphics2D g2) {
-
-        g2.setFont(gameFont);
-        g2.setColor(Color.WHITE);
-        g2.drawString("Score: " + gp.player.scoreCount, 25, 40);
-        g2.drawImage(cheeseImg, gp.tileSize / 2 + 100, 20, gp.tileSize / 2, gp.tileSize / 2, null);
-        g2.drawString(" X " + gp.player.cheeseCount, 150, 40);
-        g2.drawImage(steakImg, gp.tileSize / 2 + 170, 20, gp.tileSize / 2, gp.tileSize / 2, null);
-        g2.drawString(" X " + gp.player.steakCount / 5, 220, 40);
-
-        if (!paused) { // only update playTime if not paused
-            long currentTime = System.currentTimeMillis();
-            double elapsedSeconds = (currentTime - (double) lastTime) / 1000.0; // convert elapsed time to seconds
-            playTime += elapsedSeconds; // update playTime by adding elapsed time
-            lastTime = currentTime; // update lastTime to current time
-        }
-
-        g2.drawString("Time:  " + decimalFormat.format(playTime), 800, 40);
-    }
-
-    /**
-     * This a method for pause the timer.
-     */
-    public void pauseTimer() {
-        paused = true;
-    }
-
-    /**
-     * This is a method for resume the timer.
-     */
-    public void resumeTimer() {
-        playTime = 0.0;
-        paused = false;
-    }
-
-    /**
-     * This is a method for drawing the message and displayed in the central position.
-     *
-     * @param text The message content that need to be displayed
-     * @param g2   Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
-     */
-    public void drawCenteredMessage(String text, Graphics2D g2) {
-        int x, y;
-        g2.setFont(gameFont);
-        g2.setColor(Color.WHITE);
-
-        x = getXforCenteredText(text, g2);
-        y = gp.screenHeight / 2 - (gp.tileSize * 3);
-        g2.drawString(text, x, y);
-    }
-
-    /**
-     * This is a method for drawing the UI content when such as message when the game is over or user win the game.
-     *
-     * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
-     */
-    public void drawGamePlayScreen(Graphics2D g2) {
-        drawScoreAndTimer(g2);
-        drawMessage(g2);
-    }
+    // public void drawGamePlayScreen(Graphics2D g2) {
+        // drawScoreAndTimer(g2);
+        // drawMessage(g2);
+    // }
 
     /**
      * This is a method for drawing the pause screen when player pause the game.
      *
      * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
      */
-    public void drawGamePauseScreen(Graphics2D g2) {
-        drawCenteredMessage("Pause", g2);
-        drawScoreAndTimer(g2);
-    }
+    // public void drawGamePauseScreen(Graphics2D g2) {
+        // drawCenteredMessage("Pause", g2);
+        // drawScoreAndTimer(g2);
+    // }
 
     /**
     * Draws a button with the specified text and number.
@@ -282,10 +148,6 @@ public class UI {
             g2.drawString(">", x-gp.tileSize, y);
         }
     }
-    public void resetUI(){
-        resumeTimer();
-        resetMsg();
-    }
 
     public void textWithShadow(String text, Graphics2D g2, int shadowShift){
         x = getXforCenteredText(text, g2);
@@ -294,14 +156,4 @@ public class UI {
         g2.drawString(text, x , y);
     }
 
-    public void gameStoppedMenuButtons(Graphics2D g2){
-        // Retry button
-        titleButtons("Retry", 0, g2);
-        //Quit button
-        titleButtons("Quit", 1, g2);
-        //Home page
-        titleButtons("Home Page", 2, g2);
-        //change the level
-        titleButtons("Change Level", 3, g2);
-    }
 }

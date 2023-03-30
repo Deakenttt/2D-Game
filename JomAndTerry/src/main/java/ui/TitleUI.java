@@ -5,9 +5,9 @@ import java.awt.Graphics2D;
 
 import main.GamePanel;
 
-public class GameTitleUI extends UI{
+public class TitleUI extends UI{
    
-    public GameTitleUI(GamePanel gp) {
+    public TitleUI(GamePanel gp) {
         super(gp);
     }
         
@@ -28,12 +28,5 @@ public class GameTitleUI extends UI{
             y += gp.tileSize; // increase y position for next line
             g2.drawString(lines[i], x, y);
         }
-
-    }
-    public void drawMouse(Graphics2D g2){
-        // Mouse picture
-        x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
-        y += gp.tileSize;
-        g2.drawImage(gp.player.left1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
     }
 }
