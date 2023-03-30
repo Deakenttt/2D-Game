@@ -49,6 +49,34 @@ public class UI {
         images[3] = gp.imageLoader.getImage("hole");
     }
 
+
+    public void resetUI(){}
+
+    /**
+     * This is a method for triggering the text should be show on or not.
+     *
+     * @param text       String type context to be process.
+     * @param objectType Determine which object icon should be displayed.
+     */
+    public void setMessage(String text, int objectType) {}
+
+    /* Methods for drawing */
+
+    public void draw(Graphics2D g2) {}
+
+    /* Methods related to formatting */
+
+    /**
+     * This is a method for getting a center x position of the text.
+     *
+     * @param text String type context to be process.
+     * @return The x position of the text that start from the middle.
+     */
+    protected int getXforCenteredText(String text, Graphics2D g2) {
+        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        int x = (gp.screenWidth-1) / 2 - length / 2;
+        return x;
+    }
     /**
      * This is a method for getting the lines and store to the List when it processes a punch of string content.
      * so that when display these string could use these lines to set the different line when displaying
@@ -59,7 +87,6 @@ public class UI {
      * @param maxWidth    The value for setting one block of text's maximum width.
      * @return String type arraylist that stores all the lines.
      */
-
     protected String[] getLines(String text, FontMetrics metrics, int maxWidth) {
         List<String> lines = new ArrayList<>();
         String[] words = text.split("\\s+");
@@ -77,33 +104,6 @@ public class UI {
         return lines.toArray(new String[lines.size()]);
     }
 
-    public void draw(Graphics2D g2) {
-    }
-
-    public void resetUI(){
-    }
-
-    /**
-     * This is a method for getting a center x position of the text.
-     *
-     * @param text String type context to be process.
-     * @return The x position of the text that start from the middle.
-     */
-    public int getXforCenteredText(String text, Graphics2D g2) {
-        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = (gp.screenWidth-1) / 2 - length / 2;
-        return x;
-    }
-
-    /**
-     * This is a method for triggering the text should be show on or not.
-     *
-     * @param text       String type context to be process.
-     * @param objectType Determine which object icon should be displayed.
-     */
-    public void setMessage(String text, int objectType) {
-    }
-
     /**
     * Draws a button with the specified text and number.
     * The button is centered horizontally and positioned below the previously drawn button. 
@@ -112,8 +112,7 @@ public class UI {
     * @param button_num the number of the button
     * @return void
     */
-    
-    public void titleButtons(String button_text, int button_num, Graphics2D g2){
+    protected void titleButtons(String button_text, int button_num, Graphics2D g2){
         g2.setFont(buttonFont);
         x = getXforCenteredText(button_text, g2);
         y += gp.tileSize * 2;
@@ -123,7 +122,7 @@ public class UI {
         }
     }
 
-    public void textWithShadow(String text, Graphics2D g2, int shadowShift){
+    protected void textWithShadow(String text, Graphics2D g2, int shadowShift){
         x = getXforCenteredText(text, g2);
         g2.drawString(text, x + 5, y + 5);
         g2.setColor(Color.white);

@@ -39,36 +39,4 @@ public class GameUI extends UI{
         g2.drawString(" X " + gp.player.steakCount / 5, 220, 40);
         g2.drawString("Time:  " + decimalFormat.format(playTime), 800, 40);
     }
-
-    /**
-     * This is a method for drawing the message and displayed in the central position.
-     *
-     * @param text The message content that need to be displayed
-     * @param g2   Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
-     */
-    public void drawCenteredMessage(String text, Graphics2D g2) {
-        int x, y;
-        g2.setFont(textFont);
-        g2.setColor(Color.WHITE);
-
-        x = getXforCenteredText(text, g2);
-        y = gp.screenHeight / 2 - (gp.tileSize * 3);
-        g2.drawString(text, x, y);
-    }
-
-        /**
-     * This a method for pause the timer.
-     */
-    public void pauseTimer() {
-        paused = true;
-    }
-
-    /**
-     * This is a method for resume the timer.
-     */
-    public void resetTimer() {
-        playTime = 0.0;
-        paused = false;
-    }
-
 }

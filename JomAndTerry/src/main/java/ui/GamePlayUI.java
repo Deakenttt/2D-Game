@@ -39,7 +39,7 @@ public class GamePlayUI extends GameUI {
         msgWindow.put("innerY", y+5);
 
     }
-
+    
     /**
      * This is a method for drawing the UI content when such as message when the game is over or user win the game.
      *
@@ -125,4 +125,11 @@ public class GamePlayUI extends GameUI {
         msgOn = false;
     }
 
+    /**
+     * This is a method for resume the timer.
+     */
+    public void resetTimer() {
+        playTime = 0.0;
+        paused = false;
+}
 }
