@@ -48,8 +48,7 @@ public class FindPath {
     */    
     public void resetNode() {
         for (int i = 0; i < gp.maxScreenCol; i++) {
-            int j = 0;
-            for (j = 0; j < gp.maxScreenRow; j++) {
+            for (int j = 0; j < gp.maxScreenRow; j++) {
                 node[i][j].open = false;
                 node[i][j].checked = false;
                 node[i][j].solid = false;
@@ -67,9 +66,8 @@ public class FindPath {
     * @param startRow the row index of the start node
     * @param goalCol the column index of the goal node
     * @param goalRow the row index of the goal node
-    * @param entity the entity that is moving
-    */
-    public void setNode(int startCol, int startRow, int goalCol, int goalRow, Entity entity) {
+     */
+    public void setNode(int startCol, int startRow, int goalCol, int goalRow) {
         resetNode();
 
         // Set Start and Goal node

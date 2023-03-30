@@ -79,7 +79,7 @@ public class UI {
      * a paragraph nicely.
      *
      * @param text        String type context to be process.
-     * @param fontMetrics The standard height of a line of text in this font.
+     * @param metrics The standard height of a line of text in this font.
      * @param maxWidth    The value for setting one block of text's maximum width.
      * @return String type arraylist that stores all the lines.
      */
