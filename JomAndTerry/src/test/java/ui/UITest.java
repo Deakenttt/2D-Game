@@ -39,8 +39,6 @@ public class UITest {
         String[] actualLines = ui.getLines(text, metrics, maxWidth);
         assertArrayEquals(expectedLines, actualLines);
     }
-
-    
     
     //The starting point should be half of the screen width minus half of the length of the text, which is (920-1/2) - (96/2) = 912.
     @Test

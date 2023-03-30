@@ -41,7 +41,6 @@ public class Enemy extends Entity {
         name = "cat";
         solidArea.x = solidAreaDefaultX;
         solidArea.y = solidAreaDefaultY;
-
     }
     
     /**

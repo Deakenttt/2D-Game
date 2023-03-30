@@ -22,10 +22,10 @@ public class UI {
     Font XLFont = new Font("Arial", Font.BOLD, 110);
     Font buttonFont = new Font ("Arial", Font.BOLD, 50);
 
-    protected BufferedImage cheese;
-    protected BufferedImage steak;
-    protected BufferedImage trap;
-    protected BufferedImage door;
+    protected BufferedImage cheeseImg;
+    protected BufferedImage steakImg;
+    protected BufferedImage trapImg;
+    protected BufferedImage doorImg;
     protected BufferedImage[] images = new BufferedImage[4];
 
     public BufferedImage currentImage;
@@ -58,14 +58,14 @@ public class UI {
         this.gp = gp;
 
         arial_80B = new Font("Arial", Font.BOLD, 80);
-        cheese = gp.imageLoader.getImage("cheese");
+        cheeseImg = gp.imageLoader.getImage("cheese");
         steak = gp.imageLoader.getImage("steak");
         trap = gp.imageLoader.getImage("trap");
-        door = gp.imageLoader.getImage("door");
-        images[0] = cheese;
+        doorImg = gp.imageLoader.getImage("door");
+        images[0] = cheeseImg;
         images[1] = steak;
         images[2] = trap;
-        images[3] = door;
+        images[3] = doorImg;
     }
 
     public void draw(Graphics2D g2) {
@@ -198,9 +198,9 @@ public class UI {
         g2.setFont(gameFont);
         g2.setColor(Color.WHITE);
         g2.drawString("Score: " + gp.player.scoreCount, 25, 40);
-        g2.drawImage(cheese, gp.tileSize / 2 + 100, 20, gp.tileSize / 2, gp.tileSize / 2, null);
+        g2.drawImage(cheeseImg, gp.tileSize / 2 + 100, 20, gp.tileSize / 2, gp.tileSize / 2, null);
         g2.drawString(" X " + gp.player.cheeseCount, 150, 40);
-        g2.drawImage(steak, gp.tileSize / 2 + 170, 20, gp.tileSize / 2, gp.tileSize / 2, null);
+        g2.drawImage(steakImg, gp.tileSize / 2 + 170, 20, gp.tileSize / 2, gp.tileSize / 2, null);
         g2.drawString(" X " + gp.player.steakCount / 5, 220, 40);
 
         if (!paused) { // only update playTime if not paused
