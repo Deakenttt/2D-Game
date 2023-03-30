@@ -59,12 +59,12 @@ public class UI {
 
         arial_80B = new Font("Arial", Font.BOLD, 80);
         cheeseImg = gp.imageLoader.getImage("cheese");
-        steak = gp.imageLoader.getImage("steak");
-        trap = gp.imageLoader.getImage("trap");
+        steakImg = gp.imageLoader.getImage("steak");
+        trapImg = gp.imageLoader.getImage("trap");
         doorImg = gp.imageLoader.getImage("door");
         images[0] = cheeseImg;
-        images[1] = steak;
-        images[2] = trap;
+        images[1] = steakImg;
+        images[2] = trapImg;
         images[3] = doorImg;
     }
 
@@ -79,7 +79,7 @@ public class UI {
      * a paragraph nicely.
      *
      * @param text        String type context to be process.
-     * @param metrics The standard height of a line of text in this font.
+     * @param fontMetrics The standard height of a line of text in this font.
      * @param maxWidth    The value for setting one block of text's maximum width.
      * @return String type arraylist that stores all the lines.
      */
