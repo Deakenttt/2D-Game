@@ -20,11 +20,11 @@ public class SuperObject {
 
     public Rectangle solidArea = new Rectangle(x, y, 48, 48);
     public int solidAreaDefaultX, solidAreaDefaultY;
-    public GamePanel gp;
+    // public GamePanel gp;
     public SuperObject(GamePanel gp){
-        this.gp = gp;
+        // this.gp = gp;
         setDefaultValues();
-        setImage();
+        image = gp.imageLoader.getImage(name);
         
     }
 
@@ -44,8 +44,5 @@ public class SuperObject {
         g2.drawImage(image, solidArea.x, solidArea.y, gp.tileSize, gp.tileSize, null);
     }
 
-    public void setImage(){
-        image = gp.imageLoader.getImage(name);
-    }
 }
 

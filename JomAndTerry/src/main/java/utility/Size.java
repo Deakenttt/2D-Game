@@ -1,9 +1,9 @@
 package utility;
 
 /**
- * The SizeNumber class stores static parameters related to size, such as tile size and screen dimensions.
+ * The Size class stores static parameters related to size, such as tile size and screen dimensions.
  */
-public class SizeNumber {
+public class Size {
     public static int ORIGINAL_TILE_SIZE = 16;
     public static int SCALE = 3;
 

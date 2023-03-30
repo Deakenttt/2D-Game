@@ -8,7 +8,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import static utility.SizeNumber.*;
+import static utility.Size.*;
 import java.io.File;
 
 public class ImageLoader {

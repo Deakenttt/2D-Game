@@ -41,7 +41,6 @@ public class Enemy extends Entity {
         name = "cat";
         solidArea.x = solidAreaDefaultX;
         solidArea.y = solidAreaDefaultY;
-
     }
     
     /**
@@ -54,7 +53,7 @@ public class Enemy extends Entity {
         int startRow = (solidArea.y) / gp.tileSize;
         String[] pathOrderedList = new String[4];
 
-        gp.findPath.setNode(startCol, startRow, goalCol, goalRow, this);
+        gp.findPath.setNode(startCol, startRow, goalCol, goalRow);
         collisionOn = false;
         searchPath(goalCol, goalRow, pathOrderedList);
 
@@ -94,7 +93,7 @@ public class Enemy extends Entity {
             int nextX = gp.findPath.pathList.get(0).col * gp.tileSize ;
             int nextY = gp.findPath.pathList.get(0).row * gp.tileSize ;
 
-            Boolean takeNextX= Math.abs(nextX - solidArea.x) > Math.abs(nextY - solidArea.y);
+            boolean takeNextX= Math.abs(nextX - solidArea.x) > Math.abs(nextY - solidArea.y);
             if (takeNextX) {
               pathOrderedList[0] = (nextX < solidArea.x) ? "left" : "right";
               pathOrderedList[3] = (nextX < solidArea.x) ? "right" : "left";

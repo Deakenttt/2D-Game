@@ -3,7 +3,7 @@ import java.awt.Graphics2D;
 
 import main.GamePanel;
 
-public class InstructionUI extends GameTitleUI {
+public class InstructionUI extends TitleUI {
 public InstructionUI(GamePanel gp) {
         super(gp);
         titleText = "Instructions";
