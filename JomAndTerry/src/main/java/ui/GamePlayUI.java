@@ -71,7 +71,7 @@ public class GamePlayUI extends GameUI {
      *
      * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
      */
-    private void drawMessage(Graphics2D g2) {
+    protected void drawMessage(Graphics2D g2) {
         x = 0;
         y = gp.tileSize;
         drawMsgWindow(msgWindow, g2);

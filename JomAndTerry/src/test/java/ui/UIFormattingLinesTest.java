@@ -21,6 +21,7 @@ public class UIFormattingLinesTest {
     Font font;
     @Mock
     Graphics2D g2;   
+    FontMetrics metrics;
 
     @Before
     public void setup(){
@@ -38,7 +39,17 @@ public class UIFormattingLinesTest {
         String[] actualLines = ui.getLines(text, metrics, maxWidth);
         assertArrayEquals(expectedLines, actualLines);
     }
-    
+
+    @Test
+    public void testGetLinesWithNullMetrics() {
+        int maxWidth = 100;
+        String text = "This is a long text string that should be split into multiple lines when it exceeds the maximum width.";
+        String[] expectedLines = {"This is a long text string that should", "be split into multiple lines when it exceeds",  "the maximum width."};
+        String[] actualLines = ui.getLines(text, metrics, maxWidth);
+        
+        assertArrayEquals(expectedLines, actualLines);
+    }
+
     //The starting point should be half of the screen width minus half of the length of the text, which is (920-1/2) - (96/2) = 912.
     @Test
     public void testGetXforCenteredText() {
