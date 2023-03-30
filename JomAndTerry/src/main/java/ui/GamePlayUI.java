@@ -5,15 +5,39 @@ import main.GamePanel;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GamePlayUI extends GameUI {
     private long currentTime;
-    private int height = gp.tileSize * 2;
-    protected int msgLength;
-    protected int msgWindowLength;
+    private int height;
+    private int msgLength;
+    private int msgX;
+    private int msgY;
+    private Map<String, Integer> msgWindow = new HashMap<String, Integer>();
+    private Map<String, Integer> imgSettings = new HashMap<String, Integer>(); // x, y, length, height
+
     protected boolean msgOn = false;
     public GamePlayUI(GamePanel gp) {
         super(gp);
+        x = 0;
+        y = gp.tileSize;
+        height = gp.tileSize * 2;
+        msgX = y/2;
+        msgY = height+5;
+
+        imgSettings.put("length", gp.tileSize);
+        imgSettings.put("width", gp.tileSize);
+        imgSettings.put("x", 0);
+        imgSettings.put("y", 0);
+
+        msgWindow.put("outerWidth", 0);
+        msgWindow.put("outerLength", height);
+        msgWindow.put("innerWidth", 0);
+        msgWindow.put("innerLength", height-10);
+        msgWindow.put("innerX", x+5);
+        msgWindow.put("innerY", y+5);
+
     }
 
     /**
@@ -28,12 +52,17 @@ public class GamePlayUI extends GameUI {
         }
     }
 
-    public void showMessage(String text, int objectType) {
+    public void setMessage(String text, int objectType) {
         message = text;
         msgCounter = 0;
         currentImage = images[objectType];
-        msgLength = message.length()*10;
-        msgWindowLength = msgLength + gp.tileSize*2;
+        msgLength = message.length()*12;
+        msgWindow.replace("outerWidth", msgLength + gp.tileSize*2);
+        msgWindow.replace("innerWidth", msgWindow.get("outerWidth")-10);
+
+        imgSettings.replace("x", msgLength+gp.tileSize/2);
+        imgSettings.replace("y", height-20); 
+        
         msgOn = true;
     }
 
@@ -42,21 +71,20 @@ public class GamePlayUI extends GameUI {
      *
      * @param g2 Graphics2D class extends the Graphics class to provide more sophisticated control over geometry, coordinate transformations, color management, and text layout.
      */
-    public void drawMessage(Graphics2D g2) {
+    private void drawMessage(Graphics2D g2) {
         x = 0;
         y = gp.tileSize;
-        drawMsgWindow(x, y, msgWindowLength, height, g2);
+        drawMsgWindow(msgWindow, g2);
         g2.setFont(textFont);
         g2.setColor(Color.WHITE);
-        g2.drawString(message, gp.tileSize / 2, height + 5);
-        g2.drawImage(currentImage, msgLength+gp.tileSize, height-20 , gp.tileSize, gp.tileSize, null);
+        g2.drawString(message, msgX, msgY);
+        g2.drawImage(currentImage, imgSettings.get("x"), imgSettings.get("y"), imgSettings.get("length"), imgSettings.get("width"), null);
 
         // Only show the message in a short period of the time.
         msgCounter++;
         if (msgCounter > 120) {
             resetMsg();
         }
-        // }
     }
 
         /**
@@ -67,12 +95,12 @@ public class GamePlayUI extends GameUI {
      * @param width  window's width value.
      * @param height window's height value.
      */
-    public void drawMsgWindow(int x, int y, double width, int height, Graphics2D g2) {
+    private void drawMsgWindow(Map<String, Integer> msgWindow, Graphics2D g2) {
         g2.setColor(dBrown);
-        g2.fillRoundRect(x, y, (int) width, height, 5, 5);
+        g2.fillRoundRect(x, y, msgWindow.get("outerWidth"), msgWindow.get("outerLength"), 5, 5);
         g2.setColor(lBrown);
         g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x + 5, y + 5, (int) width - 10, height - 10, 5, 5);
+        g2.drawRoundRect(msgWindow.get("innerX"), msgWindow.get("innerY"), msgWindow.get("innerWidth"), msgWindow.get("innerLength"), 5, 5);
     }
 
     public void drawScoreAndTimer(Graphics2D g2) {

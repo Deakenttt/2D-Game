@@ -101,7 +101,7 @@ public class UI {
      * @param text       String type context to be process.
      * @param objectType Determine which object icon should be displayed.
      */
-    public void showMessage(String text, int objectType) {
+    public void setMessage(String text, int objectType) {
     }
 
     /**
