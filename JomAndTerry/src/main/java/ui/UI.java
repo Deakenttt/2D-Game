@@ -21,7 +21,6 @@ public class UI {
     public int commandNum = 0;
 
     // For showing messages
-    public String text;
     protected String titleText;
     protected String subText;
 
@@ -49,13 +48,17 @@ public class UI {
         images[3] = gp.imageLoader.getImage("hole");
     }
 
+    public void setTitleText(String text){
+        titleText = text;
+    }
+
 
     public void resetUI(){}
 
     /**
      * This is a method for triggering the text should be show on or not.
      *
-     * @param text       String type context to be process.
+     * @param titleText       String type context to be process.
      * @param objectType Determine which object icon should be displayed.
      */
     public void setMessage(String text, int objectType) {}
@@ -69,7 +72,7 @@ public class UI {
     /**
      * This is a method for getting a center x position of the text.
      *
-     * @param text String type context to be process.
+     * @param titleText String type context to be process.
      * @return The x position of the text that start from the middle.
      */
     protected int getXforCenteredText(String text, Graphics2D g2) {
@@ -82,7 +85,7 @@ public class UI {
      * so that when display these string could use these lines to set the different line when displaying
      * a paragraph nicely.
      *
-     * @param text        String type context to be process.
+     * @param titleText        String type context to be process.
      * @param fontMetrics The standard height of a line of text in this font.
      * @param maxWidth    The value for setting one block of text's maximum width.
      * @return String type arraylist that stores all the lines.

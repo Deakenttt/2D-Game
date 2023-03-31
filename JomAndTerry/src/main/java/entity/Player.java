@@ -141,7 +141,7 @@ public class Player extends Entity {
         handleScore(pickupObjectName);                               // Update the score.
         gp.playSE(pickupObjectSound);                                // Play the sounds effect.
         gp.obj[pickupObjectIndex] = null;                            // Remove that object.
-        gp.currentUI.setMessage(pickUpObjectMsg, pickupObjectType); // Show the msg when touch object.
+        gp.ui.setMessage(pickUpObjectMsg, pickupObjectType); // Show the msg when touch object.
         System.out.println("score: " + scoreCount);
     }
 
@@ -167,7 +167,7 @@ public class Player extends Entity {
      */
     public void handleGameState() {
         if (cheeseCount >= 6) {
-            gp.currentUI.setMessage("Door is open!", 3);
+            gp.ui.setMessage("Door is open!", 3);
         }
         if (cheeseCount == 6 && gp.exitcondition) {
             gp.playSE(1);
@@ -183,8 +183,8 @@ public class Player extends Entity {
     public void handleExit() {
         if (cheeseCount >= 6) {
             gp.gameWin();
-            gp.currentUI.setMessage("You escaped successfully!", 3); // Show the msg when get the cheese.
+            gp.ui.setMessage("You escaped successfully!", 3); // Show the msg when get the cheese.
         } else
-            gp.currentUI.setMessage("You need to collect all of the cheese!", 0); // Show the msg when get the cheese.
+            gp.ui.setMessage("You need to collect all of the cheese!", 0); // Show the msg when get the cheese.
     }
 }

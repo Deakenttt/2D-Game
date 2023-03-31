@@ -43,11 +43,11 @@ public class GamePanel extends JPanel implements Runnable {
     public int levelState = 1;
     public SuperObject[][] objectsMap;
 
-    // UI and sound
-    public UI currentUI;
     // public UI playUI;
+    public UI ui;
     public UI[] gameUI = new UI[5];
-    public GameOverUI overUI;
+    
+    // UI and sound
     Sound sound = new Sound();
 
     // Fps
@@ -93,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable {
      */
     public void setUpGame() {
         gameState = TITLE_STATE;
-        currentUI = gameUI[0];
+        ui = gameUI[0];
         playMusic(0);
         player = new Player(this, keyHandler); // Initiate a Player object.
     }
@@ -195,7 +195,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
-        currentUI.draw(g2);
+        ui.draw(g2);
         g2.dispose(); // Dispose of this graphics context and release any system resources that it is using.
     }
 
@@ -236,8 +236,8 @@ public class GamePanel extends JPanel implements Runnable {
         levelState = level;
         tileManager.setUpMap();
         player.setDefaultValues();
-        currentUI = gameUI[3];
-        currentUI.resetUI();
+        ui = gameUI[3];
+        ui.resetUI();
 
         if (levelState == 1){
             enemy = new Enemy[2];
@@ -253,31 +253,31 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void gameOver(){
         gameState = LOSE_STATE;
-        currentUI = gameUI[4];
-        currentUI.text = "You Lose!";
+        ui = gameUI[4];
+        ui.setTitleText("You Lose!");
         playSE(2);
     }
 
     public void gameWin(){
         gameState = WIN_STATE;
-        currentUI = gameUI[4];
-        currentUI.text = "You Win!";
+        ui = gameUI[4];
+        ui.setTitleText("You Win!");
         playSE(3);
     }
 
     public void titleMain(){
         gameState = TITLE_STATE;
-        currentUI = gameUI[0];
+        ui = gameUI[0];
     }
 
     public void titleInstruction(){
         gameState = TITLE_STATE;
-        currentUI = gameUI[1];
+        ui = gameUI[1];
     }
 
     public void titleLevel(){
         gameState = TITLE_STATE;
-        currentUI = gameUI[2];
+        ui = gameUI[2];
     }
 
     public void loadAllImages(){
