@@ -18,7 +18,7 @@ public class MainTitleUI extends TitleUI{
         super.draw(g2);
         x = gp.screenWidth / 2 - (gp.tileSize * 2) / 2;
         y = gp.tileSize * 6 ;
-        g2.drawImage(gp.player.left1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
+        g2.drawImage(images[4], x, y, gp.tileSize * 2, gp.tileSize * 2, null);
         y += gp.tileSize*2;
         titleButtons("Start", 0, g2);
         titleButtons("Instructions", 1, g2);

@@ -14,7 +14,7 @@ import main.GamePanel;
 public class UI {
     public GamePanel gp;
 
-    protected BufferedImage[] images = new BufferedImage[4];
+    protected BufferedImage[] images = new BufferedImage[5];
     protected BufferedImage currentImage;
 
     // For the command cursor.
@@ -46,6 +46,7 @@ public class UI {
         images[1] = gp.imageLoader.getImage("steak");
         images[2] = gp.imageLoader.getImage("trap");
         images[3] = gp.imageLoader.getImage("hole");
+        images[4] = gp.imageLoader.getImage("mouse_left_1");
     }
 
     public void setTitleText(String text){
