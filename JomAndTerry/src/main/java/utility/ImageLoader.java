@@ -1,5 +1,6 @@
 package utility;
 
+import java.awt.Graphics2D;
 import java.awt.MediaTracker;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class ImageLoader {
         BufferedImage image = null;
         try {
             image = ImageIO.read(imageName);
-            image = utilityTool.scaleImage(image, tileSize, tileSize);
+            image = scaleImage(image, tileSize, tileSize);
             MediaTracker mediaTracker = new MediaTracker(new JPanel());
             mediaTracker.addImage(image, 0);
             mediaTracker.waitForID(0);
@@ -44,4 +45,23 @@ public class ImageLoader {
         }
         return image;
     }
+
+    /**
+     * Scales an image to the specified dimensions.
+     *
+     * @param original the original image to be scaled.
+     * @param width the desired width of the scaled image.
+     * @param height the desired height of the scaled image.
+     * @return the scaled image.
+     */
+    public BufferedImage scaleImage(BufferedImage original, int width, int height) {
+
+        BufferedImage scaledImage = new BufferedImage(width, height, original.getType());
+        Graphics2D g2 = scaledImage.createGraphics();
+        g2.drawImage(original, 0, 0, width, height, null);
+        g2.dispose();
+
+        return scaledImage;
+    }
+
 }
