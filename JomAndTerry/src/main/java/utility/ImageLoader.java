@@ -14,7 +14,6 @@ import java.io.File;
 
 public class ImageLoader {
     private static Map<String, BufferedImage> imageCache = new HashMap<String, BufferedImage>();
-    UtilityTool utilityTool = new UtilityTool();
     final int scale = SCALE;
 
     public final int tileSize = ORIGINAL_TILE_SIZE * scale; // 48x48 tile
