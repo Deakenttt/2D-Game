@@ -19,7 +19,16 @@ public class ImageLoader {
     public final int tileSize = ORIGINAL_TILE_SIZE * scale; // 48x48 tile
     
     public BufferedImage getImage(String imageName){
-        BufferedImage image = imageCache.get(imageName);
+        BufferedImage image;
+        try{
+             image = imageCache.get(imageName);
+            assert image != null : "Error: Images were not found "+ image.getPropertyNames();   
+        } catch(Exception e) {
+            System.err.println("Error: could not load images properly, image may not exist\n" + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+
         return image;
     }
 
@@ -38,6 +47,7 @@ public class ImageLoader {
             mediaTracker.addImage(image, 0);
             mediaTracker.waitForID(0);
         } catch (IOException e) {
+            System.err.println("Error: could not load images properly\n" + e.getMessage());
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
