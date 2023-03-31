@@ -16,10 +16,13 @@ public class GamePlayUI extends GameUI {
     private int msgY;
     private Map<String, Integer> msgWindow = new HashMap<String, Integer>();
     private Map<String, Integer> imgSettings = new HashMap<String, Integer>(); // x, y, length, height
-
     protected boolean msgOn = false;
+    
     public GamePlayUI(GamePanel gp) {
         super(gp);
+        images[2] = gp.imageLoader.getImage("trap");
+        images[3] = gp.imageLoader.getImage("hole");
+
         x = 0;
         y = gp.tileSize;
         height = gp.tileSize * 2;

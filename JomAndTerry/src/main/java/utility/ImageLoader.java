@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import static utility.Size.*;
 import java.io.File;
 
+
 public class ImageLoader {
     private static Map<String, BufferedImage> imageCache = new HashMap<String, BufferedImage>();
     final int scale = SCALE;
@@ -22,9 +23,11 @@ public class ImageLoader {
         BufferedImage image;
         try{
              image = imageCache.get(imageName);
-            assert image != null : "Error: Images were not found "+ image.getPropertyNames();   
-        } catch(Exception e) {
-            System.err.println("Error: could not load images properly, image may not exist\n" + e.getMessage());
+            if (image == null){
+                throw new NullPointerException("Error: Image for %s not found ".formatted(imageName));
+            }
+            } catch(Exception e) {
+            System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
         }

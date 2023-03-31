@@ -2,7 +2,6 @@ package ui;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import main.GamePanel;
@@ -14,8 +13,6 @@ import main.GamePanel;
  */
 public class UI {
     public GamePanel gp;
-
-    protected BufferedImage[] images = new BufferedImage[5];
     protected BufferedImage currentImage;
 
     // For the command cursor.
@@ -43,12 +40,6 @@ public class UI {
 
     public UI(GamePanel gp) {
         this.gp = gp;
-
-            images[0] = gp.imageLoader.getImage("beef");
-            images[1] = gp.imageLoader.getImage("steak");
-            images[2] = gp.imageLoader.getImage("trap");
-            images[3] = gp.imageLoader.getImage("hole");
-        images[4] = gp.imageLoader.getImage("mouse_left_1");
     }
 
     public void setTitleText(String text){

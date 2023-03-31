@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
 import main.GamePanel;
@@ -15,10 +16,13 @@ public class GameUI extends UI{
     protected long lastTime = System.currentTimeMillis(); // initialize lastTime to current time
     protected boolean paused = false; // initialize paused to false
     private DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+    protected BufferedImage[] images = new BufferedImage[4];
 
 
     public GameUI(GamePanel gp) {
         super(gp);
+        images[0] = gp.imageLoader.getImage("beef");
+        images[1] = gp.imageLoader.getImage("steak");
     }
 
     public void draw(Graphics2D g2) {

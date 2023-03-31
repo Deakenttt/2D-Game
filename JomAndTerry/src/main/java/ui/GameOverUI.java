@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import main.GamePanel;
 
 public class GameOverUI extends GameUI{
+
     public GameOverUI(GamePanel gp) {
         super(gp);
     }
