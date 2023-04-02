@@ -71,8 +71,8 @@ public class Player extends Entity {
      * Updates the player's position and checks for object interactions.
      */
     public void update() {
-        handleGameState();
         setAction();
+        handleGameState();
         if (doMove) {
             collisionOn = false;
             collisionOn = gp.collisionChecker.checkTile(this); // Calls CollisionChecker object's checkTile method
@@ -98,6 +98,7 @@ public class Player extends Entity {
                     break;
 
                 case "steak":
+                    System.out.println("picked up a steak");
                     pickupObjectEffect(objectName, "You got a steak!", object, 1, 5);
                     break;
 
@@ -140,7 +141,7 @@ public class Player extends Entity {
         handleScore(pickupObjectName);                               // Update the score.
         gp.playSE(pickupObjectSound);                                // Play the sounds effect.
         gp.obj[pickupObjectIndex] = null;                            // Remove that object.
-        gp.currentUI.showMessage(pickUpObjectMsg, pickupObjectType); // Show the msg when touch object.
+        gp.ui.setMessage(pickUpObjectMsg, pickupObjectType); // Show the msg when touch object.
         System.out.println("score: " + scoreCount);
     }
 
@@ -166,7 +167,7 @@ public class Player extends Entity {
      */
     public void handleGameState() {
         if (cheeseCount >= 6) {
-            gp.currentUI.showMessage("Door is open!", 3);
+            gp.ui.setMessage("Door is open!", 3);
         }
         if (cheeseCount == 6 && gp.exitcondition) {
             gp.playSE(1);
@@ -182,8 +183,8 @@ public class Player extends Entity {
     public void handleExit() {
         if (cheeseCount >= 6) {
             gp.gameWin();
-            gp.currentUI.showMessage("You escaped successfully!", 3); // Show the msg when get the cheese.
+            gp.ui.setMessage("You escaped successfully!", 3); // Show the msg when get the cheese.
         } else
-            gp.currentUI.showMessage("You need to collect all of the cheese!", 0); // Show the msg when get the cheese.
+            gp.ui.setMessage("You need to collect all of the cheese!", 0); // Show the msg when get the cheese.
     }
 }

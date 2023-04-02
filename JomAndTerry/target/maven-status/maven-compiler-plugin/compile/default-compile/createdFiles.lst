@@ -9,12 +9,12 @@ ui/MainTitleUI.class
 tile/TileManager.class
 tile/Tile.class
 object/OBJ_Steak.class
-ui/GameTitleUI.class
 object/AssetSetter.class
+ui/GameUI.class
 entity/Player.class
+ui/GamePlayUI.class
 main/Main.class
 utility/ImageLoader.class
-utility/UtilityTool.class
 main/Sound.class
 main/GamePanel.class
 ui/GameOverUI.class
@@ -25,4 +25,5 @@ entity/Enemy.class
 utility/KeyHandler.class
 ai/FindPath.class
 entity/Entity.class
+ui/TitleUI.class
 ui/UI.class
