@@ -200,91 +200,69 @@ public class KeyHandler implements KeyListener {
 
     }
 
-    /**
-    * Handles input for the win screen.
-    * Changes the gameState depending on the user's input.
-    *
-    * @param keyCode
-    */
-    private void handleWinStateInput(int keyCode) {
-        switch(keyCode){
-            case KeyEvent.VK_W:
-                gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) 
-                    gp.ui.commandNum = 3;
-                break;
-        
-            case KeyEvent.VK_S:
-                gp.ui.commandNum++;
-                if (gp.ui.commandNum > 3)
-                    gp.ui.commandNum = 0;
-                break;
-            case KeyEvent.VK_ENTER:
-                switch(gp.ui.commandNum){
-                    case RETRY_BUTTON: // retry
-                        gp.retry(gp.levelState);
-                        break;
-                    case 1: //quit
-                        System.exit(0);
-                        break;
-                    case 2: // back
-                        gp.titleMain();
-                        gp.ui.titleScreenState = 0;
+/**
+ * Handles input for the win and game over screens.
+ * Changes the gameState depending on the user's input.
+ *
+ * @param keyCode
+ * @param retryAction the action to perform when the user selects "retry"
+ */
+private void handleEndStateInput(int keyCode, Runnable retryAction) {
+    switch(keyCode) {
+        case KeyEvent.VK_W:
+            gp.ui.commandNum--;
+            if (gp.ui.commandNum < 0) 
+                gp.ui.commandNum = 3;
+            break;
 
-                        break;
-                    case 3: // choose level
-                        gp.titleLevel();
-                        gp.ui.titleScreenState = LEVEL_TITLE;
+        case KeyEvent.VK_S:
+            gp.ui.commandNum++;
+            if (gp.ui.commandNum > 3) 
+                gp.ui.commandNum = 0;
+            break;
 
-                        break;
-                    default: break;
-                }
-            default: break;
-        }
-    }  
-
-    /**
-    * Handles input for the game over screen.
-    * Changes the gameState depending on the user's input.
-    *
-    * @param keyCode
-    */
-    private void handleOverStateInput(int keyCode) {
-        switch(keyCode) {
-            case KeyEvent.VK_W:
-                gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) 
-                    gp.ui.commandNum = 3;
-                break;
-
-            case KeyEvent.VK_S:
-                gp.ui.commandNum++;
-                if (gp.ui.commandNum > 3) 
-                    gp.ui.commandNum = 0;
-                break;
-
-            case KeyEvent.VK_ENTER:
-                switch(gp.ui.commandNum){
-                    case 0: // retry
-                        gp.retry(gp.levelState);
-                        break;
-                    case 1: //quit
-                        System.exit(0);
-                        break;         
-                    case 2: // back
-                        gp.titleMain();
-                        gp.ui.titleScreenState = 0;
-                        break;
-                    case 3: // choose level
+        case KeyEvent.VK_ENTER:
+            switch(gp.ui.commandNum){
+                case 0: // retry
+                    retryAction.run();
+                    break;
+                case 1: //quit
+                    System.exit(0);
+                    break;         
+                case 2: // back
+                    gp.titleMain();
+                    gp.ui.titleScreenState = 0;
+                    break;
+                case 3: // choose level
                     gp.titleLevel();
                     gp.ui.titleScreenState = LEVEL_TITLE;
-
                     break;
-                }
-                break;
-            default: break;
-        }
+            }
+            break;
+        default: break;
     }
+}
+
+/**
+ * Handles input for the win screen.
+ * Changes the gameState depending on the user's input.
+ *
+ * @param keyCode
+ */
+private void handleWinStateInput(int keyCode) {
+    handleEndStateInput(keyCode, () -> gp.retry(gp.levelState));
+}
+
+/**
+ * Handles input for the game over screen.
+ * Changes the gameState depending on the user's input.
+ *
+ * @param keyCode
+ */
+private void handleOverStateInput(int keyCode) {
+    handleEndStateInput(keyCode, () -> gp.retry(gp.levelState));
+}
+
     /**
     * Handles input for the play screen.
     * provides the input for gameplay based on the user's input.
