@@ -1,42 +1,37 @@
 package main;
 
-import java.net.URL;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import javax.sound.sampled.*;
 
 /**
  * This is a Sound class for dealing with all the sound files and attributes.
  */
 public class Sound {
 
-    Clip clip;
-    URL soundURL[] = new URL[30];
-
-    public Sound() {
-        soundURL[0] = getClass().getResource("/assets/Sound/themesong.wav");
-        soundURL[1] = getClass().getResource("/assets/Sound/doorunlock.wav");
-        soundURL[2] = getClass().getResource("/assets/Sound/gamelost.wav");
-        soundURL[3] = getClass().getResource("/assets/Sound/gamewon.wav");
-        soundURL[4] = getClass().getResource("/assets/Sound/gotcheese.wav");
-        soundURL[5] = getClass().getResource("/assets/Sound/gotsteak.wav");
-        soundURL[6] = getClass().getResource("/assets/Sound/mousecaught.wav");
-        soundURL[7] = getClass().getResource("/assets/Sound/mousetrap.wav");
-    }
+    private Clip clip;
+    private final String[] soundFiles = {
+            "/assets/Sound/themesong.wav",
+            "/assets/Sound/doorunlock.wav",
+            "/assets/Sound/gamelost.wav",
+            "/assets/Sound/gamewon.wav",
+            "/assets/Sound/gotcheese.wav",
+            "/assets/Sound/gotsteak.wav",
+            "/assets/Sound/mousecaught.wav",
+            "/assets/Sound/mousetrap.wav"
+    };
 
     /**
      * This is a method for setting up the sound files to the Clip objects.
      *
-     * @param i index for accessing the URL soundURL array.
+     * @param i index for accessing the soundFiles array.
      */
     public void setFile(int i) {
         try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(getClass().getResource(soundFiles[i]));
             clip = AudioSystem.getClip();
             clip.open(ais);
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -60,5 +55,4 @@ public class Sound {
     public void stop() {
         clip.stop();
     }
-
 }
