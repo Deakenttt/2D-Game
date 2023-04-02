@@ -21,7 +21,7 @@ public class GameUI extends UI{
 
     public GameUI(GamePanel gp) {
         super(gp);
-        images[0] = gp.imageLoader.getImage("beef");
+        images[0] = gp.imageLoader.getImage("cheese");
         images[1] = gp.imageLoader.getImage("steak");
     }
 

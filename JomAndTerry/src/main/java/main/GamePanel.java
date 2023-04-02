@@ -281,8 +281,10 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void loadAllImages(){
-        File folder;
-        folder = new File("src/main/resources/assets");
+        File folder = new File("src/main/resources/assets");
+        if (!folder.exists()){
+            folder = new File("JomAndTerry/src/main/resources/assets");
+        }
         getImageFromFolder(folder);
     }
 
