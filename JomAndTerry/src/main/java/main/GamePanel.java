@@ -14,6 +14,8 @@ import utility.KeyHandler;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static utility.Size.*;
 import static utility.Size.MAX_SCREEN_ROW;
@@ -281,10 +283,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void loadAllImages(){
+        // Path assetsPath = Paths.get("JomAndTerry","src", "main", "resources", "assets");
         File folder = new File("src/main/resources/assets");
-        if (!folder.exists()){
-            folder = new File("JomAndTerry/src/main/resources/assets");
-        }
+        folder = folder.exists() ? folder : new File("JomAndTerry/src/main/resources/assets");
+        // if (!folder.exists()){
+            // folder = new File("JomAndTerry/src/main/resources/assets");
+        // }
+        // File folder  = assetsPath.toFile();
         getImageFromFolder(folder);
     }
 
