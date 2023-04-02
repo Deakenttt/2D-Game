@@ -14,8 +14,6 @@ import utility.KeyHandler;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import static utility.Size.*;
 import static utility.Size.MAX_SCREEN_ROW;
