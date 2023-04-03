@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuite tests="4" failures="0" name="ui.UIFormattingLinesTest" time="0.895" errors="0" skipped="0">
   <properties>
@@ -63,4 +64,73 @@
   <testcase classname="ui.UIFormattingLinesTest" name="testGetLinesWithNullMetrics" time="0.011"/>
   <testcase classname="ui.UIFormattingLinesTest" name="testGetXforCenteredTextWithEmptyText" time="0.01"/>
   <testcase classname="ui.UIFormattingLinesTest" name="testGetXforCenteredText" time="0.008"/>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ui.UIFormattingLinesTest" time="1.216" tests="4" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="19"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/deepbhimani/276 Projects/276project/JomAndTerry/target/test-classes:/Users/deepbhimani/276 Projects/276project/JomAndTerry/target/classes:/Users/deepbhimani/.m2/repository/org/apache/lucene/lucene-core/8.2.0/lucene-core-8.2.0.jar:/Users/deepbhimani/.m2/repository/org/mockito/mockito-core/3.12.4/mockito-core-3.12.4.jar:/Users/deepbhimani/.m2/repository/net/bytebuddy/byte-buddy/1.11.13/byte-buddy-1.11.13.jar:/Users/deepbhimani/.m2/repository/net/bytebuddy/byte-buddy-agent/1.11.13/byte-buddy-agent-1.11.13.jar:/Users/deepbhimani/.m2/repository/org/objenesis/objenesis/3.2/objenesis-3.2.jar:/Users/deepbhimani/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/deepbhimani/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="19"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="CA"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-19.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/deepbhimani/276 Projects/276project/JomAndTerry/target/surefire/surefirebooter-20230401221537391_3.jar /Users/deepbhimani/276 Projects/276project/JomAndTerry/target/surefire 2023-04-01T22-15-37_296-jvmRun1 surefire-20230401221537391_1tmp surefire_0-20230401221537391_2tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/deepbhimani/276 Projects/276project/JomAndTerry/target/test-classes:/Users/deepbhimani/276 Projects/276project/JomAndTerry/target/classes:/Users/deepbhimani/.m2/repository/org/apache/lucene/lucene-core/8.2.0/lucene-core-8.2.0.jar:/Users/deepbhimani/.m2/repository/org/mockito/mockito-core/3.12.4/mockito-core-3.12.4.jar:/Users/deepbhimani/.m2/repository/net/bytebuddy/byte-buddy/1.11.13/byte-buddy-1.11.13.jar:/Users/deepbhimani/.m2/repository/net/bytebuddy/byte-buddy-agent/1.11.13/byte-buddy-agent-1.11.13.jar:/Users/deepbhimani/.m2/repository/org/objenesis/objenesis/3.2/objenesis-3.2.jar:/Users/deepbhimani/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/deepbhimani/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/deepbhimani"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2023-01-17"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-19.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/deepbhimani/276 Projects/276project/JomAndTerry"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="apple.awt.application.name" value="ForkedBooter"/>
+    <property name="surefire.real.class.path" value="/Users/deepbhimani/276 Projects/276project/JomAndTerry/target/surefire/surefirebooter-20230401221537391_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="19.0.2+7-44"/>
+    <property name="user.name" value="deepbhimani"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="13.0.1"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="/Users/deepbhimani/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/var/folders/mj/d586gltx7sl6tnrns06l047m0000gn/T/"/>
+    <property name="java.version" value="19.0.2"/>
+    <property name="user.dir" value="/Users/deepbhimani/276 Projects/276project/JomAndTerry"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/deepbhimani/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="19.0.2+7-44"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="63.0"/>
+  </properties>
+  <testcase name="testGetLines" classname="ui.UIFormattingLinesTest" time="1.162"/>
+  <testcase name="testGetLinesWithNullMetrics" classname="ui.UIFormattingLinesTest" time="0.011">
+    <system-out><![CDATA[Error: getLines method in UI recieved a null pointer from FontMetrics metrics, manually print 8 words per line
+java.lang.NullPointerException: Cannot invoke "java.awt.FontMetrics.stringWidth(String)" because "metrics" is null
+]]></system-out>
+  </testcase>
+  <testcase name="testGetXforCenteredTextWithEmptyText" classname="ui.UIFormattingLinesTest" time="0.009"/>
+  <testcase name="testGetXforCenteredText" classname="ui.UIFormattingLinesTest" time="0.008"/>
+>>>>>>> 47eefe9ff58df522680ec6a4e866e772f30e812b
 </testsuite>

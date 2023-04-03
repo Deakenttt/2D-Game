@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: ui.resetMessageTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 sec
+=======
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 s - in ui.resetMessageTest
+>>>>>>> 47eefe9ff58df522680ec6a4e866e772f30e812b
