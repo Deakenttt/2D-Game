@@ -255,6 +255,8 @@ public class GamePanel extends JPanel implements Runnable {
         gameState = LOSE_STATE;
         ui = gameUI[4];
         ui.setTitleText("You Lose!");
+        ui.setTimer(gameUI[3].getTimer());
+        
         playSE(2);
     }
 
@@ -262,6 +264,8 @@ public class GamePanel extends JPanel implements Runnable {
         gameState = WIN_STATE;
         ui = gameUI[4];
         ui.setTitleText("You Win!");
+        ui.setTimer(gameUI[3].getTimer());
+
         playSE(3);
     }
 
@@ -281,8 +285,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void loadAllImages(){
-        File folder;
-        folder = new File("src/main/resources/assets");
+        File folder = new File("src/main/resources/assets");
+        folder = folder.exists() ? folder : new File("JomAndTerry/src/main/resources/assets");
         getImageFromFolder(folder);
     }
 

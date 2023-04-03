@@ -145,4 +145,9 @@ public class UI {
         g2.drawString(text, x , y);
     }
 
+    public void setTimer(double time){}
+    public double getTimer(){
+        return 0.0;
+    }
+
 }

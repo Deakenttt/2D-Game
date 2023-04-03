@@ -9,7 +9,9 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
 import static utility.Size.*;
+
 import java.io.File;
 
 
@@ -18,15 +20,15 @@ public class ImageLoader {
     final int scale = SCALE;
 
     public final int tileSize = ORIGINAL_TILE_SIZE * scale; // 48x48 tile
-    
-    public BufferedImage getImage(String imageName){
+
+    public BufferedImage getImage(String imageName) {
         BufferedImage image;
-        try{
-             image = imageCache.get(imageName);
-            if (image == null){
+        try {
+            image = imageCache.get(imageName);
+            if (image == null) {
                 throw new NullPointerException("Error: Image for %s not found ".formatted(imageName));
             }
-            } catch(Exception e) {
+        } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
             return null;
@@ -62,8 +64,8 @@ public class ImageLoader {
      * Scales an image to the specified dimensions.
      *
      * @param original the original image to be scaled.
-     * @param width the desired width of the scaled image.
-     * @param height the desired height of the scaled image.
+     * @param width    the desired width of the scaled image.
+     * @param height   the desired height of the scaled image.
      * @return the scaled image.
      */
     public BufferedImage scaleImage(BufferedImage original, int width, int height) {

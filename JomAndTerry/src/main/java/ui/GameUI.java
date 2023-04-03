@@ -21,7 +21,7 @@ public class GameUI extends UI{
 
     public GameUI(GamePanel gp) {
         super(gp);
-        images[0] = gp.imageLoader.getImage("beef");
+        images[0] = gp.imageLoader.getImage("cheese");
         images[1] = gp.imageLoader.getImage("steak");
     }
 
@@ -42,5 +42,13 @@ public class GameUI extends UI{
         g2.drawImage(images[1], gp.tileSize / 2 + 170, 20, gp.tileSize / 2, gp.tileSize / 2, null);
         g2.drawString(" X " + gp.player.steakCount / 5, 220, 40);
         g2.drawString("Time:  " + decimalFormat.format(playTime), 800, 40);
+    }
+
+    public void setTimer(double time){
+        playTime = time;
+    }
+
+    public double getTimer(){
+        return (double) playTime;
     }
 }
