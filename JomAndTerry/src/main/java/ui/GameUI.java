@@ -43,4 +43,12 @@ public class GameUI extends UI{
         g2.drawString(" X " + gp.player.steakCount / 5, 220, 40);
         g2.drawString("Time:  " + decimalFormat.format(playTime), 800, 40);
     }
+
+    public void setTimer(double time){
+        playTime = time;
+    }
+
+    public double getTimer(){
+        return (double) playTime;
+    }
 }
