@@ -62,7 +62,7 @@ public class AssetSetter {
         do {
             row = getRandomNumber(quad[0], quad[1]);
             col = getRandomNumber(quad[2], quad[3]);
-        } while (!isTileAvailable(col, row));  // there isn't anything existing on the object position
+        } while (!this.isTileAvailable(col, row));  // there isn't anything existing on the object position
         gp.obj[i].solidArea.x = (col) * gp.tileSize;//gp.obj[i].x;
         gp.obj[i].solidArea.y = (row) * gp.tileSize;//gp.obj[i].y;
     }
@@ -102,7 +102,7 @@ public class AssetSetter {
         steakCounter--;
     }                                                      
 
-    private boolean isTileAvailable(int col, int row) {
+    public boolean isTileAvailable(int col, int row) {
         int tileNum = gp.tileManager.mapTileNum[col][row];
         Rectangle rect = new Rectangle(col*gp.tileSize, row*gp.tileSize, 48, 48);
         return !gp.tileManager.tile[tileNum].collision && gp.collisionChecker.checkObject(rect) == 999;
