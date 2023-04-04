@@ -5,8 +5,8 @@ import main.GamePanel;
 /**
  * @Des This is a hole class inheritance from SuperObject.
  */
-public class OBJ_Hole extends SuperObject {
-    public OBJ_Hole(GamePanel gp) {
+public class Hole extends SuperObject {
+    public Hole(GamePanel gp) {
         super(gp);
     }
 

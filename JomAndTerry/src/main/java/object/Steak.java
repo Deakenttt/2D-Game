@@ -5,8 +5,8 @@ import main.GamePanel;
 /**
  * @Des This is a steak class inheritance from SuperObject.
  */
-public class OBJ_Steak extends SuperObject {
-    public OBJ_Steak(GamePanel gp) {
+public class Steak extends SuperObject {
+    public Steak(GamePanel gp) {
         super(gp);
     }
 

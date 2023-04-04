@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b84b050-2c49-4765-8618-9bb345bd1d0f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ai/FindPathTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ai/FindPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ai/FindPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utility/ImageLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/ImageLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/OBJ_Cheese.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/Cheese.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/OBJ_Hole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/Hole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/OBJ_Steak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/Steak.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/OBJ_Trap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/Trap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/GamePlayUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/GamePlayUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ui/resetMessageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ui/resetMessageTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,22 +128,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FindPathTest.testInstantiateNode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JomAndTerry" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ai.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ai" />
-      <option name="MAIN_CLASS_NAME" value="ai.FindPathTest" />
-      <option name="METHOD_NAME" value="testInstantiateNode" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FindPathTest.testSetNode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JomAndTerry" />
       <extension name="coverage">
@@ -155,13 +144,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="resetMessageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JomAndTerry" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ui" />
+      <option name="MAIN_CLASS_NAME" value="ui.resetMessageTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.resetMessageTest" />
         <item itemvalue="JUnit.FindPathTest.testAStarSearch" />
         <item itemvalue="JUnit.FindPathTest.testSetNode" />
         <item itemvalue="JUnit.FindPathTest.testGetCost" />
-        <item itemvalue="JUnit.FindPathTest.testInstantiateNode" />
       </list>
     </recent_temporary>
   </component>

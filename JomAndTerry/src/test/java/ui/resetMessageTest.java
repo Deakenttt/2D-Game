@@ -36,7 +36,7 @@ public class resetMessageTest {
         fontMetrics = mock(FontMetrics.class);
         when(g2.getFontMetrics()).thenReturn(fontMetrics);
         when(fontMetrics.getStringBounds(test, g2)).thenReturn(new Rectangle(0, 0, 100, 20));
-        ui.setMessage(test, 0);
+        ui.setMessage(test, "cheese");
     }
 
     @Test

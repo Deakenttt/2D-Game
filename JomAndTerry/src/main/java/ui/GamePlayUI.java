@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class GamePlayUI extends GameUI {
     private long currentTime;
@@ -17,7 +18,7 @@ public class GamePlayUI extends GameUI {
     private Map<String, Integer> msgWindow = new HashMap<String, Integer>();
     private Map<String, Integer> imgSettings = new HashMap<String, Integer>(); // x, y, length, height
     protected boolean msgOn = false;
-    
+
     public GamePlayUI(GamePanel gp) {
         super(gp);
         images[2] = gp.imageLoader.getImage("trap");
@@ -26,8 +27,8 @@ public class GamePlayUI extends GameUI {
         x = 0;
         y = gp.tileSize;
         height = gp.tileSize * 2;
-        msgX = y/2;
-        msgY = height+5;
+        msgX = y / 2;
+        msgY = height + 5;
 
         imgSettings.put("length", gp.tileSize);
         imgSettings.put("width", gp.tileSize);
@@ -37,12 +38,12 @@ public class GamePlayUI extends GameUI {
         msgWindow.put("outerWidth", 0);
         msgWindow.put("outerLength", height);
         msgWindow.put("innerWidth", 0);
-        msgWindow.put("innerLength", height-10);
-        msgWindow.put("innerX", x+5);
-        msgWindow.put("innerY", y+5);
+        msgWindow.put("innerLength", height - 10);
+        msgWindow.put("innerX", x + 5);
+        msgWindow.put("innerY", y + 5);
 
     }
-    
+
     /**
      * This is a method for drawing the UI content when such as message when the game is over or user win the game.
      *
@@ -50,22 +51,32 @@ public class GamePlayUI extends GameUI {
      */
     public void draw(Graphics2D g2) {
         super.draw(g2);
-        if (msgOn){
+        if (msgOn) {
             drawMessage(g2);
         }
     }
 
-    public void setMessage(String text, int objectType) {
+    public void setMessage(String text, String pickupObjectName) {
         message = text;
         msgCounter = 0;
-        currentImage = images[objectType];
-        msgLength = message.length()*12;
-        msgWindow.replace("outerWidth", msgLength + gp.tileSize*2);
-        msgWindow.replace("innerWidth", msgWindow.get("outerWidth")-10);
 
-        imgSettings.replace("x", msgLength+gp.tileSize/2);
-        imgSettings.replace("y", height-20); 
-        
+        if (Objects.equals(pickupObjectName, "cheese")) {
+            currentImage = images[0];
+        } else if (Objects.equals(pickupObjectName, "steak")) {
+            currentImage = images[1];
+        } else if (Objects.equals(pickupObjectName, "trap")) {
+            currentImage = images[2];
+        } else {
+            currentImage = images[3];
+        }
+
+        msgLength = message.length() * 12;
+        msgWindow.replace("outerWidth", msgLength + gp.tileSize * 2);
+        msgWindow.replace("innerWidth", msgWindow.get("outerWidth") - 10);
+
+        imgSettings.replace("x", msgLength + gp.tileSize / 2);
+        imgSettings.replace("y", height - 20);
+
         msgOn = true;
     }
 
@@ -90,13 +101,11 @@ public class GamePlayUI extends GameUI {
         }
     }
 
-        /**
+    /**
      * This is a method for drawing a message window by using the x, y position and value of width, height.
      *
-     * @param x      window's x position.
-     * @param y      window's y position.
-     * @param width  window's width value.
-     * @param height window's height value.
+     * @param msgWindow window's x position.
+     * @param g2        window's y position.
      */
     private void drawMsgWindow(Map<String, Integer> msgWindow, Graphics2D g2) {
         g2.setColor(dBrown);
@@ -113,7 +122,7 @@ public class GamePlayUI extends GameUI {
         super.drawScoreAndTimer(g2);
     }
 
-    public void resetUI(){
+    public void resetUI() {
         resetTimer();
         resetMsg();
     }
@@ -134,5 +143,5 @@ public class GamePlayUI extends GameUI {
     public void resetTimer() {
         playTime = 0.0;
         paused = false;
-}
+    }
 }
