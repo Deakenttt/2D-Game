@@ -1,3 +1,6 @@
 ui/UIFormattingLinesTest.class
-ai/FindPathTest.class
+player/PlayerTest.class
+main/SoundTest.class
 ui/resetMessageTest.class
+object/AssetSetterTest.class
+ai/FindPathTest.class
