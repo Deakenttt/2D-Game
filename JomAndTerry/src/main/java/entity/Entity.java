@@ -152,5 +152,12 @@ public class Entity {
         }
         g2.drawImage(image, x, y, null);
     }
+
+    public void setEntityXY(int x, int y){
+        this.x = x;
+        this.y = y;
+        solidArea.x = x + solidArea.width;
+        solidArea.y = y + solidArea.height;
+    }
 }
 

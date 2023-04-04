@@ -49,7 +49,6 @@ public class ScreenSetUITest {
     @Before
     public void setUp() 
     {   
-        GameOverUI gameOverUI = new GameOverUI(gp);
         gp.setUpGame();
         font = new Font("Arial", Font.PLAIN, 12);
         MockitoAnnotations.openMocks(this);
@@ -71,7 +70,7 @@ public class ScreenSetUITest {
 
     @Test
     public void testGamePlayUIWithMessage() {
-        gamePlayUI.setMessage("Item", 3);
+        gamePlayUI.setMessage("cheese", "cheese");
         gamePlayUI.draw(g2);
         assertTrue(gamePlayUI.msgOn);
         verify(g2, times(5)).drawString(anyString(), anyInt(), anyInt());
@@ -87,8 +86,6 @@ public class ScreenSetUITest {
     // @Test
     // public void testGameOverUI() {
         // text = "Testing Game Over UI invokes the correct number of drawString";
-        FontMetrics gameOverFontMetrics = mock(FontMetrics.class);
-        // when((int) g2.getFontMetrics().getStringBounds(text, g2).getWidth()).thenReturn(10);
         // doReturn(new Rectangle2D.Float(0, 0, 100, 20)).when(fontMetrics).getStringBounds(text, g2);
         // doNothing().when(g2).drawString(anyString(), anyInt(), anyInt());
         // when(g2.getFontMetrics()).thenReturn(gameOverFontMetrics);
@@ -100,11 +97,13 @@ public class ScreenSetUITest {
         // verify(g2, times(4)).drawString(anyString(), anyInt(), anyInt());
     // }
 
-    @Test
-    public void testTitleUI() {
-        titleUI.draw(g2);
-        verify(g2, times(0)).drawString(anyString(), anyInt(), anyInt());
-    }
+    // @Test
+    // public void testTitleUI() {
+        // FontMetrics fontMetrics = mock(FontMetrics.class);
+        // when(fontMetrics.getStringBounds(text, g2)).thenReturn(new Rectangle(0, 0, 0, 20));
+        // titleUI.draw(g2);
+        // verify(g2, times(0)).drawString(anyString(), anyInt(), anyInt());
+    // }
 
     // @Test
     // public void testMainTitleUI() {

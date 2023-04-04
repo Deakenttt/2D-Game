@@ -302,4 +302,8 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
     }
+
+    public KeyHandler getKeyHandler(){
+        return keyHandler;
+    }
 }

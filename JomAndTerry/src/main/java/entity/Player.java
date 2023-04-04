@@ -179,4 +179,8 @@ public class Player extends Entity {
         } else
             gp.ui.setMessage("You need to collect all of the cheese!", "cheese"); // Show the msg when get the cheese.
     }
+
+    public void setKeyHoldTimer(int i){
+        KeyHoldTimer = i;
+    }
 }

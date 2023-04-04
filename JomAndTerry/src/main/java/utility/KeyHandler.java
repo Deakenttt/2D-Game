@@ -287,5 +287,8 @@ private void handleOverStateInput(int keyCode) {
             default: break;
         }
     }
+    public void setTitleStateInputTesting(int e){
+        handleTitleStateInput(e);
+    }
 }
 
