@@ -22,16 +22,16 @@ public class AssetSetter {
      * Setting all the buffered images to each type of objects.
      */
     public void setObject() {
-        gp.obj[0] = new OBJ_Cheese(gp);
-        gp.obj[1] = new OBJ_Cheese(gp);
-        gp.obj[2] = new OBJ_Cheese(gp);
-        gp.obj[3] = new OBJ_Cheese(gp);
-        gp.obj[4] = new OBJ_Cheese(gp);
-        gp.obj[5] = new OBJ_Cheese(gp);
+        gp.obj[0] = new Cheese(gp);
+        gp.obj[1] = new Cheese(gp);
+        gp.obj[2] = new Cheese(gp);
+        gp.obj[3] = new Cheese(gp);
+        gp.obj[4] = new Cheese(gp);
+        gp.obj[5] = new Cheese(gp);
         gp.obj[6] = null; // Steak
-        gp.obj[7] = new OBJ_Trap(gp);
-        gp.obj[8] = new OBJ_Trap(gp);
-        gp.obj[9] = new OBJ_Hole(gp);
+        gp.obj[7] = new Trap(gp);
+        gp.obj[8] = new Trap(gp);
+        gp.obj[9] = new Hole(gp);
 
         for (int i = 0; i < 9; i++) {
 
@@ -62,7 +62,7 @@ public class AssetSetter {
         do {
             row = getRandomNumber(quad[0], quad[1]);
             col = getRandomNumber(quad[2], quad[3]);
-        } while (!isTileAvailable(col, row));  // there isn't anything existing on the object position
+        } while (!this.isTileAvailable(col, row));  // there isn't anything existing on the object position
         gp.obj[i].solidArea.x = (col) * gp.tileSize;//gp.obj[i].x;
         gp.obj[i].solidArea.y = (row) * gp.tileSize;//gp.obj[i].y;
     }
@@ -92,7 +92,7 @@ public class AssetSetter {
     public void steakUpdate() {
         if (steakCounter == 0) {
             if (gp.obj[6] == null) {
-                gp.obj[6] = new OBJ_Steak(gp);
+                gp.obj[6] = new Steak(gp);
                 object_setter(6);
             } else {
                 gp.obj[6] = null;
@@ -102,7 +102,7 @@ public class AssetSetter {
         steakCounter--;
     }                                                      
 
-    private boolean isTileAvailable(int col, int row) {
+    public boolean isTileAvailable(int col, int row) {
         int tileNum = gp.tileManager.mapTileNum[col][row];
         Rectangle rect = new Rectangle(col*gp.tileSize, row*gp.tileSize, 48, 48);
         return !gp.tileManager.tile[tileNum].collision && gp.collisionChecker.checkObject(rect) == 999;

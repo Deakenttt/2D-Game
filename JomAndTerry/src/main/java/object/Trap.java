@@ -5,8 +5,8 @@ import main.GamePanel;
 /**
  * @Des This is a trap class inheritance from SuperObject.
  */
-public class OBJ_Trap extends SuperObject{
-    public OBJ_Trap(GamePanel gp) {
+public class Trap extends SuperObject{
+    public Trap(GamePanel gp) {
 
         super(gp);
     }

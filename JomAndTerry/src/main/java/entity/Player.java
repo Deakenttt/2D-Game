@@ -3,6 +3,8 @@ package entity;
 import main.GamePanel;
 import utility.KeyHandler;
 
+import java.util.Objects;
+
 /**
  * The Player class represents a player entity that extends from the Entity class.
  * It keeps track of the player's score, the number of cheese and steak, and whether the player is captured.
@@ -93,24 +95,15 @@ public class Player extends Entity {
         if (object != 999) {
             String objectName = gp.obj[object].name; // Get the type of different objects.
             switch (objectName) {
-                case "cheese":
-                    pickupObjectEffect(objectName, "You got a cheese!", object, 0, 4);
-                    break;
-
-                case "steak":
+                case "cheese" -> pickupObjectEffect(objectName, "You got a cheese!", object,  4);
+                case "steak" -> {
                     System.out.println("picked up a steak");
-                    pickupObjectEffect(objectName, "You got a steak!", object, 1, 5);
-                    break;
-
-                case "trap":
-                    pickupObjectEffect(objectName, "Ouch! You touched a trap!", object, 2, 7);
-                    break;
-
-                case "hole":
-                    handleExit();
-                    break;
-                default:
-                    break;
+                    pickupObjectEffect(objectName, "You got a steak!", object,  5);
+                }
+                case "trap" -> pickupObjectEffect(objectName, "Ouch! You touched a trap!", object,  7);
+                case "hole" -> handleExit();
+                default -> {
+                }
             }
         }
     }
@@ -134,14 +127,13 @@ public class Player extends Entity {
      * @param pickupObjectName  The object name in string that collected by the player, use to determine the different cases for updating the score.
      * @param pickUpObjectMsg   The message in string that used to display to the game when player collect the objects.
      * @param pickupObjectIndex The index of the object that picked up by player, used to indicate which object need to be removed from the arraylist.
-     * @param pickupObjectType  The number representing the index of the buffered image arraylist, it used to display in the message window.
-     * @param pickupObjectSound The number representing the index of the sound effect. it used to play the sound effect.
+     * @param pickupObjectSoundIndex The number representing the index of the sound effect. it used to play the sound effect.
      */
-    public void pickupObjectEffect(String pickupObjectName, String pickUpObjectMsg, int pickupObjectIndex, int pickupObjectType, int pickupObjectSound) {
+    public void pickupObjectEffect(String pickupObjectName, String pickUpObjectMsg, int pickupObjectIndex, int pickupObjectSoundIndex) {
         handleScore(pickupObjectName);                               // Update the score.
-        gp.playSE(pickupObjectSound);                                // Play the sounds effect.
+        gp.playSE(pickupObjectSoundIndex);                                // Play the sounds effect.
         gp.obj[pickupObjectIndex] = null;                            // Remove that object.
-        gp.ui.setMessage(pickUpObjectMsg, pickupObjectType); // Show the msg when touch object.
+        gp.ui.setMessage(pickUpObjectMsg, pickupObjectName);         // Show the msg when touch object.
         System.out.println("score: " + scoreCount);
     }
 
@@ -151,13 +143,13 @@ public class Player extends Entity {
      * @param pickupObjectName A string type parameter to determine different cases of scores. such as pick up a cheese or trap, and how to deal with the score.
      */
     public void handleScore(String pickupObjectName) {
-        if (pickupObjectName == "cheese") {
+        if (Objects.equals(pickupObjectName, "cheese")) {
             cheeseCount++;
             scoreCount++;
-        } else if (pickupObjectName == "steak") {
+        } else if (Objects.equals(pickupObjectName, "steak")) {
             steakCount += 5;
             scoreCount += 5;
-        } else if (pickupObjectName == "trap") {
+        } else if (Objects.equals(pickupObjectName, "trap")) {
             scoreCount -= 5;
         }
     }
@@ -167,7 +159,7 @@ public class Player extends Entity {
      */
     public void handleGameState() {
         if (cheeseCount >= 6) {
-            gp.ui.setMessage("Door is open!", 3);
+            gp.ui.setMessage("Door is open!", "hole");
         }
         if (cheeseCount == 6 && gp.exitcondition) {
             gp.playSE(1);
@@ -183,8 +175,8 @@ public class Player extends Entity {
     public void handleExit() {
         if (cheeseCount >= 6) {
             gp.gameWin();
-            gp.ui.setMessage("You escaped successfully!", 3); // Show the msg when get the cheese.
+            gp.ui.setMessage("You escaped successfully!", "hole"); // Show the msg when get the cheese.
         } else
-            gp.ui.setMessage("You need to collect all of the cheese!", 0); // Show the msg when get the cheese.
+            gp.ui.setMessage("You need to collect all of the cheese!", "cheese"); // Show the msg when get the cheese.
     }
 }
