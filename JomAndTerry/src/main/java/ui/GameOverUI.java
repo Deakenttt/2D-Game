@@ -1,7 +1,6 @@
 package ui;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 
 import main.GamePanel;
@@ -16,7 +15,7 @@ public class GameOverUI extends GameUI{
         y = gp.tileSize * 4;
         g2.setColor(grey);
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110f));
+        g2.setFont(XLFont);
         g2.setColor(Color.black);
         textWithShadow(titleText, g2);
 
