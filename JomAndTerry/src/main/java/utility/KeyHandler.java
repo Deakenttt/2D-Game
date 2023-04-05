@@ -287,5 +287,18 @@ private void handleOverStateInput(int keyCode) {
             default: break;
         }
     }
+    public void setTitleStateInputTesting(int e){
+        handleTitleStateInput(e);
+    }
+
+    public void setWinStateInputTesting(int e){
+        handleWinStateInput(e);
+    }
+
+    public void setOverStateInputTesting(int e){
+        handleOverStateInput(e);
+    }
+
+
 }
 
