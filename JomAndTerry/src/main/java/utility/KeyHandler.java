@@ -290,5 +290,15 @@ private void handleOverStateInput(int keyCode) {
     public void setTitleStateInputTesting(int e){
         handleTitleStateInput(e);
     }
+
+    public void setWinStateInputTesting(int e){
+        handleWinStateInput(e);
+    }
+
+    public void setOverStateInputTesting(int e){
+        handleOverStateInput(e);
+    }
+
+
 }
 
