@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean exitcondition = true;
 
     Thread gameThread; // To enable start and stop, needs involve Runnable interface.
-    KeyHandler keyHandler = new KeyHandler(this); // Key handler class.
+    public KeyHandler keyHandler = new KeyHandler(this); // Key handler class.
 
     public FindPath findPath = new FindPath(this);
     public Player player;
