@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b84b050-2c49-4765-8618-9bb345bd1d0f" name="Changes" comment="" />
+    <list default="true" id="8b84b050-2c49-4765-8618-9bb345bd1d0f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/main/SoundTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Sound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/Sound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/object/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/object/AssetSetter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-ai.FindPathTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-ai.FindPathTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-ui.UIFormattingLinesTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-ui.UIFormattingLinesTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-ui.resetMessageTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-ui.resetMessageTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/ai.FindPathTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ai.FindPathTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/ui.UIFormattingLinesTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ui.UIFormattingLinesTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/ui.resetMessageTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/ui.resetMessageTest.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,12 +83,43 @@
       <recent name="junit.framework.TestCase" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="main" />
       <recent name="ai" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.Main" />
+  <component name="RunManager" selected="JUnit.SoundTest.testPlay">
+    <configuration name="AssetSetterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JomAndTerry" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="object.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="object" />
+      <option name="MAIN_CLASS_NAME" value="object.AssetSetterTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AssetSetterTest.testIsTileAvailableAndCollision" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="JomAndTerry" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="object.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="object" />
+      <option name="MAIN_CLASS_NAME" value="object.AssetSetterTest" />
+      <option name="METHOD_NAME" value="testIsTileAvailableAndCollision" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SoundTest.testLoop" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JomAndTerry" />
       <extension name="coverage">
         <pattern>
@@ -81,80 +127,53 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FindPathTest.testAStarSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JomAndTerry" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ai.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ai" />
-      <option name="MAIN_CLASS_NAME" value="ai.FindPathTest" />
-      <option name="METHOD_NAME" value="testAStarSearch" />
+      <option name="PACKAGE_NAME" value="main" />
+      <option name="MAIN_CLASS_NAME" value="main.SoundTest" />
+      <option name="METHOD_NAME" value="testLoop" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FindPathTest.testGetCost" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SoundTest.testPlay" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JomAndTerry" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ai.*" />
+          <option name="PATTERN" value="main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ai" />
-      <option name="MAIN_CLASS_NAME" value="ai.FindPathTest" />
-      <option name="METHOD_NAME" value="testGetCost" />
+      <option name="PACKAGE_NAME" value="main" />
+      <option name="MAIN_CLASS_NAME" value="main.SoundTest" />
+      <option name="METHOD_NAME" value="testPlay" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FindPathTest.testSetNode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SoundTest.testSetFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JomAndTerry" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ai.*" />
+          <option name="PATTERN" value="main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ai" />
-      <option name="MAIN_CLASS_NAME" value="ai.FindPathTest" />
-      <option name="METHOD_NAME" value="testSetNode" />
+      <option name="PACKAGE_NAME" value="main" />
+      <option name="MAIN_CLASS_NAME" value="main.SoundTest" />
+      <option name="METHOD_NAME" value="testSetFile" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="resetMessageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JomAndTerry" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ui" />
-      <option name="MAIN_CLASS_NAME" value="ui.resetMessageTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.resetMessageTest" />
-        <item itemvalue="JUnit.FindPathTest.testAStarSearch" />
-        <item itemvalue="JUnit.FindPathTest.testSetNode" />
-        <item itemvalue="JUnit.FindPathTest.testGetCost" />
+        <item itemvalue="JUnit.SoundTest.testPlay" />
+        <item itemvalue="JUnit.SoundTest.testSetFile" />
+        <item itemvalue="JUnit.SoundTest.testLoop" />
+        <item itemvalue="JUnit.AssetSetterTest" />
+        <item itemvalue="JUnit.AssetSetterTest.testIsTileAvailableAndCollision" />
       </list>
     </recent_temporary>
   </component>

@@ -121,7 +121,7 @@ public class Entity {
                 if (spriteNum == 1) {
                     image = up1;
                 }
-                if (spriteNum == 2) {
+                if (spriteNum == 2) { 
                     image = up2;
                 }
             }

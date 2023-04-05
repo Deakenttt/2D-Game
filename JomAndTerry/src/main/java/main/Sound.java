@@ -1,6 +1,7 @@
 package main;
 
 import javax.sound.sampled.*;
+import java.util.Objects;
 
 /**
  * This is a Sound class for dealing with all the sound files and attributes.
@@ -26,7 +27,7 @@ public class Sound {
      */
     public void setFile(int i) {
         try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(getClass().getResource(soundFiles[i]));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource(soundFiles[i])));
             clip = AudioSystem.getClip();
             clip.open(ais);
 
