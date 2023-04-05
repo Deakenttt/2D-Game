@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="player.PlayerTest" time="0.022" errors="3" skipped="0">
+<testsuite tests="3" failures="0" name="player.PlayerTest" time="0.026" errors="3" skipped="0">
   <properties>
     <property name="idea.version" value="2021.3"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -59,7 +59,7 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="player.PlayerTest" name="testPickUpObjectAndPickUpObjectEffect" time="0.005">
+  <testcase classname="player.PlayerTest" name="testPickUpObjectAndPickUpObjectEffect" time="0.006">
     <error message="Cannot read field &quot;name&quot; because &quot;this.gp.obj[object]&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot read field &quot;name&quot; because &quot;this.gp.obj[object]&quot; is null
 	at player.PlayerTest.testPickUpObjectAndPickUpObjectEffect(PlayerTest.java:96)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -96,7 +96,7 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
   </testcase>
-  <testcase classname="player.PlayerTest" name="testSetAction" time="0.007">
+  <testcase classname="player.PlayerTest" name="testSetAction" time="0.006">
     <error message="Cannot assign field &quot;upPressed&quot; because &quot;this.keyHandler&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot assign field &quot;upPressed&quot; because &quot;this.keyHandler&quot; is null
 	at player.PlayerTest.testSetAction(PlayerTest.java:20)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -133,7 +133,7 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
   </testcase>
-  <testcase classname="player.PlayerTest" name="testUpdate" time="0.01">
+  <testcase classname="player.PlayerTest" name="testUpdate" time="0.014">
     <error message="Cannot assign field &quot;upPressed&quot; because &quot;this.keyHandler&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot assign field &quot;upPressed&quot; because &quot;this.keyHandler&quot; is null
 	at player.PlayerTest.testUpdate(PlayerTest.java:66)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)

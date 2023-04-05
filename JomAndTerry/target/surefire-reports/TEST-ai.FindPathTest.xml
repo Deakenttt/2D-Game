@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="ai.FindPathTest" time="0.359" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="ai.FindPathTest" time="0.303" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.3"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -59,11 +59,11 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="ai.FindPathTest" name="testInstantiateNode" time="0.273"/>
-  <testcase classname="ai.FindPathTest" name="testResetNode" time="0.03"/>
-  <testcase classname="ai.FindPathTest" name="testGetCost" time="0.019"/>
-  <testcase classname="ai.FindPathTest" name="testOpenNode" time="0.009"/>
-  <testcase classname="ai.FindPathTest" name="testAStarSearch" time="0.009"/>
-  <testcase classname="ai.FindPathTest" name="testTrackPath" time="0.009"/>
-  <testcase classname="ai.FindPathTest" name="testSetNode" time="0.01"/>
+  <testcase classname="ai.FindPathTest" name="testInstantiateNode" time="0.206"/>
+  <testcase classname="ai.FindPathTest" name="testResetNode" time="0.014"/>
+  <testcase classname="ai.FindPathTest" name="testGetCost" time="0.031"/>
+  <testcase classname="ai.FindPathTest" name="testOpenNode" time="0.013"/>
+  <testcase classname="ai.FindPathTest" name="testAStarSearch" time="0.014"/>
+  <testcase classname="ai.FindPathTest" name="testTrackPath" time="0.013"/>
+  <testcase classname="ai.FindPathTest" name="testSetNode" time="0.012"/>
 </testsuite>

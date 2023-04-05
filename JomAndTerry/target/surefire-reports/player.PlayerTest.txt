@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: player.PlayerTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.022 sec <<< FAILURE!
-testPickUpObjectAndPickUpObjectEffect(player.PlayerTest)  Time elapsed: 0.005 sec  <<< ERROR!
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.028 sec <<< FAILURE!
+testPickUpObjectAndPickUpObjectEffect(player.PlayerTest)  Time elapsed: 0.006 sec  <<< ERROR!
 java.lang.NullPointerException: Cannot read field "name" because "this.gp.obj[object]" is null
 	at player.PlayerTest.testPickUpObjectAndPickUpObjectEffect(PlayerTest.java:96)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -38,7 +38,7 @@ java.lang.NullPointerException: Cannot read field "name" because "this.gp.obj[ob
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testSetAction(player.PlayerTest)  Time elapsed: 0.007 sec  <<< ERROR!
+testSetAction(player.PlayerTest)  Time elapsed: 0.006 sec  <<< ERROR!
 java.lang.NullPointerException: Cannot assign field "upPressed" because "this.keyHandler" is null
 	at player.PlayerTest.testSetAction(PlayerTest.java:20)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -74,7 +74,7 @@ java.lang.NullPointerException: Cannot assign field "upPressed" because "this.ke
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testUpdate(player.PlayerTest)  Time elapsed: 0.01 sec  <<< ERROR!
+testUpdate(player.PlayerTest)  Time elapsed: 0.014 sec  <<< ERROR!
 java.lang.NullPointerException: Cannot assign field "upPressed" because "this.keyHandler" is null
 	at player.PlayerTest.testUpdate(PlayerTest.java:66)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)

@@ -1,6 +1,7 @@
+main/SoundTest.class
+utility/ImageLoaderTest.class
+ai/FindPathTest.class
 ui/UIFormattingLinesTest.class
 player/PlayerTest.class
-main/SoundTest.class
 ui/resetMessageTest.class
 object/AssetSetterTest.class
-ai/FindPathTest.class
