@@ -57,14 +57,6 @@ public class testGamePlay {
         assertEquals(48, gp.player.x); 
         assertEquals(48*2, gp.player.y);               
         assertEquals(1, gp.gameState);
-
-
-
-        // Verify that the game is over
-        // assertTrue(game.isOver());
-        
-        // Verify that the game score is correct
-        // assertEquals(10, game.getScore());
     }
     @Test
     public void testMouseCatCollision(){
@@ -153,6 +145,10 @@ public class testGamePlay {
         moveUp();
         assertEquals(3, gp.gameState);
         assertFalse(gp.enemy[0].collisionOn);
+    }
+
+    @Test public void testMouseCheeseCollision(){
+        
     }
 
     public void stop(){

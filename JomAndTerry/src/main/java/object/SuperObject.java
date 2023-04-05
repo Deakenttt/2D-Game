@@ -22,7 +22,6 @@ public class SuperObject {
     public int solidAreaDefaultX, solidAreaDefaultY;
     // public GamePanel gp;
     public SuperObject(GamePanel gp){
-        // this.gp = gp;
         setDefaultValues();
         image = gp.imageLoader.getImage(name);
         
@@ -32,6 +31,11 @@ public class SuperObject {
         solidArea =  new Rectangle(x, y, 48, 48);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+    }
+
+    public void setObject(int x, int y){
+        solidArea.x = x;
+        solidArea.y = y;
     }
     
     /**
