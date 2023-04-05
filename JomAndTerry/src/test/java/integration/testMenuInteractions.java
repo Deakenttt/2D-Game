@@ -17,7 +17,6 @@ public class testMenuInteractions {
     @Before
     public void setUp(){
         key = gp.getKeyHandler();
-        UI ui = gp.ui;
         gp.setUpGame();
     }
 
