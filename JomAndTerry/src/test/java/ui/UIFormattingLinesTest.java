@@ -30,7 +30,7 @@ public class UIFormattingLinesTest {
     public void setup(){
         ui = new UI(new GamePanel());
         font = new Font("Arial", Font.PLAIN, 12);
-        screenWidth = 48*20;
+        screenWidth = 48*20; 
         // Initialize the mock
         MockitoAnnotations.openMocks(this);
         fontMetrics = mock(FontMetrics.class);
