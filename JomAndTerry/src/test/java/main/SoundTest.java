@@ -12,7 +12,7 @@ public class SoundTest {
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         sound = new Sound();
     }
 

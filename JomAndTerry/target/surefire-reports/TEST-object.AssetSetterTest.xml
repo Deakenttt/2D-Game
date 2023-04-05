@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="object.AssetSetterTest" time="0.024" errors="3" skipped="0">
+<testsuite tests="3" failures="0" name="object.AssetSetterTest" time="0.025" errors="3" skipped="0">
   <properties>
     <property name="idea.version" value="2021.3"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -136,7 +136,7 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
   </testcase>
-  <testcase classname="object.AssetSetterTest" name="testSteakUpdate" time="0.007">
+  <testcase classname="object.AssetSetterTest" name="testSteakUpdate" time="0.008">
     <error message="Cannot load from object array because &quot;this.gp.tileManager.mapTileNum&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot load from object array because &quot;this.gp.tileManager.mapTileNum&quot; is null
 	at object.AssetSetter.isTileAvailable(AssetSetter.java:106)
 	at object.AssetSetter.object_setter(AssetSetter.java:65)
