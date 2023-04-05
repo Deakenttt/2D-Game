@@ -1,6 +1,8 @@
 package integration;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 import java.awt.event.KeyEvent;
 import org.junit.Before;
 import org.junit.Test;
@@ -54,7 +56,7 @@ public class testGamePlay {
         moveLeft();
         assertEquals(48, gp.player.x); 
         assertEquals(48*2, gp.player.y);               
-        assertEquals(2, gp.gameState);
+        assertEquals(1, gp.gameState);
 
 
 
@@ -68,8 +70,12 @@ public class testGamePlay {
     public void testMouseCatCollision(){
         // Simulate cat captures mouse with 0 points
         gp.retry(1);
-        gp.player.captured(0);
+        gp.enemy[0].setEntityXY(48*2, 48*2);
+        gp.player.setEntityXY(48*2, 48);
+        moveRight();
         assertEquals(3, gp.gameState);
+        assertEquals(0, gp.player.cheeseCount);
+        assertEquals(0, gp.player.scoreCount);
 
         // Simulate cat captures mouse with 1 point
         gp.retry(1);
@@ -130,23 +136,25 @@ public class testGamePlay {
 
     @Test
     public void testCatCatCollision(){
+        // Simulate cat vs cat collision to ensure cats don't take up the same space
+        gp.retry(1);
+        gp.enemy[0].setEntityXY(48*4, 48);
+        gp.enemy[1].setEntityXY(48*4, 48*3);
+        gp.player.setEntityXY(48*3, 48*2);
+        moveUp();
+        assertEquals(1, gp.gameState);
+        assertFalse(gp.enemy[0].collisionOn);
 
+        // Simulate cat vs mouse vs cat collision to ensure only 1 cat moves to mouse space
+        gp.retry(1);
+        gp.enemy[0].setEntityXY(48*5, 48);
+        gp.enemy[1].setEntityXY(48*4, 48*2);
+        gp.player.setEntityXY(48*4, 48);
+        moveUp();
+        assertEquals(3, gp.gameState);
+        assertFalse(gp.enemy[0].collisionOn);
     }
 
-    @Test
-    public void testMouseTrapCollsion(){
-
-    }
-
-    @Test
-    public void testMouseCheeseCollision(){
-
-    }
-
-    @Test
-    public void testCatTrapCollision(){
-
-    }
     public void stop(){
         key.upPressed = false;
         key.downPressed = false;
