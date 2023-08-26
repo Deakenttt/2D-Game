@@ -66,7 +66,10 @@ public class GamePlayUI extends GameUI {
             currentImage = images[1];
         } else if (Objects.equals(pickupObjectName, "trap")) {
             currentImage = images[2];
-        } else {
+        } else if (Objects.equals(pickupObjectName, "outOfMap")){
+            currentImage = null;
+        }
+        else {
             currentImage = images[3];
         }
 
@@ -109,7 +112,7 @@ public class GamePlayUI extends GameUI {
      */
     private void drawMsgWindow(Map<String, Integer> msgWindow, Graphics2D g2) {
         g2.setColor(dBrown);
-        g2.fillRoundRect(x, y, msgWindow.get("outerWidth"), msgWindow.get("outerLength"), 5, 5);
+        g2.fillRoundRect(x, y, msgWindow.get("outerWidth"), msgWindow.get("outerLength"), 8, 8);
         g2.setColor(lBrown);
         g2.setStroke(new BasicStroke(5));
         g2.drawRoundRect(msgWindow.get("innerX"), msgWindow.get("innerY"), msgWindow.get("innerWidth"), msgWindow.get("innerLength"), 5, 5);

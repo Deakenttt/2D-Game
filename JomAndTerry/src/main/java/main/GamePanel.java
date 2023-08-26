@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperObject[][] objectsMap;
 
     // public UI playUI;
-    public UI ui;
+    public UI ui = new UI (this);
     public UI[] gameUI = new UI[5];
     
     // UI and sound

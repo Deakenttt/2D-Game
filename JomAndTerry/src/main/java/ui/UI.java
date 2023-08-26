@@ -23,6 +23,11 @@ public class UI {
     protected String titleText;
     protected String subText;
 
+    public String message = "";
+    public boolean messageOn = false;
+    public int objectCollectType = 0;
+
+
     // Text positions
     protected int y;
     protected int x;

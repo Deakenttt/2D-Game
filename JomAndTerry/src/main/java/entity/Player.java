@@ -81,6 +81,10 @@ public class Player extends Entity {
             gp.collisionChecker.checkEntity(this);
             gp.assetSetter.steakUpdate();
         }
+        if(this.x == 0 && this.y == 48 && Objects.equals(this.direction, "left")) {
+            doMove = false;
+            gp.ui.setMessage("sorry you can't go out of the map", "outOfMap");
+        }
         super.update();
         pickUpObject(gp.collisionChecker.checkObject(solidArea));
     }
